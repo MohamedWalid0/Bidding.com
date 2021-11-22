@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +18,12 @@ class CreateProductWishlistsTable extends Migration
         Schema::create('product_wishlists', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(App\Models\Product::class)
+            $table->foreignIdFor(Product::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignIdFor(App\Models\Wishlist::class)
+            $table->foreignIdFor(Wishlist::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

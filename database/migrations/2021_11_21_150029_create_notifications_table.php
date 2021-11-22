@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\NotificationType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(App\Models\NotificationType::class)
+            $table->foreignIdFor(NotificationType::class)
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class CreateSupportsTable extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(App\Models\User::class)
+            $table->foreignIdFor(User::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
