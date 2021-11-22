@@ -30,7 +30,7 @@
 
                     <div class="input-group mb-3">
                         <input id="email" type="email" class="form-control "
-                               name="email" value="{{ old('email') }}" required autocomplete="email"
+                               name="email" value="{{ old('email') }}"  autocomplete="email"
                                placeholder="Email">
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                     <div class="input-group mb-3">
                         <input id="phone" type="number" class="form-control "
                                name="phone"
-                               value="{{ old('phone') }}" required autocomplete="name" placeholder="phone">
+                               value="{{ old('phone') }}"  autocomplete="name" placeholder="phone">
                         @error('phone')
                         <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                     <div class="input-group mb-3">
                         <input id="address" type="text" class="form-control "
                                name="address"
-                               value="{{ old('address') }}" required autocomplete="address" placeholder="Address">
+                               value="{{ old('address') }}"  autocomplete="address" placeholder="Address">
                         @error('address')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -83,7 +83,7 @@
                     {{-- age --}}
                     <div class="input-group mb-3">
                         <input id="age" type="number" class="form-control" name="age"
-                               value="{{ old('age') }}" required autocomplete="name" placeholder="age">
+                               value="{{ old('age') }}"  autocomplete="name" placeholder="age">
                         @error('age')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -100,7 +100,7 @@
                     <div class="input-group mb-3">
                         <input id="password" type="password"
                                class="form-control "
-                               name="password" required autocomplete="new-password" placeholder="Password">
+                               name="password"  autocomplete="new-password" placeholder="Password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -125,32 +125,31 @@
 
                     @error('city')
                         <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     <div class="form-group">
 
                         <select  class="custom-select rounded-0" id="city" name="city">
                             <option selected hidden >Select your City</option>
-                            <option value="1">Value 2</option>
-                            <option value="1">Value 3</option>
-
+                            @foreach (\App\Models\City::all() as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
                         </select>
-
 
                     </div>
 
 
-                    <input type="hidden" name="role_id" value="1">
+                    <input type="hidden" name="role_id" value="{{ \App\Models\Role::getAdminRoleId() }}">
                     {{-- gender --}}
 
                     <div class="form-group">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender_id" value="1">
+                            <input class="form-check-input" type="radio" name="gender_id" value="{{ \App\Models\Gender::getMaleId() }}">
                             <label class="form-check-label">Male</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender_id" value="2">
+                            <input class="form-check-input" type="radio" name="gender_id" value="{{ \App\Models\Gender::getFemaleId() }}">
                             <label class="form-check-label">Female</label>
                         </div>
 
