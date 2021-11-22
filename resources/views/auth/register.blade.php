@@ -132,8 +132,11 @@
 
                         <select  class="custom-select rounded-0" id="city" name="city">
                             <option selected hidden >Select your City</option>
-                            <option value="1">Value 2</option>
-                            <option value="1">Value 3</option>
+                            @foreach (\App\Models\City::all() as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+
+
 
                         </select>
 
