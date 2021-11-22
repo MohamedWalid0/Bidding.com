@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -50,11 +51,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'numeric', 'unique:accounts'],
+            'phone' => ['required', 'numeric',  'min:10','unique:accounts'],
             'address' => ['required', 'string',  'max:255'],
             'age' => ['required', 'numeric'],
             'city' => ['required', 'exists:cities,id'],
@@ -72,6 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
 
         $user = User::create([
             'email' => $data['email'],
@@ -92,4 +93,5 @@ class RegisterController extends Controller
 
         return $user;
     }
+
 }

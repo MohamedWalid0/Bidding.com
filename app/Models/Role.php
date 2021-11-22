@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+
+
+
+    public static function getAdminRoleId(){
+
+        $role = self::where('name' , 'admin')->select('id')->first();
+        return $role->id ;
+
+    }
+
+
 }
