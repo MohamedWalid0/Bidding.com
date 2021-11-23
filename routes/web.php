@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('home');
+//});
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
-Route::get('login/facebook', [RegisterController::class , 'redirectToProvider'])->name('facebookLogin');
-Route::get('login/facebook/callback', [RegisterController::class , 'handleProviderCallback']);
 
 
 
@@ -35,6 +34,9 @@ Route::group(['middleware' => ['auth', 'VerifiedUser']], function () {
 });
 
 
+
+
+
 Route::group(['middleware' => 'auth'], function () {
     // must be authenticated user
     Route::get('verify', [VerificationCodeController::class , 'getVerifyPage'])->name('verificationCodeForm');
@@ -43,4 +45,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+
+
+//social login with facebook
+Route::get('login/facebook', [RegisterController::class , 'redirectToProvider'])->name('facebookLogin');
+Route::get('login/facebook/callback', [RegisterController::class , 'handleProviderCallback']);
