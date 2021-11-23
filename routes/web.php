@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\VerificationCodeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +20,27 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+
+Route::get('login/facebook', [RegisterController::class , 'redirectToProvider'])->name('facebookLogin');
+Route::get('login/facebook/callback', [RegisterController::class , 'handleProviderCallback']);
+
+
+
+Route::group(['middleware' => ['auth', 'VerifiedUser']], function () {
+    // must be authenticated user and verified
+    Route::get('profile', function () {
+        return 'You Are Authenticated ';
+    });
+});
+
+
+Route::group(['middleware' => 'auth'], function () {
+    // must be authenticated user
+    Route::get('verify', [VerificationCodeController::class , 'getVerifyPage'])->name('verificationCodeForm');
+    Route::post('verify-user/', [VerificationCodeController::class , 'verify'])->name('verifyUser');
+
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\VerificationServices;
 use App\Models\Account;
 use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 
 class RegisterController extends Controller
 {
@@ -32,15 +36,21 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    public $sms_services ;
+
+
+
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(VerificationServices $sms_services)
     {
         $this->middleware('guest');
+        $this -> sms_services = $sms_services;
+
     }
 
     /**
@@ -73,25 +83,106 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        try{
 
-        $user = User::create([
-            'email' => $data['email'],
-            'role_id' => $data['role_id'],
-            'rate' => 0,
-            'password' => Hash::make($data['password']),
-        ]);
+            DB::beginTransaction();
 
-        Account::create([
-            'full_name' => $data['name'],
-            'user_id' => $user->id,
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-            'gender_id' => $data['gender_id'],
-            'city_id' => $data['city'],
-            'age' => $data['age'],
-        ]);
+            $verification = [];
 
-        return $user;
+            $user = User::create([
+                'email' => $data['email'],
+                'role_id' => $data['role_id'],
+                'rate' => 0,
+                'password' => Hash::make($data['password']),
+            ]);
+
+            Account::create([
+                'full_name' => $data['name'],
+                'user_id' => $user->id,
+                'phone' => $data['phone'],
+                'address' => $data['address'],
+                'gender_id' => $data['gender_id'],
+                'city_id' => $data['city'],
+                'age' => $data['age'],
+            ]);
+
+
+
+            // send OTP SMS code to user
+
+            $verification['user_id'] = $user->id;
+            $verification_data =  $this->sms_services->setVerificationCode($verification);
+            $message = $this->sms_services->getSMSVerifyMessageByAppName($verification_data -> code );
+
+            DB::commit();
+            return $user;
+
+
+        }catch(\Exception $ex){
+            DB::rollback();
+        }
+
+
     }
+
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->stateless()->user();
+
+        dd($user) ;
+
+        // use name because facebook not redirect user email
+
+        // $username = $user->name ;
+
+        // $db_user = User::where('email' , '=' , $username)->first() ;
+
+
+        // if ($db_user == null){
+
+        //     $register = User::create([
+        //         'username' => $username ,
+        //         'email' => $username ,
+        //         'password' => Hash::make('111111') ,
+        //         'oAuth_token' => $user->token
+        //     ]);
+
+        //     Auth::guard('admin')->login($register);
+
+        //     // send mail
+
+
+        //     // $user->email instance of 'mohamed@gmail.com' but fb not give access for user email
+        //     // Mail::to('mohamed@gmail.com')->send(new RegisterMail($user->name)) ;
+
+
+
+        // }
+        // else{
+        //     Auth::guard('admin')->login($db_user);
+
+
+        // }
+
+        // return redirect( route('admin.homepage') );
+
+
+
+
+
+    }
+
+
+
+
+
 
 }
