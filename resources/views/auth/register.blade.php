@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
+
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
@@ -186,9 +187,9 @@
                         <i class="fab fa-facebook mr-2"></i>
                         Sign up using Facebook
                     </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i>
-                        Sign up using Google+
+                    <a href="{{ route('twitterLogin') }}" class="btn btn-block btn-outline-secondary">
+                        <i class="fab fa-twitter mr-2"></i>
+                        Sign up using Twitter
                     </a>
                 </div>
 

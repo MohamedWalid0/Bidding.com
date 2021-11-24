@@ -46,6 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/', function(){
+    return redirect('register');
+});
 
 
 
@@ -53,3 +56,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 //social login with facebook
 Route::get('login/facebook', [RegisterController::class , 'redirectToProvider'])->name('facebookLogin');
 Route::get('login/facebook/callback', [RegisterController::class , 'handleProviderCallback']);
+
+//social login with twitter
+Route::get('login/twitter', [RegisterController::class , 'redirectToTwitter'])->name('twitterLogin');
+Route::get('login/twitter/callback', [RegisterController::class , 'callbackToTwitter']);

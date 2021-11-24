@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,7 @@ class RegisterController extends Controller
     {
         return Socialite::driver('facebook')->redirect();
     }
+
 
     public function handleProviderCallback()
     {
@@ -94,6 +96,18 @@ class RegisterController extends Controller
         // return redirect( route('admin.homepage') );
 
 
+    }
+
+
+    public function redirectToTwitter(): RedirectResponse
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+    public function callbackToTwitter()
+    {
+        $user = Socialite::driver('twitter')->user();
+
+        dd($user);
     }
 
     /**
