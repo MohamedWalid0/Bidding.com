@@ -22,7 +22,7 @@ class VerifyCode
 
             if(Auth::user() -> phone_verified_at == null){
 
-                return redirect(RouteServiceProvider::VERIFIED);
+                return redirect(RouteServiceProvider::VERIFIED_PHONE);
 
             }
 

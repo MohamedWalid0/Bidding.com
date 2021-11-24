@@ -26,7 +26,7 @@ Auth::routes(['verify' => true]);
 
 
 
-Route::group(['middleware' => ['auth', 'VerifiedUser']], function () {
+Route::group(['middleware' => ['auth' , 'verified' , 'verifiedUserPhone' ]], function () {
     // must be authenticated user and verified
     Route::get('profile', function () {
         return 'You Are Authenticated ';
@@ -37,15 +37,15 @@ Route::group(['middleware' => ['auth', 'VerifiedUser']], function () {
 
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth' , 'verified' ], function () {
     // must be authenticated user
-    Route::get('verify', [VerificationCodeController::class , 'getVerifyPage'])->name('verificationCodeForm');
-    Route::post('verify-user/', [VerificationCodeController::class , 'verify'])->name('verifyUser');
+    Route::get('phone/verify', [VerificationCodeController::class , 'getVerifyPage'])->name('verificationCodeForm');
+    Route::post('phone/verifyUser/', [VerificationCodeController::class , 'verify'])->name('verifyUserPhone');
 
 });
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 
