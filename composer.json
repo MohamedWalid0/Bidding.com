@@ -12,17 +12,16 @@
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3",
-        "wulfheart/pretty_routes": "^0.3.0"
+        "laravel/ui": "^3.3"
     },
     "require-dev": {
-        "bangnokia/laravel-serve-livereload": "^1.1",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "wulfheart/pretty_routes": "^0.3.0"
     },
     "autoload": {
         "psr-4": {

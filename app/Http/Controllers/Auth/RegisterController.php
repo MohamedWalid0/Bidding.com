@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Services\VerificationServices;
 use App\Models\Account;
-use App\Models\Role;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,16 +28,13 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    public $sms_services;
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    public $sms_services ;
-
-
-
 
     /**
      * Create a new controller instance.
@@ -49,96 +44,20 @@ class RegisterController extends Controller
     public function __construct(VerificationServices $sms_services)
     {
         $this->middleware('guest');
-        $this -> sms_services = $sms_services;
+        $this->sms_services = $sms_services;
 
     }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'numeric',  'min:10','unique:accounts'],
-            'address' => ['required', 'string',  'max:255'],
-            'age' => ['required', 'numeric'],
-            'city' => ['required', 'exists:cities,id'],
-            'role_id' => ['required', 'exists:roles,id'],
-            'gender_id' => ['required', 'exists:genders,id'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-
-        try{
-
-            DB::beginTransaction();
-
-            $verification = [];
-
-            $user = User::create([
-                'email' => $data['email'],
-                'role_id' => $data['role_id'],
-                'rate' => 0,
-                'password' => Hash::make($data['password']),
-            ]);
-
-
-            Account::create([
-                'full_name' => $data['name'],
-                'user_id' => $user->id,
-                'phone' => $data['phone'],
-                'address' => $data['address'],
-                'gender_id' => $data['gender_id'],
-                'city_id' => $data['city'],
-                'age' => $data['age'],
-            ]);
-
-
-
-            // send OTP SMS code to user
-
-            $verification['user_id'] = $user->id;
-            $verification_data =  $this->sms_services->setVerificationCode($verification);
-            $message = $this->sms_services->getSMSVerifyMessageByAppName($verification_data -> code );
-
-            DB::commit();
-            return $user;
-
-
-        }catch(\Exception $ex){
-            DB::rollback();
-        }
-
-
-    }
-
-
 
     public function redirectToProvider()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-
     public function handleProviderCallback()
     {
         $user = Socialite::driver('facebook')->stateless()->user();
 
-        dd($user) ;
+        dd($user);
 
         // use name because facebook not redirect user email
 
@@ -165,7 +84,6 @@ class RegisterController extends Controller
         //     // Mail::to('mohamed@gmail.com')->send(new RegisterMail($user->name)) ;
 
 
-
         // }
         // else{
         //     Auth::guard('admin')->login($db_user);
@@ -176,14 +94,79 @@ class RegisterController extends Controller
         // return redirect( route('admin.homepage') );
 
 
+    }
 
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param array $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'numeric', 'min:10', 'unique:accounts'],
+            'address' => ['required', 'string', 'max:255'],
+            'age' => ['required', 'numeric'],
+            'city' => ['required', 'exists:cities,id'],
+            'role_id' => ['required', 'exists:roles,id'],
+            'gender_id' => ['required', 'exists:genders,id'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param array $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+
+        try {
+
+            DB::beginTransaction();
+
+            $verification = [];
+
+            $user = User::create([
+                'email' => $data['email'],
+                'role_id' => $data['role_id'],
+                'rate' => 0,
+                'password' => Hash::make($data['password']),
+            ]);
+
+
+            Account::create([
+                'full_name' => $data['name'],
+                'user_id' => $user->id,
+                'phone' => $data['phone'],
+                'address' => $data['address'],
+                'gender_id' => $data['gender_id'],
+                'city_id' => $data['city'],
+                'age' => $data['age'],
+            ]);
+
+
+            // send OTP SMS code to user
+
+            $verification['user_id'] = $user->id;
+            $verification_data = $this->sms_services->setVerificationCode($verification);
+            $message = $this->sms_services->getSMSVerifyMessageByAppName($verification_data->code);
+
+            DB::commit();
+            return $user;
+
+
+        } catch (\Exception $ex) {
+            DB::rollback();
+        }
 
 
     }
-
-
-
-
 
 
 }
