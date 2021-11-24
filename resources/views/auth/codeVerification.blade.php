@@ -8,9 +8,9 @@
                 <a class="h1"><b>eBid</b></a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Please enter the verification code :</p>
+                <p class="login-box-msg">Please enter the verification code send to phone number :</p>
 
-                <form action="{{ route('verifyUser') }}" method="post">
+                <form action="{{ route('verifyUserPhone') }}" method="post">
                     @csrf
 
                     <div class="input-group mb-3">
