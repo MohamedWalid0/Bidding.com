@@ -19,7 +19,7 @@
                     <div class="input-group mb-3">
                         <input id="name" type="text" class="form-control "
                                name="name"
-                               value="{{ old('name') }}"  autocomplete="name" placeholder="Full Name">
+                               value="{{ $callback->name ?? old('name')}}"  autocomplete="name" placeholder="Full Name">
 
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -36,7 +36,7 @@
                     @enderror
                     <div class="input-group mb-3">
                         <input id="email" type="email" class="form-control "
-                               name="email" value="{{ old('email') }}"  autocomplete="email"
+                               name="email" value="{{ $callback->email ?? old('email') }}"  autocomplete="email"
                                placeholder="Email">
 
                         <div class="input-group-append">
@@ -144,6 +144,7 @@
 
 
                     <input type="hidden" name="role_id" value="{{ \App\Models\Role::getAdminRoleId() }}">
+                    <input type="hidden" name="oAuthToken" value="{{ $callback->token ?? NULL}}">
                     {{-- gender --}}
                     @error('gender_id')
                     <span class="text-danger" role="alert">
@@ -186,9 +187,9 @@
                         <i class="fab fa-facebook mr-2"></i>
                         Sign up using Facebook
                     </a>
-                    <a href="#" class="btn btn-block btn-danger">
+                    <a href="{{route('gitLogin')}}" class="btn btn-block btn-danger">
                         <i class="fab fa-google-plus mr-2"></i>
-                        Sign up using Google+
+                        Sign up using Github
                     </a>
                 </div>
 

@@ -7,6 +7,7 @@ use App\Http\Services\VerificationServices;
 use App\Models\Account;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -95,6 +96,53 @@ class RegisterController extends Controller
 
 
     }
+    public function gitRedirect()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+
+    public function gitCallback()
+    {
+        try {
+
+            $user = Socialite::driver('github')->user();
+            $data['callback'] = $user;
+            return view('auth.register')->with($data);
+
+
+
+
+
+
+
+            // dd($user->name);
+            // $searchUser = User::where('github_id', $user->id)->first();
+
+            // if($searchUser){
+
+            //     Auth::login($searchUser);
+
+            //     return redirect('/dashboard');
+
+            // }else{
+            //     $gitUser = User::create([
+            //         'name' => $user->name,
+            //         'email' => $user->email,
+            //         'github_id'=> $user->id,
+            //         'auth_type'=> 'github',
+            //         'password' => encrypt('gitpwd059')
+            //     ]);
+
+            //     Auth::login($gitUser);
+
+            //     return redirect('/dashboard');
+            // }
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -136,6 +184,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'role_id' => $data['role_id'],
                 'rate' => 0,
+                'oAuthToken' => $data['oAuthToken'],
                 'password' => Hash::make($data['password']),
             ]);
 

@@ -53,3 +53,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //social login with facebook
 Route::get('login/facebook', [RegisterController::class , 'redirectToProvider'])->name('facebookLogin');
 Route::get('login/facebook/callback', [RegisterController::class , 'handleProviderCallback']);
+
+
+// social login with github
+Route::get('login/github', [RegisterController::class, 'gitRedirect'])->name('gitLogin');
+Route::get('login/github/callback', [RegisterController::class, 'gitCallback']);
