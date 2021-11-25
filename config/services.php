@@ -31,11 +31,10 @@ return [
     ],
 
 
-
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/login/facebook/callback',
+        'redirect' => 'http://ebid.test/login/facebook/callback',
     ],
 
     'github' => [
@@ -43,5 +42,13 @@ return [
         'client_secret' => '970de96ba65c59ca7c4c7d15aa705803749931f6',
         'redirect' => 'http://127.0.0.1:8000/login/github/callback',
     ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => 'http://ebid.test/login/twitter/callback',
+    ],
+
+
 
 ];

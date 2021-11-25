@@ -45,7 +45,9 @@ Route::group(['middleware' => 'auth' , 'verified' ], function () {
 });
 
 
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 
 
@@ -58,3 +60,7 @@ Route::get('login/facebook/callback', [RegisterController::class , 'handleProvid
 // social login with github
 Route::get('login/github', [RegisterController::class, 'gitRedirect'])->name('gitLogin');
 Route::get('login/github/callback', [RegisterController::class, 'gitCallback']);
+
+//social login with twitter
+Route::get('login/twitter', [RegisterController::class , 'redirectToTwitter'])->name('twitterLogin');
+Route::get('login/twitter/callback', [RegisterController::class , 'callbackToTwitter']);

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
     {
         return Socialite::driver('facebook')->redirect();
     }
+
 
     public function handleProviderCallback()
     {
@@ -111,37 +113,21 @@ class RegisterController extends Controller
             return view('auth.register')->with($data);
 
 
-
-
-
-
-
-            // dd($user->name);
-            // $searchUser = User::where('github_id', $user->id)->first();
-
-            // if($searchUser){
-
-            //     Auth::login($searchUser);
-
-            //     return redirect('/dashboard');
-
-            // }else{
-            //     $gitUser = User::create([
-            //         'name' => $user->name,
-            //         'email' => $user->email,
-            //         'github_id'=> $user->id,
-            //         'auth_type'=> 'github',
-            //         'password' => encrypt('gitpwd059')
-            //     ]);
-
-            //     Auth::login($gitUser);
-
-            //     return redirect('/dashboard');
-            // }
-
         } catch (Exception $e) {
             dd($e->getMessage());
         }
+    }
+
+
+    public function redirectToTwitter(): RedirectResponse
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+    public function callbackToTwitter()
+    {
+        $user = Socialite::driver('twitter')->user();
+        $data['callback'] = $user;
+        return view('auth.register')->with($data);
     }
 
     /**
