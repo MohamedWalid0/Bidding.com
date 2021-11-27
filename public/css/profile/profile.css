@@ -1,0 +1,88 @@
+.user {
+  height: 133px;
+}
+
+.avatar-area {
+  position: relative;
+}
+
+.edit-avatar {
+  position: absolute;
+  top: 65%;
+  left: 55%;
+  background-color: silver;
+  border-radius: 50%;
+  width: 24px;
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: 0px !important;
+}
+
+.profile-tabs :hover {
+  background-color: #f7f6fc;
+  height: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.profile-tabs {
+  height: 50px;
+  border-radius: 50px;
+}
+
+.profile-tabs p {
+  padding-top: 12px;
+  padding-left: 10px;
+}
+
+.card ul li {
+  list-style-type: none;
+}
+
+
+
+.card {
+  border: 0px !important;
+
+}
+
+.card-header {
+  background-color: inherit !important;
+  border-bottom: 1px 2px !important;
+  height: 50px !important;
+}
+
+/* default hidden */
+.page {
+  display: none !important;
+}
+
+/* show when choosed */
+.page:target {
+  display: block !important;
+}
+
+.rounded-lg {
+  border-radius: 1.3rem !important;
+}
+
+.icon-style {
+  font-size: 80px;
+}
+
+a{
+  color: inherit !important;
+  text-decoration: none !important;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid rgb(204, 204, 204);
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +29,7 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth' , 'verified' , 'verifiedUserPhone' ]], function () {
     // must be authenticated user and verified
-    Route::get('profile', function () {
-        return 'You Are Authenticated ';
-    });
+    Route::get('profile', ProfileController::class);
 });
 
 

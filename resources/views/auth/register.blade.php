@@ -188,8 +188,8 @@
                         <i class="fab fa-facebook mr-2"></i>
                         Sign up using Facebook
                     </a>
-                    <a href="{{route('gitLogin')}}" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i>
+                    <a href="{{route('gitLogin')}}" class="btn btn-block btn-warning">
+                        <i class="fab fa-github mr-2"></i>
                         Sign up using Github
                     </a>
                     <a href="{{ route('twitterLogin') }}" class="btn btn-block btn-outline-secondary">
