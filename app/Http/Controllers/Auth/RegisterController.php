@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\VerificationServices;
+use App\Http\Traits\withSocialMedia;
 use App\Models\Account;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -28,7 +30,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers , withSocialMedia;
 
     public $sms_services;
     /**
@@ -50,85 +52,7 @@ class RegisterController extends Controller
 
     }
 
-    public function redirectToProvider()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
 
-
-    public function handleProviderCallback()
-    {
-        $user = Socialite::driver('facebook')->stateless()->user();
-
-        dd($user);
-
-        // use name because facebook not redirect user email
-
-        // $username = $user->name ;
-
-        // $db_user = User::where('email' , '=' , $username)->first() ;
-
-
-        // if ($db_user == null){
-
-        //     $register = User::create([
-        //         'username' => $username ,
-        //         'email' => $username ,
-        //         'password' => Hash::make('111111') ,
-        //         'oAuth_token' => $user->token
-        //     ]);
-
-        //     Auth::guard('admin')->login($register);
-
-        //     // send mail
-
-
-        //     // $user->email instance of 'mohamed@gmail.com' but fb not give access for user email
-        //     // Mail::to('mohamed@gmail.com')->send(new RegisterMail($user->name)) ;
-
-
-        // }
-        // else{
-        //     Auth::guard('admin')->login($db_user);
-
-
-        // }
-
-        // return redirect( route('admin.homepage') );
-
-
-    }
-    public function gitRedirect()
-    {
-        return Socialite::driver('github')->redirect();
-    }
-
-
-    public function gitCallback()
-    {
-        try {
-
-            $user = Socialite::driver('github')->user();
-            $data['callback'] = $user;
-            return view('auth.register')->with($data);
-
-
-        } catch (Exception $e) {
-            dd($e->getMessage());
-        }
-    }
-
-
-    public function redirectToTwitter(): RedirectResponse
-    {
-        return Socialite::driver('twitter')->redirect();
-    }
-    public function callbackToTwitter()
-    {
-        $user = Socialite::driver('twitter')->user();
-        $data['callback'] = $user;
-        return view('auth.register')->with($data);
-    }
 
     /**
      * Get a validator for an incoming registration request.
