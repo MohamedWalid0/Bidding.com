@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
+
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
@@ -13,7 +14,8 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                               name="email"
                                value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -27,12 +29,13 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                        <input id="password" type="password"
+                               class="form-control @error('password') is-invalid @enderror"
                                name="password" required autocomplete="current-password" placeholder="Password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
+                          <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -43,7 +46,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input  type="checkbox" name="remember" id="remember"
+                                <input type="checkbox" name="remember" id="remember"
                                     {{ old('remember') ? 'checked' : '' }}>
                                 <label for="remember">
                                     RememberMe
@@ -59,12 +62,18 @@
                     </div>
                 </form>
 
-                <div class="social-auth-links text-center mt-2 mb-3">
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                <div class="social-auth-links text-center">
+                    <a href="{{ route('facebookLogin') }}" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i>
+                        Sign up using Facebook
                     </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    <a href="{{route('gitLogin')}}" class="btn btn-block btn-warning">
+                        <i class="fab fa-github mr-2"></i>
+                        Sign up using Github
+                    </a>
+                    <a href="{{ route('twitterLogin') }}" class="btn btn-block btn-outline-secondary">
+                        <i class="fab fa-twitter mr-2"></i>
+                        Sign up using Twitter
                     </a>
                 </div>
                 <!-- /.social-auth-links -->

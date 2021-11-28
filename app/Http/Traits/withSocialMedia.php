@@ -2,7 +2,12 @@
 
 namespace App\Http\Traits;
 
+use App\Models\User;
+
+use Auth;
+use Illuminate\Support\Facades\Request;
 use Laravel\Socialite\Facades\Socialite;
+use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 trait withSocialMedia
@@ -47,6 +52,16 @@ trait withSocialMedia
     {
         $user = Socialite::driver('twitter')->user();
         $data['callback'] = $user;
+
+        $user_data = User::where('oAuthToken', $user->token)->get();
+
+        if (!empty($user_data->toArray()))
+        {
+            if ( !is_null($user_data[0]->oAuthToken) ) {
+                Auth::login($user_data[0]);
+                return redirect(route('home'));
+            }
+        }
         return view('auth.register')->with($data);
     }
 }
