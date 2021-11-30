@@ -20,6 +20,7 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
+        "orangehill/iseed": "^3.0",
         "phpunit/phpunit": "^9.5.10",
         "wulfheart/pretty_routes": "^0.3.0"
     },
