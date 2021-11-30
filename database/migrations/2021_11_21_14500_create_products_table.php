@@ -1,10 +1,10 @@
 <?php
 
+use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-use App\Models\SubCategory;
 
 class CreateProductsTable extends Migration
 {
@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name') ;
-            $table->longText('description') ;
-            $table->text('location') ;
+            $table->string('name');
+            $table->longText('description');
+            $table->text('location');
 
             $table->foreignIdFor(User::class)
                 ->constrained()
@@ -31,9 +31,9 @@ class CreateProductsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->integer('start_price') ;
-            $table->date('deadline') ;
-            $table->enum( 'status' , ['active' , 'inactive']) ;
+            $table->integer('start_price');
+            $table->dateTime('deadline');
+            $table->enum('status', ['active', 'inactive']);
 
 
             $table->timestamps();

@@ -19,4 +19,8 @@ class Product extends Model
         'deadline',
         'status'
     ];
+
+    protected $casts = [
+        'deadline' => 'datetime'
+    ];
 }
