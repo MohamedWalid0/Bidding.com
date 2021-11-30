@@ -47,11 +47,11 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login/facebook/callback', [RegisterController::class, 'handleProviderCallback']);
 
 
-// social login with github
+    // social login with github
     Route::get('login/github', [RegisterController::class, 'gitRedirect'])->name('gitLogin');
     Route::get('login/github/callback', [RegisterController::class, 'gitCallback']);
 
-//social login with twitter
+    //social login with twitter
     Route::get('login/twitter', [RegisterController::class, 'redirectToTwitter'])->name('twitterLogin');
     Route::get('login/twitter/callback', [RegisterController::class, 'callbackToTwitter']);
 });

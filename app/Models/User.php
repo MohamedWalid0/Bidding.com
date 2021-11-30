@@ -50,7 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function codes()
     {
 
-        return $this->hasMany(UserVerificationCode::class, 'user_id');
+        return $this->hasMany(UserVerification::class, 'user_id');
 
     }
 
