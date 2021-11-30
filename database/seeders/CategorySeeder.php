@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategorySeeder extends Seeder
 {
@@ -15,9 +17,9 @@ class CategorySeeder extends Seeder
     {
 
 
-        \DB::table('categories')->delete();
+        DB::table('categories')->delete();
 
-        \DB::table('categories')->insert(array (
+        Category::insert(array (
             0 =>
                 array (
                     'id' => 1,

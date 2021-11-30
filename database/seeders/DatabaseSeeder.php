@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
             SubCategorySeeder::class,
             UserSeeder::class,
             ProductSeeder::class,
+            PropertySeeder::class,
+            PropertiesSubCategorySeeder::class ,
+            PropertyValueSeeder::class ,
+            ProductPropertySeeder::class ,
+
 
 
         ]);
