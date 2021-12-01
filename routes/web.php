@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
+use App\Http\Controllers\Front\ProfileController;
+use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,3 +57,10 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login/twitter/callback', [RegisterController::class, 'callbackToTwitter']);
 });
 
+
+
+// wishlist
+Route::group(['prefix' => 'wishlist'], function () {
+    Route::get('/',  [WishlistController::class , 'index'])->name('wishlist.index');
+});
+// end wishlist

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Account;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -19,6 +20,9 @@ class UserSeeder extends Seeder
             ->create()
             ->each(function($user){
                 $user->account()->save(Account::factory()->make());
+            })
+            ->each(function($user){
+                $user->account()->save(Wishlist::factory()->make());
             });
     }
 }

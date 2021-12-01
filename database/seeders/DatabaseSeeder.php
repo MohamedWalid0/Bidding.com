@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             PropertiesSubCategorySeeder::class ,
             PropertyValueSeeder::class ,
             ProductPropertySeeder::class ,
+            ProductWishlistSeeder::class ,
+
+
 
 
 
