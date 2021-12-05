@@ -11,6 +11,6 @@ class BidSeeder extends Seeder
 {
     public function run()
     {
-        Bid::factory(500)->create();
+        Bid::factory(5000)->create();
     }
 }

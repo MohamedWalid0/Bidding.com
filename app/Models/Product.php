@@ -31,17 +31,27 @@ class Product extends Model
         return $this->belongsToMany(Wishlist::class , 'product_wishlists')->withTimestamps();
     }
 
-    // Scopes
-    public function scopeLatestProducts(Builder $query ,int $take): Builder
-    {
-        return $query->latest()->take($take);
-    }
 
     public function user_bids()
     {
         return $this->belongsToMany(User::class , 'bids')
             ->withPivot('cost')
+            ->as('user_bids')
             ->withTimestamps();
+    }
+
+
+    // Scopes
+    public function scopeLatestProducts(Builder $query ,int $take): Builder
+    {
+        return $query->latest()->take($take);
+    }
+    // Scopes
+    public function scopeHottestProducts(Builder $query ,int $take): Builder
+    {
+        return $query->withCount('user_bids')
+            ->orderByDesc('user_bids_count')
+            ->limit($take);
     }
 
 }

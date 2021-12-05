@@ -66,7 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function product_bids()
     {
         return $this->belongsToMany(Product::class,  'bids')
-            ->with('cost')
+            ->withPivot('cost')
             ->withTimestamps();
     }
 
