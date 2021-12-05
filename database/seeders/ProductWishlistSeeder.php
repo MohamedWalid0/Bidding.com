@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductWishlistSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *

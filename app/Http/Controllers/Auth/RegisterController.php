@@ -95,7 +95,6 @@ class RegisterController extends Controller
 
             $user->account()->create([
                 'full_name' => $data['name'],
-                'user_id' => $user->id,
                 'phone' => $data['phone'],
                 'address' => $data['address'],
                 'gender_id' => $data['gender_id'],

@@ -36,4 +36,12 @@ class Product extends Model
     {
         return $query->latest()->take($take);
     }
+
+    public function user_bids()
+    {
+        return $this->belongsToMany(User::class , 'bids')
+            ->withPivot('cost')
+            ->withTimestamps();
+    }
+
 }

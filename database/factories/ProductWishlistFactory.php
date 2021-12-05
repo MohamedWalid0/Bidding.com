@@ -18,7 +18,7 @@ class ProductWishlistFactory extends Factory
     {
         return [
             'product_id' => Product::inRandomOrder()->first()->id ,
-            'wishlist_id' => Wishlist::inRandomOrder()->first()->id
+            'wishlist_id' => random_int(1,50)
 
         ];
     }
