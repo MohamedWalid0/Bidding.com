@@ -23,4 +23,10 @@ class Product extends Model
     protected $casts = [
         'deadline' => 'datetime'
     ];
+
+    // Relations
+    public function wishlists()
+    {
+        return $this->belongsToMany(Wishlist::class , 'product_wishlists');
+    }
 }

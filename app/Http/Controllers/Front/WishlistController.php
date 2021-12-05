@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Wishlist;
 
 class WishlistController extends Controller
 {
-    public function index(){
-
-        return view('front.wishlist.index') ;
+    public function index()
+    {
+        $wishlist = Wishlist::first();
+        return view('front.wishlist.index' , compact('wishlist'));
     }
-
-
 
 
 }
