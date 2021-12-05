@@ -23,7 +23,7 @@ class Wishlist extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class , 'product_wishlists');
+        return $this->belongsToMany(Product::class , 'product_wishlists')->withTimestamps();
     }
 
     // Scopes

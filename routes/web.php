@@ -61,9 +61,9 @@ Route::group(['middleware' => 'guest'], function () {
 
 
 // wishlist
-//Route::group(['prefix' => 'wishlist'], function () {
-//    Route::get('/',  [WishlistController::class , 'index'])->name('wishlist.index');
-//});
-
-Route::resource('wishlist', WishlistController::class );
+Route::group(['prefix' => 'wishlist'], function () {
+    Route::get('/', [WishlistController::class , 'index'] )->name('wishlist.index');
+    Route::get('/addToWishlist/{product:id}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::get('/deleteFromWishlist/{product:id}', [WishlistController::class, 'deleteFromWishlist'])->name('wishlist.delete');
+});
 // end wishlist

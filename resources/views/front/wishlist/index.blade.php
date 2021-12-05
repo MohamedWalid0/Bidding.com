@@ -48,7 +48,9 @@
                                         <i class="fas fa-gavel"></i>
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="far fa-heart"></i>
+                                        <a href="{{ route('wishlist.delete' ,  $product->id) }}">
+                                            <i class="far fa-heart"></i>
+                                        </a>
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-search"></i>
