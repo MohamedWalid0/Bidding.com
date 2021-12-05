@@ -5,16 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Services\VerificationServices;
 use App\Http\Traits\withSocialMedia;
-use App\Models\Account;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Socialite\Facades\Socialite;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegisterController extends Controller
 {
@@ -30,7 +26,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers , withSocialMedia;
+    use RegistersUsers, withSocialMedia;
 
     public $sms_services;
     /**
@@ -51,7 +47,6 @@ class RegisterController extends Controller
         $this->sms_services = $sms_services;
 
     }
-
 
 
     /**
@@ -98,8 +93,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
             ]);
 
-
-            Account::create([
+            $user->account()->create([
                 'full_name' => $data['name'],
                 'user_id' => $user->id,
                 'phone' => $data['phone'],
