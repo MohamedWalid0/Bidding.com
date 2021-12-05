@@ -27,7 +27,7 @@
 
         <div class="productsSectionContainer pb-5">
             <div class="mx-0 row">
-                @foreach ($wishlist->products as $product)
+                @forelse ( $wishlist->products as $product )
                     <div class="p-2  col-sm-6 col-md-3">
 
                         <div class="productsWrapper my-3">
@@ -101,8 +101,14 @@
                         </div>
 
                     </div>
+                @empty
+                    <div>
+                        <h1>
+                            No Products
+                        </h1>
+                    </div>
+                @endforelse
 
-                @endforeach
 
             </div>
         </div>

@@ -16,9 +16,10 @@ class WishlistController extends Controller
         return view('front.wishlist.index' , compact('wishlist'));
     }
 
-    public function addToWishlist(Product $product): RedirectResponse
+    public function addToWishlist(Product $product)
     {
-        auth()->user()->wishlist->products()->attach($product);
+
+        auth()->user()->wishlist->products()->syncWithoutDetaching($product);
         return back();
     }
 

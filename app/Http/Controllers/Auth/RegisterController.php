@@ -109,6 +109,8 @@ class RegisterController extends Controller
                 'age' => $data['age'],
             ]);
 
+            $user->wishlist()->create();
+
 
             // send OTP SMS code to user
 
