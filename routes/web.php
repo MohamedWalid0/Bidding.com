@@ -29,7 +29,7 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], function () {
     // must be authenticated user and verified
     Route::get('profile', ProfileController::class);
-
+    Route::get('product/new', [ProductController::class, 'create']);
 });
 
 
