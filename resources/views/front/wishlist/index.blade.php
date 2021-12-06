@@ -48,7 +48,7 @@
                                         <i class="fas fa-gavel"></i>
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <a href="{{ route('wishlist.delete' ,  $product->id) }}">
+                                        <a href="{{ route('wishlist' ,  $product->id) }}">
                                             <i class="far fa-heart"></i>
                                         </a>
                                     </div>
@@ -62,21 +62,21 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1"> {{ $product->deadline->format('d') }}</h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1"> {{ $product->deadline->format('h') }}</h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1">{{ $product->deadline->format('m') }}</h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1">{{ $product->deadline->format('s') }}</h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -92,7 +92,9 @@
                                 <h5>{{ $product->name }}</h5>
                                 <p class="text-muted">
                                     Current Bid :
-                                    <span class="text-primary"> 15,125.00$ </span>
+                                    <span class="text-primary">
+                                        {{ $product->last_bid->cost }}
+                                    </span>
                                 </p>
 
                             </footer>

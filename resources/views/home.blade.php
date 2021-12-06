@@ -987,7 +987,7 @@
                                         <i class="fas fa-gavel"></i>
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <a href="{{ route('wishlist.add' ,  $latest_product->id) }}">
+                                        <a href="{{ route('wishlist' ,  $latest_product->id) }}">
                                             <i class="far fa-heart"></i>
                                         </a>
                                     </div>
@@ -999,27 +999,27 @@
 
                                 <div class="productBidTimer">
 
+
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('d') }}</h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('h') }}</h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('m') }}</h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('s') }}</h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
-
                                 </div>
 
 
@@ -1031,7 +1031,9 @@
                                 <h5>{{ $latest_product->name }}</h5>
                                 <p class="text-muted">
                                     Current Bid :
-                                    <span class="text-primary"> 15,125.00$ </span>
+                                    <span class="text-primary">
+                                        {{ $latest_product->last_bid->cost }}
+                                    </span>
                                 </p>
 
                             </footer>
@@ -1094,7 +1096,9 @@
                                         <i class="fas fa-gavel"></i>
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="far fa-heart"></i>
+                                        <a href="{{ route('wishlist' ,  $hot_product->id) }}">
+                                            <i class="far fa-heart"></i>
+                                        </a>
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-search"></i>
@@ -1106,21 +1110,21 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1"> {{ $hot_product->deadline->format('d') }}</h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1"> {{ $hot_product->deadline->format('h') }}</h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1">{{ $hot_product->deadline->format('m') }}</h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6  class="text-primary my-0 pt-1">{{ $hot_product->deadline->format('s') }}</h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1136,7 +1140,9 @@
                                 <h5>{{ $hot_product->name }}</h5>
                                 <p class="text-muted">
                                     Current Bid :
-                                    <span class="text-primary"> 15,125.00$ </span>
+                                    <span class="text-primary">
+                                        {{ $hot_product->last_bid->cost }}
+                                    </span>
                                 </p>
 
                             </footer>

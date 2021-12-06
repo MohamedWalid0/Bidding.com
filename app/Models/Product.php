@@ -25,6 +25,8 @@ class Product extends Model
         'deadline' => 'datetime'
     ];
 
+    protected $appends = ['last_bid'];
+
     // Relations
     public function wishlists()
     {
@@ -52,6 +54,11 @@ class Product extends Model
         return $query->withCount('user_bids')
             ->orderByDesc('user_bids_count')
             ->limit($take);
+    }
+
+    public function getLastBidAttribute()
+    {
+        return $this->user_bids->last()->user_bids;
     }
 
 }
