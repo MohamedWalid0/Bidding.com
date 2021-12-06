@@ -16,8 +16,8 @@
                             </div>
                         </div>
                         <div class="mt-1">
-                            <h5>Mahmoud Adel</h5>
-                            <p class="mt-0 text-muted">email@email.com</p>
+                            <h5> {{$account->full_name}} </h5>
+                            <p class="mt-0 text-muted"> {{$user->email}} </p>
                         </div>
                     </div>
                 </li>

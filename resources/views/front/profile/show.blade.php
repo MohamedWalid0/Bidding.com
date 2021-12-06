@@ -13,8 +13,8 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile/profile.css') }}"/>
-
-    <title>Bid</title>
+    @livewireStyles
+    <title>eBid</title>
 </head>
 
 <body>
@@ -175,7 +175,7 @@
                                     <p class="text-muted">Name <span style="margin-left: 100px;">:</span></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="font-weight-bold" style="margin-left: -75px;"> Mahmoud Adel Ahmed</p>
+                                    <p class="font-weight-bold" style="margin-left: -75px;">{{$account->full_name}}</p>
                                 </div>
                             </div>
 
@@ -184,8 +184,7 @@
                                     <p class="text-muted">Location <span style="margin-left: 84px;">:</span></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="font-weight-bold" style="margin-left: -75px;"> 17 street Alexandria
-                                        city</p>
+                                    <p class="font-weight-bold" style="margin-left: -75px;"> {{$account->address}}</p>
                                 </div>
                             </div>
 
@@ -194,7 +193,8 @@
                                     <p class="text-muted">Phone <span style="margin-left: 100px;">:</span></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="font-weight-bold" style="margin-left: -75px;"> (+12)0123456789</p>
+                                    <p class="font-weight-bold" style="margin-left: -75px;">
+                                         (+20){{$account->phone}}</p>
                                 </div>
                             </div>
 
@@ -203,7 +203,8 @@
                                     <p class="text-muted">Email <span style="margin-left: 108px;">:</span></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="font-weight-bold" style="margin-left: -75px;"> john@gmail.com</p>
+                                    <p class="font-weight-bold" style="margin-left: -75px;">
+                                    {{$user->email}} </p>
                                 </div>
                             </div>
 
@@ -308,57 +309,23 @@
     </div>
     <!-- end container -->
 
-    <!-- Modal For Edit profile Data -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Profile </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name">
-                            <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone
-                                else.</small>
-                        </div>
+                    <livewire:update-profile >
 
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" class="form-control" name="email">
-                            <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="email" class="form-control" name="phone">
-                            <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control">
-                            <small id="emailHelp" class="form-text text-danger">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save <i class="fas fa-share-square"></i>
-                            </button>
-                        </div>
-                    </form>
                 </div>
-
+                </div>
             </div>
         </div>
-    </div>
+
 
     <!-- Modal For Edit profile Photo -->
     <div class="modal fade" id="editPhoto" tabindex="-1" aria-labelledby="editPhoto" aria-hidden="true">
@@ -385,6 +352,7 @@
             </div>
         </div>
     </div>
+
 </section>
 
 
@@ -395,7 +363,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
 </script>
+@livewireScripts
+{{-- <script src="{{asset('js/home/jquery-3.5.1.min.js')}}"></script> --}}
+<script >
+    $(document).ready(function(){
+            window.livewire.on('ProfileUpdated',()=>{
 
+                setTimeout(function(){ $(".alert-success").fadeOut('fast');
+                }, 3000); // 3 secs
+            });
+
+    });
+
+</script>
 </body>
 
 </html>
