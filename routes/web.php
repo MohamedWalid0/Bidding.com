@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], function () {
     // must be authenticated user and verified
     Route::get('profile', ProfileController::class);
+    Route::get('product/new', [ProductController::class, 'create']);
 });
 
 
