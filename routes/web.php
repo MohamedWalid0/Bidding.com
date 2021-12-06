@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth', 'verified'], function () {
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => 'guest'], function () {
@@ -63,6 +64,8 @@ Route::group(['middleware' => 'guest'], function () {
 
 // wishlist
 Route::group(['prefix' => 'wishlist'], function () {
-    Route::get('/',  [WishlistController::class , 'index'])->name('wishlist.index');
+    Route::get('/', [WishlistController::class , 'index'] )->name('wishlist.index');
+    Route::get('/addToWishlist/{product:id}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::get('/deleteFromWishlist/{product:id}', [WishlistController::class, 'deleteFromWishlist'])->name('wishlist.delete');
 });
 // end wishlist

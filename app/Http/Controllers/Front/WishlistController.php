@@ -3,16 +3,31 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Wishlist;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-    public function index(){
-
-        return view('front.wishlist.index') ;
+    public function index()
+    {
+        $wishlist = Wishlist::first();
+        return view('front.wishlist.index' , compact('wishlist'));
     }
 
+    public function addToWishlist(Product $product)
+    {
 
+        auth()->user()->wishlist->products()->syncWithoutDetaching($product);
+        return back();
+    }
+
+    public function deleteFromWishlist(Product $product): RedirectResponse
+    {
+        auth()->user()->wishlist->products()->detach($product);
+        return back();
+    }
 
 
 }

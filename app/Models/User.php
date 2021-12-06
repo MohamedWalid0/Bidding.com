@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,11 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function codes()
+    public function codes(): HasMany
     {
-
         return $this->hasMany(UserVerification::class, 'user_id');
-
     }
 
     public function account(): HasOne
@@ -62,6 +61,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function wishlist(): HasOne
     {
         return $this->hasOne(Wishlist::class, 'user_id');
+    }
+
+    public function product_bids()
+    {
+        return $this->belongsToMany(Product::class,  'bids')
+            ->withPivot('cost')
+            ->withTimestamps();
     }
 
 }

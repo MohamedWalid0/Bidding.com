@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,4 +24,34 @@ class Product extends Model
     protected $casts = [
         'deadline' => 'datetime'
     ];
+
+    // Relations
+    public function wishlists()
+    {
+        return $this->belongsToMany(Wishlist::class , 'product_wishlists')->withTimestamps();
+    }
+
+
+    public function user_bids()
+    {
+        return $this->belongsToMany(User::class , 'bids')
+            ->withPivot('cost')
+            ->as('user_bids')
+            ->withTimestamps();
+    }
+
+
+    // Scopes
+    public function scopeLatestProducts(Builder $query ,int $take): Builder
+    {
+        return $query->latest()->take($take);
+    }
+    // Scopes
+    public function scopeHottestProducts(Builder $query ,int $take): Builder
+    {
+        return $query->withCount('user_bids')
+            ->orderByDesc('user_bids_count')
+            ->limit($take);
+    }
+
 }
