@@ -28,9 +28,6 @@ class HomeController extends Controller
 
         $latest_products = Product::latestProducts(5)->get();
         $hot_products = Product::hottestProducts(5)->get();
-//        dd(
-//            $hot_products
-//        );
         return view('home', compact('latest_products' , 'hot_products'));
     }
 }

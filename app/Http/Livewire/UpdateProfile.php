@@ -18,53 +18,62 @@ class UpdateProfile extends Component
     public $account;
 
 
-    public function mount () {
-    $this->user = Auth::user();
-    $this->account = Account::findOrFail($this->user->id);
-    $this->name = $this->account->full_name;
-    $this->email = $this->user->email;
-    $this->address = $this->account->address;
-    $this->phone = $this->account->phone;
+    public function mount()
+    {
+        $this->user = Auth::user();
+        $this->account = Account::findOrFail($this->user->id);
+        $this->name = $this->account->full_name;
+        $this->email = $this->user->email;
+        $this->address = $this->account->address;
+        $this->phone = $this->account->phone;
+
 
     }
-    public function rules()  {
+
+    public function rules()
+    {
 
         return [
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->email.',email',
-            'phone' => 'required|numeric|min:10|unique:accounts,phone,' . $this->account->phone. ',phone',
+            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->email . ',email',
+            'phone' => 'required|numeric|min:10|unique:accounts,phone,' . $this->account->phone . ',phone',
         ];
     }
-    public function render()  {
+
+    public function render()
+    {
         return view('livewire.update-profile');
     }
-    public function updated($propertyName) {
+
+    public function updated($propertyName)
+    {
 
         $this->validateOnly($propertyName);
     }
 
-    public function edit() {
+    public function edit()
+    {
 
         $data = $this->validate();
         $id = Auth::user()->id;
 
         try {
-        DB::beginTransaction();
-        User::findOrFail($id)->update(
-            [
-                'email' => $data['email']
-            ]
-        );
-        Account::findOrFail($id)->update(
-            [
-                'full_name' => $data['name'],
-                'address' => $data['address'],
-                'phone' => $data['phone'],
-            ]
-        );
+            DB::beginTransaction();
+            User::findOrFail($id)->update(
+                [
+                    'email' => $data['email']
+                ]
+            );
+            Account::findOrFail($id)->update(
+                [
+                    'full_name' => $data['name'],
+                    'address' => $data['address'],
+                    'phone' => $data['phone'],
+                ]
+            );
 
-        DB::commit();
+            DB::commit();
 
         } catch (\Exception $ex) {
             DB::rollback();
