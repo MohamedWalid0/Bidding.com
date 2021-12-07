@@ -1032,7 +1032,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $latest_product->last_bid->cost }}
+                                        {{ $latest_product->last_bid->cost }}$
                                     </span>
                                 </p>
 
@@ -1161,7 +1161,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->cost }}
+                                        {{ $hot_product->last_bid->cost  }}$
                                     </span>
                                 </p>
 

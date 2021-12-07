@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 class ProductFactory extends Factory
 {
@@ -23,7 +24,7 @@ class ProductFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id,
             'sub_category_id' => SubCategory::inRandomOrder()->first()->id,
             'start_price' => $this->faker->numberBetween(1000 , 10000),
-            'deadline' => now()->addDays(random_int(1,10)),
+            'deadline' => Carbon::today()->subDays( random_int(1, 30))->subHours(random_int(1, 24))->subMonths(random_int(1, 12))->subMinutes( random_int(1, 55) ),
             'status' => $this->faker->randomElement(['active' , 'inactive'])
         ];
     }

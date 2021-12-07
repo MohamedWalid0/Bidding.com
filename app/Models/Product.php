@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\CostCast;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,7 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'deadline' => 'datetime'
+        'deadline' => 'datetime',
     ];
 
     protected $appends = ['last_bid'];
@@ -30,13 +31,14 @@ class Product extends Model
     // Relations
     public function wishlists()
     {
-        return $this->belongsToMany(Wishlist::class , 'product_wishlists')->withTimestamps();
+        return $this->belongsToMany(Wishlist::class, 'product_wishlists')->withTimestamps();
     }
 
 
     public function user_bids()
     {
-        return $this->belongsToMany(User::class , 'bids')
+        return $this->belongsToMany(User::class, 'bids')
+            ->using(Bid::class)
             ->withPivot('cost')
             ->as('user_bids')
             ->withTimestamps();
@@ -44,12 +46,13 @@ class Product extends Model
 
 
     // Scopes
-    public function scopeLatestProducts(Builder $query ,int $take): Builder
+    public function scopeLatestProducts(Builder $query, int $take): Builder
     {
         return $query->latest()->take($take);
     }
+
     // Scopes
-    public function scopeHottestProducts(Builder $query ,int $take): Builder
+    public function scopeHottestProducts(Builder $query, int $take): Builder
     {
         return $query->withCount('user_bids')
             ->orderByDesc('user_bids_count')

@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use App\Casts\CostCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Bid extends Pivot
 {
     use HasFactory;
+
     protected $table = 'bids';
+
+    protected $casts = [
+        'cost' => CostCast::class,
+    ];
 
 }
