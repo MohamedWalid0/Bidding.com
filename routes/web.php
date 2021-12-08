@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('home');
 //});
-
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes(['verify' => true]);
 
 
@@ -38,11 +39,14 @@ Route::group(['middleware' => 'auth', 'verified'], function () {
     Route::get('phone/verify', [VerificationCodeController::class, 'getVerifyPage'])->name('verificationCodeForm');
     Route::post('phone/verifyUser/', [VerificationCodeController::class, 'verify'])->name('verifyUserPhone');
 
+    // wishlist
+    Route::group(['prefix' => 'wishlist'], function () {
+        Route::get('/', [WishlistController::class, 'index'])->name('wishlist.index');
+        Route::get('/{product:id}', [WishlistController::class, 'toggleProductInWishlist'])->name('wishlistToggle');
+    });
+    // end wishlist
+
 });
-
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => 'guest'], function () {
@@ -62,11 +66,4 @@ Route::group(['middleware' => 'guest'], function () {
 
 
 
-// wishlist
-Route::group(['prefix' => 'wishlist'], function () {
-    Route::get('/', [WishlistController::class , 'index'] )->name('wishlist.index');
-    Route::get('/{product:id}', [WishlistController::class, 'toggleProductInWishlist'])->name('wishlistToggle');
-    // Route::post('/store', [WishlistController::class , 'toggleProductInWishlist'])->name('wishlistToggle');
 
-});
-// end wishlist

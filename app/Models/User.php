@@ -68,8 +68,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static function productInWishlist($productId)
     {
-        $products =  auth()->user()->wishlist->products->pluck('id')->toArray() ;
-        return in_array($productId, $products ) ;
+        if (\Auth::check()){
+            $products =  auth()->user()->wishlist->products->pluck('id')->toArray() ;
+            return in_array($productId, $products ) ;
+        }
+        return false ;
 
     }
     public function product_bids()
