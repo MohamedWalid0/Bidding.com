@@ -14,7 +14,7 @@ class Bid extends Pivot
     protected $table = 'bids';
 
     protected $casts = [
-        'cost' => CostCast::class,
+        // 'cost' => CostCast::class,
     ];
 
     public function product(): BelongsTo
