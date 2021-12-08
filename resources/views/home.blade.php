@@ -4,7 +4,18 @@
     Home
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
+<link rel="stylesheet" href="{{ asset('css/home/all.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/home/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home/owl.theme.default.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/home/animate.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+@endsection
 @section('content')
 
 
@@ -1253,7 +1264,16 @@
 
 
 @section('scripts')
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+    <script src="{{ asset('js/home/all.min.js') }}"></script>
+
+    <script src="{{ asset('js/home/wow.min.js') }}"></script>
+
+
+    <script src="{{ asset('js/home/owl.carousel.min.js') }}"></script>
+
+    <script src="{{ asset('js/home/main.js') }}"></script>
     <script>
         var countDownDate = new Date( "{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}" ).getTime();
 
