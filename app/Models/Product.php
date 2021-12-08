@@ -12,6 +12,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    public const ACTIVE = 'active';
+    public const INACTIVE = 'inactive';
+
+
     protected $fillable = [
         'id' ,
         'name',
