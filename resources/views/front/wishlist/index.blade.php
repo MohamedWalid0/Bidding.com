@@ -163,10 +163,10 @@
 
                 if(data.wished){
                     $("div[data-product-id="+productId+"]").remove();
-                    toastr.info(data.message);
+                    toastr.success(data.message);
                 }
                 else{
-                    toastr.success(data.message);
+                    toastr.error(data.message);
                 }
 
             }

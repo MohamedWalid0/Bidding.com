@@ -1289,11 +1289,11 @@
                         console.log("done")
                         $("div[data-product-icon-id=" + productId + "]").toggleClass("wishlistNotActive wishlistActive");
                         $("a[data-product-id=" + productId + "]").toggleClass("wishlistIconNotActive wishlistIconActive");
-                        toastr.info(data.message);
+                        toastr.success(data.message);
 
                     } else {
 
-                        toastr.success(data.message);
+                        toastr.error(data.message);
                     }
 
                 }
