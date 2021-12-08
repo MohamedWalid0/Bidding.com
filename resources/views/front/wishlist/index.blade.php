@@ -28,9 +28,9 @@
         <div class="productsSectionContainer pb-5">
             <div class="mx-0 row">
                 @forelse ( $wishlist->products as $product )
-                    <div class="p-2  col-sm-6 col-md-3">
+                    <div class="p-2  col-sm-6 col-md-3" data-product-id="{{$product -> id}}">
 
-                        <div class="productsWrapper my-3">
+                        <div class="productsWrapper my-3" >
 
 
                             <div class="productContainer pb-2">
@@ -47,11 +47,17 @@
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-gavel"></i>
                                     </div>
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <a href="{{ route('wishlist' ,  $product->id) }}">
+
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle bg-primary " >
+
+                                        <a class="toggleProductinWishlist text-light " href="#" data-product-id="{{$product -> id}}" >
                                             <i class="far fa-heart"></i>
                                         </a>
+
                                     </div>
+
+
+
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-search"></i>
                                     </div>
@@ -123,5 +129,56 @@
 
 
 
+
+@endsection
+
+
+
+@section('scripts')
+
+    <script>
+
+        $(document).on('click', '.toggleProductinWishlist', function (e) {
+
+        e.preventDefault();
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        let productId =  $(this).attr('data-product-id') ;
+
+
+        $.ajax({
+            type: 'GET',
+            url : "wishlist/"+productId ,
+
+            data: {
+                'productId': productId ,
+            },
+            success: function (data) {
+
+                if(data.wished){
+                    $("div[data-product-id="+productId+"]").remove();
+                    toastr.info(data.message);
+
+                }
+                else{
+                    console.log("not doneee")
+                }
+
+            }
+
+        });
+
+
+
+        });
+
+
+    </script>
 
 @endsection

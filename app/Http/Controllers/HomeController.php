@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $latest_products = Product::latestProducts(5)->get();
-        $hot_products = Product::hottestProducts(5)->get();
+        $latest_products = Product::latestProducts(15)->get();
+        $hot_products = Product::hottestProducts(15)->get();
         return view('home', compact('latest_products' , 'hot_products'));
     }
 }

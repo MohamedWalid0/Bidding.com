@@ -65,6 +65,8 @@ Route::group(['middleware' => 'guest'], function () {
 // wishlist
 Route::group(['prefix' => 'wishlist'], function () {
     Route::get('/', [WishlistController::class , 'index'] )->name('wishlist.index');
-    Route::get('/{product:id}', [WishlistController::class, 'handleWishlist'])->name('wishlist');
+    Route::get('/{product:id}', [WishlistController::class, 'toggleProductInWishlist'])->name('wishlistToggle');
+    // Route::post('/store', [WishlistController::class , 'toggleProductInWishlist'])->name('wishlistToggle');
+
 });
 // end wishlist

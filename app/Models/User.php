@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -64,7 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Wishlist::class, 'user_id');
     }
 
-    public function product_bids(): BelongsToMany
+
+    public static function productInWishlist($productId)
+    {
+        $products =  auth()->user()->wishlist->products->pluck('id')->toArray() ;
+        return in_array($productId, $products ) ;
+
+    }
+    public function product_bids()
     {
         return $this->belongsToMany(Product::class, 'bids')
             ->using(Bid::class)

@@ -436,6 +436,19 @@ body {
     cursor: pointer;
 }
 
+.wishlistActive{
+    background-color: #09c !important;
+}
+.wishlistNotActive{
+    background-color: white !important;
+}
+
+.wishlistIconActive{
+    color: white !important;
+}
+.wishlistIconNotActive{
+    color: black !important;
+}
 
 .productBidTimer{
     position: absolute;

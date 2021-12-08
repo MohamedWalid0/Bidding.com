@@ -4,7 +4,18 @@
     Home
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
+<link rel="stylesheet" href="{{ asset('css/home/all.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/home/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home/owl.theme.default.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/home/animate.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+@endsection
 @section('content')
 
 
@@ -986,10 +997,12 @@
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-gavel"></i>
                                     </div>
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <a href="{{ route('wishlist' ,  $latest_product->id) }}">
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistActive @else wishlistNotActive @endif  "  id ="wishlistIconContainer" data-product-icon-id="{{$latest_product -> id}}">
+
+                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistIconActive @else wishlistIconNotActive @endif " href="#" data-product-id="{{$latest_product -> id}}" >
                                             <i class="far fa-heart"></i>
                                         </a>
+
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-search"></i>
@@ -1095,11 +1108,18 @@
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-gavel"></i>
                                     </div>
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <a href="{{ route('wishlist' ,  $hot_product->id) }}">
+
+
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistActive @else wishlistNotActive @endif  "  id ="wishlistIconContainer" data-product-icon-id="{{$hot_product -> id}}">
+
+                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistIconActive @else wishlistIconNotActive @endif " href="#" data-product-id="{{$hot_product -> id}}" >
                                             <i class="far fa-heart"></i>
                                         </a>
+
                                     </div>
+
+
+
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-search"></i>
                                     </div>
@@ -1128,26 +1148,7 @@
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
-{{--                                    <div class="d-flex  text-center w-100 p-2">--}}
-{{--                                        <div class="col-3 px-0 counterItem rightBorder">--}}
-{{--                                            <h6  class="text-primary my-0 pt-1" id="days"> {{ $hot_product->deadline->format('d') }}</h6>--}}
-{{--                                            <p class="text-muted">Days</p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-3 px-0 counterItem rightBorder">--}}
-{{--                                            <h6  class="text-primary my-0 pt-1" id="hours"> {{ $hot_product->deadline->format('h') }}</h6>--}}
-{{--                                            <p class="text-muted">Hours</p>--}}
-{{--                                        </div>--}}
 
-{{--                                        <div class="col-3 px-0 counterItem rightBorder">--}}
-{{--                                            <h6  class="text-primary my-0 pt-1" id="mins">{{ $hot_product->deadline->format('m') }}</h6>--}}
-{{--                                            <p class="text-muted">Minutes</p>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="col-3 px-0 counterItem">--}}
-{{--                                            <h6  class="text-primary my-0 pt-1" id="secs">{{ $hot_product->deadline->format('s') }}</h6>--}}
-{{--                                            <p class="text-muted">Seconds</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
 
                                 </div>
 
@@ -1170,7 +1171,7 @@
                         </div>
 
                     </div>
-            @empty
+                    @empty
                     <div class="p-2">
 
                         <div class="productsWrapper my-3">
@@ -1263,7 +1264,16 @@
 
 
 @section('scripts')
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+    <script src="{{ asset('js/home/all.min.js') }}"></script>
+
+    <script src="{{ asset('js/home/wow.min.js') }}"></script>
+
+
+    <script src="{{ asset('js/home/owl.carousel.min.js') }}"></script>
+
+    <script src="{{ asset('js/home/main.js') }}"></script>
     <script>
         var countDownDate = new Date( "{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}" ).getTime();
 
@@ -1288,6 +1298,51 @@
         }, 1000)
 
 
+
+        $(document).on('click', '.toggleProductinWishlist', function (e) {
+
+            e.preventDefault();
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            let productId = $(this).attr('data-product-id') ;
+
+            $.ajax({
+                type: 'GET',
+                url : "wishlist/"+$(this).attr('data-product-id') ,
+
+                data: {
+                    'productId': $(this).attr('data-product-id') ,
+                },
+                success: function (data) {
+
+                    if(data.wished){
+
+                        console.log("done")
+                        $( "div[data-product-icon-id="+productId +"]").toggleClass("wishlistNotActive wishlistActive") ;
+                        $( "a[data-product-id="+productId +"]").toggleClass("wishlistIconNotActive wishlistIconActive") ;
+                        toastr.info(data.message);
+
+                    }
+
+                    else{
+
+                        console.log("not done")
+                    }
+
+                }
+
+            });
+
+
+
+
+        });
 
 
     </script>
