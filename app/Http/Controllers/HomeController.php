@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductProperty;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -24,11 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
         $latest_products = Product::latestProducts(5)->get();
         $hot_products = Product::hottestProducts(5)->get();
-
         return view('home', compact('latest_products' , 'hot_products'));
     }
 }

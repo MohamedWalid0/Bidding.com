@@ -19,7 +19,6 @@ class WishlistController extends Controller
     public function handleWishlist(Product $product): RedirectResponse
     {
         auth()->user()->wishlist->products()->toggle($product);
-
         return back();
     }
 
