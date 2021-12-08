@@ -18,7 +18,7 @@ class WishlistController extends Controller
     public function toggleProductInWishlist(Product $product)
     {
         if (!empty(auth()->user()->wishlist->products()->toggle(request('productId'))['attached'])) {
-            // toastr()->info('Data has been saved successfully!');
+
             return response()->json(['wished' => true, 'status' => true , 'message' => "Added To Wishlist Successfully"]);
         }
         return response()->json(['wished' => true,  'status' => false ,'message' => "Removed From Wishlist Successfully"]);

@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function __invoke()
     {
-        $id =Auth::user()->id;
+        $id = Auth::user()->id;
         $data['account'] = Account::findOrFail($id);
         $data['user'] = User::select('email')->findOrFail($id);
         return view('front.profile.show')->with($data);

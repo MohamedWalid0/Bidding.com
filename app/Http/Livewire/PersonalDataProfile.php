@@ -20,7 +20,6 @@ class PersonalDataProfile extends Component
 
     public function render()
     {
-
         return view('livewire.personal-data-profile');
     }
 }
