@@ -164,10 +164,9 @@
                 if(data.wished){
                     $("div[data-product-id="+productId+"]").remove();
                     toastr.info(data.message);
-
                 }
                 else{
-                    console.log("not doneee")
+                    toastr.success(data.message);
                 }
 
             }

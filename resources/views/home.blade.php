@@ -5,16 +5,16 @@
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
-<link rel="stylesheet" href="{{ asset('css/home/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/all.min.css') }}">
 
-<link rel="stylesheet" href="{{ asset('css/home/owl.carousel.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/home/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/owl.theme.default.min.css') }}">
 
-<link rel="stylesheet" href="{{ asset('css/home/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/animate.css') }}">
 
-<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 @endsection
 @section('content')
 
@@ -36,7 +36,8 @@
                                 <div class="slideContentContainer p-4">
 
                                     <h2>IBID De7k</h2>
-                                    <p class="py-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident</p>
+                                    <p class="py-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                        Provident</p>
                                     <button type="button" class="btn btn-outline-light mx-1 rounded-0">Buy</button>
                                     <button type="button" class="btn btn-outline-light mx-1 rounded-0">Details</button>
 
@@ -72,10 +73,10 @@
                             <p>New Arrivals</p>
                             <h5>Fashion</h5>
                             <div class="categoryTitleOverlay ">
-                                <div >
-                                    <p >Explore popular devices</p>
+                                <div>
+                                    <p>Explore popular devices</p>
                                 </div>
-                                <div >
+                                <div>
                                     <button class="btn btn-outline-light rounded-0">
                                         Shop Now
                                     </button>
@@ -92,10 +93,10 @@
                             <p>New Arrivals</p>
                             <h5>Fashion</h5>
                             <div class="categoryTitleOverlay ">
-                                <div >
-                                    <p >Explore popular devices</p>
+                                <div>
+                                    <p>Explore popular devices</p>
                                 </div>
-                                <div >
+                                <div>
                                     <button class="btn btn-outline-light rounded-0">
                                         Shop Now
                                     </button>
@@ -114,10 +115,10 @@
                             <p>New Arrivals</p>
                             <h5>Fashion</h5>
                             <div class="categoryTitleOverlay ">
-                                <div >
-                                    <p >Explore popular devices</p>
+                                <div>
+                                    <p>Explore popular devices</p>
                                 </div>
-                                <div >
+                                <div>
                                     <button class="btn btn-outline-light rounded-0">
                                         Shop Now
                                     </button>
@@ -137,10 +138,10 @@
                             <p>New Arrivals</p>
                             <h5>Fashion</h5>
                             <div class="categoryTitleOverlay ">
-                                <div >
-                                    <p >Explore popular devices</p>
+                                <div>
+                                    <p>Explore popular devices</p>
                                 </div>
-                                <div >
+                                <div>
                                     <button class="btn btn-outline-light rounded-0">
                                         Shop Now
                                     </button>
@@ -180,7 +181,6 @@
         </div>
 
 
-
         <div class="latestActionsCategories">
 
             <div class="row ">
@@ -190,14 +190,14 @@
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Bullets Wireless </h3>
                             <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More </button>
+                            <button class="viewMore my-4"> View More</button>
                         </div>
                     </div>
                     <div class="category latestActionsCategoryTwo my-2 mx-2 p-4">
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Drones </h3>
                             <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More </button>
+                            <button class="viewMore my-4"> View More</button>
                         </div>
                     </div>
                 </div>
@@ -207,14 +207,14 @@
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Headphones </h3>
                             <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More </button>
+                            <button class="viewMore my-4"> View More</button>
                         </div>
                     </div>
                     <div class="category latestActionsCategoryFour my-2 p-4">
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Charger Wireless </h3>
                             <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More </button>
+                            <button class="viewMore my-4"> View More</button>
                         </div>
                     </div>
                 </div>
@@ -222,9 +222,7 @@
             </div>
 
 
-
         </div>
-
 
 
     </section>
@@ -259,10 +257,10 @@
                         <div class="productContainer pb-2">
                             <div class="productImageContainer">
                                 <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                    onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                    onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                     onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                     onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
 
-                                class="w-100" alt="">
+                                     class="w-100" alt="">
                             </div>
 
                             <div class="productOptions ">
@@ -283,28 +281,26 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
 
                             </div>
-
-
 
 
                         </div>
@@ -331,10 +327,10 @@
                         <div class="productContainer pb-2">
                             <div class="productImageContainer">
                                 <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                    onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                    onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                     onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                     onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
 
-                                class="w-100" alt="">
+                                     class="w-100" alt="">
                             </div>
 
                             <div class="productOptions ">
@@ -355,28 +351,26 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
 
                             </div>
-
-
 
 
                         </div>
@@ -402,10 +396,10 @@
                         <div class="productContainer pb-2">
                             <div class="productImageContainer">
                                 <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                    onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                    onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                     onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                     onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
 
-                                    class="w-100" alt="">
+                                     class="w-100" alt="">
                             </div>
 
                             <div class="productOptions ">
@@ -426,28 +420,26 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
 
                             </div>
-
-
 
 
                         </div>
@@ -474,10 +466,10 @@
                         <div class="productContainer pb-2">
                             <div class="productImageContainer">
                                 <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                    onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                    onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                     onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                     onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
 
-                                class="w-100" alt="">
+                                     class="w-100" alt="">
                             </div>
 
                             <div class="productOptions ">
@@ -498,28 +490,26 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6  class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1">70</h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
 
                             </div>
-
-
 
 
                         </div>
@@ -565,8 +555,6 @@
         </div>
 
 
-
-
         <div class="recommendedSection ">
 
             <div class="row px-0 mx-0 ">
@@ -576,10 +564,10 @@
                     <div class="col-md-3 col-sm-12  ">
 
                         <div class="sideCategory   text-center d-flex justify-content-center align-items-center">
-                            <div class="py-4" >
-                                <h3 >Hahah</h3>
+                            <div class="py-4">
+                                <h3>Hahah</h3>
                                 <p> 8 products</p>
-                                <button class="viewMore   my-4"> View More </button>
+                                <button class="viewMore   my-4"> View More</button>
                             </div>
                         </div>
 
@@ -591,7 +579,8 @@
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -612,14 +601,14 @@
 
 
                         </div>
-
 
 
                         <div class="col-md-6 col-sm-6 d-flex  ">
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -640,14 +629,14 @@
 
 
                         </div>
-
 
 
                         <div class="col-md-6 col-sm-6 d-flex  ">
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -668,14 +657,14 @@
 
 
                         </div>
-
 
 
                         <div class="col-md-6 col-sm-6 d-flex  ">
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -696,12 +685,6 @@
 
 
                         </div>
-
-
-
-
-
-
 
 
                     </div>
@@ -710,11 +693,7 @@
                 </div>
 
 
-
-
             </div>
-
-
 
 
             <div class="row px-0 mx-0 ">
@@ -724,10 +703,10 @@
                     <div class="col-md-3 col-sm-12  ">
 
                         <div class="sideCategory   text-center d-flex justify-content-center align-items-center">
-                            <div class="py-4" >
-                                <h3 >Hahah</h3>
+                            <div class="py-4">
+                                <h3>Hahah</h3>
                                 <p> 8 products</p>
-                                <button class="viewMore   my-4"> View More </button>
+                                <button class="viewMore   my-4"> View More</button>
                             </div>
                         </div>
 
@@ -739,7 +718,8 @@
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -760,14 +740,14 @@
 
 
                         </div>
-
 
 
                         <div class="col-md-6 col-sm-6 d-flex  ">
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -788,14 +768,14 @@
 
 
                         </div>
-
 
 
                         <div class="col-md-6 col-sm-6 d-flex  ">
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -816,14 +796,14 @@
 
 
                         </div>
-
 
 
                         <div class="col-md-6 col-sm-6 d-flex  ">
 
                             <div class="productItemDetails p-4 m-1  row ">
                                 <div class="col-lg-4 col-md-12">
-                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100" alt="">
+                                    <img src="{{ asset('img/home/microsoft-tablet-1-400x400.jpg') }}" class="w-100"
+                                         alt="">
                                 </div>
                                 <div class="col-lg-8 col-md-12 mt-3">
                                     <h5>Galaxy s10+ Dual SIM</h5>
@@ -844,12 +824,6 @@
 
 
                         </div>
-
-
-
-
-
-
 
 
                     </div>
@@ -858,13 +832,9 @@
                 </div>
 
 
-
-
             </div>
 
         </div>
-
-
 
 
     </section>
@@ -897,7 +867,6 @@
             </div>
 
         </div>
-
 
 
         <div class=" owl-carousel owl-theme my-5">
@@ -939,7 +908,6 @@
             </div>
 
         </div>
-
 
 
     </section>
@@ -997,9 +965,12 @@
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
                                         <i class="fas fa-gavel"></i>
                                     </div>
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistActive @else wishlistNotActive @endif  "  id ="wishlistIconContainer" data-product-icon-id="{{$latest_product -> id}}">
+                                    <div
+                                        class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistActive @else wishlistNotActive @endif  "
+                                        id="wishlistIconContainer" data-product-icon-id="{{$latest_product -> id}}">
 
-                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistIconActive @else wishlistIconNotActive @endif " href="#" data-product-id="{{$latest_product -> id}}" >
+                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
+                                           href="#" data-product-id="{{$latest_product -> id}}">
                                             <i class="far fa-heart"></i>
                                         </a>
 
@@ -1015,27 +986,25 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('d') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('d') }}</h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('h') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('h') }}</h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('m') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('m') }}</h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6  class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('s') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('s') }}</h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
                                 </div>
-
-
 
 
                             </div>
@@ -1055,7 +1024,6 @@
 
                     </div>
                 @endforeach
-
 
 
             </div>
@@ -1088,7 +1056,7 @@
         <div class="productsSectionContainer pb-5">
             <div class="mx-0 tesssst owl-carousel owl-theme">
 
-            @forelse ( $hot_products as $hot_product)
+                @forelse ( $hot_products as $hot_product)
                     <div class="p-2">
 
                         <div class="productsWrapper my-3">
@@ -1110,14 +1078,16 @@
                                     </div>
 
 
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistActive @else wishlistNotActive @endif  "  id ="wishlistIconContainer" data-product-icon-id="{{$hot_product -> id}}">
+                                    <div
+                                        class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistActive @else wishlistNotActive @endif  "
+                                        id="wishlistIconContainer" data-product-icon-id="{{$hot_product -> id}}">
 
-                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistIconActive @else wishlistIconNotActive @endif " href="#" data-product-id="{{$hot_product -> id}}" >
+                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
+                                           href="#" data-product-id="{{$hot_product -> id}}">
                                             <i class="far fa-heart"></i>
                                         </a>
 
                                     </div>
-
 
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
@@ -1130,29 +1100,27 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1" id="days"> </h6>
+                                            <h6 class="text-primary my-0 pt-1" id="days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1" id="hours"> </h6>
+                                            <h6 class="text-primary my-0 pt-1" id="hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1" id="mins"> </h6>
+                                            <h6 class="text-primary my-0 pt-1" id="mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6  class="text-primary my-0 pt-1" id="secs"> </h6>
+                                            <h6 class="text-primary my-0 pt-1" id="secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
 
 
                                 </div>
-
-
 
 
                             </div>
@@ -1171,7 +1139,7 @@
                         </div>
 
                     </div>
-                    @empty
+                @empty
                     <div class="p-2">
 
                         <div class="productsWrapper my-3">
@@ -1204,28 +1172,26 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1">70</h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1">70</h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1">70</h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6  class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1">70</h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
 
                                 </div>
-
-
 
 
                             </div>
@@ -1242,9 +1208,7 @@
                         </div>
 
                     </div>
-            @endforelse
-
-
+                @endforelse
 
 
             </div>
@@ -1275,10 +1239,10 @@
 
     <script src="{{ asset('js/home/main.js') }}"></script>
     <script>
-        var countDownDate = new Date( "{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}" ).getTime();
+        var countDownDate = new Date("{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}").getTime();
 
 
-        var myfunc = setInterval(function() {
+        var myfunc = setInterval(function () {
 
             var now = new Date().getTime();
             var timeleft = countDownDate - now;
@@ -1289,14 +1253,13 @@
             var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
 
-            document.getElementById("days").innerHTML =  days
+            document.getElementById("days").innerHTML = days
             document.getElementById("hours").innerHTML = hours
             document.getElementById("mins").innerHTML = minutes
             document.getElementById("secs").innerHTML = seconds
 
 
         }, 1000)
-
 
 
         $(document).on('click', '.toggleProductinWishlist', function (e) {
@@ -1310,36 +1273,32 @@
                 }
             });
 
-            let productId = $(this).attr('data-product-id') ;
+            let productId = $(this).attr('data-product-id');
 
             $.ajax({
                 type: 'GET',
-                url : "wishlist/"+$(this).attr('data-product-id') ,
+                url: "wishlist/" + $(this).attr('data-product-id'),
 
                 data: {
-                    'productId': $(this).attr('data-product-id') ,
+                    'productId': $(this).attr('data-product-id'),
                 },
                 success: function (data) {
 
-                    if(data.wished){
+                    if (data.wished) {
 
                         console.log("done")
-                        $( "div[data-product-icon-id="+productId +"]").toggleClass("wishlistNotActive wishlistActive") ;
-                        $( "a[data-product-id="+productId +"]").toggleClass("wishlistIconNotActive wishlistIconActive") ;
+                        $("div[data-product-icon-id=" + productId + "]").toggleClass("wishlistNotActive wishlistActive");
+                        $("a[data-product-id=" + productId + "]").toggleClass("wishlistIconNotActive wishlistIconActive");
                         toastr.info(data.message);
 
-                    }
+                    } else {
 
-                    else{
-
-                        console.log("not done")
+                        toastr.success(data.message);
                     }
 
                 }
 
             });
-
-
 
 
         });
