@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             ProductPropertySeeder::class ,
             ProductWishlistSeeder::class ,
             BidSeeder::class,
+            HistorySeeder::class,
+
 
 
 

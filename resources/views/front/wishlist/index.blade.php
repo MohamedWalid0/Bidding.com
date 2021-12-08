@@ -6,7 +6,8 @@
 
 
 @section('content')
-    @extends('layouts.header')
+
+    @include('layouts.header')
 
     <!-- hot products -->
     <section class="my-5">
