@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Casts\CostCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Bid extends Pivot
@@ -16,7 +17,7 @@ class Bid extends Pivot
         'cost' => CostCast::class,
     ];
 
-    public function product()
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class , 'product_id');
     }

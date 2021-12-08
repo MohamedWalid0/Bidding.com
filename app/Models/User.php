@@ -68,14 +68,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static function productInWishlist($productId)
     {
-        if (\Auth::check()){
+        if (Auth::check()){
             $products =  auth()->user()->wishlist->products->pluck('id')->toArray() ;
-            return in_array($productId, $products ) ;
+            return in_array($productId, $products, true);
         }
         return false ;
 
     }
-    public function product_bids()
+    public function product_bids(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'bids')
             ->using(Bid::class)

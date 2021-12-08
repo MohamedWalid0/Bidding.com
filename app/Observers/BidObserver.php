@@ -17,7 +17,6 @@ class BidObserver
         if ($product->status === Product::INACTIVE) {
             abort(ResponseAlias::HTTP_FORBIDDEN);
         }
-
     }
 
     // will check the product deadline after saving bids

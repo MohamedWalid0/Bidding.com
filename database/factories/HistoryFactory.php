@@ -26,7 +26,6 @@ class HistoryFactory extends Factory
             'event_id' => Event::inRandomOrder()->first()->id,
             'created_at' => Carbon::now()->subDays(rand(0, 365))->subHours(rand(0, 23))->subMinutes(rand(1, 55)),
             'updated_at' => Carbon::now(),
-
         ];
     }
 }
