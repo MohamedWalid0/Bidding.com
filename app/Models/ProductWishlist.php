@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class ProductWishlist extends Model
 {
     use HasFactory;
+
+    protected $table = 'product_wishlists' ;
     protected $guarded = [] ;
 
 

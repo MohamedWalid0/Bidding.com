@@ -16,11 +16,24 @@ class WishlistController extends Controller
         return view('front.wishlist.index' , compact('wishlist'));
     }
 
-    public function handleWishlist(Product $product): RedirectResponse
+    public function toggleProductInWishlist(Product $product)
     {
-        auth()->user()->wishlist->products()->toggle($product);
 
-        return back();
+
+        if (auth()->user()->wishlist->products()->toggle(request('productId'))) {
+
+            // toastr()->info('Data has been saved successfully!');
+
+            return response() -> json(['wished' => true , 'message' => "Completed Successfully"]);
+
+        }
+
+        return response() -> json(['wished' => false , 'message' => "Completed Successfully"]);
+
+
+
+
+
     }
 
 

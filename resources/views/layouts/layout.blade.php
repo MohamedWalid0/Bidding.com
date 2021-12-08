@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>@yield('title')</title>
 
+
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
 
@@ -22,6 +23,8 @@
 
   <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 
+  @toastr_css
+
   @yield('styles')
 
 </head>
@@ -36,6 +39,9 @@
 
 
 
+    @jquery
+    @toastr_js
+    @toastr_render
 
   <script src="{{ asset('js/home/jquery-3.5.1.js') }}"></script>
   <!--
@@ -56,6 +62,7 @@
   <script src="{{ asset('js/home/main.js') }}"></script>
 
   @yield('scripts')
+
 
 </body>
 </html>
