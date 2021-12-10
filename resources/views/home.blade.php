@@ -1008,7 +1008,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                 {{ $latest_product->last_bid->cost }}$
+                                 {{ $latest_product->last_bid->cost ?? 0 }}$
                                     </span>
                                 </p>
 
@@ -1124,7 +1124,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->cost  }}$
+                                        {{ $hot_product->last_bid->cost ?? 0  }}$
                                     </span>
                                 </p>
 
@@ -1276,11 +1276,11 @@
                     }
                 },
                 error: function (jqXHR) {
-                    toastr.warning( jqXHR.responseJSON.message);
+                    toastr.warning(jqXHR.responseJSON.message);
                 }
 
             });
-      });
+        });
     </script>
 
 @endsection

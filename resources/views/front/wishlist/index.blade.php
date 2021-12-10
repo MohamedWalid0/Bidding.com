@@ -99,7 +99,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $product->last_bid->cost }}
+                                        {{ $product->last_bid->cost ?? 0}}$
                                     </span>
                                 </p>
 

@@ -6,6 +6,7 @@ use App\Casts\CostCast;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
@@ -35,22 +36,13 @@ class Product extends Model
     protected $appends = ['last_bid'];
 
     // Relations
-    public function wishlists()
+    public function wishlists(): BelongsToMany
     {
         return $this->belongsToMany(Wishlist::class, 'product_wishlists')->withTimestamps();
     }
 
-    // public function productInWishlist($productId)
-    // {
-    //     $wishlist = new Wishlist() ;
-    //     // dd($wishlist->user()) ;
-    //     $wishlistId = Wishlist::where('user_id' , Auth::id() );
-    //     return ($wishlistId ) ;
-    //     $user = new User() ;
-    //     return $user->wishlist()->wishlists()->where('product_id', $productId)->exists();
-    // }
 
-    public function user_bids()
+    public function user_bids(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'bids')
             ->using(Bid::class)
@@ -66,7 +58,6 @@ class Product extends Model
         return $query->latest()->take($take);
     }
 
-    // Scopes
     public function scopeHottestProducts(Builder $query, int $take): Builder
     {
         return $query->withCount('user_bids')
@@ -74,9 +65,10 @@ class Product extends Model
             ->limit($take);
     }
 
+    // Accessors
     public function getLastBidAttribute()
     {
-        return $this->user_bids->last()->user_bids;
+        return $this->user_bids->last()?->user_bids;
     }
 
 }
