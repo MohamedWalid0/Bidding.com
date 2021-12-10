@@ -89,45 +89,12 @@ class Product extends Model
     }
 
 
-
-    /**
-     * @throws \Throwable
-     */
-//    public function scopeMostOfViewProducts(Builder $query, int $take)
-//    {
-//        try {
-//            DB::beginTransaction();
-//            $eventId = Event::where('name', 'click')->first()->id;
-//            $productsIds = DB::select(
-//                DB::raw("
-//                        SELECT product_id,
-//                            COUNT(id)
-//                            FROM histories
-//                            WHERE event_id = $eventId
-//                            GROUP BY  product_id
-//                            ORDER BY COUNT(id) DESC
-//                            LIMIT $take;
-//                            ")
-//            );
-//
-//            $arr = [];
-//            foreach ($productsIds as $productId) {
-//                array_push($arr, $productId->product_id);
-//
-//            }
-//            $products = self::whereIn('id', $arr)->get();
-//            DB::commit();
-//            return $products;
-//
-//        } catch (\Throwable $th) {
-//            DB::rollBack();
-//            throw $th;
-//        }
-//    }
-
     public function getLastBidAttribute()
     {
-        return $this->user_bids->last()?->user_bids;
+        if ($this->user_bids->last()) {
+            return $this->user_bids->last()->user_bids;
+        }
+        return 0 ;
     }
 
 }
