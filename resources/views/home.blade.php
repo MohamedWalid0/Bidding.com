@@ -1312,7 +1312,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{-- {{ $mostOfViewProduct->last_bid->cost  }}$ --}}
+                                         {{ $mostOfViewProduct->last_bid->cost ?? 0 }}$
                                     </span>
                                 </p>
 

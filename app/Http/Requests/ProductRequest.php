@@ -29,9 +29,22 @@ class ProductRequest extends FormRequest
             'cityId' => 'required|numeric|exists:cities,id',
             'subCategoryId' => 'required|numeric|exists:sub_categories,id',
             'description' => 'required|min:30|max:1200',
-            'propertyValueId'=> 'required|array',
+            'propertyValueId' => 'required|array',
             'startPrice' => 'required|numeric|digits_between:1,10',
             'deadline' => 'required|date|after:now',
+            'images' => 'required|array',
+            'images.*' => 'mimes:jpg,jpeg,png,bmp|max:20000'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'images.required' => 'Please upload an image',
+            'images.*.mimes' => 'the image must jpg,jpeg,png,bmp',
+            'cityId.required' => 'the city field is required',
+            'propertyValueId.required' => 'the properties fields is required',
+            'subCategoryId.required' => 'the sub category fields is required',
         ];
     }
 }

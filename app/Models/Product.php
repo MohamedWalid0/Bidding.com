@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Casts\CostCast;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Product extends Model
@@ -19,7 +17,7 @@ class Product extends Model
 
 
     protected $fillable = [
-        'id' ,
+        'id',
         'name',
         'description',
         'location',
@@ -52,6 +50,23 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function click_events(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'histories')
+            ->wherePivot('event_id','=' , 1)
+            ->withTimestamps();
+    }
+
+    public function events(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'histories')
+            ->withTimestamps();
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 
     // Scopes
     public function scopeLatestProducts(Builder $query, int $take): Builder
@@ -66,37 +81,49 @@ class Product extends Model
             ->limit($take);
     }
 
-    public function scopeMostOfViewProducts(Builder $query, int $take)
+    public function scopeMostOfViewProducts(Builder $query, int $take): Builder
     {
-        try {
-            DB::beginTransaction();
-            $eventId = Event::where('name' , 'click')->first()->id ;
-            $productsIds = DB::select(
-                        DB::raw("
-                        SELECT product_id,
-                            COUNT(id)
-                            FROM histories
-                            WHERE event_id = $eventId
-                            GROUP BY  product_id
-                            ORDER BY COUNT(id) DESC
-                            LIMIT $take;
-                            ")
-            );
-
-            $arr = [] ;
-            foreach ( $productsIds as $productId){
-                array_push($arr ,  $productId->product_id) ;
-
-            }
-            $products = Product::whereIn('id' , $arr)->get() ;
-            DB::commit();
-            return $products ;
-
-        } catch (\Throwable $th) {
-            DB::rollBack() ;
-            throw $th;
-        }
+        return $query->withCount('click_events')
+            ->orderByDesc('click_events_count')
+            ->limit($take);
     }
+
+
+
+    /**
+     * @throws \Throwable
+     */
+//    public function scopeMostOfViewProducts(Builder $query, int $take)
+//    {
+//        try {
+//            DB::beginTransaction();
+//            $eventId = Event::where('name', 'click')->first()->id;
+//            $productsIds = DB::select(
+//                DB::raw("
+//                        SELECT product_id,
+//                            COUNT(id)
+//                            FROM histories
+//                            WHERE event_id = $eventId
+//                            GROUP BY  product_id
+//                            ORDER BY COUNT(id) DESC
+//                            LIMIT $take;
+//                            ")
+//            );
+//
+//            $arr = [];
+//            foreach ($productsIds as $productId) {
+//                array_push($arr, $productId->product_id);
+//
+//            }
+//            $products = self::whereIn('id', $arr)->get();
+//            DB::commit();
+//            return $products;
+//
+//        } catch (\Throwable $th) {
+//            DB::rollBack();
+//            throw $th;
+//        }
+//    }
 
     public function getLastBidAttribute()
     {

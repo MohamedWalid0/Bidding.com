@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PropertiesSubCategory extends Model
+class PropertiesSubCategory extends Pivot
 {
     use HasFactory;
-    protected $table = 'properties_sub_categories' ;
 
-    protected $guarded = [] ;
+    protected $table = 'properties_sub_categories';
+
+    protected $guarded = [];
 
 }
