@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
+use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +29,18 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], function () {
     // must be authenticated user and verified
     Route::get('profile', ProfileController::class);
-    Route::get('product/new', [ProductController::class, 'create']);
+
+    // products
+    Route::group(['prefix' => 'products'], function () {
+
+        Route::get('/create', [ProductController::class, 'create'])->name('products.create');
+        Route::get('/getSubCategories/{categoryId}', [ProductController::class, 'getSubCategories'])->name('products.getSubCategories');
+        Route::get('/getSubCategoryPropertiesIds/{subCategoryId}', [ProductController::class, 'getSubCategoryPropertiesIds'])->name('products.getSubCategoryPropertiesIds');
+        Route::post('/store', [ProductController::class, 'store'])->name('products.store');
+
+    });
+    // end products
+
 });
 
 

@@ -6,6 +6,7 @@
 
 
 @section('styles')
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 
 
 @endsection
@@ -1008,7 +1009,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                 {{ $latest_product->last_bid->cost }}$
+                                 {{-- {{ $latest_product->last_bid->cost }}$ --}}
                                     </span>
                                 </p>
 
@@ -1124,7 +1125,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->cost  }}$
+                                        {{-- {{ $hot_product->last_bid->cost  }}$ --}}
                                     </span>
                                 </p>
 
@@ -1212,6 +1213,124 @@
     <!-- end hot products -->
 
 
+
+
+
+
+    <!-- Most Of View products -->
+    <section class="my-5">
+
+        <div class="titleSubtileHolder">
+            <div class="sectionTitleContainer pt-3">
+
+                <h2 class="sectionTitle">
+                    Most Of View Products
+                </h2>
+                <div class="bidIconContainer">
+                    <i class="fas fa-gavel bidIcon"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="productsSectionContainer pb-5">
+            <div class="mx-0 tesssst owl-carousel owl-theme">
+
+                @forelse ( $mostOfViewProducts as $mostOfViewProduct)
+                    <div class="p-2">
+
+                        <div class="productsWrapper my-3">
+
+
+                            <div class="productContainer pb-2">
+                                <div class="productImageContainer">
+                                    <img src="{{ asset('img/home/mobile.jpg ')}}"
+                                         onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                         onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+
+                                         class="w-100" alt="">
+                                </div>
+
+                                <div class="productOptions ">
+
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
+                                        <i class="fas fa-gavel"></i>
+                                    </div>
+
+
+                                    <div
+                                        class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($mostOfViewProduct->id)) wishlistActive @else wishlistNotActive @endif  "
+                                        id="wishlistIconContainer" data-product-icon-id="{{$mostOfViewProduct -> id}}">
+
+                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($mostOfViewProduct->id)) wishlistIconActive @else wishlistIconNotActive @endif "
+                                           href="#" data-product-id="{{$mostOfViewProduct -> id}}">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+
+                                    </div>
+
+
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+
+                                </div>
+
+                                <div class="productBidTimer">
+
+                                    <div class="d-flex  text-center w-100 p-2">
+                                        <div class="col-3 px-0 counterItem rightBorder">
+                                            <h6 class="text-primary my-0 pt-1" id="days"></h6>
+                                            <p class="text-muted">Days</p>
+                                        </div>
+                                        <div class="col-3 px-0 counterItem rightBorder">
+                                            <h6 class="text-primary my-0 pt-1" id="hours"></h6>
+                                            <p class="text-muted">Hours</p>
+                                        </div>
+
+                                        <div class="col-3 px-0 counterItem rightBorder">
+                                            <h6 class="text-primary my-0 pt-1" id="mins"></h6>
+                                            <p class="text-muted">Minutes</p>
+                                        </div>
+
+                                        <div class="col-3 px-0 counterItem">
+                                            <h6 class="text-primary my-0 pt-1" id="secs"></h6>
+                                            <p class="text-muted">Seconds</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                            <footer class="productDetails text-center pb-2 pt-4">
+                                <h5>{{ $mostOfViewProduct->name }}</h5>
+                                <p class="text-muted">
+                                    Current Bid :
+                                    <span class="text-primary">
+                                        {{-- {{ $mostOfViewProduct->last_bid->cost  }}$ --}}
+                                    </span>
+                                </p>
+
+                            </footer>
+
+                        </div>
+
+                    </div>
+                @empty
+
+                @endforelse
+
+
+            </div>
+        </div>
+
+    </section>
+    <!-- end most Of View Products products -->
 
 
 

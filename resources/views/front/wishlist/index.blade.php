@@ -4,6 +4,9 @@
     Wishlist
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+@endsection
 
 @section('content')
 
@@ -164,7 +167,7 @@
 
                 if(data.wished){
                     $("div[data-product-id="+productId+"]").remove();
-                    toastr.success(data.message);
+                    toastr.error(data.message);
                 }
                 else{
                     toastr.error(data.message);
