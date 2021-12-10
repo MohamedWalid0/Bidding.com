@@ -22,6 +22,18 @@
                     </div>
                 </li>
 
+
+                <li>
+                    <a href="{{ route('products.create') }}">
+                        <div class="profile-tabs container-fluid">
+                            <p>
+                                <i class="fas fa-gavel text-primary"></i>
+                                <span class="ml-2">Add New Product</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+
                 <li>
                     <a href="#dashboard">
                         <div class="profile-tabs container-fluid">

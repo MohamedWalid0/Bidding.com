@@ -4,6 +4,9 @@
     Wishlist
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+@endsection
 
 @section('content')
     @include('layouts.header')
@@ -161,12 +164,15 @@
                 },
                 success: function (data) {
 
-                    if (data.wished) {
-                        $("div[data-product-id=" + productId + "]").remove();
-                        toastr.error(data.message);
-                    } else {
-                        toastr.error(data.message);
-                    }
+                if(data.wished){
+                    $("div[data-product-id="+productId+"]").remove();
+                    toastr.error(data.message);
+                }
+                else{
+                    toastr.error(data.message);
+                }
+
+            }
 
                 }
 

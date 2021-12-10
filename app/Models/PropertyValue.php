@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PropertyValue extends Model
 {
     use HasFactory;
+    protected $guarded = [] ;
+    protected $table = 'property_values' ;
+
 }
