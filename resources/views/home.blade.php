@@ -1095,21 +1095,21 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" id="days"></h6>
+                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" id="hours"></h6>
+                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" id="mins"></h6>
+                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1" id="secs"></h6>
+                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1282,21 +1282,21 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" id="days"></h6>
+                                            <h6 class="text-primary my-0 pt-1" ></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" id="hours"></h6>
+                                            <h6 class="text-primary my-0 pt-1"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" id="mins"></h6>
+                                            <h6 class="text-primary my-0 pt-1"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1" id="secs"></h6>
+                                            <h6 class="text-primary my-0 pt-1" ></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1343,24 +1343,27 @@
 @section('scripts')
 
     <script>
-        var countDownDate = new Date("{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}").getTime();
+        let countDownDate = new Date("{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}").getTime();
 
 
-        var myfunc = setInterval(function () {
+        let myfunc = setInterval(function () {
 
-            var now = new Date().getTime();
-            var timeleft = countDownDate - now;
+            let now = new Date().getTime();
+            let timeleft = countDownDate - now;
 
-            var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+            let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
+            let d = document.getElementsByClassName("days")
 
-            document.getElementById("days").innerHTML = days
-            document.getElementById("hours").innerHTML = hours
-            document.getElementById("mins").innerHTML = minutes
-            document.getElementById("secs").innerHTML = seconds
+            for(let i = 0; i < d.length; i++){
+                document.getElementsByClassName("days")[i].innerHTML = days
+                document.getElementsByClassName("hours")[i].innerHTML = hours
+                document.getElementsByClassName("mins")[i].innerHTML = minutes
+                document.getElementsByClassName("secs")[i].innerHTML = seconds
+            }
 
 
         }, 1000)
