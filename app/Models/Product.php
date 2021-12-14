@@ -92,11 +92,9 @@ class Product extends Model
     }
 
 
-    public function getLastBidAttribute(): ?User
+    public function getLastBidAttribute()
     {
-        return Cache::remember('last_bid', now()->addDay(), function () {
-            return $this->user_bids->sortByDesc('bids.created_at')->first();
-        });
+        return $this->user_bids->sortByDesc('user_bids.created_at')->first();
     }
 
 }

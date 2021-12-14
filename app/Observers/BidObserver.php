@@ -14,9 +14,11 @@ class BidObserver
     public function creating(Bid $bid)
     {
         $product = $bid->load('product')->product;
-        if ($product->status === Product::INACTIVE) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
+//        if ($product->status === Product::INACTIVE) {
+//            abort(Response::HTTP_FORBIDDEN);
+//        }
+        abort_if($product->status === Product::INACTIVE , Response::HTTP_FORBIDDEN);
+        abort_if($product->status === Product::ACTIVE &&  Carbon::now()->greaterThanOrEqualTo($product->deadline), Response::HTTP_FORBIDDEN);
     }
 
     // will check the product deadline after saving bids
@@ -30,16 +32,18 @@ class BidObserver
         }
     }
 
-        // will check the product status before saving bids
+        // will check the product status before updating bids
         public function updating(Bid $bid)
         {
             $product = $bid->load('product')->product;
-            if ($product->status === Product::INACTIVE) {
-                abort(ResponseAlias::HTTP_FORBIDDEN);
-            }
+//            if ($product->status === Product::INACTIVE) {
+//                abort(Response::HTTP_FORBIDDEN);
+//            }
+            abort_if($product->status === Product::INACTIVE , Response::HTTP_FORBIDDEN);
+            abort_if($product->status === Product::ACTIVE &&  Carbon::now()->greaterThanOrEqualTo($product->deadline), Response::HTTP_FORBIDDEN);
         }
 
-        // will check the product deadline after saving bids
+        // will check the product deadline after updating bids
         public function updated(Bid $bid)
         {
             $product = $bid->load('product')->product;

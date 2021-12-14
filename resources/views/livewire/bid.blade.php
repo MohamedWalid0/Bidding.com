@@ -13,7 +13,7 @@
                 </span>
 
                 <input type="text" class="form-control input-number" value=" {{$startBid}} "
-                wire:model='startBid' min="1">
+                wire:model.defer='startBid' min="1">
 
                 <span class="input-group-append">
                     <button type="button" class="btn btn-number" wire:click="increment">
@@ -30,7 +30,7 @@
 
         </div>
         <div class="col-md-3 pad-media">
-            @if ($product->status == 'active')
+            @if ($product->status === \App\Models\Product::ACTIVE)
             <button type="submit" class="btn bid-btn" data-tooltip="Bid Now" wire:click='bid'>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -52,6 +52,8 @@
     <p class="product-header--subtitle py-3">
         Categories: <span class="span-bold"> Electronics, Televisions</span>
         </p>
-
+    @if($errors->has('startBid'))
+        <span class="alert-default-danger">{{ $errors->first('startBid') }}</span>
+    @endif
 
 </div>
