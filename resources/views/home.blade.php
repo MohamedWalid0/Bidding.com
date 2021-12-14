@@ -1009,7 +1009,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                 {{ $latest_product->last_bid->cost ?? 0 }}$
+                                 {{ $latest_product->last_bid->bids->cost ?? 0 }}$
                                     </span>
                                 </p>
 
@@ -1125,7 +1125,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->cost ?? 0  }}$
+                                        {{ $hot_product->last_bid->bids->cost ?? 0  }}$
                                     </span>
                                 </p>
 
@@ -1278,7 +1278,7 @@
 
                                 </div>
 
-                                <div class="productBidTimer">
+                                {{-- <div class="productBidTimer">
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
@@ -1302,7 +1302,7 @@
                                     </div>
 
 
-                                </div>
+                                </div> --}}
 
 
                             </div>
@@ -1312,7 +1312,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                         {{ $mostOfViewProduct->last_bid->cost ?? 0 }}$
+                                         {{ $mostOfViewProduct->last_bid->bids->cost ?? 0 }}$
                                     </span>
                                 </p>
 

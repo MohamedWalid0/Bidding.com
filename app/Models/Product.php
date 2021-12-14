@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Cache;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Product extends Model
 {
@@ -50,12 +51,6 @@ class Product extends Model
             ->withTimestamps();
     }
 
-    public function click_events(): BelongsToMany
-    {
-        return $this->belongsToMany(Event::class, 'histories')
-            ->wherePivot('event_id','=' , 1)
-            ->withTimestamps();
-    }
 
     public function events(): BelongsToMany
     {
@@ -63,7 +58,7 @@ class Product extends Model
             ->withTimestamps();
     }
 
-    public function images()
+    public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
     }
@@ -76,24 +71,32 @@ class Product extends Model
 
     public function scopeHottestProducts(Builder $query, int $take): Builder
     {
-        return $query->withCount('user_bids')
+        return $query
+            ->select('name', 'deadline', 'id')
+            ->withCount('user_bids')
             ->orderByDesc('user_bids_count')
             ->limit($take);
     }
 
+
     public function scopeMostOfViewProducts(Builder $query, int $take): Builder
     {
-        return $query->withCount('click_events')
-            ->orderByDesc('click_events_count')
+        return $query
+            ->select('name', 'deadline', 'id')
+            ->withCount([
+                'events' =>
+                    fn($event) => $event->whereEventId(Event::CLICK)
+            ])
+            ->orderByDesc('events_count')
             ->limit($take);
     }
 
-    public function getLastBidAttribute()
+
+    public function getLastBidAttribute(): ?User
     {
-        if ($this->user_bids->last()) {
-            return $this->user_bids->last()->user_bids;
-        }
-        return 0 ;
+        return Cache::remember('last_bid', now()->addDay(), function () {
+            return $this->user_bids->sortByDesc('bids.created_at')->first();
+        });
     }
 
 }

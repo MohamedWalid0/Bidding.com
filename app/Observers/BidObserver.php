@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\Bid;
 use App\Models\Product;
 use Carbon\Carbon;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Symfony\Component\HttpFoundation\Response as Response;
 
 
 class BidObserver
@@ -15,7 +15,7 @@ class BidObserver
     {
         $product = $bid->load('product')->product;
         if ($product->status === Product::INACTIVE) {
-            abort(ResponseAlias::HTTP_FORBIDDEN);
+            abort(Response::HTTP_FORBIDDEN);
         }
     }
 

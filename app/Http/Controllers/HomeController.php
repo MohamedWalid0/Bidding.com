@@ -24,16 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        try {
-            $data['mostOfViewProducts'] = Product::mostOfViewProducts(15)->get();
-            $data['latest_products'] = Product::latestProducts(15)->get();
-            $data['hot_products']= Product::hottestProducts(15)->get();
-            return view('home', with($data));
-        } catch (\Throwable $th) {
+        $mostOfViewProducts = Product::with('user_bids:id')->mostOfViewProducts(15)->get();
+        $latest_products = Product::with('user_bids:id')->latestProducts(15)->get();
+        $hot_products = Product::with('user_bids:id')->hottestProducts(15)->get();
 
-        }
-
-
+        return view('home', compact('mostOfViewProducts', 'hot_products', 'latest_products'));
     }
 
 

@@ -38,6 +38,7 @@ class ProductController extends Controller
     public function index ($id) {
         $product = Product::with(
             ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
+           
         $currentBid = $product->user_bids->first()->user_bids->cost;
         $data['startBid'] = ((int) str_replace(',', '', $currentBid) )+1;
 
@@ -45,6 +46,7 @@ class ProductController extends Controller
         $data['product'] = $product;
         return view('front.product.viewProduct')->with($data);
     }
+
     public function create()
     {
 
