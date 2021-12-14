@@ -13,6 +13,8 @@ class Bid extends Pivot
 
     protected $table = 'bids';
 
+    // protected $guarded = [];
+
     protected $casts = [
         'cost' => CostCast::class,
     ];

@@ -88,7 +88,6 @@ class Product extends Model
             ->limit($take);
     }
 
-
     public function getLastBidAttribute()
     {
         if ($this->user_bids->last()) {

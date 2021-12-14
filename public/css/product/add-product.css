@@ -1,4 +1,4 @@
-* , 
+* ,
 *::after ,
 *::before{
     box-sizing: border-box;
@@ -56,4 +56,7 @@ border-color: #698B98 !important;
 .add-product-btn--customize:hover {
     background-color: #779aa8;
     border-color: #698B98 ;
+}
+.bg-custom {
+    background-color: #389EFF !important;
 }
