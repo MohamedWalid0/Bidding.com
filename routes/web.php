@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
+use App\Http\Controllers\Front\FilterController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\WishlistController;
@@ -25,12 +26,21 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes(['verify' => true]);
 
 
+Route::group( ['prefix' => 'search'] , function () {
+
+    Route::get('/', [FilterController::class, 'index'])->name('products.index');
+    Route::get('/SubCategory/{subCategoryIds?}', [FilterController::class, 'getSubCategoryProducts'])->name('products.getSubCategoryProducts');
+
+});
+
+
 Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], function () {
     // must be authenticated user and verified
     Route::get('profile', ProfileController::class);
 
     // products
     Route::group(['prefix' => 'products'], function () {
+
 
         Route::get('/create', [ProductController::class, 'create'])->name('products.create');
         Route::get('/getSubCategories/{categoryId}', [ProductController::class, 'getSubCategories'])->name('products.getSubCategories');
