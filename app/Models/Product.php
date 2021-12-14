@@ -46,8 +46,8 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class, 'bids')
             ->using(Bid::class)
-            ->withPivot('cost')
-            ->as('bids')
+            ->withPivot(['cost'])
+            ->as('user_bids')
             ->withTimestamps();
     }
 

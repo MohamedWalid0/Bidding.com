@@ -11,6 +11,8 @@ class Bid extends Pivot
 {
     use HasFactory;
 
+
+
     protected $table = 'bids';
 
     protected $casts = [
