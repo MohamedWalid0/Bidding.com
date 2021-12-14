@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
         Route::get('/getSubCategories/{categoryId}', [ProductController::class, 'getSubCategories'])->name('products.getSubCategories');
         Route::get('/getSubCategoryPropertiesIds/{subCategoryId}', [ProductController::class, 'getSubCategoryPropertiesIds'])->name('products.getSubCategoryPropertiesIds');
         Route::post('/store', [ProductController::class, 'store'])->name('products.store');
+        Route::get('/{id}', [ProductController::class, 'index'])->name('products.index');
+
 
     });
     // end products

@@ -14,6 +14,7 @@ use App\Models\PropertiesSubCategory;
 use App\Models\Property;
 use App\Models\PropertyValue;
 use App\Models\SubCategory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Storage;
@@ -34,7 +35,17 @@ class ProductController extends Controller
         $this->cities = City::orderBy('name')->get();
     }
 
+    public function index ($id) {
+        $product = Product::with(
+            ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
+           
+        $currentBid = $product->user_bids->first()->user_bids->cost;
+        $data['startBid'] = ((int) str_replace(',', '', $currentBid) )+1;
 
+        $data['currentBid'] = $currentBid;
+        $data['product'] = $product;
+        return view('front.product.viewProduct')->with($data);
+    }
 
     public function create()
     {
