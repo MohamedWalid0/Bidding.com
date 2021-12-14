@@ -139,6 +139,32 @@
 
 @section('scripts')
 
-    <script src="{{ asset('js/product/wishlist.js') }}"></script>
+    <script>
+        $(document).on('click', '.toggleProductinWishlist', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            let productId = $(this).attr('data-product-id');
+            $.ajax({
+                type: 'GET',
+                url: "wishlist/" + productId,
+                data: {
+                    'productId': productId,
+                },
+                success: function (data) {
+                    if(data.wished){
+                        $("div[data-product-id="+productId+"]").remove();
+                        toastr.error(data.message);
+                    }
+                    else{
+                        toastr.error(data.message);
+                    }
+                }
 
+            });
+        });
+    </script>
 @endsection
