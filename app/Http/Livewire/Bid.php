@@ -56,7 +56,7 @@ class Bid extends Component
         $this->product = Product::with(
             ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($this->product->id);
 
-        if ($this->product->user_bids()->exists(auth()->user()->id) ) {
+        if ($this->product->user_bids()->where('users.id' , auth()->id())->exists()) {
             $this->product->user_bids()->find(auth()->user()->id)->user_bids->update(
                 [
                     'cost' => $this->startBid
