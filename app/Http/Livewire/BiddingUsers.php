@@ -12,15 +12,17 @@ class BiddingUsers extends Component
 
     protected $listeners = ['BidUpdated' => 'render'];
 
-    public function mount() {
+    public function mount()
+    {
 
         $this->users = $this->product->user_bids;
     }
+
     public function render()
     {
         $this->product = Product::with(
             ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($this->product->id);
-            $this->users = $this->product->user_bids;
+        $this->users = $this->product->user_bids;
         return view('livewire.bidding-users');
     }
 }
