@@ -11,6 +11,8 @@ class Event extends Model
 {
     use HasFactory;
 
+    public const CLICK = 1;
+
 
     public function product_events(): BelongsToMany
     {
