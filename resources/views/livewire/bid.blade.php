@@ -1,7 +1,15 @@
 <div>
+    <p class="product-header--subtitle py-3">
+         @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+        Add your bid now!
+    </p>
     <div class="row">
         <div class="col-md-3">
-            @if ($product->status == 'active')
+            @if ($product->status === \App\Models\Product::ACTIVE)
             <div class="input-group">
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-number" wire:click="decrement" >
@@ -13,7 +21,7 @@
                 </span>
 
                 <input type="text" class="form-control input-number" value=" {{$startBid}} "
-                wire:model.defer='startBid' min="1">
+                wire:model='startBid' min="1">
 
                 <span class="input-group-append">
                     <button type="button" class="btn btn-number" wire:click="increment">
@@ -49,11 +57,13 @@
         </div>
 
     </div>
-    <p class="product-header--subtitle py-3">
-        Categories: <span class="span-bold"> Electronics, Televisions</span>
-        </p>
+
     @if($errors->has('startBid'))
         <span class="alert-default-danger">{{ $errors->first('startBid') }}</span>
     @endif
+
+    <p class="product-header--subtitle py-3">
+        Categories: <span class="span-bold"> Electronics, Televisions</span>
+    </p>
 
 </div>

@@ -47,7 +47,7 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'bids')
             ->using(Bid::class)
             ->withPivot(['cost'])
-            ->as('user_bids')
+            ->as('bid')
             ->withTimestamps();
     }
 
@@ -94,7 +94,12 @@ class Product extends Model
 
     public function getLastBidAttribute()
     {
-        return $this->user_bids->sortByDesc('user_bids.created_at')->first();
+        return $this->user_bids->sortByDesc('bid.cost')->first();
+    }
+
+    public function getHotUsersAttribute()
+    {
+        return $this->user_bids->sortByDesc('bid.cost')->take(5);
     }
 
 }
