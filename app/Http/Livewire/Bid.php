@@ -11,24 +11,20 @@ use Livewire\Component;
 class Bid extends Component
 {
     public Product $product;
-    public $users;
-    public $product_id;
     public $startBid;
+    public $currentBid;
 
-    public function mount($id, $startBid)
+
+    public function mount()
     {
-        $this->product = Product::with(
-            ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
-        $this->users = $this->product->user_bids;
-
-        $this->startBid = $startBid;
-        $this->product_id = $id;
+        $this->currentBid = $this->product->last_bid->bid->cost;
+        $this->startBid = ((int)str_replace(',', '', $this->currentBid))+1;
     }
 
     public function rules()
     {
         return [
-            'startBid' => 'required|numeric|gt:'.((int)str_replace(',', '', $this->product->last_bid->user_bids->cost))
+            'startBid' => 'required|numeric|gt:'.((int)str_replace(',', '', $this->currentBid))
         ];
     }
 
@@ -53,18 +49,17 @@ class Bid extends Component
 
     public function calcAcceptBid()
     {
-        $this->product = Product::with(
-            ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($this->product->id);
-
-        $currentBid = $this->product->user_bids->first()->user_bids->cost;
-        return ((int)str_replace(',', '', $currentBid)) + 1;
+        return ((int)str_replace(',', '', $this->currentBid)) + 1;
     }
 
-    public function bid()
-    {
+    public function updateBids ($start) {
+        $this->currentBid = $start;
+        $this->startBid = ((int)str_replace(',', '', $this->currentBid))+1;
+    }
+
+    public function bid() {
+
         $this->validate();
-        $this->product = Product::with(
-            ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($this->product->id);
 
         if ($this->product->user_bids()->where('users.id', auth()->id())->exists()) {
             $this->product->user_bids()->syncWithoutDetaching([
@@ -74,11 +69,9 @@ class Bid extends Component
             $this->product->user_bids()->attach(auth()->user()->id, ['cost' => $this->startBid]);
         }
 
-
-
-        session()->flash('message', 'Bid successfully updated.');
+        $this->updateBids($this->startBid);
+        session()->flash('message', 'Bid successfully added.');
         $this->emit('BidUpdated');
-
 
     }
 
