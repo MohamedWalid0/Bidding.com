@@ -121,3 +121,6 @@ font-size: 26px ;
   .pointer {
       cursor: pointer;
   }
+  .wishlistActive{
+    background-color: #09c !important;
+}

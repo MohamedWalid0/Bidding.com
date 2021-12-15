@@ -34,16 +34,25 @@ SV.Countdown = function(selector, params) {
 
 	var updateTime = function() {
 		setTimer();
-
+        // console.log(options);;
+        // console.log(daysLeft);
 		if (daysLeft <= 0 && hoursLeft <= 0 && minsLeft <= 0 && secsLeft <= 0) {
 			wrapper.innerHTML = '<p class="bid-blastoff text-center">' + options.endMessage + '</p>';
 		} else {
+
+            if (!wrapper.querySelector('.bid-days')) {
+		        return;
+            }
+
+
 			wrapper.querySelector('.bid-days').innerText = daysLeft;
 			wrapper.querySelector('.bid-hours').innerText = formatTime(hoursLeft);
 			wrapper.querySelector('.bid-mins').innerText = formatTime(minsLeft);
 			wrapper.querySelector('.bid-secs').innerText = formatTime(secsLeft);
 
-			setTimeout(updateTime, 1000);
+			 window.timer = setTimeout(updateTime, 1000);
+
+
 		}
 	};
 
@@ -74,31 +83,13 @@ SV.Countdown = function(selector, params) {
 	if (options.tableClass.length > 0)
 		useTableClass += ' ' + options.tableClass;
 
-	var tableHtml =
-	'<div class="timer-wrapper">' +
-		'<table class="' + useTableClass + '">' +
-		'<thead>' +
-			'<tr>' +
-				'<th>Days</th>' +
-				'<th>Hours</th>' +
-				'<th>Mins</th>' +
-				'<th>Secs</th>' +
-			'</tr>' +
-			'</thead>' +
-			'<tbody>' +
-			'<tr>' +
-				'<td class="bid-days"></td>' +
-				'<td class="bid-hours"></td>' +
-				'<td class="bid-mins"></td>' +
-				'<td class="bid-secs"></td>' +
-			'</tr>' +
-		'</tbody>' +
-		'</table>' +
-		'</div>' ;
+	// var tableHtml =
+
 
 	if (options.untilMessage.length > 0)
 		tableHtml += '<p class="bid-until">' + options.untilMessage + '</p>';
 
-	wrapper.innerHTML = tableHtml;
+	// wrapper.innerHTML = tableHtml;
+
 	updateTime();
 };
