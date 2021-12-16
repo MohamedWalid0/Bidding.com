@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+@include('layouts.header')
     <section class="py-5">
         <div class="container">
 
@@ -53,7 +54,7 @@
 
                         <livewire:bid-deadline :product="$product" >
                         <livewire:bid  :product="$product">
-                        
+
 
                         <livewire:bidding-users :product="$product" >
 
@@ -105,13 +106,14 @@ let productId = $(this).attr('data-product-id');
 
 $.ajax({
     type: 'GET',
-    url: "wishlist/" + $(this).attr('data-product-id'),
+    url: "/wishlist/" + $(this).attr('data-product-id'),
     data: {
         'productId': $(this).attr('data-product-id'),
     },
     success: function (data) {
-        $("div[data-product-icon-id=" + productId + "]").toggleClass("wishlistNotActive wishlistActive");
-        $("a[data-product-id=" + productId + "]").toggleClass("wishlistIconNotActive wishlistIconActive");
+        $("a[data-product-id=" + productId + "]").toggleClass("wishlistActive");
+        $("svg[data-product-icon-id=" + productId + "]").toggleClass("wishlistIconActive");
+
         if ((data.wished) && (data.status)) {
             toastr.success(data.message);
         } else {
