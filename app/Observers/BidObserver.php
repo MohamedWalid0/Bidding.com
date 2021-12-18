@@ -26,7 +26,7 @@ class BidObserver
     {
         $product = $bid->load('product')->product;
         if (Carbon::now()->diffInRealMinutes($product->deadline) < 60) {
-            $product->update([
+            $product->updateQuietly([
                 'deadline' => $product->deadline->addHour()
             ]);
         }
@@ -48,7 +48,7 @@ class BidObserver
         {
             $product = $bid->load('product')->product;
             if (Carbon::now()->diffInRealMinutes($product->deadline) < 60) {
-                $product->update([
+                $product->updateQuietly([
                     'deadline' => $product->deadline->addHour()
                 ]);
             }

@@ -92,7 +92,7 @@ class Product extends Model
     }
 
 
-    public function getLastBidAttribute()
+    public function getLastBidAttribute(): ?User
     {
         return $this->user_bids->sortByDesc('bid.cost')->first();
     }

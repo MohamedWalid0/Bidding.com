@@ -3,9 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
-use App\Rules\BidRule;
-use Cache;
-use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Bid extends Component
@@ -18,13 +15,13 @@ class Bid extends Component
     public function mount()
     {
         $this->currentBid = $this->product->last_bid->bid->cost;
-        $this->startBid = ((int)str_replace(',', '', $this->currentBid))+1;
+        $this->startBid = ((int)str_replace(',', '', $this->currentBid)) + 1;
     }
 
     public function rules()
     {
         return [
-            'startBid' => 'required|numeric|gt:'.((int)str_replace(',', '', $this->currentBid))
+            'startBid' => 'required|numeric|gt:' . ((int)str_replace(',', '', $this->currentBid))
         ];
     }
 
@@ -52,12 +49,8 @@ class Bid extends Component
         return ((int)str_replace(',', '', $this->currentBid)) + 1;
     }
 
-    public function updateBids ($start) {
-        $this->currentBid = $start;
-        $this->startBid = ((int)str_replace(',', '', $this->currentBid))+1;
-    }
-
-    public function bid() {
+    public function bid()
+    {
 
         $this->validate();
 
@@ -73,6 +66,12 @@ class Bid extends Component
         session()->flash('message', 'Bid successfully added.');
         $this->emit('BidUpdated');
 
+    }
+
+    public function updateBids($start)
+    {
+        $this->currentBid = $start;
+        $this->startBid = ((int)str_replace(',', '', $this->currentBid)) + 1;
     }
 
     public function render()

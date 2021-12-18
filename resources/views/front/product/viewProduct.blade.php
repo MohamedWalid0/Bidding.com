@@ -51,10 +51,10 @@
                 </div>
                 <div class="col-md-7">
 
-                        <livewire:bid-deadline :product="$product" >
-                        <livewire:bid  :product="$product">
+                        <livewire:bid-deadline :product="$product" />
+                        <livewire:bid  :product="$product" />
 
-                        <livewire:bidding-users :product="$product" >
+                        <livewire:bidding-users :product="$product" />
 
                 </div>
             </div>
