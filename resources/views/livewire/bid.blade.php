@@ -70,8 +70,5 @@
         <span class="alert-default-danger">{{ $errors->first('startBid') }}</span>
     @endif
 
-    <p class="product-header--subtitle py-3">
-        Categories: <span class="span-bold"> Electronics, Televisions</span>
-    </p>
 
 </div>

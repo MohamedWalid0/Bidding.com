@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Cache;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -61,6 +62,16 @@ class Product extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function subCategory(): BelongsTo
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
+
+    public function propertiesValues(): BelongsToMany
+    {
+        return $this->belongsToMany(PropertyValue::class, 'product_properties', 'product_id', 'property_value_id');
     }
 
     // Scopes
