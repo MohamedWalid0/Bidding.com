@@ -84,11 +84,7 @@ class Product extends Model
         return $this->belongsToMany(PropertyValue::class, 'product_properties', 'product_id', 'property_value_id');
     }
 
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    
 
     public function comments(): HasMany
     {
