@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             ProductWishlistSeeder::class ,
             BidSeeder::class,
             HistorySeeder::class,
+            CommentSeeder::class,
+            ReplySeeder::class
 
 
 

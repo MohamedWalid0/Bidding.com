@@ -478,7 +478,7 @@ body {
     font-weight: 400;
 }
 .counterItem p{
-    font-size: 0.7rem ;
+    font-size: 0.65em ;
 }
 
 .rightBorder::after  {

@@ -68,7 +68,7 @@
   <script src="{{ asset('js/home/owl.carousel.min.js') }}"></script>
 
   <script src="{{ asset('js/home/main.js') }}"></script>
-
+  <script  src="{{asset('js/product/countdown.js')}}"></script>
 
   @yield('scripts')
 

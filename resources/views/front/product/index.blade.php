@@ -6,8 +6,11 @@
 
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/product/filter.css') }}">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="{{ asset('css/product/filter.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+
 @endsection
 
 @section('content')
@@ -22,18 +25,18 @@
 
                 <div class="price-range leftNav py-2"><!--price-range-->
                     <div class="card my-3">
-                        <div class="card-header">
 
-                            Price Range
-                        </div>
-                        <div id="slider-range"></div>
-                        <br>
-                        <b class="pull-left">$
-                            <input size="2" type="text" id="amount_start" name="start_price"
-                                    value="15" style="border:0px; font-weight: bold; color:green" readonly="readonly" /></b>
-                        <b class="pull-right">$
-                            <input size="2" type="text" id="amount_end" name="end_price" value="65"
-                                    style="border:0px; font-weight: bold; color:green" readonly="readonly"/></b>
+                        <p >
+                            <label for="amount" class="card-header">Price range:</label>
+                            <div class="d-flex">
+
+                                <input type="text" id="amount_start" name="start_price" value="0" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold;">
+                                <input type="text" id="amount_end" name="end_price" value="10000" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold;">
+                            </div>
+
+                        </p>
+                        <div id="slider-range" class="slider-range"></div>
+
                     </div>
                 </div><!-- end price-range-->
 
@@ -41,6 +44,52 @@
                     <h3>Refine By:<span class="_t-item">(0 items)</span></h3>
                     <div class="col-12 p-0" id="catFilters"></div>
                 </div>
+
+
+
+                <div class="card leftNav category-sec">
+
+                    <div class="accordion" id="accordionExample2">
+                        <div class="card-header" id="headingOne">
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Categories</button>
+                        </div>
+
+                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                            data-parent="#accordionExample2">
+                            <div class="panel-body">
+
+
+                                @if(!empty($categories))
+                                    @foreach ($categories as $category)
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" {{($loop->iteration == 0 ? 'checked' : '')}}
+                                                attr-name="{{$category->name}}"
+                                                class="custom-control-input category_checkbox" id="{{$category->id}}">
+                                            <label class="custom-control-label"
+                                                for="{{$category->id}}">{{ucfirst($category->name)}}</label>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
 
                 <div class="card leftNav category-sec">
 
@@ -51,7 +100,7 @@
                                 Sub-Categories</button>
                         </div>
 
-                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                        <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo"
                             data-parent="#accordionExample">
                             <div class="panel-body">
 
@@ -59,14 +108,16 @@
                                 @if(!empty($subCategories))
                                     @foreach ($subCategories as $subCategory)
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" {{($loop->iteration == 0 ? 'checked' : '')}}
+                                            <input type="checkbox"
                                                 attr-name="{{$subCategory->name}}"
-                                                class="custom-control-input category_checkbox" id="{{$subCategory->id}}">
+                                                class="custom-control-input subCategory_checkbox" id="sub-{{$subCategory->id}}">
                                             <label class="custom-control-label"
-                                                for="{{$subCategory->id}}">{{ucfirst($subCategory->name)}}</label>
+                                                for="sub-{{$subCategory->id}}">{{ucfirst($subCategory->name)}}</label>
                                         </div>
                                     @endforeach
                                 @endif
+
+
                             </div>
                         </div>
 
@@ -84,10 +135,17 @@
 
 
             <div class="col-md-9 col-sm-12 rightDiv">
+                <div class="row">
+                    <div class="col-md-12 mt-4">
+                        <input class="form-control w-100" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                    </div>
+                </div>
 
                 <div class="row causes_div">
 
+
                     @foreach ( $products as $product)
+
                         <div class="col-md-4 col-sm-12 p-2">
 
                             <div class="productsWrapper mt-3">
@@ -159,6 +217,12 @@
                                 <footer class="productDetails text-center pb-2 pt-4">
                                     <h5>{{ $product->name }}</h5>
                                     <p class="text-muted">
+                                        Start Price :
+                                        <span class="text-primary">
+                                            {{ $product->start_price }} $
+                                        </span>
+                                    </p>
+                                    <p class="text-muted">
                                         Current Bid :
                                         <span class="text-primary">
                                             {{ $product->last_bid->cost ?? 0 }}$
@@ -195,6 +259,8 @@
 
 
 @section('scripts')
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
 <script src="{{ asset('js/product/filter.js') }}"></script>
 <script src="{{ asset('js/product/wishlist.js') }}"></script>
 @endsection

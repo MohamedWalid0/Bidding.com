@@ -48,12 +48,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 .leftNav .collapsed:before {
 	-webkit-transform: rotate(180deg);
 	-moz-transform: rotate(180deg);
 	transform: rotate(180deg)
 }
-
 
 
 .leftNav .panel-body{padding: 10px 0px}

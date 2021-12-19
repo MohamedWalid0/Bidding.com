@@ -13,12 +13,13 @@
 @endsection
 
 @section('content')
+@include('layouts.header')
     <section class="py-5">
         <div class="container">
 
             <div class="product-header mb-3">
                 <p class="product-header--subtitle">
-                    iBid / Electronics / Televisions
+                    {{$product->subCategory->category->name}} / {{$product->subCategory->name}}
                 </p>
                 <h2 class="product-header--title">{{$product->name}}</h2>
                 <p class="product-header--subtitle" >
@@ -54,7 +55,11 @@
                         <livewire:bid-deadline :product="$product" />
                         <livewire:bid  :product="$product" />
 
-                        <livewire:bidding-users :product="$product" />
+                            <p class="product-header--subtitle py-3">
+                                Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
+                            </p>
+
+                        <livewire:bidding-users :product="$product" >
 
                 </div>
             </div>
@@ -70,5 +75,60 @@
 
 @section('scripts')
 @livewireScripts
+<script >
 
+// Livewire.on('BidUpdated', () => {
+
+//        var year =  {!! $product->deadline->year !!};
+//        var month =   {!! $product->deadline->month !!};
+//        var day =   {!! $product->deadline->day !!};
+//        var hour =   {!! $product->deadline->hour !!};
+//        var min =   {!! $product->deadline->minute  !!};
+
+//         var countdown = new SV.Countdown('.countdown', {
+//                year: year,
+//                month: month,
+//                day: day,
+//                hour: hour,
+//                min: min
+//            });
+
+// })
+$(document).on('click', '.toggleProductinWishlist', function (e) {
+
+e.preventDefault();
+
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+let productId = $(this).attr('data-product-id');
+
+$.ajax({
+    type: 'GET',
+    url: "/wishlist/" + $(this).attr('data-product-id'),
+    data: {
+        'productId': $(this).attr('data-product-id'),
+    },
+    success: function (data) {
+        $("a[data-product-id=" + productId + "]").toggleClass("wishlistActive");
+        $("svg[data-product-icon-id=" + productId + "]").toggleClass("wishlistIconActive");
+
+        if ((data.wished) && (data.status)) {
+            toastr.success(data.message);
+        } else {
+            toastr.error(data.message);
+        }
+    },
+    error: function (jqXHR) {
+        toastr.warning(jqXHR.responseJSON.message);
+    }
+
+});
+});
+
+</script>
 @endsection
