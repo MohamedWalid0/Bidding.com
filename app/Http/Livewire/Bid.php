@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Notifications\NewBidAddedNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class Bid extends Component

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DeadlineBidCommand;
 use App\Console\Commands\HandleBidCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -15,7 +16,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        HandleBidCommand::class
+        HandleBidCommand::class,
+        DeadlineBidCommand::class
     ];
 
     /**
@@ -23,16 +25,18 @@ class Kernel extends ConsoleKernel
      *
      * @param \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
+     * to run this commands run => php artisan schedule:work
      */
     protected function schedule(Schedule $schedule)
     {
-//        $schedule->command('watch:product')->everyMinute();
+        $schedule->command('watch:product')->hourly()->withoutOverlapping();
+        $schedule->command('bid:notify')->everyFifteenMinutes()->withoutOverlapping();
     }
-    protected function shortSchedule(ShortSchedule $schedule)
-    {
-        // this artisan command will run every second
-        $schedule->command('watch:product')->everySecond()->withoutOverlapping();
-    }
+//    protected function shortSchedule(ShortSchedule $schedule)
+//    {
+//        // this artisan command will run every second
+////        $schedule->command('watch:product')->everySecond()->withoutOverlapping();
+//    }
 
     /**
      * Register the commands for the application.

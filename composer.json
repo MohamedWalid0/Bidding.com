@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.8",
+        "pusher/pusher-php-server": "^5.0",
         "spatie/laravel-short-schedule": "^1.4",
         "yoeunes/toastr": "^1.2"
     },
