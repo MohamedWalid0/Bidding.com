@@ -13,12 +13,13 @@
 @endsection
 
 @section('content')
+@include('layouts.header')
     <section class="py-5">
         <div class="container">
 
             <div class="product-header mb-3">
                 <p class="product-header--subtitle">
-                    iBid / Electronics / Televisions
+                    {{$product->subCategory->category->name}} / {{$product->subCategory->name}}
                 </p>
                 <h2 class="product-header--title">{{$product->name}}</h2>
                 <p class="product-header--subtitle" >
@@ -50,20 +51,13 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                        <h3 class="product-desc--header mb-4 pad-media">
-                            Current bid: <span class="product-price"> {{$currentBid}}LE </span>
-                        </h3>
-                        <div class="product--underline"></div>
-                        <p class="product-header--subtitle py-3">Item Condition: New</p>
-                        <p class="product-header--subtitle py-1">Time left:</p>
-                        <div class="countdown"></div>
-                        <p class="product-header--subtitle py-3">
-                            Auction ends: {{$product->deadline->toDayDateTimeString()}}
-                        </p>
-                        <p class="product-header--subtitle py-3">
-                            Add your bid now!
-                        </p>
-                        <livewire:bid  :id="$product->id" :startBid="$startBid">
+
+                        <livewire:bid-deadline :product="$product" >
+                        <livewire:bid  :product="$product">
+
+                            <p class="product-header--subtitle py-3">
+                                Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
+                            </p>
 
                         <livewire:bidding-users :product="$product" >
 
@@ -81,21 +75,60 @@
 
 @section('scripts')
 @livewireScripts
-<script src="{{asset('js/product/countdown.js')}}"></script>
-        <script>
-            var year =  {!! $product->deadline->year !!};
-            var month =   {!! $product->deadline->month !!};
-            var day =   {!! $product->deadline->day !!};
-            var hour =   {!! $product->deadline->hour !!};
-            var min =   {!! $product->deadline->minute  !!};
+<script >
+
+// Livewire.on('BidUpdated', () => {
+
+//        var year =  {!! $product->deadline->year !!};
+//        var month =   {!! $product->deadline->month !!};
+//        var day =   {!! $product->deadline->day !!};
+//        var hour =   {!! $product->deadline->hour !!};
+//        var min =   {!! $product->deadline->minute  !!};
+
+//         var countdown = new SV.Countdown('.countdown', {
+//                year: year,
+//                month: month,
+//                day: day,
+//                hour: hour,
+//                min: min
+//            });
+
+// })
+$(document).on('click', '.toggleProductinWishlist', function (e) {
+
+e.preventDefault();
 
 
-            var countdown = new SV.Countdown('.countdown', {
-                year: year,
-                month: month,
-                day: day,
-                hour: hour,
-                min: min
-            });
-        </script>
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+let productId = $(this).attr('data-product-id');
+
+$.ajax({
+    type: 'GET',
+    url: "/wishlist/" + $(this).attr('data-product-id'),
+    data: {
+        'productId': $(this).attr('data-product-id'),
+    },
+    success: function (data) {
+        $("a[data-product-id=" + productId + "]").toggleClass("wishlistActive");
+        $("svg[data-product-icon-id=" + productId + "]").toggleClass("wishlistIconActive");
+
+        if ((data.wished) && (data.status)) {
+            toastr.success(data.message);
+        } else {
+            toastr.error(data.message);
+        }
+    },
+    error: function (jqXHR) {
+        toastr.warning(jqXHR.responseJSON.message);
+    }
+
+});
+});
+
+</script>
 @endsection

@@ -107,7 +107,7 @@ font-size: 26px ;
   }
   .wishlist-btn {
     border-radius: 50%;
-    padding: 8px;
+    /* padding: 8px; */
     border: 1px solid rgba(0, 0, 0, 0.2);
 
       /* padding: 5px; */
@@ -121,3 +121,24 @@ font-size: 26px ;
   .pointer {
       cursor: pointer;
   }
+
+.iconProductContainer{
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    font-size: 15px !important;
+    cursor: pointer;
+}
+
+.wishlistActive{
+    background-color: #09c !important;
+}
+.wishlistNotActive{
+    background-color: white !important;
+}
+
+.wishlistIconActive{
+    color: white !important;
+}
+.wishlistIconNotActive{
+    color: black !important;
+}

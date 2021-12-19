@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Cache;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use Laravel\Scout\Searchable;
 
@@ -50,7 +52,7 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'bids')
             ->using(Bid::class)
             ->withPivot(['cost'])
-            ->as('user_bids')
+            ->as('bid')
             ->withTimestamps();
     }
 
@@ -64,6 +66,27 @@ class Product extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function subCategory(): BelongsTo
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
+
+    public function propertiesValues(): BelongsToMany
+    {
+        return $this->belongsToMany(PropertyValue::class, 'product_properties', 'product_id', 'property_value_id');
+    }
+
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
     // Scopes
@@ -97,7 +120,12 @@ class Product extends Model
 
     public function getLastBidAttribute()
     {
-        return $this->user_bids->sortByDesc('user_bids.created_at')->first();
+        return $this->user_bids->sortByDesc('bid.cost')->first();
+    }
+
+    public function getHotUsersAttribute()
+    {
+        return $this->user_bids->sortByDesc('bid.cost')->take(5);
     }
 
 }
