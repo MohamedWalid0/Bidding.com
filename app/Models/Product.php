@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
+use Laravel\Scout\Searchable;
+
 class Product extends Model
 {
     use HasFactory;
+    use Searchable;
 
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
