@@ -43,7 +43,35 @@
             </button>
 
             <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+                    @auth
                     <ul class="navbar-nav ">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell-ringing" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                                    <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                                    <path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727" />
+                                    <path d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727" />
+
+                                </svg>
+
+                            </button>
+                            <span class="bg-danger rounded-circle w-25  position-absolute text-center" id="notificationCount">{{ auth()->user()->unreadNotifications()->count() }}</span>
+                            <div class="dropdown-menu mr-3" id="notificationList">
+                                @forelse (auth()->user()->unreadNotifications as $notification)
+                                    <a class="dropdown-item" href="{{ $notification->data['url'] }}?notify_id={{ $notification->id }}">
+                                        <h6 class="text-bold text-danger">{{ $notification->data['title'] }}</h6>
+                                        <p class="text-muted"> {{ $notification->data['body'] }} </p>
+                                    </a>
+                                @empty
+                                    <a class="dropdown-item" href="#">Notifications</a>
+                                @endforelse
+                            </div>
+                        </div>
+
+
+
                         <li class="nav-item active  w-100">
                             <a class="nav-link" href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -76,7 +104,11 @@
                                 </svg>
                             </a>
                         </li>
+
+
+
                     </ul>
+                @endauth
             </div>
 
 

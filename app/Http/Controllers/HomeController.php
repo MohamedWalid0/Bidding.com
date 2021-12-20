@@ -27,7 +27,6 @@ class HomeController extends Controller
         $mostOfViewProducts = Product::with('user_bids:id')->mostOfViewProducts(15)->get();
         $latest_products = Product::with('user_bids:id')->latestProducts(15)->get();
         $hot_products = Product::with('user_bids:id')->hottestProducts(15)->get();
-
         return view('home', compact('mostOfViewProducts', 'hot_products', 'latest_products'));
     }
 

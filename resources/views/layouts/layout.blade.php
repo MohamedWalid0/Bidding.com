@@ -44,8 +44,12 @@
     @jquery
     @toastr_js
     @toastr_render
+    <script >
+        const userId = "{{ Auth::id() }}"
+    </script>
+    <script src="{{ mix('js/app.js') }}" ></script>
 
-  <script src="{{ asset('js/home/jquery-3.5.1.js') }}"></script>
+{{--  <script src="{{ asset('js/home/jquery-3.5.1.js') }}" defer></script>--}}
   <!--
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   -->

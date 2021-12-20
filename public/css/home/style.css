@@ -146,6 +146,11 @@ body {
     /* background-color: aqua; */
 }
 
+.dropdown-toggle::after{
+    content: "";
+    display:none !important;
+
+}
 
 .form-control{
     width: 35vw;

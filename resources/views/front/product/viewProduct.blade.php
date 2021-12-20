@@ -53,8 +53,8 @@
                 </div>
                 <div class="col-md-7">
 
-                        <livewire:bid-deadline :product="$product" >
-                        <livewire:bid  :product="$product">
+                        <livewire:bid-deadline :product="$product" />
+                        <livewire:bid  :product="$product" />
 
                             <p class="product-header--subtitle py-3">
                                 Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
@@ -64,6 +64,30 @@
 
                 </div>
             </div>
+
+            <nav class="py-5">
+                <div class="nav nav-tabs nav-pills nav-justified" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                      Informations</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                      Descreption</a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                      Comments</a>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+    <!-- Comments -->
+    <!--===================================================-->
+
+
+             <livewire:comment :product="$product" >
+
+                </div>
+              </div>
         </div>
 
 
@@ -95,6 +119,7 @@
 //            });
 
 // })
+
 $(document).on('click', '.toggleProductinWishlist', function (e) {
 
 e.preventDefault();

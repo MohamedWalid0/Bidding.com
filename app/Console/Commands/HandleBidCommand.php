@@ -3,8 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Product;
+use App\Notifications\ProductOwnerNotification;
+use App\Notifications\TellBiddersTheProductIsFinishedNotification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
 
 class HandleBidCommand extends Command
 {
@@ -45,11 +48,22 @@ class HandleBidCommand extends Command
                         $product->update([
                             'status' => 'inactive'
                         ]);
-                        exec('echo "" > ' . storage_path('logs/laravel.log'));
-                        info("This Product Updated to be inactive {$product->name} \n");
+                        $this->notifyOnewerAndBidders($product);
                     }
                 );
             });
+    }
 
+    /**
+     * @param $product
+     * @return void
+     */
+    public function notifyOnewerAndBidders($product): void
+    {
+        Notification::send(
+            $product->user_bids,
+            new TellBiddersTheProductIsFinishedNotification($product)
+        );
+        $product->user->notify(new ProductOwnerNotification($product));
     }
 }
