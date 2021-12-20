@@ -18,6 +18,12 @@ class ReplyFactory extends Factory
     public function definition()
     {
         $product = Product::inRandomOrder()->first();
+        if ($product->comments->isEmpty()) {
+            $product->comments()->create(
+                ['body' =>  $this->faker->realText ,
+                'user_id' => User::inRandomOrder()->first()->id]
+            );
+        }
         return [
             'user_id' => $product->user->id,
             'comment_id' => $product->comments->random()->id,
