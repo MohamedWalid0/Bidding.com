@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Reply;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ReplySeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class ReplySeeder extends Seeder
      */
     public function run()
     {
-        Reply::factory(800)->create();
+        DB::table('replies')->delete();
+
+        Reply::factory(400)->create();
     }
 }
