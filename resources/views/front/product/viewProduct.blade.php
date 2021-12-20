@@ -6,6 +6,7 @@
 @endsection
 
 @section('styles')
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 
 <link rel="stylesheet" href="{{asset('css/product/show-post.css')}}">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
