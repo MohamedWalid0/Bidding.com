@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-md-7">
 
-                        <livewire:bid-deadline :product="$product" >
-                        <livewire:bid  :product="$product">
+                        <livewire:bid-deadline :product="$product" />
+                        <livewire:bid  :product="$product" />
 
                             <p class="product-header--subtitle py-3">
                                 Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>

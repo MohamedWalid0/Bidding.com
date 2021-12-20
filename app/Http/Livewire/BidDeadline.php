@@ -12,9 +12,11 @@ class BidDeadline extends Component
 
     protected $listeners = ['BidUpdated' => 'render'];
 
-    public function mount () {
-     $this->currentBid = $this->product->last_bid->bid->cost;
+    public function mount()
+    {
+        $this->currentBid = $this->product->last_bid->bid->cost;
     }
+
     public function render()
     {
         $this->currentBid = $this->product->last_bid->bid->cost;

@@ -25,13 +25,21 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes(['verify' => true]);
 
-
-Route::group( ['prefix' => 'search'] , function () {
+// filter routes
+Route::group( ['prefix' => 'filter'] , function () {
 
     Route::get('/', [FilterController::class, 'index'])->name('products.index');
-    Route::get('/SubCategory/{subCategoryIds?}', [FilterController::class, 'getSubCategoryProducts'])->name('products.getSubCategoryProducts');
+    Route::get('/SubCategory/{subCategoryIds?}', [FilterController::class, 'filterBySubCategory'])->name('products.filterBySubCategory');
+    Route::get('/category/{categoryIds?}', [FilterController::class, 'filterByCategory'])->name('products.filterByCategory');
+    Route::get('/{minPrice}/{maxPrice}', [FilterController::class, 'filterByPriceRange'])->name('products.filterByPriceRange');
 
 });
+// end filter routes
+
+// search routes
+Route::get('/search', [FilterController::class, 'search'])->name('products.search');
+//end search routes
+
 
 
 Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], function () {

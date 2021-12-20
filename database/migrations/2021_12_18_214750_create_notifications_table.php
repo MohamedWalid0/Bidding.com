@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\NotificationType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,17 +14,11 @@ class CreateNotificationsTable extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(NotificationType::class)
-                    ->constrained()
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
-
-            $table->foreignIdFor(App\Models\User::class)
-                    ->constrained()
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
-
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable'); // notifiable_type , notifiable_id
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }

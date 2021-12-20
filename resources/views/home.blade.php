@@ -1009,7 +1009,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                 {{ $latest_product->last_bid->bids->cost ?? 0 }}$
+                                 {{ $latest_product->last_bid->bid->cost ?? 0 }}$
                                     </span>
                                 </p>
 
@@ -1125,7 +1125,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->bids->cost ?? 0  }}$
+                                        {{ $hot_product->last_bid->bid->cost ?? 0  }}$
                                     </span>
                                 </p>
 
@@ -1312,7 +1312,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                         {{ $mostOfViewProduct->last_bid->bids->cost ?? 0 }}$
+                                         {{ $mostOfViewProduct->last_bid->bid->cost ?? 0 }}$
                                     </span>
                                 </p>
 
