@@ -11,5 +11,7 @@ class ProductWishlist extends Pivot
 
     protected $table = 'product_wishlists';
 
+    
+
 
 }
