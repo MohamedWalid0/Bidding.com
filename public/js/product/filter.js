@@ -516,7 +516,15 @@ $(document).on('keyup', '#searchInput', function () {
 
     let keyword = this.value;
     keyword = keyword.toLowerCase().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').trim()
-    fetchProductsBySearch(keyword);
+
+    if (keyword === '') {
+        $('.causes_div').empty();
+        $('.causes_div').append(clone);
+
+    }
+    else{
+        fetchProductsBySearch(keyword);
+    }
 
 });
 
