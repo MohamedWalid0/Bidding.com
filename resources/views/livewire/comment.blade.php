@@ -18,13 +18,7 @@
                 <p class="text-muted text-sm"> {{$comment->created_at->diffForHumans()}}</p>
               </div>
               <p> {{$comment->body}} </p>
-              <div class="pad-ver">
-                <div class="btn-group">
-                  <a class="btn btn-sm btn-light " href="#"><i class="fa fa-thumbs-up"></i></a>
-                  <a class="btn btn-sm btn-light" href="#"><i class="fa fa-thumbs-down"></i></a>
-                </div>
-
-              </div>
+            @livewire('likable', ['modelType' => 'App\Models\Comment' , 'modelId' => $comment->id] ,  key(time().$comment->id))
 
 
                 <livewire:reply :comment="$comment" :key="$comment->id">

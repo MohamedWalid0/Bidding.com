@@ -22,12 +22,9 @@ class CreateLikesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignIdFor(Product::class)
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            
+            $table->integer('likeable_id');
+            $table->string('likeable_type');
+            $table->enum('value', ['-1', '1']);
             $table->timestamps();
         });
     }

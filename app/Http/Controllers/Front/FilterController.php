@@ -65,7 +65,6 @@ class FilterController extends Controller
 
 
 
-
     public function search(Request $request){
         
         if ($request->has('q')) {
@@ -76,11 +75,6 @@ class FilterController extends Controller
         }
 
     }
-
-
-
-
-
 
 
 

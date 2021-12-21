@@ -28,7 +28,7 @@ Auth::routes(['verify' => true]);
 // filter routes
 Route::group( ['prefix' => 'filter'] , function () {
 
-    Route::get('/', [FilterController::class, 'index'])->name('products.index');
+    Route::get('/', [FilterController::class, 'index'])->name('products.filter');
     Route::get('/SubCategory/{subCategoryIds?}', [FilterController::class, 'filterBySubCategory'])->name('products.filterBySubCategory');
     Route::get('/category/{categoryIds?}', [FilterController::class, 'filterByCategory'])->name('products.filterByCategory');
     Route::get('/{minPrice}/{maxPrice}', [FilterController::class, 'filterByPriceRange'])->name('products.filterByPriceRange');

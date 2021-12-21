@@ -39,6 +39,7 @@ window.Echo = new Echo({
 
 window.Echo.private(`App.Models.User.${userId}`)
     .notification((data) => {
+        console.log(data)
         $('#notificationList').prepend(
             `
             <a class="dropdown-item" href="${data.url}?notify_id=${data.id}">

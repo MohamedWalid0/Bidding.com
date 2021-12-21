@@ -26,9 +26,9 @@ class ReplyFactory extends Factory
         }
         return [
             'user_id' => $product->user->id,
-            'comment_id' => $product->comments->random()->id,
-            'body' => $this->faker->realText,
-            'created_at' => Carbon::now()->subDays(random_int(0, 365))->subHours(random_int(0, 23))->subMinutes(random_int(1, 55)),
+            'comment_id' => $product->comments()->inRandomOrder()->first()->id,
+            'body' => $this->faker->realText ,
+            'created_at' => Carbon::now()->subDays(rand(0, 365))->subHours(rand(0, 23))->subMinutes(rand(1, 55)),
             'updated_at' => Carbon::now(),
         ];
     }

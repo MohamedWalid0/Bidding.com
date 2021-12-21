@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Comment;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CommentSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('comments')->delete();
+
         Comment::factory(800)->create();
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HistoryFactory extends Factory
 {
+    
     protected $model = History::class;
     /**
      * Define the model's default state.
