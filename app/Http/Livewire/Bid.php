@@ -16,7 +16,9 @@ class Bid extends Component
 
     public function mount()
     {
+        if ($this->product->last_bid)
         $this->currentBid = $this->product->last_bid->bid->cost;
+        else $this->currentBid = $this->product->start_price;
         $this->startBid = ((int)str_replace(',', '', $this->currentBid)) + 1;
     }
 

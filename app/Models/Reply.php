@@ -22,4 +22,10 @@ class Reply extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function likes()
+    {
+        return $this->morphToMany(User::class, 'likeable' , 'likes')->withPivot('value')
+        ->as('like');
+    }
+
 }

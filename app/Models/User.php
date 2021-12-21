@@ -98,4 +98,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reply::class);
     }
 
+    public function product_likes()
+    {
+        return $this->morphedByMany(Product::class, 'likeable' , 'likes');
+    }
+
+    public function comment_likes()
+    {
+        return $this->morphedByMany(Comment::class, 'likeable' , 'likes');
+    }
+
 }

@@ -293,3 +293,7 @@ textarea.md-textarea-scroll{
 ::-webkit-scrollbar-thumb:window-inactive {
     background: #your-color;
 } */
+
+.likes-count {
+    font-weight: 600;
+}

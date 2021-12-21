@@ -54,12 +54,13 @@
 
                         <livewire:bid-deadline :product="$product" />
                         <livewire:bid  :product="$product" />
-
+                        @livewire('likable', ['modelType' => 'App\Models\Product' , 'modelId' => $product->id])
                             <p class="product-header--subtitle py-3">
                                 Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
                             </p>
 
                         <livewire:bidding-users :product="$product" >
+                        {{-- <livewire:likable :modelType ="App\Models\Product" :modelId="$product->id"> --}}
 
                 </div>
             </div>
