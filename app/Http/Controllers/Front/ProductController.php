@@ -36,10 +36,8 @@ class ProductController extends Controller
     }
 
     public function index ($id) {
-        $product = Product::findOrFail($id);
-            // $product = Product::with(
-            //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
 
+        $product = Product::findOrFail($id);
         $currentBid = $product->last_bid->bid->cost;
         $data['startBid'] = ((int) str_replace(',', '', $currentBid) )+1;
 
