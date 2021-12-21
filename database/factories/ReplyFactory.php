@@ -18,9 +18,15 @@ class ReplyFactory extends Factory
     public function definition()
     {
         $product = Product::inRandomOrder()->first();
+        if ($product->comments->isEmpty()) {
+            $product->comments()->create(
+                ['body' =>  $this->faker->realText ,
+                'user_id' => User::inRandomOrder()->first()->id]
+            );
+        }
         return [
             'user_id' => $product->user->id,
-            'comment_id' => $product->comments->random()->id,
+            'comment_id' => $product->comments()->inRandomOrder()->first()->id,
             'body' => $this->faker->realText ,
             'created_at' => Carbon::now()->subDays(rand(0, 365))->subHours(rand(0, 23))->subMinutes(rand(1, 55)),
             'updated_at' => Carbon::now(),

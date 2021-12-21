@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Exceptions\ProductException;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
-use App\Models\Category;
+use Storage;
 use App\Models\City;
+use App\Models\Like;
 use App\Models\Image;
 use App\Models\Product;
-use App\Models\ProductProperty;
-use App\Models\PropertiesSubCategory;
+use App\Models\Category;
 use App\Models\Property;
-use App\Models\PropertyValue;
 use App\Models\SubCategory;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
+use App\Models\PropertyValue;
+use App\Models\ProductProperty;
 use Illuminate\Support\Facades\DB;
-use Storage;
+use App\Exceptions\ProductException;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
+use App\Models\PropertiesSubCategory;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductController extends Controller
 {
@@ -39,8 +40,10 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
             // $product = Product::with(
             //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
-
+        // $product->likes()->attach(auth()->id() , ['value' => '-1'] );
+        if ($product->last_bid)
         $currentBid = $product->last_bid->bid->cost;
+        else $currentBid = $product->start_price;
         $data['startBid'] = ((int) str_replace(',', '', $currentBid) )+1;
 
         $data['currentBid'] = $currentBid;
@@ -142,6 +145,8 @@ class ProductController extends Controller
                 ]);
                 Storage::disk('products')->put("/img/" , $image);
             }
+
+            // $product->user_bids()->attach(auth()->user()->id, ['cost' => $product->start_price]);
             DB::commit();
 
             return view('front.product.viewProduct');

@@ -57,7 +57,7 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class, 'bids')
             ->using(Bid::class)
-            ->withPivot(['cost'])
+            ->withPivot('cost')
             ->as('bid')
             ->withTimestamps();
     }
@@ -84,11 +84,15 @@ class Product extends Model
         return $this->belongsToMany(PropertyValue::class, 'product_properties', 'product_id', 'property_value_id');
     }
 
-    
-
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->morphToMany(User::class, 'likeable' , 'likes')->withPivot('value')
+        ->as('like');
     }
 
     // Scopes
@@ -122,12 +126,12 @@ class Product extends Model
 
     public function getLastBidAttribute(): ?User
     {
-        return $this->user_bids->sortByDesc('bid.cost')->first();
+        return $this->user_bids->sortByDesc('bid.created_at')->first();
     }
 
     public function getHotUsersAttribute()
     {
-        return $this->user_bids->sortByDesc('bid.cost')->take(5);
+        return $this->user_bids->sortByDesc('bid.created_at')->take(5);
     }
 
 }
