@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comment extends Model
@@ -13,7 +12,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'body' , 'user_id'
+        'body', 'user_id'
     ];
 
     public function product(): BelongsTo
@@ -30,9 +29,11 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function likes()
     {
-        return $this->morphToMany(User::class, 'likeable' , 'likes')->withPivot('value')
-        ->as('like');
+        return $this->morphToMany(User::class, 'likeable', 'likes')
+            ->withPivot('value')
+            ->as('like');
     }
 }

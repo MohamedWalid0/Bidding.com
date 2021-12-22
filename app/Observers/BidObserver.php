@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Events\BidEvent;
+use App\Events\BidUpdatedEvent;
 use App\Models\Bid;
 use App\Models\Product;
 use App\Notifications\NewBidAddedNotification;
@@ -15,16 +17,21 @@ class BidObserver
     // will check the product status before saving bids
     public function creating(Bid $bid)
     {
+
+
         $product = $bid->load('product')->product;
         abort_if($product->status === Product::INACTIVE, Response::HTTP_FORBIDDEN);
         abort_if($product->status === Product::ACTIVE && Carbon::now()->greaterThanOrEqualTo($product->deadline), Response::HTTP_FORBIDDEN);
+
     }
 
     // will check the product deadline after saving bids
     public function created(Bid $bid)
     {
-
+        broadcast(new BidEvent($bid))->toOthers();
         $product = $bid->load('product')->product;
+
+
         $this->notify($product, $bid);
         if (Carbon::now()->diffInRealMinutes($product->deadline) < 60) {
             $product->updateQuietly([
@@ -66,6 +73,7 @@ class BidObserver
 // will check the product deadline after updating bids
     public function updated(Bid $bid)
     {
+        broadcast(new BidEvent($bid))->toOthers();
         $product = $bid->load('product')->product;
         $this->notify($product, $bid);
         if (Carbon::now()->diffInRealMinutes($product->deadline) < 60) {
