@@ -108,4 +108,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphedByMany(Comment::class, 'likeable' , 'likes');
     }
 
+
+    public function rates(): HasMany
+    {
+        return $this->hasMany(Rate::class);
+    }
+
 }
