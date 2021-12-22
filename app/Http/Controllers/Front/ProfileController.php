@@ -17,4 +17,10 @@ class ProfileController extends Controller
         $data['user'] = User::select('email')->findOrFail($id);
         return view('front.profile.show')->with($data);
     }
+
+    public function show(User $user)
+    {
+        $account = $user->account;
+        return view('front.profile.show' , compact('user' , 'account'));
+    }
 }

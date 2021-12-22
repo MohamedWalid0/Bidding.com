@@ -2,14 +2,14 @@
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <h4>Personal Data</h4>
-
-            <p>
-                <a href="#" data-toggle="modal" data-target="#exampleModal">
-                    <i class="far fa-edit" style="cursor: pointer;"></i>
-                    <span class="text-muted">Edit</span>
-                </a>
-
-            </p>
+            @if(auth()->id() === request('user')->id)
+                <p>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                        <i class="far fa-edit" style="cursor: pointer;"></i>
+                        <span class="text-muted">Edit</span>
+                    </a>
+                </p>
+            @endif
         </div>
     </div>
     <div class="card-body">
