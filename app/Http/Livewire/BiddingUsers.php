@@ -9,7 +9,10 @@ class BiddingUsers extends Component
 {
     public Product $product;
 
-    protected $listeners = ['BidUpdated' => 'render'];
+    protected $listeners = [
+        'BidUpdated' => 'render' ,
+        'echo:bid,BidEvent' => 'render'
+    ];
 
     public function render()
     {

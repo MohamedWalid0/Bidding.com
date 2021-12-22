@@ -34,23 +34,25 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true
+    forceTLS: false,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
 });
 
 window.Echo.private(`App.Models.User.${userId}`)
     .notification((data) => {
-        console.log(data)
-        $('#notificationList').prepend(
-            `
-            <a class="dropdown-item" href="${data.url}?notify_id=${data.id}">
-            <h6 class="text-bold text-danger"> ${data.title} </h6>
-            <p class="text-muted"> ${data.body} </p>
-            </a>
-           `
-        )
-        let count = Number($('#notificationCount').text())
-        count++;
-        $('#notificationCount').text(count)
+console.log(data)
+        // $('#notificationList').prepend(
+        //     `
+        //     <a class="dropdown-item" href="${data.url}?notify_id=${data.id}">
+        //     <h6 class="text-bold text-danger"> ${data.title} </h6>
+        //     <p class="text-muted"> ${data.body} </p>
+        //     </a>
+        //    `
+        // )
+        // let count = Number($('#notificationCount').text())
+        // count++;
+        // $('#notificationCount').text(count)
         toastr.success(data.title);
     })
 

@@ -17,7 +17,11 @@ class ReplySeeder extends Seeder
     {
         DB::table('replies')->delete();
 
+<<<<<<< HEAD
         Reply::factory(800)->create();
 
+=======
+        Reply::factory(400)->create();
+>>>>>>> 29b4779cf74e32a14ee86aa0f24a30ebef37cfc5
     }
 }
