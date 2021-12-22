@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -167,10 +168,9 @@
                             <div class="d-flex justify-content-between">
                                 <h4>My Bids</h4>
 
-                                <p>
-                                    <i class="far fa-edit" style="cursor: pointer;"></i>
-                                    <span class="text-muted">Edit</span>
-                                </p>
+
+                                   
+
                             </div>
                         </div>
                         <div class="card-body">

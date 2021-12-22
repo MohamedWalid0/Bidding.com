@@ -45,6 +45,7 @@ Route::get('/search', [FilterController::class, 'search'])->name('products.searc
 Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], function () {
     // must be authenticated user and verified
     Route::get('profile', ProfileController::class);
+    Route::get('profile/{user}', [ProfileController::class , 'show'])->name('profile.show');
 
     // products
     Route::group(['prefix' => 'products'], function () {
