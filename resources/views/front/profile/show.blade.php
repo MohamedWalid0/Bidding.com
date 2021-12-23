@@ -216,25 +216,27 @@
                 <!-- start Notification Link -->
                 <div class="page" id="Notification">
 
-                    @forelse (auth()->user()->notifications as $notification)
-                        <div class="mb-2 bg-white rounded-lg shadow">
-                            <div class="card-body">
-                                <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
-                                    <span class="ml-2"> {{ $notification->data['title'] }}  <span class="text-muted"> {{ $notification->created_at->diffForHumans() }}</span> </span>
-                                    <br>
-                                    <span class="ml-4"> --> {{ $notification->data['body'] }}</span>
-                                </p>
+                    @if ( ! request('user'))
+                        @forelse (auth()->user()->notifications as $notification)
+                            <div class="mb-2 bg-white rounded-lg shadow">
+                                <div class="card-body">
+                                    <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
+                                        <span class="ml-2"> {{ $notification->data['title'] }}  <span class="text-muted"> {{ $notification->created_at->diffForHumans() }}</span> </span>
+                                        <br>
+                                        <span class="ml-4"> --> {{ $notification->data['body'] }}</span>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    @empty
-                        <div class="mb-2 bg-white rounded-lg shadow">
-                            <div class="card-body">
-                                <p class=" card-text"><i class="fas fa-bell text-warning fa-lg"></i>
-                                    <span class="ml-2"> There no notification </span>
-                                </p>
+                        @empty
+                            <div class="mb-2 bg-white rounded-lg shadow">
+                                <div class="card-body">
+                                    <p class=" card-text"><i class="fas fa-bell text-warning fa-lg"></i>
+                                        <span class="ml-2"> There no notification </span>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    @endforelse
+                        @endforelse
+                    @endif
 
 
 

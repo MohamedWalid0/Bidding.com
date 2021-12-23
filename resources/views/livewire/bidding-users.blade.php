@@ -16,16 +16,16 @@
                     </tr>
                     </thead>
                     <tbody>
-               @forelse ($product->hot_users as $user )
-               <tr class="text-center">
-                <th scope="row"> {{$loop->iteration}} </th>
-                <td>{{$user->account->full_name}}</td>
-                <td> {{$user->bid->cost}} </td>
-                </tr>
+                    @forelse ($product->hot_users as $user )
+                        <tr class="text-center">
+                            <th scope="row"> {{$loop->iteration}} </th>
+                            <td>{{$user->account->full_name}}</td>
+                            <td> {{$user->bid->cost}} </td>
+                        </tr>
 
-               @empty
+                    @empty
 
-               @endforelse
+                    @endforelse
 
                     </tbody>
                 </table>

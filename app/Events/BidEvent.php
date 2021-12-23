@@ -26,9 +26,9 @@ class BidEvent implements ShouldBroadcast
      *
      * @return Channel
      */
-    public function broadcastOn(): Channel
+    public function broadcastOn()
     {
-        return new Channel('bid');
+        return new PresenceChannel('bid.' .$this->bid->product->id);
     }
 
 }

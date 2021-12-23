@@ -11,7 +11,7 @@ class BiddingUsers extends Component
 
     protected $listeners = [
         'BidUpdated' => 'render' ,
-        'echo:bid,BidEvent' => 'render'
+        'echo:bid.{$this->product->id},BidEvent' => 'render'
     ];
 
     public function render()

@@ -51,7 +51,11 @@ class BidObserver
         $users = $product->user_bids()
             ->where('user_id', '!=', $bid->user_id)
             ->get()
-            ->merge($product->wishlists()->withoutGlobalScopes()->where('user_id', '!=', $bid->user_id)->get()->load('user')->pluck('user'));
+            ->merge($product->wishlists()->withoutGlobalScopes()->where('user_id', '!=', $bid->user_id)
+                ->get()
+                ->load('user')
+                ->pluck('user')
+            );
         // this will be sent notification to all bidders
         Notification::send(
             $users,

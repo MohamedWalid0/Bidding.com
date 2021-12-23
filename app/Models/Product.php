@@ -131,7 +131,7 @@ class Product extends Model
 
     public function getHotUsersAttribute()
     {
-        return $this->user_bids->sortByDesc('bid.created_at')->take(5);
+        return $this->user_bids->sortByDesc('bid.updated_at')->take(5);
     }
 
 }
