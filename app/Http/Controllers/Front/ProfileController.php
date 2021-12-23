@@ -28,8 +28,9 @@ class ProfileController extends Controller
         $rateCount = $user->rates()->count();
         $ratingSum = $user->rates()->sum('rate');
 
-        $existsRate = Rate::where('user_id', $user->id)->
-        where('rater_id', Auth::user()->id)->first();
+        $existsRate = Rate::where('user_id', $user->id)
+            ->where('rater_id', Auth::user()->id)
+            ->first();
 
         if ($rateCount > 0) {
             $userRate = $ratingSum / $rateCount;
