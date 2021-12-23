@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -108,4 +109,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphedByMany(Comment::class, 'likeable' , 'likes');
     }
 
+    public function supports(): HasMany
+    {
+        return $this->hasMany(Support::class);
+    }
 }

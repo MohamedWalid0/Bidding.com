@@ -2,7 +2,16 @@
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <h4>Personal Data</h4>
-            @if(auth()->id() === request('user')->id)
+            @if(request()->has('user'))
+                @if(auth()->id() === request('user')->id)
+                    <p>
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            <i class="far fa-edit" style="cursor: pointer;"></i>
+                            <span class="text-muted">Edit</span>
+                        </a>
+                    </p>
+                @endif
+            @else
                 <p>
                     <a href="#" data-toggle="modal" data-target="#exampleModal">
                         <i class="far fa-edit" style="cursor: pointer;"></i>

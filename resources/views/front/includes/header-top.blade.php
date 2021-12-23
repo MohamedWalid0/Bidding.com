@@ -11,8 +11,12 @@
                 </span>
                     </div>
                     <div class="detail-call d-flex align-items-center justify-content-center">
-                        <i class="icon-deal"></i>
-                        <p>Today Deals </p>
+                        <a href="#" data-toggle="modal" data-target="#support">
+                            <i class="icon-deal"></i>
+                            <p style="display: inline-block;margin-top: revert;">
+                                Support Team
+                            </p>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 d-flex justify-content-end align-items-center header-top-right">
@@ -24,13 +28,15 @@
                                 Register
                             </a>
                             <span class="or-text">or</span>
-                            <a class="login" href="{{route('login')}}" rel="nofollow" title="Log in to your customer account">Sign
+                            <a class="login" href="{{route('login')}}" rel="nofollow"
+                               title="Log in to your customer account">Sign
                                 in</a>
                         @endguest
                         @auth()
 
 
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
 
@@ -124,6 +130,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="support" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Support Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('support.store') }}" method="post" >
+                        @csrf
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control w-100" id="message" name="message" rows="3"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+
+                </form>
             </div>
         </div>
     </div>

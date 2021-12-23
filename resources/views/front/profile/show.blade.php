@@ -169,7 +169,7 @@
                                 <h4>My Bids</h4>
 
 
-                                   
+
 
                             </div>
                         </div>
