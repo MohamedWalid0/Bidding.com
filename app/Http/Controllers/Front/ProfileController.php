@@ -15,7 +15,11 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $data['account'] = Account::findOrFail($id);
         $data['user'] = User::select('email')->findOrFail($id);
-        return view('front.profile.show')->with($data);
+        $rateCount = auth()->user()->rates()->count();
+        $userRate = auth()->user()->rates
+            ? auth()->user()->rates()->sum('rate') / $rateCount
+            : 0;
+        return view('front.profile.show' , compact('userRate' , 'rateCount' ))->with($data);
     }
 
     public function show(User $user)

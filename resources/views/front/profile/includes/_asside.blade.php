@@ -17,7 +17,7 @@
                         </div>
                         <div class="">
                             <h5> {{$account->full_name}} </h5>
-                            
+
                             <?php $userRate = number_format($userRate) ?>
                             <div class="rating">
                                 @for ($i = 1 ; $i<=$userRate ; $i++ )
@@ -25,7 +25,7 @@
                                 @endfor
                                 @for ($j = $userRate+1  ; $j<=5 ; $j++ )
                                     <i class="fa fa-star "></i>
-                                @endfor                                
+                                @endfor
                             </div>
 
                             @if ( $rateCount > 0)
@@ -121,16 +121,18 @@
 
 
                 <!-- Button trigger modal -->
-                <li>
-                    <a  type="button"  data-toggle="modal" data-target="#exampleModalCenter">
-                        <div class="profile-tabs container-fluid">
-                            <p>
-                                <i class="fas fa-star text-dark"></i>
-                                <span class="ml-2">Rate User ?</span>
-                            </p>
-                        </div>
-                    </a>
-                </li>
+                @if (request('user'))
+                    <li>
+                        <a  type="button"  data-toggle="modal" data-target="#exampleModalCenter">
+                            <div class="profile-tabs container-fluid">
+                                <p>
+                                    <i class="fas fa-star text-dark"></i>
+                                    <span class="ml-2">Rate User ?</span>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                @endif
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -146,39 +148,41 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <div class="rating-css">
-                                        <div class="star-icon">
-                                            @if ($existsRate)
-                                                @for ($i = 1 ; $i <= $existsRate->rate ; $i++)
+                                    @if ( request('user') )
+                                        <div class="rating-css">
+                                            <div class="star-icon">
+                                                @if ($existsRate)
+                                                    @for ($i = 1 ; $i <= $existsRate->rate ; $i++)
 
-                                                    <input type="radio" value="{{ $i }}" name="user_rating" checked id="rating{{ $i }}">
-                                                    <label for="rating{{ $i }}" class="fa fa-star"></label>
+                                                        <input type="radio" value="{{ $i }}" name="user_rating" checked id="rating{{ $i }}">
+                                                        <label for="rating{{ $i }}" class="fa fa-star"></label>
 
-                                                @endfor
-                                                @for ($j = $existsRate->rate + 1 ; $j <= 5 ;$j++ )
-                                                    <input type="radio" value="{{ $j }}" name="user_rating"  id="rating{{ $j }}">
-                                                    <label for="rating{{ $j }}" class="fa fa-star"></label>
+                                                    @endfor
+                                                    @for ($j = $existsRate->rate + 1 ; $j <= 5 ;$j++ )
+                                                        <input type="radio" value="{{ $j }}" name="user_rating"  id="rating{{ $j }}">
+                                                        <label for="rating{{ $j }}" class="fa fa-star"></label>
 
-                                                @endfor
-                                                
-                                            @else
-                                                
-                                                <input type="radio" value="1" name="user_rating" checked id="rating1">
-                                                <label for="rating1" class="fa fa-star"></label>
-                                                <input type="radio" value="2" name="user_rating" id="rating2">
-                                                <label for="rating2" class="fa fa-star"></label>
-                                                <input type="radio" value="3" name="user_rating" id="rating3">
-                                                <label for="rating3" class="fa fa-star"></label>
-                                                <input type="radio" value="4" name="user_rating" id="rating4">
-                                                <label for="rating4" class="fa fa-star"></label>
-                                                <input type="radio" value="5" name="user_rating" id="rating5">
-                                                <label for="rating5" class="fa fa-star"></label>
-                                          
-                                            @endif
-                                        
+                                                    @endfor
+
+                                                @else
+
+                                                    <input type="radio" value="1" name="user_rating" checked id="rating1">
+                                                    <label for="rating1" class="fa fa-star"></label>
+                                                    <input type="radio" value="2" name="user_rating" id="rating2">
+                                                    <label for="rating2" class="fa fa-star"></label>
+                                                    <input type="radio" value="3" name="user_rating" id="rating3">
+                                                    <label for="rating3" class="fa fa-star"></label>
+                                                    <input type="radio" value="4" name="user_rating" id="rating4">
+                                                    <label for="rating4" class="fa fa-star"></label>
+                                                    <input type="radio" value="5" name="user_rating" id="rating5">
+                                                    <label for="rating5" class="fa fa-star"></label>
+
+                                                @endif
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    
+                                    @endif
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -188,7 +192,7 @@
                         </div>
                     </div>
                 </div>
-  
+
 
 
 
