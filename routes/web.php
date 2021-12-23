@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\Front\FilterController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ProfileController;
+use App\Http\Controllers\Front\ReportController;
 use App\Http\Controllers\Front\SupportController;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
@@ -53,6 +54,22 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
     // rate routes
     Route::post('addRate' , [RateController::class , 'addRate'] )->name('users.rate') ;
     // end rate routes
+
+
+
+    Route::group(['prefix' => 'report'], function () {
+
+        // report product
+        Route::post('/user' , [ReportController::class , 'reportUser'] )->name('users.report') ;
+        // end report users
+
+        // report product
+        Route::post('/product' , [ReportController::class , 'reportProduct'] )->name('products.report') ;
+        // end report product
+    
+    });
+
+
 
     // products
     Route::group(['prefix' => 'products'], function () {
