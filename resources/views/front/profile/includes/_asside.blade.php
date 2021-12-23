@@ -1,4 +1,4 @@
-<aside>
+<aside class="mb-5">
     <div class="col-sm-12 col-md-7 col-lg-4">
 
         <div class="bg-white rounded-lg shadow card" style="width: 18rem;">
@@ -29,9 +29,9 @@
                             </div>
 
                             @if ( $rateCount > 0)
-                                <p class="my-0">  {{ $rateCount }}  Rates </p>
+                                <p class="my-0">  {{ $rateCount }}  Ratings </p>
                             @else
-                                <p class="my-0">  No Rates yet </p>
+                                <p class="my-0">  No Ratings yet </p>
                             @endif
 
                             <p class="mt-0 text-muted"> {{$user->email}} </p>
@@ -192,6 +192,57 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+                <!-- Button trigger modal -->
+                <li>
+                    <a  type="button"  data-toggle="modal" data-target="#reportModel">
+                        <div class="profile-tabs container-fluid">
+                            <p>
+                                <i class="fas fa-flag text-danger"></i>
+                                <span class="ml-2">Report User ?</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+                <!-- Modal -->
+                <div class="modal fade" id="reportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form action="{{ route('users.report') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p> Are you sure to report {{ $user->account->full_name }}  ? </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+  
+
+
+
+
+
+
+
+
+
 
 
 
