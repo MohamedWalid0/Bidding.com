@@ -13,6 +13,10 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile/profile.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('css/profile/ratingStar.css') }}">
+
+    
     @livewireStyles
     <title>eBid</title>
 </head>
