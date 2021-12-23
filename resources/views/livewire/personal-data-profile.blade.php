@@ -2,7 +2,8 @@
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <h4>Personal Data</h4>
-            @if(request()->has('user'))
+
+            @if( request('user') )
                 @if(auth()->id() === request('user')->id)
                     <p>
                         <a href="#" data-toggle="modal" data-target="#exampleModal">

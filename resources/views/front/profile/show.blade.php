@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/profile/ratingStar.css') }}">
 
-    
+
     @livewireStyles
     <title>eBid</title>
 </head>
@@ -215,37 +215,29 @@
 
                 <!-- start Notification Link -->
                 <div class="page" id="Notification">
-                    <div class="mb-2 bg-white rounded-lg shadow">
-                        <div class="card-body">
-                            <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
-                                <span class="ml-2"> With supporting text below as a natural lead-in to additional content.</span>
-                            </p>
-                        </div>
-                    </div>
 
-                    <div class="mb-2 bg-white rounded-lg shadow">
-                        <div class="card-body">
-                            <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
-                                <span class="ml-2"> With supporting text below as a natural lead-in to additional content.</span>
-                            </p>
+                    @forelse (auth()->user()->notifications as $notification)
+                        <div class="mb-2 bg-white rounded-lg shadow">
+                            <div class="card-body">
+                                <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
+                                    <span class="ml-2"> {{ $notification->data['title'] }}  <span class="text-muted"> {{ $notification->created_at->diffForHumans() }}</span> </span>
+                                    <br>
+                                    <span class="ml-4"> --> {{ $notification->data['body'] }}</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    @empty
+                        <div class="mb-2 bg-white rounded-lg shadow">
+                            <div class="card-body">
+                                <p class=" card-text"><i class="fas fa-bell text-warning fa-lg"></i>
+                                    <span class="ml-2"> There no notification </span>
+                                </p>
+                            </div>
+                        </div>
+                    @endforelse
 
-                    <div class="mb-2 bg-white rounded-lg shadow">
-                        <div class="card-body">
-                            <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
-                                <span class="ml-2"> With supporting text below as a natural lead-in to additional content.</span>
-                            </p>
-                        </div>
-                    </div>
 
-                    <div class="mb-2 bg-white rounded-lg shadow">
-                        <div class="card-body">
-                            <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
-                                <span class="ml-2"> With supporting text below as a natural lead-in to additional content.</span>
-                            </p>
-                        </div>
-                    </div>
+
                 </div>
                 <!-- end Notification Link -->
 
