@@ -13,6 +13,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Bid Cost</th>
+                        <th scope="col">Time</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,7 @@
                             <th scope="row"> {{$loop->iteration}} </th>
                             <td>{{$user->account->full_name}}</td>
                             <td> {{$user->bid->cost}} </td>
+                            <td> {{$user->bid->updated_at->diffForHumans()}} </td>
                         </tr>
 
                     @empty

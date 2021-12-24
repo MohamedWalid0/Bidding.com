@@ -83,4 +83,16 @@ class Bid extends Component
         return view('livewire.bid');
     }
 
+    public function wtf()
+    {
+        $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
+    }
+
+    public function getListeners()
+    {
+        return [
+            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
+        ];
+    }
+
 }
