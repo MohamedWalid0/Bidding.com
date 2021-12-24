@@ -25,7 +25,7 @@ class Bid extends Component
     public function rules()
     {
         return [
-            'startBid' => 'required|numeric|gt:' . ((int)str_replace(',', '', $this->currentBid))
+            'startBid' => 'required|numeric|gt:' . ((int)str_replace(',', '', $this->product->last_bid->bid->cost))
         ];
     }
 
