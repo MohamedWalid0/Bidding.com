@@ -126,7 +126,7 @@ class Product extends Model
 
     public function getLastBidAttribute(): ?User
     {
-        return $this->user_bids->sortByDesc('bid.created_at')->first();
+        return $this->user_bids->sortByDesc('bid.updated_at')->first();
     }
 
     public function getHotUsersAttribute()
