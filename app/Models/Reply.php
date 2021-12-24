@@ -31,8 +31,10 @@ class Reply extends Model
 
     public function likes()
     {
-        return $this->morphToMany(User::class, 'likeable' , 'likes')->withPivot('value')
-        ->as('like');
+        return $this->morphToMany(User::class, 'likeable' , 'reactions')
+        ->withPivot('value')
+        ->as('like')
+        ->withTimestamps();
     }
 
 }

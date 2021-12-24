@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Storage;
 use App\Models\City;
 use App\Models\Like;
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
@@ -41,6 +42,7 @@ class ProductController extends Controller
             // $product = Product::with(
             //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
         // $product->likes()->attach(auth()->id() , ['value' => '-1'] );
+    
         if ($product->last_bid)
         $currentBid = $product->last_bid->bid->cost;
         else $currentBid = $product->start_price;

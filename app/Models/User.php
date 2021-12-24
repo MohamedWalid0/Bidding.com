@@ -101,12 +101,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function product_likes()
     {
-        return $this->morphedByMany(Product::class, 'likeable' , 'likes');
+        return $this->morphedByMany(Product::class, 'likeable' , 'reactions');
     }
 
     public function comment_likes()
     {
-        return $this->morphedByMany(Comment::class, 'likeable' , 'likes');
+        return $this->morphedByMany(Comment::class, 'likeable' , 'reactions');
     }
 
     public function supports(): HasMany

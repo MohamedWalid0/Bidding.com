@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
             BidSeeder::class,
             HistorySeeder::class,
             CommentSeeder::class,
-            ReplySeeder::class
+            ReplySeeder::class,
+            ReactionSeeder::class
 
 
 

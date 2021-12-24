@@ -32,8 +32,10 @@ class Comment extends Model
 
     public function likes()
     {
-        return $this->morphToMany(User::class, 'likeable', 'likes')
-            ->withPivot('value')
-            ->as('like');
+        return $this->morphToMany(User::class, 'likeable' , 'reactions')
+        ->using(Reaction::class)
+        ->withPivot('value')
+        ->as('like')
+        ->withTimestamps();
     }
 }
