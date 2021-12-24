@@ -12,9 +12,8 @@ class ProfileController extends Controller
 {
     public function __invoke()
     {
-        $id = Auth::user()->id;
-        $data['account'] = Account::findOrFail($id);
-        $data['user'] = User::select('email')->findOrFail($id);
+        $data['user'] = auth()->user();
+        $data['account'] = auth()->user()->account;
         $rateCount = auth()->user()->rates()->count();
         $userRate = auth()->user()->rates
             ? auth()->user()->rates()->sum('rate') / ($rateCount || 1)

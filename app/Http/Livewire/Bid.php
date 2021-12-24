@@ -12,7 +12,7 @@ class Bid extends Component
     public Product $product;
     public $startBid;
     public $currentBid;
-
+    public $isActive;
 
     public function mount()
     {
@@ -20,6 +20,7 @@ class Bid extends Component
         $this->currentBid = $this->product->last_bid->bid->cost;
         else $this->currentBid = $this->product->start_price;
         $this->startBid = ((int)str_replace(',', '', $this->currentBid)) + 1;
+        $this->isActive = $this->product->status === \App\Models\Product::ACTIVE;
     }
 
     public function rules()

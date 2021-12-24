@@ -43,33 +43,6 @@ class Likable extends Component
         $this->disLikeButtonBackground = $this->getDisLikeButtonBackground();
         $this->disLikeButtonCount = $this->getDisLikeButtonCount();
     }
-    // public function clickDisLike () {
-    //     if ($this->likeExist) {
-    //         // if like exist
-    //         if ($this->likeValue == '-1') {
-    //             $this->model->likes()->detach(auth()->id());
-    //             $this->likeExist = false;
-    //         } else {
-    //         // if dislike exist
-    //             $this->model->likes()->syncWithoutDetaching([
-    //                 auth()->user()->id => ['value' => '-1']
-    //             ]);
-    //             $this->likeValue = '-1';
-    //             $this->hasLike = false;
-    //             $this->hasDisLike = true;
-    //         }
-    //     } else {
-    //         $this->model->likes()->attach(auth()->id() , ['value' => '-1'] );
-    //         $this->likeExist = true;
-    //         $this->likeValue = '-1';
-    //         $this->hasDisLike = true;
-    //         $this->hasLike = false;
-    //     }
-
-    //     $this->updateDesign();
-
-
-    // }
 
     public function getLikeButtonBackground()
     {

@@ -5,11 +5,13 @@
                 {{ session('message') }}
             </div>
         @endif
+        @if($isActive)
         Add your bid now!
+        @endif
     </p>
     <div class="row">
         <div class="col-md-3">
-            @if ($product->status === \App\Models\Product::ACTIVE)
+            @if ($isActive)
             <div class="input-group">
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-number" wire:click="decrement">
@@ -37,12 +39,13 @@
                     </button>
                 </span>
                 </div>
-
+            @else
+            <span>This product is Inctive</span>
             @endif
 
         </div>
         <div class="col-md-3 pad-media">
-            @if ($product->status === \App\Models\Product::ACTIVE)
+            @if ($isActive)
                 <button type="submit" class="btn bid-btn" data-tooltip="Bid Now" wire:click='bid'>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash" width="20"
                          height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none"
@@ -57,14 +60,6 @@
             <a class="toggleProductinWishlist btn wishlist-btn
             @if ( App\Models\User::productInWishlist($product->id)) wishlistActive @endif "
             href="#" data-product-id="{{$product -> id}}">
-                {{-- <svg xmlns="http://www.w3.org/2000/svg"
-                     class="icon icon-tabler icon-tabler-heart
-                     @if ( App\Models\User::productInWishlist($product->id)) wishlistIconActive @endif "
-                     data-product-icon-id="{{$product -> id}}"
-                      width="16" height="16" viewBox="0 0 24 24" stroke-width="2.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-                </svg> --}}
                 <i class="far fa-heart @if ( App\Models\User::productInWishlist($product->id)) wishlistIconActive @endif "
                     data-product-icon-id="{{$product -> id}}"></i>
             </a>
