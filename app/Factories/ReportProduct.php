@@ -14,7 +14,6 @@ class ReportProduct implements Report {
         return ModelsReportProduct::create([
             'product_id' => $id ,
             'user_id' => Auth::user()->id
-
         ]) ;
 
     }
