@@ -25,7 +25,7 @@ class Bid extends Component
     public function rules()
     {
         return [
-            'startBid' => 'required|numeric|gt:' . ((int)str_replace(',', '', $this->currentBid))
+            'startBid' => 'required|numeric|gt:' . ((int)str_replace(',', '', $this->product->last_bid->bid->cost))
         ];
     }
 
@@ -81,6 +81,18 @@ class Bid extends Component
     public function render()
     {
         return view('livewire.bid');
+    }
+
+    public function wtf()
+    {
+        $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
+    }
+
+    public function getListeners()
+    {
+        return [
+            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
+        ];
     }
 
 }
