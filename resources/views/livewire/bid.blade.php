@@ -1,10 +1,10 @@
 <div>
     <p class="product-header--subtitle py-3">
-         @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
+{{--         @if (session()->has('message'))--}}
+{{--            <div class="alert alert-success">--}}
+{{--                {{ session('message') }}--}}
+{{--            </div>--}}
+{{--        @endif--}}
         Add your bid now!
     </p>
     <div class="row">
@@ -72,7 +72,7 @@
 
     </div>
     @if($errors->has('startBid'))
-        <span class="alert-default-danger">{{ $errors->first('startBid') }}</span>
+        <span class="text-danger">{{ $errors->first('startBid') }}</span>
     @endif
 
 

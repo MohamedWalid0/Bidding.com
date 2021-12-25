@@ -119,4 +119,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Rate::class);
     }
 
+    public function avatarUrl()
+    {
+//        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
+        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?d=mp&f=y';
+    }
+
 }

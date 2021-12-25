@@ -72,10 +72,9 @@
             </div>
 
 
-
             <button class="btn btn-primary p-0 pt-2">
                 <!-- Button trigger modal -->
-                <a  type="button"  data-toggle="modal" data-target="#reportModel">
+                <a type="button" data-toggle="modal" data-target="#reportModel">
                     <div class="profile-tabs container-fluid">
                         <p>
                             <i class="fas fa-flag text-danger"></i>
@@ -86,7 +85,8 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="reportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="reportModel" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <form action="{{ route('products.report') }}" method="POST">
@@ -109,8 +109,6 @@
                     </div>
                 </div>
             </div>
-    
-                
 
 
             <nav class="py-5">
@@ -208,6 +206,41 @@
 
             });
         });
+
+    </script>
+
+    <script>
+        let animations = []
+
+
+        Livewire.on('echo:bid.{{ $product->id }},BidEvent', () => {
+                Livewire.hook('message.received', () => {
+                    let things = Array.from(document.querySelectorAll('[animate-move]'))
+
+                    animations = things.map(thing => {
+                        let oldTop = thing.getBoundingClientRect().top
+
+                        return () => {
+                            let newTop = thing.getBoundingClientRect().top
+
+                            thing.animate([
+                                {transform: `translateY(${oldTop - newTop}px)`},
+                                {transform: `translateY(0px)`},
+                            ], {duration: 1000, easing: 'ease'})
+                        }
+                    })
+
+                    things.forEach(thing => {
+                        thing.getAnimations().forEach(animation => animation.finish())
+                    })
+                })
+                Livewire.hook('message.processed', () => {
+                    while (animations.length) {
+                        animations.shift()()
+                    }
+                })
+            }
+        )
 
     </script>
 @endsection
