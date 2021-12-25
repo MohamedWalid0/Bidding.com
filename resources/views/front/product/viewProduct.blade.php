@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-                
+
 
 
                 <nav class="py-5">
@@ -128,9 +128,44 @@
                 </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    ...
+
+
+
+                    <div class="page" id="dashboard">
+                        <div class="bg-white rounded-lg shadow">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <h4>Info</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table" id="table">
+                                    <thead class="thead-dark bg-custom">
+                                    <tr>
+                                        <th scope="col">Property</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($product->propertiesValues as $value )
+                                        <tr class="text-center">
+                                            <th scope="row"> {{$value->property->name}} </th>
+                                            <td> {{$value->value}}</td>
+                                        </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <p> {{$product->description}} </p>
+                </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 
                     <!-- Comments -->

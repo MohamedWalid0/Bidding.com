@@ -42,7 +42,7 @@ class ProductController extends Controller
             // $product = Product::with(
             //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
         // $product->likes()->attach(auth()->id() , ['value' => '-1'] );
-    
+
         if ($product->last_bid)
         $currentBid = $product->last_bid->bid->cost;
         else $currentBid = $product->start_price;
@@ -151,7 +151,7 @@ class ProductController extends Controller
             // $product->user_bids()->attach(auth()->user()->id, ['cost' => $product->start_price]);
             DB::commit();
 
-            return view('front.product.viewProduct');
+            return redirect(route('products.index' , $product->id));
 
         } catch (ProductException $exception) {
             DB::rollBack();
