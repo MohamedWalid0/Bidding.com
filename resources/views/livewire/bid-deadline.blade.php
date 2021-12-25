@@ -39,17 +39,19 @@
         var year =  {!! $product->deadline->year !!};
         var month =   {!! $product->deadline->month !!};
         var day =   {!! $product->deadline->day !!};
-        var hour =   @js( $product->deadline->hour);
+        var hour =   {!! $product->deadline->hour !!};
         var min =   {!! $product->deadline->minute  !!};
+        if (hour == 0)
+        hour = '00';
 
-       var countdown = new SV.Countdown('.countdown', {
-               year: year,
-               month: month,
-               day: day,
-               hour: hour,
-               min: min
-           });
-       })
+    var countdown = new SV.Countdown('.countdown', {
+            year: year,
+            month: month,
+            day: day,
+            hour: hour,
+            min: min
+        });
+    })
 
 
 

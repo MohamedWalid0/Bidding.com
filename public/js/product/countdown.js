@@ -60,7 +60,7 @@ SV.Countdown = function(selector, params) {
 		year: 2000,
 		month: 1,
 		day: 1,
-        hour:10,
+        hour:2,
         min:3,
 		untilMessage: '',
 		endMessage: 'Time Out, You can not bid now',
@@ -76,7 +76,7 @@ SV.Countdown = function(selector, params) {
 	if (!wrapper)
 		return;
 
-	var targetDate = new Date(options.year, options.month - 1, options.day ,options.hour);
+	var targetDate = new Date(options.year, options.month - 1, options.day ,options.hour , options.min);
 	var daysLeft, hoursLeft, minsLeft, secsLeft;
 
 	var useTableClass = 'bid-timer';

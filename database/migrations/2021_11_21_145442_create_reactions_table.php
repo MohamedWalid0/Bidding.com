@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\User;
 use App\Models\Product;
-class CreateDisLikesTable extends Migration
+class CreateReactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,19 +14,17 @@ class CreateDisLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dislikes', function (Blueprint $table) {
+        Schema::create('reactions', function (Blueprint $table) {
             $table->id();
-            
+
             $table->foreignIdFor(User::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignIdFor(Product::class)
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
+            $table->integer('likeable_id');
+            $table->string('likeable_type');
+            $table->enum('value', ['-1', '1']);
             $table->timestamps();
         });
     }
@@ -38,6 +36,6 @@ class CreateDisLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dislikes');
+        Schema::dropIfExists('likes');
     }
 }

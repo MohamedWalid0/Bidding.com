@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Reply;
+use App\Models\Reaction;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ReplySeeder extends Seeder
+class ReactionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class ReplySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('replies')->delete();
+        DB::table('reactions')->delete();
 
-        Reply::factory(400)->create();
+        Reaction::factory(400)->create();
     }
 }
