@@ -11,6 +11,7 @@
                     <thead class="thead-dark bg-custom">
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">bidder</th>
                         <th scope="col">Name</th>
                         <th scope="col">Bid Cost</th>
                         <th scope="col">Time</th>
@@ -18,11 +19,30 @@
                     </thead>
                     <tbody>
                     @forelse ($product->hot_users as $user )
-                        <tr class="text-center">
-                            <th scope="row"> {{$loop->iteration}} </th>
-                            <td>{{$user->account->full_name}}</td>
-                            <td> {{$user->bid->cost}} </td>
-                            <td> {{$user->bid->updated_at->diffForHumans()}} </td>
+                        <tr animate-move wire:key="{{ $user->id }}" class="text-center">
+
+                            <th scope="row">
+                                <p class="mt-4">
+                                    {{$loop->iteration}}
+                                </p>
+                            </th>
+                            <td><img class="w-35 rounded-circle " src="{{ $user->avatarUrl() }}" alt="avatarUrl"></td>
+                            <td>
+                                <div class="mt-4">
+                                    {{$user->account->full_name}}
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mt-4">
+                                    {{$user->bid->cost}}
+                                </p>
+                            </td>
+
+                            <td>
+                                <p class="mt-4">
+                                    {{$user->bid->updated_at->diffForHumans()}}
+                                </p>
+                            </td>
                         </tr>
 
                     @empty
@@ -37,3 +57,5 @@
         </div>
     </div>
 </div>
+
+

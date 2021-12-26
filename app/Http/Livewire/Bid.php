@@ -68,7 +68,7 @@ class Bid extends Component
         }
 
         $this->updateBids($this->startBid);
-        session()->flash('message', 'Bid successfully added.');
+//        session()->flash('message', 'Bid successfully added.');
         $this->emit('BidUpdated');
 
     }
@@ -86,6 +86,7 @@ class Bid extends Component
 
     public function wtf()
     {
+        $this->currentBid = $this->product->last_bid->bid->cost;
         $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
     }
 

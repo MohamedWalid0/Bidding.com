@@ -67,7 +67,7 @@
 
     </div>
     @if($errors->has('startBid'))
-        <span class="alert-default-danger">{{ $errors->first('startBid') }}</span>
+        <span class="text-danger">{{ $errors->first('startBid') }}</span>
     @endif
 
 
