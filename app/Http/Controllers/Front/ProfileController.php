@@ -30,7 +30,7 @@ class ProfileController extends Controller
         $existsRate = Rate::where('user_id', $user->id)
             ->where('rater_id', Auth::user()->id)
             ->first();
-
+        // dd($user->reviews->first());
         if ($rateCount > 0) {
             $userRate = $ratingSum / $rateCount;
         } else {

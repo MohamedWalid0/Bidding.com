@@ -97,11 +97,11 @@
                 </li>
 
                 <li>
-                    <a href="#PersonalData">
+                    <a href="#Reviews">
                         <div class="profile-tabs container-fluid">
                             <p>
                                 <i class="fas fa-user-cog text-danger"></i>
-                                <span class="ml-2">Personal Data</span>
+                                <span class="ml-2">Reviews</span>
                             </p>
                         </div>
                     </a>
@@ -181,6 +181,18 @@
 
                                             </div>
                                         </div>
+                                        @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                            <div>{{$error}}</div>
+                                        @endforeach
+                                        @endif
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Add Review</label>
+                                            <textarea class="form-control"
+                                            name="review"
+                                            id="exampleFormControlTextarea1"
+                                            rows="3">{{$existsRate->review->review ?? old('review')}}</textarea>
+                                        </div>
                                     @endif
 
                                 </div>
@@ -233,7 +245,7 @@
                         </div>
                     </div>
                 </div>
-  
+
 
 
 
