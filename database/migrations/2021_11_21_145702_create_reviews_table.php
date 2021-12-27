@@ -22,7 +22,7 @@ class CreateReviewsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignId('reviwer_id')->references('id')->on('users')
+            $table->foreignId('rate_id')->references('id')->on('rates')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 

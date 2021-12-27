@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rate;
+use App\Models\Review;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,21 +11,34 @@ use Illuminate\Support\Facades\Redirect;
 
 class RateController extends Controller
 {
-    
+
 
     public function addRate( Request $request ){
-        
-        // must check the rater user is not blocked 
+
+        // must check the rater user is not blocked
 
         try {
-            
+
             $existsRate = Rate::where('user_id' , $request->user_id) ->
-            where('rater_id' , Auth::user()->id)->first() ; 
+            where('rater_id' , Auth::user()->id)->first() ;
+
+            $request->validate(['review'=> 'nullable|string|min:10|max:255']);
 
             if ($existsRate) {
 
                 $existsRate->rate = $request->user_rating ;
                 $existsRate->update() ;
+                if ($request->review) {
+                   // review create or update
+                    Review::updateOrCreate(
+                        ['rate_id' => $existsRate->id]
+                        ,
+                        [
+                            'user_id' => $request->user_id,
+                            'review' => $request->review
+                        ]
+                    );
+                }
                 toastr()->success('Thank you for update your rate');
                 return redirect()->back()->with(['success' => 'Thank you for update your rate']);
 
@@ -32,13 +46,24 @@ class RateController extends Controller
 
             else{
 
-                Rate::create([
+                $rate = Rate::create([
                     'user_id' => $request->user_id ,
                     'rater_id' => Auth::user()->id ,
                     'rate' => $request->user_rating
                 ]);
+                if ($request->review) {
+                    // review create or update
+                    Review::updateOrCreate(
+                        ['rate_id' => $rate->id]
+                        ,
+                        [
+                            'user_id' => $request->user_id,
+                            'review' => $request->review
+                        ]
+                    );
+                }
                 toastr()->success('Thank you for rate');
-                return redirect()->back()->with(['success' => 'Thank you fo rate']);            
+                return redirect()->back()->with(['success' => 'Thank you fo rate']);
             }
 
 

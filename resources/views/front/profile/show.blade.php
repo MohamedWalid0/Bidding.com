@@ -163,7 +163,41 @@
                     @livewire('personal-data-profile' , ['account' => $account , 'user' => $user ] )
                 </div>
                 <!-- end Personal Data Link -->
+                <div class="page" id="Reviews">
+                    <h4 class="py-2">Reviews</h4>
+                <div class="media-block">
+                    @foreach ($user->reviews as $review)
 
+                    <div class="review">
+                        <a class="media-left" href="#"><img class="img-circle img-sm"
+                        alt="Profile Picture"
+                        src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                        <div class="media-body">
+                        <div class="mar-btm ml-3">
+                            <a href="#" class="btn-link text-semibold media-heading box-inline">
+                                {{$review->rate->userRated->account->full_name}}
+                            </a>
+
+                            <?php $rate = number_format($review->rate->rate) ?>
+                            <div class="rating">
+                                @for ($i = 1 ; $i<=$rate ; $i++ )
+                                    <i class="fa fa-star checked"></i>
+                                @endfor
+                                @for ($j = $rate+1  ; $j<=5 ; $j++ )
+                                    <i class="fa fa-star "></i>
+                                @endfor
+                            </div>
+                            <p class="text-muted text-sm">
+                            {{$review->created_at->diffForHumans()}}</p>
+                        </div>
+                        <p> {{$review->review}} </p>
+                        </div>
+
+                    </div>
+                    <hr>
+                    @endforeach
+                </div>
+                </div>
 
                 <!-- start My Bids Link -->
                 <div class="page" id="MyBids">
@@ -298,7 +332,6 @@
     </div>
 
 </section>
-
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
