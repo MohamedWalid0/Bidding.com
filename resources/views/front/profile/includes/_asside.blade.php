@@ -5,16 +5,7 @@
             <ul class="list-group list-group-flush">
                 <li class="text-center list-group-item mb-5">
                     <div class="user">
-                        <div class="avatar-area">
-                            <img src="https://i.pravatar.cc/150?img=3" alt="avtar" class="rounded-circle" width="70"
-                                 height="70">
-                            <div class="edit-avatar">
-                                <a href="#" data-toggle="modal" data-target="#editPhoto">
-
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <livewire:update-image :user='$user'>
                         <div class="">
                             <h5> {{$account->full_name}} </h5>
 

@@ -5,6 +5,9 @@
 .avatar-area {
   position: relative;
 }
+.auth-avatar {
+    cursor: pointer;
+}
 
 .edit-avatar {
   position: absolute;
