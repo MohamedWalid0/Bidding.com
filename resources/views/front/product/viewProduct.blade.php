@@ -263,7 +263,7 @@
                             thing.animate([
                                 {transform: `translateY(${oldTop - newTop}px)`},
                                 {transform: `translateY(0px)`},
-                            ], {duration: 1000, easing: 'ease'})
+                            ], {duration: 1500, easing: 'ease'})
                         }
                     })
 

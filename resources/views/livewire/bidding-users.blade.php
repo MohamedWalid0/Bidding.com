@@ -8,7 +8,7 @@
             </div>
             <div class="card-body">
                 <table class="table" id="table">
-                    <thead class="thead-dark bg-custom">
+                    <thead class=" bg-custom" style="background-color: #389EFF;">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">bidder</th>
@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                     @forelse ($product->hot_users as $user )
-                        <tr animate-move wire:key="{{ $user->id }}" class="text-center">
+                        <tr animate-move wire:key="{{ $user->id }}" class="text-center text-dark table-{{ $colors[$loop->index] }}">
 
                             <th scope="row">
                                 <p class="mt-4">

@@ -21,7 +21,7 @@
                 </div>
                 <div class="contentsticky_group d-flex justify-content-end">
                     <div class="header_link_myaccount">
-                        <a class="login" href="login-1.html" rel="nofollow" title="Log in to your customer account"><i
+                        <a class="login" href="{{ url('profile') }}" rel="nofollow" title="Log in to your customer account"><i
                                 class="header-icon-account"></i></a>
                     </div>
                     <div class="header_link_wishlist">

@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
         // report product
         Route::post('/product' , [ReportController::class , 'reportProduct'] )->name('products.report') ;
         // end report product
-    
+
     });
 
 
@@ -118,6 +118,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login/twitter/callback', [RegisterController::class, 'callbackToTwitter']);
 });
 
-
+Route::get('/test' , function (){
+    return view('dashboard');
+});
 
 
