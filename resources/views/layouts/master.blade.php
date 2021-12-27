@@ -1,4 +1,4 @@
-@include('includes.header')
+@include('dashboard_includes.header')
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
@@ -7,8 +7,8 @@
         <img class="animation__wobble" src="{{asset('img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60"
              width="60">
     </div>
-    @include('includes.navbar')
-    @include('includes.sidebar')
+    @include('dashboard_includes.navbar')
+    @include('dashboard_includes.sidebar')
     <div class="content-wrapper" style="min-height: 912px;">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -41,7 +41,7 @@
 
 
 @livewireScripts
-@include('includes.footer')
+@include('dashboard_includes.footer')
 @yield('scripts')
 {{--<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>--}}
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>

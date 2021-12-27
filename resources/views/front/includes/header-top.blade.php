@@ -70,7 +70,7 @@
                          class="language-selector groups-selector hidden-sm-down language-selector-dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                              role="main">
-                            <span class="expand-more"><img class="img-fluid" src="img/1.jpg" alt="English" width="16"
+                            <span class="expand-more"><img class="img-fluid" src="{{ asset('img/flags/1.jpg') }}" alt="English" width="16"
                                                            height="11"></span>
                         </div>
                         <div class="language-list dropdown-menu">
@@ -78,7 +78,7 @@
                                 <div class="language-item current flex-first">
                                     <div class="current">
                                         <a href="index.htm?home=home_3">
-                                            <img class="img-fluid" src="img/1.jpg" alt="English" width="16" height="11">
+                                            <img class="img-fluid" src="{{ asset('img/flags/2.jpg') }}" alt="English" width="16" height="11">
                                             <span>English</span>
                                         </a>
                                     </div>
@@ -86,7 +86,7 @@
                                 <div class="language-item">
                                     <div>
                                         <a href="http://demo.bestprestashoptheme.com/savemart/fr/?home=home_3">
-                                            <img class="img-fluid" src="img/2.jpg" alt="Français" width="16"
+                                            <img class="img-fluid" src="{{ asset('img/flags/5.jpg') }}" alt="Français" width="16"
                                                  height="11">
                                             <span>Français</span>
                                         </a>
@@ -95,7 +95,7 @@
                                 <div class="language-item">
                                     <div>
                                         <a href="http://demo.bestprestashoptheme.com/savemart/es/?home=home_3">
-                                            <img class="img-fluid" src="img/2.jpg" alt="Español" width="16" height="11">
+                                            <img class="img-fluid" src="{{ asset('img/flags/2.jpg') }}" alt="Español" width="16" height="11">
                                             <span>Español</span>
                                         </a>
                                     </div>
@@ -103,7 +103,7 @@
                                 <div class="language-item">
                                     <div>
                                         <a href="http://demo.bestprestashoptheme.com/savemart/it/?home=home_3">
-                                            <img class="img-fluid" src="img/1.jpg" alt="Italiano" width="16"
+                                            <img class="img-fluid" src="{{ asset('img/flags/5.jpg') }}" alt="Italiano" width="16"
                                                  height="11">
                                             <span>Italiano</span>
                                         </a>
@@ -112,7 +112,7 @@
                                 <div class="language-item">
                                     <div>
                                         <a href="http://demo.bestprestashoptheme.com/savemart/pl/?home=home_3">
-                                            <img class="img-fluid" src="img/5.jpg" alt="Polski" width="16" height="11">
+                                            <img class="img-fluid" src="{{ asset('img/flags/1.jpg') }}" alt="Polski" width="16" height="11">
                                             <span>Polski</span>
                                         </a>
                                     </div>
@@ -120,7 +120,7 @@
                                 <div class="language-item">
                                     <div>
                                         <a href="http://demo.bestprestashoptheme.com/savemart/ar/?home=home_3">
-                                            <img class="img-fluid" src="img/6.jpg" alt="اللغة العربية" width="16"
+                                            <img class="img-fluid" src="{{ asset('img/flags/6.jpg') }}" alt="اللغة العربية" width="16"
                                                  height="11">
                                             <span>اللغة العربية</span>
                                         </a>

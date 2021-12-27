@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Cache;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Scout\Searchable;
 
 class Product extends Model
@@ -48,7 +46,7 @@ class Product extends Model
 
     public function wishlists(): BelongsToMany
     {
-        return $this->belongsToMany(Wishlist::class, 'product_wishlists' )
+        return $this->belongsToMany(Wishlist::class, 'product_wishlists')
             ->withTimestamps();
     }
 
@@ -91,11 +89,11 @@ class Product extends Model
 
     public function likes()
     {
-        return $this->morphToMany(User::class, 'likeable' , 'reactions')
-        ->using(Reaction::class)
-        ->withPivot('value')
-        ->as('like')
-        ->withTimestamps();
+        return $this->morphToMany(User::class, 'likeable', 'reactions')
+            ->using(Reaction::class)
+            ->withPivot('value')
+            ->as('like')
+            ->withTimestamps();
     }
 
     // Scopes
@@ -135,6 +133,6 @@ class Product extends Model
     public function getHotUsersAttribute()
     {
         return $this->user_bids->sortByDesc('bid.updated_at')->take(5);
-}
+    }
 
 }

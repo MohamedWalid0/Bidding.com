@@ -8,6 +8,7 @@ use Livewire\Component;
 class BiddingUsers extends Component
 {
     public Product $product;
+    public array $colors = ['success' , 'info' , 'warning' , 'danger' ,'dark'];
 
 
     public function render()

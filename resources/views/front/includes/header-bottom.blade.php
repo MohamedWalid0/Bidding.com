@@ -1,4 +1,3 @@
-
 <div class="header-bottom hidden-sm-down">
     <div class="container">
         <div class="row d-flex align-items-center">
@@ -17,34 +16,34 @@
                                     @isset($categories)
                                         @foreach($categories as $category)
                                             <li class="item  parent"><a href="" title="Laptops &amp; Accessories"><i
-                                                class="hasicon nov-icon"
-                                                style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/laptop.png') no-repeat scroll center center;">
+                                                        class="hasicon nov-icon"
+                                                        style="background:url('http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/img/modules/novverticalmenu/icon/laptop.png') no-repeat scroll center center;">
 
-                                            </i>{{$category -> name}}</a>
+                                                    </i>{{$category -> name}}</a>
 
-                                            @isset($category -> subCategories)
+                                                @isset($category -> subCategories)
 
-                                                <span
-                                                    class="show-sub fa-active-sub"></span>
-                                                <div class="dropdown-menu" style="width:222px">
-                                                    <ul>
-                                                        @foreach($category -> subCategories as $subCategory)
-                                                            <li class="item ">
-                                                            <li class="item  parent">
-                                                                <a href=""
-                                                                title="Laptop Thinkpad">{{$subCategory -> name}}</a>
-                                                                
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
+                                                    <span
+                                                        class="show-sub fa-active-sub"></span>
+                                                    <div class="dropdown-menu" style="width:222px">
+                                                        <ul>
+                                                            @foreach($category -> subCategories as $subCategory)
+                                                                <li class="item ">
+                                                                <li class="item  parent">
+                                                                    <a href=""
+                                                                       title="Laptop Thinkpad">{{$subCategory -> name}}</a>
 
-                                            @endisset
-                                            
-                                        </li>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+
+                                                @endisset
+
+                                            </li>
                                         @endforeach
                                     @endisset
-                                            
+
 
                                 </ul>
                             </div>
@@ -319,24 +318,23 @@
                                  data-link_search_ssl=""
                                  data-action=""
                                  style="position: relative">
-                            
+
                                 <div class="input-group position_relative">
                                     <input type="text" id="search_query_top"
-                                            class="search_query ui-autocomplete-input form-control"
-                                            name="search_query" value="" placeholder="Search"
-                                            autocomplete="off">
+                                           class="search_query ui-autocomplete-input form-control"
+                                           name="search_query" value="" placeholder="Search"
+                                           autocomplete="off">
 
-                            
-                                    
+
                                     <span class="input-group-btn">
-                                        <button class="btn btn-secondary" type="submit" ><i
-                                                class="material-icons" >    
+                                        <button class="btn btn-secondary" type="submit"><i
+                                                class="material-icons">
                                                     search
                                                 </i></button>
                                     </span>
-                                    
+
                                     <div class="suggest_div "
-                                        style="
+                                         style="
                                         width: 90% ;
                                         height: max-content;
                                         display:none ;
@@ -348,7 +346,7 @@
                                         left:0 ;
                                         z-index:99999">
 
-                                    </div>                                        
+                                    </div>
 
                                 </div>
 

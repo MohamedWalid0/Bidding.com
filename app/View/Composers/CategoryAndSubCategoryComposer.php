@@ -3,6 +3,7 @@
 namespace App\View\Composers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class CategoryAndSubCategoryComposer
@@ -15,6 +16,9 @@ class CategoryAndSubCategoryComposer
      */
     public function compose(View $view)
     {
-        $view->with('categories', Category::get());
+        $view->with('categories', Cache::remember('categories', 60 * 60 * 60, function () {
+            return Category::with('subCategories')->get();
+        })
+        );
     }
 }

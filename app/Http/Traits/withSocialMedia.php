@@ -3,11 +3,8 @@
 namespace App\Http\Traits;
 
 use App\Models\User;
-
 use Auth;
-use Illuminate\Support\Facades\Request;
 use Laravel\Socialite\Facades\Socialite;
-use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 trait withSocialMedia
@@ -29,6 +26,7 @@ trait withSocialMedia
     {
         return Socialite::driver('github')->redirect();
     }
+
     public function gitCallback()
     {
         try {

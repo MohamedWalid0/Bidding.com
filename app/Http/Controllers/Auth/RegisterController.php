@@ -68,7 +68,8 @@ class RegisterController extends Controller
             'city' => ['required', 'exists:cities,id'],
             'role_id' => ['required', 'exists:roles,id'],
             'gender_id' => ['required', 'exists:genders,id'],
-            'password' => ['required', 'confirmed', Password::default()],
+//            'password' => ['required', 'confirmed', Password::default()],
+            'password' => ['required', 'confirmed'],
         ]);
     }
 
