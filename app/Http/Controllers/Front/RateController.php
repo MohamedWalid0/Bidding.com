@@ -28,19 +28,14 @@ class RateController extends Controller
 
             if ($existsRate) {
 
-                $existsRate->rate = $request->user_rating;
-                $existsRate->update();
-                if ($request->review) {
-                    // review create or update
-                    Review::updateOrCreate(
-                        ['rate_id' => $existsRate->id]
-                        ,
-                        [
-                            'user_id' => $request->user_id,
-                            'review' => $request->review
-                        ]
-                    );
+                $existsRate->rate = $request->user_rating ;
+                $existsRate->update() ;
+
+                if ($request->has('review')) {
+                   // review create or update
+                    $this->review($request, $existsRate->id);
                 }
+
                 toastr()->success('Thank you for update your rate');
                 return redirect()->back()->with(['success' => 'Thank you for update your rate']);
 
@@ -51,17 +46,12 @@ class RateController extends Controller
                     'rater_id' => Auth::user()->id,
                     'rate' => $request->user_rating
                 ]);
-                if ($request->review) {
+
+                if ($request->has('review')) {
                     // review create or update
-                    Review::updateOrCreate(
-                        ['rate_id' => $rate->id]
-                        ,
-                        [
-                            'user_id' => $request->user_id,
-                            'review' => $request->review
-                        ]
-                    );
+                    $this->review($request, $rate->id);
                 }
+
                 toastr()->success('Thank you for rate');
                 return redirect()->back()->with(['success' => 'Thank you fo rate']);
             }
@@ -74,6 +64,17 @@ class RateController extends Controller
         }
 
 
+    }
+
+    public function review (Request $request, $id) {
+        Review::updateOrCreate(
+            ['rate_id' => $id]
+            ,
+            [
+                'user_id' => $request->user_id,
+                'review' => $request->review
+            ]
+        );
     }
 
 

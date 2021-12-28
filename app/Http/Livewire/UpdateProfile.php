@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Account;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -20,13 +19,12 @@ class UpdateProfile extends Component
 
     public function mount()
     {
-        $this->user = Auth::user();
-        $this->account = Account::findOrFail($this->user->id);
+        $this->user = auth()->user();
+        $this->account = auth()->user()->account;
         $this->name = $this->account->full_name;
         $this->email = $this->user->email;
         $this->address = $this->account->address;
         $this->phone = $this->account->phone;
-
 
     }
 
@@ -36,7 +34,7 @@ class UpdateProfile extends Component
         return [
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->email . ',email',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $this->user->email . ',email',
             'phone' => 'required|numeric|min:10|unique:accounts,phone,' . $this->account->phone . ',phone',
         ];
     }
@@ -56,16 +54,15 @@ class UpdateProfile extends Component
     {
 
         $data = $this->validate();
-        $id = Auth::user()->id;
 
         try {
             DB::beginTransaction();
-            User::findOrFail($id)->update(
+            $this->user->update(
                 [
                     'email' => $data['email']
                 ]
             );
-            Account::findOrFail($id)->update(
+            $this->user->account->update(
                 [
                     'full_name' => $data['name'],
                     'address' => $data['address'],
