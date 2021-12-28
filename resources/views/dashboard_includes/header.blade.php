@@ -18,8 +18,9 @@
         <meta name="user-id" content="{{ auth()->user()->id }}">
         <meta name="user-name" content="{{ auth()->user()->name }}">
     @endauth
+    @toastr_css
     @yield('css')
-   
+
 </head>
 
 

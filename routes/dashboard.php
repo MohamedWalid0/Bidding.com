@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController;
 
 
@@ -16,4 +18,6 @@ use App\Http\Controllers\Dashboard\HomeController;
 // Dashboard Routes
 Route::group(['prefix' => 'dashboard' ], function () {
     Route::get('/' ,  HomeController::class);
+
+    Route::resource('category' , CategoryController::class)->except(['create' , 'edit']);
 });

@@ -1,3 +1,6 @@
+@jquery
+@toastr_js
+@toastr_render
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- jQuery -->
