@@ -19,13 +19,8 @@ class CategoryController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\StoreCategoryRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(UpdateCategoryRequest $request)
+
+    public function store(StoreCategoryRequest $request)
     {
         Category::create($request->validated());
         Cache::forget('categories');
@@ -33,15 +28,11 @@ class CategoryController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Category $category
-     * @return Response
-     */
+
     public function show(Category $category)
     {
-        return view('dashboard.category.show' , compact('category') );
+        $category->load('subCategories');
+        return view('dashboard.subCategory.index' , compact('category') );
     }
 
 

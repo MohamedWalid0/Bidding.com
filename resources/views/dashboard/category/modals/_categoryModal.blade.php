@@ -16,8 +16,8 @@
                         <input type="text" class="form-control" name="name"  value="{{ $category->name }}">
                     </div>
 
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
+                    @if ($errors->updateCategory->any())
+                        @foreach ($errors->updateCategory->all() as $error)
                             <div class="text-danger">{{$error}}</div>
                         @endforeach
                     @endif

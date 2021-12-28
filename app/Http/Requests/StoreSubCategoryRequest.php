@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class StoreSubCategoryRequest extends FormRequest
 {
-    protected $errorBag = 'storeCategory';
+    protected $errorBag = 'storeSubcategory';
     /**
      * Determine if the user is authorized to make this request.
      *

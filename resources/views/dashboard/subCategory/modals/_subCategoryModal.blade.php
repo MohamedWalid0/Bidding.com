@@ -1,23 +1,23 @@
-<div class="modal fade" id="modal-create-category" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="modal-{{ $subCategory->id }}" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Create New Category</h4>
+                <h4 class="modal-title">Edit : {{ $subCategory->name }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
 
-            <form action="{{ route('category.store' )}}" method="post">
+            <form action="{{ route('category.sub_category.update' , [  $category , $subCategory ] )}}" method="post">
                 <div class="modal-body">
                 @csrf
-                    @method('POST')
+                    @method('PATCH')
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name"  >
+                        <input type="text" class="form-control" name="name"  value="{{ $subCategory->name }}">
                     </div>
 
-                    @if ($errors->storeCategory->any())
-                        @foreach ($errors->storeCategory->all() as $error)
+                    @if ($errors->UpdateSubcategory->any())
+                        @foreach ($errors->UpdateSubcategory->all() as $error)
                             <div class="text-danger">{{$error}}</div>
                         @endforeach
                     @endif
