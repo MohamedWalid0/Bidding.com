@@ -14,7 +14,7 @@ class UpdateImage extends Component
     public $imageExists;
     public $imageSrc;
     public $isAuth;
-    
+
     public function mount () {
         $this->imageExists = $this->user->images()->exists();
 
@@ -26,6 +26,10 @@ class UpdateImage extends Component
 
     }
     public function updatedImage () {
+
+        $this->validate([
+            'image' => 'image|mimes:jpg,jpeg,png',
+        ]);
         $path = $this->image->store( '/', 'users');
 
             auth()->user()->images()->updateOrCreate(
@@ -34,6 +38,9 @@ class UpdateImage extends Component
                 'imageable_type' => 'App\Models\User'
                 ]
                 , ['image_path' => $path]);
+
+        // unlink file
+        // add toster
 
         // $this->dispatchBrowserEvent('updated' , ['message' => 'Image Changed']);
     }
