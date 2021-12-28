@@ -173,9 +173,9 @@
                                             </div>
                                         </div>
                                         @if ($errors->any())
-                                        @foreach ($errors->all() as $error)
-                                            <div>{{$error}}</div>
-                                        @endforeach
+                                            @foreach ($errors->all() as $error)
+                                                <div class="text-danger">{{$error}}</div>
+                                            @endforeach
                                         @endif
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Add Review</label>

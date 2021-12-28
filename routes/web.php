@@ -5,11 +5,11 @@ use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\Front\FilterController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ProfileController;
+use App\Http\Controllers\Front\RateController;
 use App\Http\Controllers\Front\ReportController;
 use App\Http\Controllers\Front\SupportController;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -118,8 +118,11 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login/twitter/callback', [RegisterController::class, 'callbackToTwitter']);
 });
 
-Route::get('/test' , function (){
-    return view('dashboard');
-});
+
+
+
+
+
+
 
 

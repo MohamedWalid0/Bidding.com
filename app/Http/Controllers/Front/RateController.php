@@ -1,28 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
+use App\Http\Controllers\Controller;
 use App\Models\Rate;
 use App\Models\Review;
-use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use function redirect;
+use function toastr;
 
 class RateController extends Controller
 {
 
 
-    public function addRate( Request $request ){
-
+    public function addRate(Request $request)
+    {
+        $request->validate(['review' => 'nullable|string|min:10|max:255']);
         // must check the rater user is not blocked
 
         try {
 
-            $existsRate = Rate::where('user_id' , $request->user_id) ->
-            where('rater_id' , Auth::user()->id)->first() ;
+            $existsRate = Rate::where('user_id', $request->user_id)
+                ->where('rater_id', Auth::user()->id)->first();
 
-            $request->validate(['review'=> 'nullable|string|min:10|max:255']);
+
 
             if ($existsRate) {
 
@@ -37,13 +39,11 @@ class RateController extends Controller
                 toastr()->success('Thank you for update your rate');
                 return redirect()->back()->with(['success' => 'Thank you for update your rate']);
 
-            }
-
-            else{
+            } else {
 
                 $rate = Rate::create([
-                    'user_id' => $request->user_id ,
-                    'rater_id' => Auth::user()->id ,
+                    'user_id' => $request->user_id,
+                    'rater_id' => Auth::user()->id,
                     'rate' => $request->user_rating
                 ]);
 
@@ -51,7 +51,7 @@ class RateController extends Controller
                     // review create or update
                     $this->review($request, $rate->id);
                 }
-                
+
                 toastr()->success('Thank you for rate');
                 return redirect()->back()->with(['success' => 'Thank you fo rate']);
             }
@@ -62,7 +62,6 @@ class RateController extends Controller
             return redirect()->back()->with(['error' => 'try again']);
 
         }
-
 
 
     }
@@ -77,11 +76,6 @@ class RateController extends Controller
             ]
         );
     }
-
-
-
-
-
 
 
 }
