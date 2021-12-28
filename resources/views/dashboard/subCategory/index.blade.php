@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
-@section('css')
-
+@section('navigation')
+    <a href="{{ route('dashboard') }}">Home</a>
+    <li class="breadcrumb-item active"></li>
+    <a href="{{ route('category.index') }}">categories</a>
+    <li class="breadcrumb-item active"></li>
 @endsection
 
 @section('content')

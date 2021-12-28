@@ -18,7 +18,7 @@ use App\Http\Controllers\Dashboard\SubCategoryController;
 
 // Dashboard Routes
 Route::group(['prefix' => 'dashboard' ], function () {
-    Route::get('/' ,  HomeController::class);
+    Route::get('/' ,  HomeController::class)->name('dashboard');
 
     Route::resource('category' , CategoryController::class)->except(['create' , 'edit']);
     Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit']);
