@@ -1,12 +1,16 @@
 @jquery
 @toastr_js
 @toastr_render
+
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- REQUIRED SCRIPTS -->
-
+<script >
+    const userId = "{{ Auth::id() }}"
+</script>
+<script src="{{ mix('js/app.js') }}" ></script>
 <!-- Bootstrap -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 

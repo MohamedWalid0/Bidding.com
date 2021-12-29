@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
 
 
@@ -17,9 +18,11 @@ use App\Http\Controllers\Dashboard\SubCategoryController;
 */
 
 // Dashboard Routes
-Route::group(['prefix' => 'dashboard' ], function () {
+Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::get('/' ,  HomeController::class)->name('dashboard');
 
     Route::resource('category' , CategoryController::class)->except(['create' , 'edit']);
-    Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit']);
+    Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit' , 'index']);
+    Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
+    Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
 });

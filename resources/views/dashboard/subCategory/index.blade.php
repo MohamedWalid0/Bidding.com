@@ -20,7 +20,8 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="subCategory">Name</label>
-                    <input type="text" class="form-control" id="subCategory" name="name" value="{{ old('name') }}" placeholder="Enter name">
+                    <input type="text" class="form-control" id="subCategory" name="name" value="{{ old('name') }}"
+                           placeholder="Enter name">
                 </div>
                 @if ($errors->storeSubcategory->any())
                     @foreach ($errors->storeSubcategory->all() as $error)
@@ -88,7 +89,13 @@
                     </tr>
                     @include('dashboard.subCategory.modals._subCategoryModal' , $subCategory)
                 @empty
-
+                    <tr class="text-center">
+                        <td colspan="3">
+                            <h5>
+                                <i class="far fa-frown"></i>   Sorry There No Subcategory For This Category
+                            </h5>
+                        </td>
+                    </tr>
                 @endforelse
 
 
@@ -99,7 +106,6 @@
 
     </div>
 
-    {{--    @include('dashboard.subCategory.modals._subCategoryModalCreate')--}}
 @endsection
 
 @section('scripts')

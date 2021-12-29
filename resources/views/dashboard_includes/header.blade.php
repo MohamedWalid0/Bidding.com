@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+@yield('css')
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,7 +20,7 @@
         <meta name="user-name" content="{{ auth()->user()->name }}">
     @endauth
     @toastr_css
-    @yield('css')
+
 
 </head>
 
