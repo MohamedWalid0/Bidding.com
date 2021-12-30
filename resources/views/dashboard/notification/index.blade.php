@@ -43,8 +43,22 @@
 
                         </select>
                     </div>
-
                     <!-- /.form-group -->
+                </div>
+
+                <div class="form-group">
+                    <label>Select Notification Type </label>
+                    <select class="form-control" name="type">
+                        <option selected hidden class="text-muted"> --- Choose Type  --- </option>
+                        <option value="mail"> Email </option>
+                        <option value="broadcast"> Real Time </option>
+                        <option value="database"> Normal </option>
+                    </select>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="all" value="0">
+                    <label class="form-check-label" for="exampleCheck1">Send to All Users</label>
                 </div>
 
 

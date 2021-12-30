@@ -84,7 +84,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('category.index') }}" class="nav-link">
+                                <a href="{{ route('notification.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-bell"></i>
                                     <p>
                                         Notifications

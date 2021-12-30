@@ -135,4 +135,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?d=mp&f=y';
     }
 
+    public function scopeGetUsersFromRequest($query , $request)
+    {
+        return $query->when($request->has('all'),
+            fn($query) => $query->where('id', '!=', auth()->id())->get(),
+            fn($query) => $query->find($request->validated()['ids'])
+        );
+    }
+
 }

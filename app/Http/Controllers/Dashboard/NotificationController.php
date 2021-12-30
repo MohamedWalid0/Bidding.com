@@ -14,15 +14,15 @@ class NotificationController extends Controller
     public function index()
     {
         return view('dashboard.notification.index', [
-            'users' => User::with('account')->select('id')->where('id' , '!=' , auth()->id())->get()
+            'users' => User::with('account')->select('id')->where('id', '!=', auth()->id())->get()
         ]);
     }
 
     public function store(StoreNotificationReques $request)
     {
-        $users = User::find($request->validated()['ids']);
+        $users = User::getUsersFromRequest($request);
         $message = '%s ' . $request->validated()['message'];
-        Notification::send($users, new AdminToUsersNotification($message));
+        Notification::send($users, new AdminToUsersNotification($message, $request->validated()['type']));
         toastr()->success('message send successfully');
         return back();
     }
