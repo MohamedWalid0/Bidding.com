@@ -17,6 +17,6 @@ class ReactionSeeder extends Seeder
     {
         DB::table('reactions')->delete();
 
-        Reaction::factory(400)->create();
+        Reaction::factory(100)->create();
     }
 }

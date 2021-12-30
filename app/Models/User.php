@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -51,6 +50,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public static function productInWishlist($productId)
+    {
+        if (Auth::check()) {
+            $products = auth()->user()->wishlist->products->pluck('id')->toArray();
+            return in_array($productId, $products, true);
+        }
+        return false;
+
+    }
 
     public function codes(): HasMany
     {
@@ -72,15 +80,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public static function productInWishlist($productId)
-    {
-        if (Auth::check()){
-            $products =  auth()->user()->wishlist->products->pluck('id')->toArray() ;
-            return in_array($productId, $products, true);
-        }
-        return false ;
-
-    }
     public function product_bids(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'bids')
@@ -99,6 +98,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Comment::class);
     }
+
     public function replies(): HasMany
     {
         return $this->hasMany(Reply::class);
@@ -106,12 +106,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function product_likes()
     {
-        return $this->morphedByMany(Product::class, 'likeable' , 'reactions');
+        return $this->morphedByMany(Product::class, 'likeable', 'reactions');
     }
 
     public function comment_likes()
     {
-        return $this->morphedByMany(Comment::class, 'likeable' , 'reactions');
+        return $this->morphedByMany(Comment::class, 'likeable', 'reactions');
     }
 
     public function supports(): HasMany
@@ -129,13 +129,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
-    public function avatarUrl()
+    public function avatarUrl(): string
     {
-//        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
-        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?d=mp&f=y';
+        return $this->images->first()
+            ? asset('img/front/users/' . $this->images->first()->image_path)
+            : 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?d=mp&f=y';
     }
 
-    public function scopeGetUsersFromRequest($query , $request)
+    public function scopeGetUsersFromRequest($query, $request)
     {
         return $query->when($request->has('all'),
             fn($query) => $query->where('id', '!=', auth()->id())->get(),

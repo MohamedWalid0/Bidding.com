@@ -18,7 +18,6 @@ class AccountFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
             'full_name' => $this->faker->firstName . ' ' .$this->faker->lastName ,
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,

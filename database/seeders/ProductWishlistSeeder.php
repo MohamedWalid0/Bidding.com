@@ -18,6 +18,6 @@ class ProductWishlistSeeder extends Seeder
     {
         DB::table('product_wishlists')->delete();
 
-        ProductWishlist::factory(200)->create();
+        ProductWishlist::factory(100)->create();
     }
 }

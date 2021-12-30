@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
+use App\Http\Controllers\Dashboard\SupportController;
 
 
 /*
@@ -25,4 +26,7 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit' , 'index']);
     Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
     Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
+    Route::get('support', [SupportController::class , 'index'])->name('support.index');
+    Route::post('support/{support}', [SupportController::class , 'delete'])->name('support.delete');
+    Route::post('support/reply/{support}', [SupportController::class , 'reply'])->name('support.reply');
 });

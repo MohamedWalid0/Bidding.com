@@ -16,7 +16,7 @@ class WishlistFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::inRandomOrder()-> first()->id
+
         ];
     }
 }
