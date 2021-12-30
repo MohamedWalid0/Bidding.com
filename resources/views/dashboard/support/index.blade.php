@@ -21,7 +21,7 @@
                 <thead>
                 <tr class="text-center">
                     <th style="width: 10px">#</th>
-                    <th>Name</th>
+                    <th>message</th>
                     <th>
                         Actions
                     </th>
@@ -38,7 +38,7 @@
                             <p>
                                 {{ $support->message }}
                             </p>
-                            <span class="badge bg-danger">{{ $support->user->account->full_name }}</span>
+                            From : <span class="badge bg-danger">{{ $support->user->account->full_name }}</span>
 
 
                         </td>
