@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -129,7 +130,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
-<<<<<<< HEAD
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class );
@@ -140,8 +140,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
 
-    public function avatarUrl()
-=======
     public function avatarUrl(): string
     {
         return $this->images->first()
@@ -150,7 +148,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function scopeGetUsersFromRequest($query, $request)
->>>>>>> 6750031f4bbd6f15b43acb82f0f23c9c6da245b5
     {
         return $query->when($request->has('all'),
             fn($query) => $query->where('id', '!=', auth()->id())->get(),

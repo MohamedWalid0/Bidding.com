@@ -93,7 +93,6 @@
                             </li>
 
                             <li class="nav-item">
-<<<<<<< HEAD
                                 <a href="{{ route('roles.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-pen"></i>
                                     <p>
@@ -101,7 +100,8 @@
                                     </p>
                                 </a>
                             </li>
-=======
+
+                            <li class="nav-item">
                                 <a href="{{ route('support.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-bell"></i>
                                     <p>
@@ -110,7 +110,6 @@
                                 </a>
                             </li>
 
->>>>>>> 6750031f4bbd6f15b43acb82f0f23c9c6da245b5
 
                         </ul>
                     </nav>

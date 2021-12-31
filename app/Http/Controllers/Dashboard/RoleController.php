@@ -69,17 +69,16 @@ class RoleController extends Controller
 
 
 
-    public function deleteRole(Request $request){
+    public function deleteRole(Role $role){
 
         try{
 
-
-            if (User::where('role_id' , $request->role_id)->first()){
+            if (User::where('role_id' , $role->id)->exists()){
                 toastr()->error('can not delete this role because some users related to !');
                 return back();
             }
 
-            Role::where('id' , $request->role_id)->delete();
+            $role->delete();
 
             toastr()->success('Data has been saved successfully!');
             return back();

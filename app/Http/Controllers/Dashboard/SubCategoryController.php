@@ -36,7 +36,7 @@ class SubCategoryController extends Controller
 
         try {
 
-            if (Product::where('sub_category_id' , $subCategory->id)->first()){
+            if ($subCategory->products()->exists()){
                 toastr()->error('can not delete this sub category because some products related to !');
                 return back();
             }

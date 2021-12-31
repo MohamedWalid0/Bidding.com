@@ -9,12 +9,10 @@
                 </button>
             </div>
 
-            <form action="{{ route('roles.delete') }}" method="POST">
+            <form action="{{ route('roles.delete' , $role ) }}" method="POST">
 
                 <div class="modal-body">
                     @csrf
-
-                    <input type="hidden" value="{{ $role->id }}" name="role_id">
 
                     <p>Are you sure to delete role : {{ $role->name }}</p>
 

@@ -63,7 +63,7 @@ class CategoryController extends Controller
 
         try {
 
-            if (SubCategory::where('category_id' , $category->id)->first()){
+            if ( $category->subCategories()->exists() ){
                 toastr()->error('can not delete this category because some sub categories related to !');
                 return back();
             }
