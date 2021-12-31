@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 
 class SubCategoryController extends Controller
@@ -32,8 +33,31 @@ class SubCategoryController extends Controller
 
     public function destroy(Category $category, SubCategory $subCategory): RedirectResponse
     {
-        $subCategory->delete();
-        toastr()->error('sub category deleted successfully');
-        return back();
+
+        try {
+
+            if (Product::where('sub_category_id' , $subCategory->id)->first()){
+                toastr()->error('can not delete this sub category because some products related to !');
+                return back();
+            }
+
+            $subCategory->delete();
+            toastr()->success('sub category deleted successfully');
+            return back();
+
+        } catch (\Throwable $th) {
+
+            toastr()->error('something error');
+            return back();
+
+        }
+
+
+
+
+
     }
+
+
+
 }

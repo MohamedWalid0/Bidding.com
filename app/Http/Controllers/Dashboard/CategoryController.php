@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
@@ -59,9 +60,29 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        Cache::forget('categories');
-        toastr()->error('Data has been deleted successfully!');
-        return back();
+
+        try {
+
+            if (SubCategory::where('category_id' , $category->id)->first()){
+                toastr()->error('can not delete this category because some sub categories related to !');
+                return back();
+            }
+
+            $category->delete();
+            Cache::forget('categories');
+            toastr()->success('Data has been deleted successfully!');
+            return back();
+
+        } catch (\Throwable $th) {
+
+            toastr()->error('something error');
+            return back();
+
+        }
+
+
+
+
+
     }
 }
