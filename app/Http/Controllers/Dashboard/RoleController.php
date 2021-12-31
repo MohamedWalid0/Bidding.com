@@ -73,7 +73,7 @@ class RoleController extends Controller
 
         try{
 
-            if (User::where('role_id' , $role->id)->exists()){
+            if ($role->users()->exists()){
                 toastr()->error('can not delete this role because some users related to !');
                 return back();
             }
