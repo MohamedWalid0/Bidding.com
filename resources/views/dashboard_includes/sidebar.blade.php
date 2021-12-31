@@ -22,11 +22,11 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                            <img src="{{ auth()->user()->avatarUrl() }}" class="img-circle elevation-2 h-100 "
                                  alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <a href="#" class="d-block">{{ auth()->user()->account->full_name }}</a>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('category.index') }}" class="nav-link">
+                                <a href="{{ route('notification.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-bell"></i>
                                     <p>
                                         Notifications
@@ -93,6 +93,7 @@
                             </li>
 
                             <li class="nav-item">
+<<<<<<< HEAD
                                 <a href="{{ route('roles.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-pen"></i>
                                     <p>
@@ -100,6 +101,16 @@
                                     </p>
                                 </a>
                             </li>
+=======
+                                <a href="{{ route('support.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-bell"></i>
+                                    <p>
+                                        Supports
+                                    </p>
+                                </a>
+                            </li>
+
+>>>>>>> 6750031f4bbd6f15b43acb82f0f23c9c6da245b5
 
                         </ul>
                     </nav>

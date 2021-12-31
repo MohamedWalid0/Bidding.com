@@ -7,8 +7,6 @@ use App\Models\Rate;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function redirect;
-use function toastr;
 
 class RateController extends Controller
 {

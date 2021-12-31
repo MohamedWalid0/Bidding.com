@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             HistorySeeder::class,
             CommentSeeder::class,
             ReplySeeder::class,
-            ReactionSeeder::class
+            ReactionSeeder::class,
+            SupportSeeder::class
 
 
 

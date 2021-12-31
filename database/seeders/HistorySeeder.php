@@ -17,6 +17,6 @@ class HistorySeeder extends Seeder
     {
         DB::table('histories')->delete();
 
-        History::factory(1000)->create();
+        History::factory(100)->create();
     }
 }

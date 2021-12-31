@@ -17,6 +17,6 @@ class ReplySeeder extends Seeder
     {
         DB::table('replies')->delete();
 
-        Reply::factory(400)->create();
+        Reply::factory(100)->create();
     }
 }

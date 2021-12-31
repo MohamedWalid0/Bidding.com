@@ -17,6 +17,6 @@ class CommentSeeder extends Seeder
     {
         DB::table('comments')->delete();
 
-        Comment::factory(800)->create();
+        Comment::factory(100)->create();
     }
 }

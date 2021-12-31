@@ -5,7 +5,11 @@ use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
+=======
+use App\Http\Controllers\Dashboard\SupportController;
+>>>>>>> 6750031f4bbd6f15b43acb82f0f23c9c6da245b5
 
 
 /*
@@ -27,6 +31,7 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit' , 'index']);
     Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
     Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
+<<<<<<< HEAD
 
 
 
@@ -46,6 +51,11 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     });
 
 
+=======
+    Route::get('support', [SupportController::class , 'index'])->name('support.index');
+    Route::post('support/{support}', [SupportController::class , 'delete'])->name('support.delete');
+    Route::post('support/reply/{support}', [SupportController::class , 'reply'])->name('support.reply');
+>>>>>>> 6750031f4bbd6f15b43acb82f0f23c9c6da245b5
 });
 
 

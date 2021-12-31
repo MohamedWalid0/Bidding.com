@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 $user->account()->save(Account::factory()->make());
             })
             ->each(function($user){
-                $user->account()->save(Wishlist::factory()->make());
+                $user->wishlist()->save(Wishlist::factory()->make());
             });
     }
 }
