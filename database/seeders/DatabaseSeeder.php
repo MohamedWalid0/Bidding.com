@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             ReplySeeder::class,
             ReactionSeeder::class,
             SupportSeeder::class ,
-            BlockSeeder::class
+            // BlockSeeder::class
 
 
 
