@@ -47,6 +47,7 @@ class FilterController extends Controller
                     ->join('sub_categories' , 'products.sub_category_id'  , 'sub_categories.id')
                     ->join('categories' , 'categories.id' , 'sub_categories.category_id')
                     ->whereIn('sub_categories.category_id' , explode( "," , $categoryIds ))
+                    ->where('deleted_at' , null)
                     ->get('products.*')
                     ;
 
@@ -66,7 +67,7 @@ class FilterController extends Controller
 
 
     public function search(Request $request){
-        
+
         if ($request->has('q')) {
             return Product::search( $request->q )->get() ;
         }

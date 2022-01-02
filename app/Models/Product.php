@@ -9,12 +9,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
     use HasFactory;
     use Searchable;
+    use SoftDeletes ;
+    protected $dates = ['deleted_at'];
+
 
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';

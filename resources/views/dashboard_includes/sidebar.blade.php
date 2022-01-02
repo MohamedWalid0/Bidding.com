@@ -102,6 +102,15 @@
                             </li>
 
                             <li class="nav-item">
+                                <a href="{{ route('block.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-ban"></i>
+                                    <p>
+                                        Blocked Users
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a href="{{ route('support.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-bell"></i>
                                     <p>

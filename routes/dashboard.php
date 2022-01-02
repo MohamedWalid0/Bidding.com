@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BlockUserController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NotificationController;
@@ -46,6 +47,19 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
 
 
     });
+
+
+    Route::group( ['prefix' => 'block'] , function () {
+
+        Route::get('/', [BlockUserController::class, 'index'])->name('block.index');
+
+        Route::post('/storeBlock/{user}', [BlockUserController::class, 'storeBlock'])->name('block.storeBlock');
+        Route::post('/storeUnBlock/{user}', [BlockUserController::class, 'storeUnBlock'])->name('block.storeUnBlock');
+
+
+    });
+
+
 
 
 
