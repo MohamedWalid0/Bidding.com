@@ -41,6 +41,8 @@ class CreateAccountsTable extends Migration
 
             $table->integer('age');
 
+            $table->enum('status', ['active', 'blocked']);
+
             $table->timestamps();
 
 

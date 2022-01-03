@@ -29,7 +29,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'role_id',
         'rate',
-        'oAuthToken'
+        'oAuthToken',
+        'status'
     ];
 
     /**
@@ -133,9 +134,22 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class );
-
     }
 
+
+
+    public function block(): HasOne
+    {
+        return $this->hasOne(BlockUser::class, 'user_id');
+    }
+
+
+
+
+    public function block_admins():HasMany
+    {
+        return $this->HasMany(BlockUser::class , 'admin_id' , 'id') ;
+    }
 
 
 
