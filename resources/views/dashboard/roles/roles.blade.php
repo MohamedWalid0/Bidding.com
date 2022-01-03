@@ -27,7 +27,7 @@
 
                             <td>
                                 <button data-target="#modal-editRole-{{ $role->id }}" data-toggle="modal"  class="btn btn-success btn-sm" >
-                                Edit  <i class="fas fa-edit"></i>
+                                Edit  <i class="fas fa-user-tag"></i>
                                 </button>
 
                                 <button data-target="#modal-deleteRole-{{ $role->id }}" data-toggle="modal"  class="btn btn-danger btn-sm" >

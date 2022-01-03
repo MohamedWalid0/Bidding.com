@@ -111,24 +111,21 @@
             </div>
 
 
-
-
-                <nav class="py-5">
-                    <div class="nav nav-tabs nav-pills nav-justified" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                        aria-controls="nav-home" aria-selected="true">
-                            Informations</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                        aria-controls="nav-profile" aria-selected="false">
-                            Descreption</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                        aria-controls="nav-contact" aria-selected="false">
-                            Comments</a>
-                    </div>
-                </nav>
+            <nav class="py-5">
+                <div class="nav nav-tabs nav-pills nav-justified" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                       aria-controls="nav-home" aria-selected="true">
+                        Informations</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                       aria-controls="nav-profile" aria-selected="false">
+                        Descreption</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                       aria-controls="nav-contact" aria-selected="false">
+                        Comments</a>
+                </div>
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
 
 
                     <div class="page" id="dashboard">
@@ -147,12 +144,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($product->propertiesValues as $value )
+                                    @foreach ($product->propertiesValues as $value )
                                         <tr class="text-center">
                                             <th scope="row"> {{$value->property->name}} </th>
                                             <td> {{$value->value}}</td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
 
                                     </tbody>
                                 </table>
@@ -248,8 +245,6 @@
 
     <script>
         let animations = []
-
-
         Livewire.on('echo:bid.{{ $product->id }},BidEvent', () => {
                 Livewire.hook('message.received', () => {
                     let things = Array.from(document.querySelectorAll('[animate-move]'))

@@ -27,12 +27,13 @@
                                 </p>
                             </td>
                             <td>
-                                {{ $user->role->name }}
+                                <span class="badge bg-primary"> <i class="fas fa-user-shield"></i> {{ $user->role->name }}</span>
+
                             </td>
 
                             <td>
                                 <button data-target="#modal-{{ $user->id }}" data-toggle="modal"  class="btn btn-warning btn-sm" >
-                                   Modify Role <i class="fas fa-edit"></i>
+                                   Modify Role <i class="fas fa-user-cog"></i>
                                 </button>
                             </td>
 

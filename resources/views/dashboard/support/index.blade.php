@@ -38,7 +38,7 @@
                             <p>
                                 {{ $support->message }}
                             </p>
-                            From : <span class="badge bg-danger">{{ $support->user->account->full_name }}</span>
+                            From : <span class="badge bg-danger"> <i class="fas fa-user"></i> {{ $support->user->account->full_name }}</span>
 
 
                         </td>
@@ -47,7 +47,7 @@
                            <div class="mt-4">
                                <button data-target="#modal-{{ $support->id }}" data-toggle="modal"
                                        class="btn btn-warning btn-sm">
-                                   <i class="fas fa-edit"></i>
+                                   <i class="fas fa-reply"></i>
                                </button>
 
                                <form
