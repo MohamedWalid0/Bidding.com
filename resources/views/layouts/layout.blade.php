@@ -24,8 +24,6 @@
 
 
 
-
-
   @yield('styles')
 
   @toastr_css
@@ -72,6 +70,8 @@
     <script  src="{{asset('js/product/countdown.js')}}"></script>
 
     <script src="{{ asset('js/home/navSearch.js') }}"></script>
+
+
 
   @yield('scripts')
 

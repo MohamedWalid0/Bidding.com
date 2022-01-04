@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Services\VerificationServices;
 use App\Models\Account;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use phpDocumentor\Reflection\Types\Null_;
 
 class UpdateProfile extends Component
 {
@@ -15,6 +18,8 @@ class UpdateProfile extends Component
     public $phone;
     public $user;
     public $account;
+    public $verification = [];
+
 
 
     public function mount()
@@ -35,7 +40,7 @@ class UpdateProfile extends Component
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $this->user->email . ',email',
-            'phone' => 'required|numeric|min:10|unique:accounts,phone,' . $this->account->phone . ',phone',
+            'phone' => 'required|numeric|digits:11|unique:accounts,phone,' . $this->account->phone . ',phone',
         ];
     }
 
@@ -55,8 +60,11 @@ class UpdateProfile extends Component
 
         $data = $this->validate();
 
+        $oldPhoneNumber = $this->account->phone ;
+
         try {
             DB::beginTransaction();
+
             $this->user->update(
                 [
                     'email' => $data['email']
@@ -70,6 +78,10 @@ class UpdateProfile extends Component
                 ]
             );
 
+            if ($data['phone'] != $oldPhoneNumber ){
+                $this->verifyNewPhoneNumber();
+            }
+
             DB::commit();
 
         } catch (\Exception $ex) {
@@ -79,5 +91,18 @@ class UpdateProfile extends Component
         // session()->flash('message', 'Profile successfully updated.');
         $this->emit('ProfileUpdated');
     }
+
+
+
+    public function verifyNewPhoneNumber(){
+
+        $this->user->update( ['phone_verified_at' => null] );
+        $verificationService = new VerificationServices();
+        $this->verification['user_id'] = $this->user->id;
+        $verificationService->setVerificationCode($this->verification);
+        return redirect()->route('verificationCodeForm') ;
+
+    }
+
 
 }
