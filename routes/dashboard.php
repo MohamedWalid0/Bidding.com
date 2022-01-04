@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Dashboard\BlockUserController;
-use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\HomeController;
-use App\Http\Controllers\Dashboard\NotificationController;
-use App\Http\Controllers\Dashboard\RoleController;
-use App\Http\Controllers\Dashboard\SubCategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\PropertyController;
+use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SupportController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\BlockUserController;
+use App\Http\Controllers\Dashboard\SubCategoryController;
+use App\Http\Controllers\Dashboard\NotificationController;
 
 
 /*
@@ -26,7 +27,9 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::get('/' ,  HomeController::class)->name('dashboard');
 
     Route::resource('category' , CategoryController::class)->except(['create' , 'edit']);
+    Route::post('category/{category}/sub_category/{sub_category}/assign', [SubCategoryController::class, 'assign'])->name('subcategory.assign');
     Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit' , 'index']);
+    Route::resource('property' , PropertyController::class)->except(['create' , 'edit']);
     Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
     Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
 

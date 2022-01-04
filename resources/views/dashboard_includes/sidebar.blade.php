@@ -119,6 +119,15 @@
                                 </a>
                             </li>
 
+                            <li class="nav-item">
+                                <a href="{{ route('support.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-project-diagram"></i>
+                                    <p>
+                                        Properties
+                                    </p>
+                                </a>
+                            </li>
+
 
                         </ul>
                     </nav>
