@@ -77,7 +77,7 @@
                                 <i class="fas fa-eye"></i>
                             </a>
                             <form
-                                action="{{ route('subcategory.unassign' , [$category , $subCategory]) }}"
+                                action="{{ route('subcategory.unassign' , [$category , $subCategory , $property]) }}"
                                 method="post"
                                 style="display: inline-block;"
                             >

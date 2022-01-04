@@ -41,7 +41,7 @@ class SubCategoryController extends Controller
         $subCategory->properties()->syncWithoutDetaching([
             $subCategory->id => ['property_id' => $request->property_id ]
         ]);
-        
+
         toastr()->success('Property added successfully');
         return back();
     }
@@ -86,6 +86,18 @@ class SubCategoryController extends Controller
 
 
 
+    }
+
+    public function unassign(Category $category, SubCategory $subCategory ,  Property $property): RedirectResponse
+    {
+        try {
+            $subCategory->properties()->detach($property->id);
+            toastr()->success("Property deleted from $subCategory->name  successfully");
+            return back();
+        } catch (\Throwable $th) {
+            toastr()->error('something error');
+            return back();
+        }
     }
 
 

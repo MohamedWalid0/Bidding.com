@@ -28,6 +28,7 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
 
     Route::resource('category' , CategoryController::class)->except(['create' , 'edit']);
     Route::post('category/{category}/sub_category/{sub_category}/assign', [SubCategoryController::class, 'assign'])->name('subcategory.assign');
+    Route::delete('category/{category}/sub_category/{sub_category}/unassign/{property}', [SubCategoryController::class, 'unassign'])->name('subcategory.unassign');
     Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit' , 'index']);
     Route::resource('property' , PropertyController::class)->except(['create' , 'edit']);
     Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
