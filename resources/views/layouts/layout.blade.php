@@ -7,11 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <link href="{{asset('front/css/css.css')}}?family=Roboto:300,400,500,600,700,900" rel="stylesheet">
-    <link href="{{asset('front/css/css-1.css')}}?family=Oswald:300,400,500,600,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('front/themes/vinova_savemart/assets/cache/theme-78026624.css')}}"
-        type="text/css" >
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
@@ -24,18 +19,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/home/animate.css') }}">
 
-    <script type="text/javascript">
-
-        var prestashop = {
-            "static_token": "28add935523ef131c8432825597b9928",
-            "token": "cad5fe8236d849a3b4023c4e5ca6a313"
-        };
-    </script>
-
-    <script type="text/javascript">
-        var baseDir = "/savemart/";
-        var static_token = "28add935523ef131c8432825597b9928";
-    </script>
 
 
 
@@ -85,16 +68,10 @@
     <script src="{{ asset('js/home/owl.carousel.min.js') }}"></script>
 
     <script src="{{ asset('js/home/main.js') }}"></script>
+
     <script  src="{{asset('js/product/countdown.js')}}"></script>
 
-    <script type="text/javascript"
-        src="{{asset('front/themes/vinova_savemart/assets/cache/navSearch.js')}}">
-    </script>
-
-    <script type="text/javascript"
-        src="{{asset('front/themes/vinova_savemart/assets/cache/bottom-3c96ed23.js')}}">
-    </script>
-
+    <script src="{{ asset('js/home/navSearch.js') }}"></script>
 
   @yield('scripts')
 
