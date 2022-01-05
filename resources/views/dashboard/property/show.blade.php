@@ -72,7 +72,7 @@
                                 <i class="fas fa-edit"></i>
                             </button>
                             <form
-                                action="{{ route('category.sub_category.destroy' , [$property , $value]) }}"
+                                action="{{ route('property.property_value.destroy' , [$property , $value]) }}"
                                 method="post"
                                 style="display: inline-block;"
                             >
@@ -86,7 +86,7 @@
 
                         </td>
                     </tr>
-                    {{-- @include('dashboard.subCategory.modals._subCategoryModal' , $subCategory) --}}
+                    @include('dashboard.property.modals._propertyValueModal')
                 @empty
                     <tr class="text-center">
                         <td colspan="3">

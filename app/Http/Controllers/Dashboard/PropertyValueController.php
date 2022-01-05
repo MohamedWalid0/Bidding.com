@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 
+use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Models\PropertyValue;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropertyValueRequest;
-use App\Models\Property;
-use App\Models\PropertyValue;
+use App\Http\Requests\UpdatePropertyValueRequest;
 
 class PropertyValueController extends Controller
 {
@@ -20,32 +21,29 @@ class PropertyValueController extends Controller
     }
 
 
-    public function update(UpdateSubCategoryRequest $request,Category $category,SubCategory $subCategory)
+    public function update(UpdatePropertyValueRequest $request, Property $property , PropertyValue $property_value )
     {
-        $subCategory->update($request->validated());
-        toastr()->success('sub category updated successfully');
+        $property_value->update($request->validated());
+        toastr()->success('Property value updated successfully');
         return back();
     }
 
-    public function destroy(Category $category, SubCategory $subCategory): RedirectResponse
+    public function destroy(Property $property , PropertyValue $property_value)
     {
-
         try {
 
-            if ($subCategory->products()->exists()){
-                toastr()->error('can not delete this sub category because some products related to !');
+            if ($property_value->products()->exists()){
+                toastr()->error("Can't delete this Value because some products related to it!");
                 return back();
             }
 
-            $subCategory->delete();
-            toastr()->success('sub category deleted successfully');
+            $property_value->delete();
+            toastr()->success('Value deleted successfully');
             return back();
 
         } catch (\Throwable $th) {
-
             toastr()->error('something error');
             return back();
-
         }
     }
 }
