@@ -127,6 +127,24 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('property.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-flag"></i>
+                                    <p>
+                                        Users Reports
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('report_product.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-flag"></i>
+                                    <p>
+                                        Products Reports
+                                    </p>
+                                </a>
+                            </li>
+
 
 
                         </ul>

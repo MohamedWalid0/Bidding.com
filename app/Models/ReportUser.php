@@ -10,5 +10,5 @@ class ReportUser extends Model
     use HasFactory;
     protected $table = 'report_users' ;
     protected $guarded = [] ;
-
+    
 }

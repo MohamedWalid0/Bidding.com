@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\BlockUserController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\PropertyValueController;
+use App\Http\Controllers\Dashboard\ReportProductController;
 
 
 /*
@@ -35,6 +36,8 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::resource('property.property_value' , PropertyValueController::class)->except(['create' , 'edit' , 'index']);
     Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
     Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
+
+    Route::resource('report_product' , ReportProductController::class)->only(['index' , 'show']);
 
 
 

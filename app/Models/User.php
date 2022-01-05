@@ -145,13 +145,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(BlockUser::class, 'user_id');
     }
 
-
-
-
     public function block_admins():HasMany
     {
         return $this->HasMany(BlockUser::class , 'admin_id' , 'id') ;
     }
+
+    public function reports_product():HasMany
+    {
+        return $this->HasMany(ReportProduct::class) ;
+    }
+
 
 
 
