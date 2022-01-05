@@ -30,7 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'rate',
         'oAuthToken',
-        'status'
+        'status' ,
+        'phone_verified_at'
     ];
 
     /**
@@ -50,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime'
     ];
 
     public static function productInWishlist($productId)

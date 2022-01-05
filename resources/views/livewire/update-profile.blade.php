@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <label>Phone</label>
-            <input type="number" class="form-control" wire:model.lazy="phone" name="phone"
+            <input type="text" class="form-control" wire:model.lazy="phone" name="phone"
                    value="{{old('phone') ?? $phone}}">
             @error('phone')
             <small class="form-text text-danger">{{$message }}</small>
