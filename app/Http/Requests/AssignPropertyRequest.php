@@ -15,15 +15,14 @@ class AssignPropertyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     public function messages() {
-
-    return [
-        'title.required' => 'A title is required',
-    ];
-}
+        return [
+            'property_id.unique' => 'The property you want add already exist',
+        ];
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -33,7 +32,14 @@ class AssignPropertyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'property_id'=>  [
+                'required',
+                Rule::unique('properties_sub_categories')
+                ->where(function ($query) {
+                    return $query->where('sub_category_id', $this->sub_category->id)
+                    ->where('property_id', $this->property_id);
+                }),
+            ]
         ];
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\AssignPropertyRequest;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
 
@@ -22,24 +23,11 @@ class SubCategoryController extends Controller
         return view('dashboard.subCategory.show' , compact('subCategory' , 'properties' , 'category') );
     }
     // assign property to subcategory
-    public function assign (Request $request , Category $category ,  SubCategory $subCategory){
-
-        // validation
-        $messages = [
-            'unique' => 'The property you want add already exist',
-        ];
-        $request->validate(['property_id'=>  [
-            'required',
-            Rule::unique('properties_sub_categories')
-            ->where(function ($query) use($subCategory,$request) {
-                return $query->where('sub_category_id', $subCategory->id)
-                ->where('property_id', $request->property_id);
-            }),
-        ] ] , $messages);
+    public function assign (AssignPropertyRequest $request , Category $category ,  SubCategory $subCategory){
 
         // sync to db
         $subCategory->properties()->syncWithoutDetaching([
-            $subCategory->id => ['property_id' => $request->property_id ]
+            $request->validated()
         ]);
 
         toastr()->success('Property added successfully');
@@ -81,11 +69,6 @@ class SubCategoryController extends Controller
             return back();
 
         }
-
-
-
-
-
     }
 
     public function unassign(Category $category, SubCategory $subCategory ,  Property $property): RedirectResponse
