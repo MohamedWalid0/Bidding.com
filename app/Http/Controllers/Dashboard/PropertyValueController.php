@@ -7,8 +7,9 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Models\PropertyValue;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePropertyValueRequest;
-use App\Http\Requests\UpdatePropertyValueRequest;
+use App\Http\Requests\PropertyValues\StorePropertyValueRequest;
+use App\Http\Requests\PropertyValues\UpdatePropertyValueRequest;
+
 
 class PropertyValueController extends Controller
 {

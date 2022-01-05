@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\PropertyValues;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePropertyValueRequest extends FormRequest
+class StorePropertyValueRequest extends FormRequest
 {
-    protected $errorBag = 'updatePropertyValue';
-
+    protected $errorBag = 'storePropertyValue';
     /**
      * Determine if the user is authorized to make this request.
      *
