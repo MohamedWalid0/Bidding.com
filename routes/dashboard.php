@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\PropertyController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SupportController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\PropertyController;
 use App\Http\Controllers\Dashboard\BlockUserController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
 use App\Http\Controllers\Dashboard\NotificationController;
+use App\Http\Controllers\Dashboard\PropertyValueController;
 
 
 /*
@@ -31,6 +32,7 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::delete('category/{category}/sub_category/{sub_category}/unassign/{property}', [SubCategoryController::class, 'unassign'])->name('subcategory.unassign');
     Route::resource('category.sub_category' , SubCategoryController::class)->except(['create' , 'edit' , 'index']);
     Route::resource('property' , PropertyController::class)->except(['create' , 'edit']);
+    Route::resource('property.property_value' , PropertyValueController::class)->except(['create' , 'edit' , 'index']);
     Route::get('notification', [NotificationController::class , 'index'])->name('notification.index');
     Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
 
