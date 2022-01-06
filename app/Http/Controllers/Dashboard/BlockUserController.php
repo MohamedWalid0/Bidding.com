@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\BlockUser;
 use App\Models\User;
-use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -13,27 +12,29 @@ class BlockUserController extends Controller
 {
 
 
-    public function index(){
+    public function index()
+    {
 
-        $users = User::with(['account' , 'block.user_admin.account' , 'block_admins'])->get() ;
-        $userBlocks = BlockUser::with(['user'])->pluck('user_id' )->toArray() ;
+        $users = User::with(['account:user_id,full_name', 'block.user_admin.account:user_id,full_name', 'block_admins:admin_id'])->select(['id'])->get();
+        $userBlocks = BlockUser::with(['user:id'])->pluck('user_id')->toArray();
 
-        return view('dashboard.block.index' , compact('users' , 'userBlocks' )) ;
+        return view('dashboard.block.index', compact('users', 'userBlocks'));
 
 
     }
 
 
-    public function storeBlock(User $user){
+    public function storeBlock(User $user)
+    {
 
         try {
 
-            if( $user->id == Auth::user()->id ) {
+            if ($user->id == Auth::user()->id) {
                 toastr()->error('you can not block yourself !');
                 return back();
             }
 
-            if( $user->block()->exists() ) {
+            if ($user->block()->exists()) {
                 toastr()->error('This user already blocked !');
                 return back();
             }
@@ -42,13 +43,13 @@ class BlockUserController extends Controller
             DB::beginTransaction();
 
             $user->block()->create([
-                'user_id' => $user->id ,
+                'user_id' => $user->id,
                 'admin_id' => Auth::user()->id
             ]);
 
             $user->products()->delete();
 
-            $user->account()->update(['status' => 'blocked']) ;
+            $user->account()->update(['status' => 'blocked']);
 
             DB::commit();
 
@@ -66,30 +67,27 @@ class BlockUserController extends Controller
     }
 
 
-
-
-
-
-    public function storeUnBlock(User $user){
+    public function storeUnBlock(User $user)
+    {
 
         try {
 
 
-            if( $user->id == Auth::user()->id ) {
+            if ($user->id == Auth::user()->id) {
                 toastr()->error('you can not block yourself !');
                 return back();
             }
 
-            if( ! $user->block()->exists() ) {
+            if (!$user->block()->exists()) {
                 toastr()->error('This user already not blocked !');
                 return back();
             }
 
             DB::beginTransaction();
 
-            $user->block()->delete() ;
+            $user->block()->delete();
 
-            $user->account()->update(['status' => 'active']) ;
+            $user->account()->update(['status' => 'active']);
 
             $user->products()->restore();
 
