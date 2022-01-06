@@ -128,6 +128,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('product.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-flag"></i>
+                                    <p>
+                                        Products
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('report_user.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-flag"></i>
                                     <p>
