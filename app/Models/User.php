@@ -155,8 +155,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->HasMany(ReportProduct::class) ;
     }
 
-
-
+    public function reports_user():HasMany
+    {
+        return $this->HasMany(ReportUser::class) ;
+    }
 
 
     public function avatarUrl(): string

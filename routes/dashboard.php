@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\SupportController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PropertyController;
 use App\Http\Controllers\Dashboard\BlockUserController;
+use App\Http\Controllers\Dashboard\ReportUserController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\PropertyValueController;
@@ -38,9 +39,7 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
     Route::post('notification/store', [NotificationController::class , 'store'])->name('notification.store');
 
     Route::resource('report_product' , ReportProductController::class)->only(['index' , 'show']);
-
-
-
+    Route::resource('report_user' , ReportUserController::class)->only(['index' , 'show']);
 
 
     Route::group( ['prefix' => 'roles'] , function () {
