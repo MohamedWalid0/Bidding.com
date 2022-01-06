@@ -30,7 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'rate',
         'oAuthToken',
-        'status'
+        'status' ,
+        'phone_verified_at'
     ];
 
     /**
@@ -50,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime'
     ];
 
     public static function productInWishlist($productId)
@@ -143,15 +145,20 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(BlockUser::class, 'user_id');
     }
 
-
-
-
     public function block_admins():HasMany
     {
         return $this->HasMany(BlockUser::class , 'admin_id' , 'id') ;
     }
 
+    public function reports_product():HasMany
+    {
+        return $this->HasMany(ReportProduct::class) ;
+    }
 
+    public function reports_user():HasMany
+    {
+        return $this->HasMany(ReportUser::class) ;
+    }
 
 
     public function avatarUrl(): string

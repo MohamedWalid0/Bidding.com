@@ -100,6 +100,11 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function reports():HasMany
+    {
+        return $this->HasMany(ReportProduct::class) ;
+    }
+
     // Scopes
     public function scopeLatestProducts(Builder $query, int $take): Builder
     {

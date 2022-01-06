@@ -10,21 +10,21 @@
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title"> Add New Sub Category </h3>
+            <h3 class="card-title"> Add New Value to <span class="text-green"> {{ $property->name }} </span> </h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('category.sub_category.store' , $category) }}" method="post">
+        <form action="{{ route('property.property_value.store' , $property) }}" method="post">
             @csrf
             @method('POST')
             <div class="card-body">
                 <div class="form-group">
                     <label for="subCategory">Name</label>
-                    <input type="text" class="form-control" id="subCategory" name="name" value="{{ old('name') }}"
+                    <input type="text" class="form-control" id="subCategory" name="value" value="{{ old('name') }}"
                            placeholder="Enter name">
                 </div>
-                @if ($errors->storeSubcategory->any())
-                    @foreach ($errors->storeSubcategory->all() as $error)
+                @if ($errors->storePropertyValue->any())
+                    @foreach ($errors->storePropertyValue->all() as $error)
                         <div class="text-danger">{{$error}}</div>
                     @endforeach
                 @endif
@@ -43,7 +43,7 @@
 
     <div class="card">
         <div class="card-header d-flex justify-content-between ">
-            <h3 class="card-title">All Sub Categories For : <span class="text-green"> {{ $category->name }} </span></h3>
+            <h3 class="card-title">All Values For : <span class="text-green"> {{ $property->name }} </span></h3>
             {{--            <a data-target="#modal-create-category" data-toggle="modal" class="btn btn-sm btn-primary ml-auto" > Create New Category </a>--}}
         </div>
         <!-- /.card-header -->
@@ -61,22 +61,18 @@
                 </thead>
                 <tbody>
 
-                @forelse ($category->subCategories as $subCategory)
+                @forelse ($property->values as $value)
                     <tr class="text-center">
 
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $subCategory->name }}</td>
+                        <td>{{ $value->value }}</td>
                         <td>
-                            <button data-target="#modal-{{ $subCategory->id }}" data-toggle="modal"
+                            <button data-target="#modal-{{ $value->id }}" data-toggle="modal"
                                     class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <a class="btn btn-success btn-sm"
-                            href="{{ route('category.sub_category.show' , [$category , $subCategory]) }}">
-                                <i class="fas fa-eye"></i>
-                            </a>
                             <form
-                                action="{{ route('category.sub_category.destroy' , [$category , $subCategory]) }}"
+                                action="{{ route('property.property_value.destroy' , [$property , $value]) }}"
                                 method="post"
                                 style="display: inline-block;"
                             >
@@ -90,12 +86,12 @@
 
                         </td>
                     </tr>
-                    @include('dashboard.subCategory.modals._subCategoryModal' , $subCategory)
+                    @include('dashboard.property.modals._propertyValueModal')
                 @empty
                     <tr class="text-center">
                         <td colspan="3">
                             <h5>
-                                <i class="far fa-frown"></i>   Sorry There No Subcategory For This Category
+                                <i class="far fa-frown"></i>   Sorry There No Values For This Property
                             </h5>
                         </td>
                     </tr>
