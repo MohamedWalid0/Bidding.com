@@ -13,7 +13,7 @@ class ReportUserController extends Controller
 
     public function index(): view
     {
-        $users = User::has('reports_user')->withCount('reports_user')
+        $users = User::has('reports_user')->with('account')->withCount('reports_user')
         ->orderByDesc('reports_user_count')->get();
         return view('dashboard.report.user.index' , compact( 'users'));
     }
