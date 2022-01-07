@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -20,10 +19,11 @@ class ProductController extends Controller
     public function update(UpdateProductStatusRequest $request , Product $product): RedirectResponse
     {
         $product->update($request->validated());
+        if ($request->status === Product::INACTIVE) {
+            $product->stopped_product()->create();
+        }
         toastr()->success('Product status updated successfuly');
         return back();
     }
-
-
 
 }

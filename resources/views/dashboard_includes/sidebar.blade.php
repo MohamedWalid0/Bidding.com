@@ -129,9 +129,17 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('product.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-flag"></i>
+                                    <i class="nav-icon fas fa-clone"></i>
                                     <p>
                                         Products
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('stopped_product.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-clone"></i>
+                                    <p>
+                                        Stopped Products
                                     </p>
                                 </a>
                             </li>
