@@ -111,16 +111,40 @@
             </div>
 
 
+
+
+
+            <button class="btn btn-primary p-0 pt-2">
+                <!-- Button trigger modal -->
+                <a type="button"  href="{{ route('products.generate',$product) }}" >
+                    <div class="profile-tabs container-fluid">
+                        <p class="text-light">
+                            <i class="fas fa-flag text-danger"></i>
+                            <span class="ml-2">QR Code ?</span>
+                        </p>
+                    </div>
+                </a>
+            </button>
+
+
+
+
+
+
+
+
+
+
             <nav class="py-5">
                 <div class="nav nav-tabs nav-pills nav-justified" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">
+                    aria-controls="nav-home" aria-selected="true">
                         Informations</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">
+                    aria-controls="nav-profile" aria-selected="false">
                         Descreption</a>
                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                       aria-controls="nav-contact" aria-selected="false">
+                    aria-controls="nav-contact" aria-selected="false">
                         Comments</a>
                 </div>
             </nav>

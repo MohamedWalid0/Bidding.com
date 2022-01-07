@@ -31,7 +31,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'rate',
         'oAuthToken',
         'status' ,
-        'phone_verified_at'
+        'phone_verified_at',
+        'email_verified_at'
     ];
 
     /**

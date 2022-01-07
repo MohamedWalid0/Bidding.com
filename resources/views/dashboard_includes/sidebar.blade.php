@@ -117,6 +117,38 @@
                                     </a>
                                 </li>
                             @endcan
+                            <li class="nav-item">
+                                <a href="{{ route('property.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-project-diagram"></i>
+                                    <p>
+                                        Properties
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('product.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-clone"></i>
+                                    <p>
+                                        Products
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('stopped_product.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-clone"></i>
+                                    <p>
+                                        Stopped Products
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('report_user.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-flag"></i>
+                                    <p>
+                                        Users Reports
+                                    </p>
+                                </a>
+                            </li>
 
 
 

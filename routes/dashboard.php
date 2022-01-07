@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SupportController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PropertyController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Dashboard\SubCategoryController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\PropertyValueController;
 use App\Http\Controllers\Dashboard\ReportProductController;
+use App\Http\Controllers\Dashboard\StoppedProductController;
 
 
 /*
@@ -40,6 +42,9 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => 'auth'], function () {
 
     Route::resource('report_product' , ReportProductController::class)->only(['index' , 'show']);
     Route::resource('report_user' , ReportUserController::class)->only(['index' , 'show']);
+    Route::resource('product' , ProductController::class)->only(['index' , 'update']);
+    Route::resource('stopped_product' , StoppedProductController::class)->only(['index' , 'update']);
+
 
 
     Route::group( ['prefix' => 'roles'] , function () {

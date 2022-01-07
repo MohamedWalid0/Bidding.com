@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Http\Services\VerificationServices;
 use App\Models\Account;
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -61,6 +62,7 @@ class UpdateProfile extends Component
         $data = $this->validate();
 
         $oldPhoneNumber = $this->account->phone ;
+        $oldEmail = $this->user->email ;
 
         try {
             DB::beginTransaction();
@@ -78,11 +80,19 @@ class UpdateProfile extends Component
                 ]
             );
 
-            if ($data['phone'] != $oldPhoneNumber ){
+
+            if ( $data['email'] != $oldEmail ){
+                $this->verifyNewEmail();
+            }
+
+            if ( $data['phone'] != $oldPhoneNumber ){
                 $this->verifyNewPhoneNumber();
             }
 
+
+
             DB::commit();
+            return redirect()->route('home') ;
 
         } catch (\Exception $ex) {
             DB::rollback();
@@ -97,12 +107,24 @@ class UpdateProfile extends Component
     public function verifyNewPhoneNumber(){
 
         $this->user->update( ['phone_verified_at' => null] );
+
         $verificationService = new VerificationServices();
         $this->verification['user_id'] = $this->user->id;
-        $verificationService->setVerificationCode($this->verification);
-        return redirect()->route('verificationCodeForm') ;
+        $verification_data = $verificationService->setVerificationCode($this->verification);
+        $verificationService->getSMSVerifyMessageByAppName($verification_data->code);
 
     }
+
+
+    public function verifyNewEmail(){
+
+        $this->user->update( ['email_verified_at' => null] );
+
+        $this->user->sendEmailVerificationNotification();
+
+
+    }
+
 
 
 }
