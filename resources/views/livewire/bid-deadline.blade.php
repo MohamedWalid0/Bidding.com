@@ -4,6 +4,10 @@
     </h3>
     <div class="product--underline"></div>
     <p class="product-header--subtitle py-3">Item Condition: New</p>
+    @if ($isStopped)
+        <h3 class="text-center" style="font-weight: 600; font-size:22px">This Product Stopped by Admin at
+        {{$product->stopped_product->created_at->toDayDateTimeString()}}</h3>
+    @else
     <p class="product-header--subtitle py-1">Time left:</p>
     <div class="countdown">
         <div class="timer-wrapper">
@@ -27,6 +31,7 @@
             </table>
             </div>
     </div>
+    @endif
     <p class="product-header--subtitle py-3">
         Auction ends: {{$product->deadline->toDayDateTimeString()}}
     </p>

@@ -9,7 +9,7 @@ class BidDeadline extends Component
 {
     public Product $product;
     public $currentBid;
-
+    public $isStopped = false;
     protected $listeners = ['BidUpdated' => 'render'];
 
     public function mount()
@@ -17,6 +17,9 @@ class BidDeadline extends Component
         if ($this->product->last_bid)
         $this->currentBid = $this->product->last_bid->bid->cost;
         else $this->currentBid = $this->product->start_price;
+        if ($this->product->stopped_product) {
+            $this->isStopped = true;
+        }
     }
 
     public function render()

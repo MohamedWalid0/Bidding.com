@@ -14,7 +14,8 @@ class Property extends Model
 
     public function subCategories(): BelongsToMany
     {
-        return $this->belongsToMany(SubCategory::class, 'properties_sub_categories');
+        return $this->belongsToMany(SubCategory::class, 'properties_sub_categories')
+        ->withTimestamps();
     }
 
 
