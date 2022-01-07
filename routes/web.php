@@ -88,10 +88,13 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
 });
 
 
-Route::group(['middleware' => 'auth', 'verified'], function () {
+Route::group(['middleware' =>[ 'auth', 'verified']], function () {
     // must be authenticated user
-    Route::get('phone/verify', [VerificationCodeController::class, 'getVerifyPage'])->name('verificationCodeForm');
-    Route::post('phone/verifyUser/', [VerificationCodeController::class, 'verify'])->name('verifyUserPhone');
+    Route::group( [ 'middleware' => ['RedirectIfPhoneVerificated']  ] , function (){
+        Route::get('phone/verify', [VerificationCodeController::class, 'getVerifyPage'])->name('verificationCodeForm');
+        Route::post('phone/verifyUser/', [VerificationCodeController::class, 'verify'])->name('verifyUserPhone');
+    });
+
 
     // wishlist
     Route::group(['prefix' => 'wishlist'], function () {

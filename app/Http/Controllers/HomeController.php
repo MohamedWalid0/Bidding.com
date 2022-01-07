@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(auth()->user());
 
         $mostOfViewProducts = Product::with('user_bids:id')->mostOfViewProducts(15)->get();
         $latest_products = Product::with('user_bids:id')->latestProducts(15)->get();

@@ -18,7 +18,7 @@ class VerifyCode
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard()->check()) {  // if he already registered and have account
+        if (Auth::guard()->check()) {
 
             if(Auth::user() -> phone_verified_at == null){
 
@@ -27,6 +27,7 @@ class VerifyCode
             }
 
         }
+
         return $next($request);
     }
 
