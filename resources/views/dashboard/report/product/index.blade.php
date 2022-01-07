@@ -34,9 +34,11 @@
                         <td >
                             {{$product->reports_count}}
                         </td>
-                        <td> <a class="btn btn-success btn-sm" href="{{ route('report_product.show' , $product) }}">
-                            <i class="fas fa-eye"></i>
-                        </a></td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="{{ route('report_product.show' , $product) }}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
                     </tr>
                     {{-- @include('dashboard.category.modals._categoryModal' , $category) --}}
                 @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Properties;
 
+use App\Models\Property;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePropertyRequest extends FormRequest
@@ -15,7 +16,7 @@ class StorePropertyRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create' , Property::class);
     }
 
     /**

@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCategoryRequest extends FormRequest
 {
     protected $errorBag = 'storeCategory';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +16,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', Category::class);
     }
 
     /**
@@ -25,7 +27,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [ 'required' , 'string' , 'unique:sub_categories,name' ]
+            'name' => ['required', 'string', 'unique:sub_categories,name']
         ];
     }
 }

@@ -32,9 +32,11 @@
                             </td>
 
                             <td>
-                                <button data-target="#modal-{{ $user->id }}" data-toggle="modal"  class="btn btn-warning btn-sm" >
-                                   Modify Role <i class="fas fa-user-cog"></i>
-                                </button>
+                                @can('update' , \App\Models\Role::class)
+                                    <button data-target="#modal-{{ $user->id }}" data-toggle="modal"  class="btn btn-warning btn-sm" >
+                                        Modify Role <i class="fas fa-user-cog"></i>
+                                    </button>
+                                @endcan
                             </td>
 
                         </tr>

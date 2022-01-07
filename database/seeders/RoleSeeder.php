@@ -26,9 +26,7 @@ class RoleSeeder extends Seeder
         ];
 
         foreach ($roles as $role) {
-
-            Role::create(['name' => $role]);
-
+            Role::factory()->create(['name' => $role]);
         }
 
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Models\SubCategory;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSubCategoryRequest extends FormRequest
 {
     protected $errorBag = 'UpdateSubcategory';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +16,7 @@ class UpdateSubCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('update', SubCategory::class);
     }
 
     /**
@@ -25,7 +27,7 @@ class UpdateSubCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [ 'required' , 'string' , 'unique:sub_categories,name' ]
+            'name' => ['required', 'string', 'unique:sub_categories,name']
         ];
     }
 }

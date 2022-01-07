@@ -31,27 +31,38 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
                         <td >
-                            <button data-target="#modal-{{ $category->id }}" data-toggle="modal"  class="btn btn-warning btn-sm" >
-                                <i class="fas fa-edit"></i>
-                            </button>
 
-                            <a class="btn btn-success btn-sm" href="{{ route('category.show' , $category) }}">
-                                <i class="fas fa-eye"></i>
-                            </a>
-
-
-                            <form
-                                action="{{ route('category.destroy' , $category) }}"
-                                method="post"
-                                style="display: inline-block;"
-                            >
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('{{ __('Are you sure?') }}')">
-                                    <i class="fas fa-trash-alt"></i>
+                            @can('viewAny' , \App\Models\Category::class)
+                                <button data-target="#modal-{{ $category->id }}" data-toggle="modal"  class="btn btn-warning btn-sm" >
+                                    <i class="fas fa-edit"></i>
                                 </button>
-                            </form>
+                            @endcan
+
+                            @can('view' , \App\Models\Category::class)
+                                    <a class="btn btn-success btn-sm" href="{{ route('category.show' , $category) }}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+
+                                @endcan
+
+                            @can('delete' , \App\Models\Category::class)
+                                    <form
+                                        action="{{ route('category.destroy' , $category) }}"
+                                        method="post"
+                                        style="display: inline-block;"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('{{ __('Are you sure?') }}')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                            @endcan
+
+
+
+
 
                         </td>
                     </tr>

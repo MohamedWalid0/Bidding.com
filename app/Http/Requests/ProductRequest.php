@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
@@ -13,7 +15,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', Product::class);
     }
 
     /**

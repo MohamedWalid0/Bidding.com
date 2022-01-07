@@ -8,25 +8,24 @@ use App\Http\Requests\Roles\UpdateRoleRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Else_;
 
 class RoleController extends Controller
 {
 
 
-    public function index(){
+    public function index()
+    {
 
-        $users = User::with(['role','account'])->get() ;
-        $roles = Role::all() ;
+        $this->authorize('viewAny' , Role::class);
+        $users = User::select(['id' , 'role_id'])-> with(['role:id,name', 'account:user_id,full_name'])->get();
+        $roles = Role::select(['name', 'abilities' , 'id'])-> withCount('users')->get();
 
-        return view('dashboard.roles.index' , compact('users' , 'roles')) ;
-
-
+        return view('dashboard.roles.index', compact('users', 'roles'));
     }
 
 
-
-    public function storeRole(StoreRoleRequest $request){
+    public function storeRole(StoreRoleRequest $request)
+    {
 
         try {
 
@@ -46,14 +45,14 @@ class RoleController extends Controller
     }
 
 
-
-    public function updateUserRole(Request $request){
+    public function updateUserRole(Request $request)
+    {
 
 
         try {
 
-            if ($request->current_role_id !=  $request->role_id ){
-                User::where('id' , $request->user_id)->update(['role_id' => $request->role_id]);
+            if ($request->current_role_id != $request->role_id) {
+                User::where('id', $request->user_id)->update(['role_id' => $request->role_id]);
                 toastr()->success('Data has been saved successfully!');
                 return back();
             }
@@ -68,12 +67,12 @@ class RoleController extends Controller
     }
 
 
+    public function deleteRole(Role $role)
+    {
 
-    public function deleteRole(Role $role){
+        try {
 
-        try{
-
-            if ($role->users()->exists()){
+            if ($role->users()->exists()) {
                 toastr()->error('can not delete this role because some users related to !');
                 return back();
             }
@@ -92,13 +91,13 @@ class RoleController extends Controller
     }
 
 
-
-    public function updateRole(UpdateRoleRequest $request){
+    public function updateRole(UpdateRoleRequest $request)
+    {
 
 
         try {
 
-            Role::where('id' , $request->role_id)->update(['name' => $request->role_name]);
+            Role::where('id', $request->role_id)->update($request->validated());
 
             toastr()->success('Data has been saved successfully!');
             return back();
@@ -111,14 +110,7 @@ class RoleController extends Controller
         }
 
 
-
     }
-
-
-
-
-
-
 
 
 }

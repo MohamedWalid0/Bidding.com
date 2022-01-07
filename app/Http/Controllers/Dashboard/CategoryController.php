@@ -16,6 +16,7 @@ class CategoryController extends Controller
 
     public function index(): view
     {
+        $this->authorize('view-any' , Category::class);
         return view('dashboard.category.index');
     }
 
@@ -32,6 +33,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+        $this->authorize('viewAny' , Category::class);
         $category->load('subCategories');
         return view('dashboard.subCategory.index' , compact('category') );
     }
@@ -60,7 +62,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-
+        $this->authorize('delete' , $category);
         try {
 
             if ( $category->subCategories()->exists() ){

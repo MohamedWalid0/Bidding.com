@@ -74,78 +74,95 @@
                             </li>
 
 
-                            <li class="nav-item">
-                                <a href="{{ route('category.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Categories
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('notification.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-bell"></i>
-                                    <p>
-                                        Notifications
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('roles.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-pen"></i>
-                                    <p>
-                                        Roles
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('block.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-ban"></i>
-                                    <p>
-                                        Blocked Users
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('support.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-bell"></i>
-                                    <p>
-                                        Supports
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('property.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-project-diagram"></i>
-                                    <p>
-                                        Properties
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('report_user.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-flag"></i>
-                                    <p>
-                                        Users Reports
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('report_product.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-flag"></i>
-                                    <p>
-                                        Products Reports
-                                    </p>
-                                </a>
-                            </li>
+                            @can('viewAny' , \App\Models\Category::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('category.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Categories
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
 
 
+                                <li class="nav-item">
+                                    <a href="{{ route('notification.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-bell"></i>
+                                        <p>
+                                            Notifications
+                                        </p>
+                                    </a>
+                                </li>
+
+
+                            @can('viewAny' , \App\Models\Role::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('roles.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-pen"></i>
+                                        <p>
+                                            Roles
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('viewAny' , \App\Models\BlockUser::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('block.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-ban"></i>
+                                        <p>
+                                            Blocked Users
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+
+
+                            @can('viewAny' , \App\Models\Support::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('support.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-bell"></i>
+                                        <p>
+                                            Supports
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('viewAny' , \App\Models\Property::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('property.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-project-diagram"></i>
+                                        <p>
+                                            Properties
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('viewAny' ,\App\Models\ReportUser::class )
+                                <li class="nav-item">
+                                    <a href="{{ route('report_user.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-flag"></i>
+                                        <p>
+                                            Users Reports
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('viewAny' , \App\Models\ReportProduct::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('report_product.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-flag"></i>
+                                        <p>
+                                            Products Reports
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
 
                         </ul>
                     </nav>

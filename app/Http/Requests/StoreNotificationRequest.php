@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
 
-class StoreNotificationReques extends FormRequest
+class StoreNotificationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +16,7 @@ class StoreNotificationReques extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('send-notifications');
     }
 
     /**

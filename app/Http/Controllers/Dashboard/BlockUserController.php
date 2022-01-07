@@ -14,7 +14,7 @@ class BlockUserController extends Controller
 
     public function index()
     {
-
+        $this->authorize('viewAny' , BlockUser::class);
         $users = User::with(['account:user_id,full_name', 'block.user_admin.account:user_id,full_name', 'block_admins:admin_id'])->select(['id'])->get();
         $userBlocks = BlockUser::with(['user:id'])->pluck('user_id')->toArray();
 
@@ -26,7 +26,7 @@ class BlockUserController extends Controller
 
     public function storeBlock(User $user)
     {
-
+        $this->authorize('create' , BlockUser::class);
         try {
 
             if ($user->id == Auth::user()->id) {
@@ -69,7 +69,7 @@ class BlockUserController extends Controller
 
     public function storeUnBlock(User $user)
     {
-
+        $this->authorize('update' , BlockUser::class);
         try {
 
 

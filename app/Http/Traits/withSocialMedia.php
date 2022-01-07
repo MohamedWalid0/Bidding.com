@@ -4,6 +4,8 @@ namespace App\Http\Traits;
 
 use App\Models\User;
 use Auth;
+
+
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 

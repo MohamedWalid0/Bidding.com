@@ -176,6 +176,14 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
+    public function hasAbility($ability): bool
+    {
+        if (in_array($ability , $this->role->abilities , true)){
+            return true;
+        }
+        return false;
+    }
+
 
 
 }

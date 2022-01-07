@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\SubCategory;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSubCategoryRequest extends FormRequest
@@ -14,7 +15,7 @@ class StoreSubCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', SubCategory::class);
     }
 
     /**

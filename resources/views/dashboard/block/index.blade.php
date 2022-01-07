@@ -32,63 +32,70 @@
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                    <tr>
-                        <th>user name</th>
-                        <th>actions</th>
-                        <th>blocked by</th>
-                        <th>block date</th>
+                <tr>
+                    <th>user name</th>
+                    <th>actions</th>
+                    <th>blocked by</th>
+                    <th>block date</th>
 
-                    </tr>
+                </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ( $users as $user )
+                @foreach ( $users as $user )
 
-                        <tr>
-                            <td>
-                                <p>
-                                    {{ $user->account->full_name }}
+                    <tr>
+                        <td>
+                            <p>
+                                {{ $user->account->full_name }}
 
-                                </p>
-                            </td>
+                            </p>
+                        </td>
 
 
-                            <td>
+                        <td>
 
-                                @if (in_array( $user->id  , $userBlocks) )
-                                    <button data-target="#modal-unBlock-{{ $user->id }}" data-toggle="modal"  class="btn btn-danger btn-sm" >
+
+                            @if (in_array( $user->id  , $userBlocks) )
+                                @can('create' , \App\Models\BlockUser::class)
+                                    <button data-target="#modal-unBlock-{{ $user->id }}" data-toggle="modal"
+                                            class="btn btn-danger btn-sm">
                                         Unblock <i class="fas fa-ban"></i>
                                     </button>
-                                @else
-                                    <button data-target="#modal-block-{{ $user->id }}" data-toggle="modal"  class="btn btn-light btn-sm" >
+                                @endcan
+                            @else
+                                @can('update' , \App\Models\BlockUser::class)
+                                    <button data-target="#modal-block-{{ $user->id }}" data-toggle="modal"
+                                            class="btn btn-light btn-sm">
                                         Block <i class="fas fa-ban"></i>
                                     </button>
-
-                                @endif
-
-                            </td>
+                                @endcan
+                            @endif
 
 
-                            <td>
-                                {{-- <p> {{  $user->block->admin_id ?? 0  }} </p> --}}
-                                <p> {{  $user->block->user_admin->account->full_name ?? ''  }} </p>
-
-                            </td>
+                        </td>
 
 
-                            <td>
-                                <p> {{  $user->block->created_at ?? ''  }} </p>
+                        <td>
+                            {{-- <p> {{  $user->block->admin_id ?? 0  }} </p> --}}
+                            <p> {{  $user->block->user_admin->account->full_name ?? ''  }} </p>
 
-                            </td>
-
-
-                        </tr>
-                        @include('dashboard.block.modals._blockUserModal')
-                        @include('dashboard.block.modals._unBlockUserModal')
+                        </td>
 
 
+                        <td>
+                            <p> {{  $user->block->created_at ?? ''  }} </p>
 
-                    @endforeach
+                        </td>
+
+
+                    </tr>
+                    @include('dashboard.block.modals._blockUserModal')
+                    @include('dashboard.block.modals._unBlockUserModal')
+
+
+
+                @endforeach
 
 
                 </tbody>
@@ -131,23 +138,23 @@
 
     <script>
         $(function () {
-          $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-          $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-          });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
 
         });
-      </script>
+    </script>
 
 
 @endsection

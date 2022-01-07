@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="modal-editRole-{{ $role->id }}" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -17,9 +16,26 @@
                     <input type="hidden" value="{{ $role->id }}" name="role_id">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" value="{{ $role->name }}" name="role_name"  >
+                        <input type="text" class="form-control" value="{{ $role->name }}" name="role_name">
                     </div>
 
+
+                    <div class="row">
+                        @foreach ( config('abilities') as $ability => $desc)
+                            <div class="col-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="abilities[]"
+                                           value="{{ $ability }}"
+                                           @if (in_array($ability , ( $role->abilities ?? []) , true ))
+                                           checked=""
+                                        @endif id="checkbocroles">
+                                    <label class="form-check-label" for="#checkbocroles">
+                                        {{ $desc }}
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
                     @if ($errors->updateRole->any())
                         @foreach ($errors->updateRole->all() as $error)

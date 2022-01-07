@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreNotificationReques;
+use App\Http\Requests\StoreNotificationRequest;
 use App\Models\User;
 use App\Notifications\AdminToUsersNotification;
 use Illuminate\Support\Facades\Notification;
@@ -18,7 +18,7 @@ class NotificationController extends Controller
         ]);
     }
 
-    public function store(StoreNotificationReques $request)
+    public function store(StoreNotificationRequest $request)
     {
         $users = User::getUsersFromRequest($request);
         $message = '%s ' . $request->validated()['message'];

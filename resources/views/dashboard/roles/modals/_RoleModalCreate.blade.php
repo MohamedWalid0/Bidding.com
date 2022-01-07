@@ -16,6 +16,15 @@
                         <input type="text" class="form-control" name="name"  >
                     </div>
 
+                    @foreach ( config('abilities') as $ability => $desc)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="abilities[]"   value="{{ $ability }}" >
+                            <label  class="form-check-label">
+                                {{ $desc }}
+                            </label>
+                        </div>
+                    @endforeach
+
                     @if ($errors->storeRole->any())
                         @foreach ($errors->storeRole->all() as $error)
                             <div class="text-danger">{{$error}}</div>

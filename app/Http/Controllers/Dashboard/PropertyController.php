@@ -14,6 +14,7 @@ class PropertyController extends Controller
 {
     public function index(): view
     {
+        $this->authorize('viewAny' , Property::class);
         $properties = Property::all();
         return view('dashboard.property.index' , compact('properties'));
     }
@@ -27,6 +28,7 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
+        $this->authorize('viewAny' , Property::class);
         $property->load('values');
         return view('dashboard.property.show' , compact('property') );
     }

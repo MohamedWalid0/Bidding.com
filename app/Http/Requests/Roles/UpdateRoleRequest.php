@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests\Roles;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRoleRequest extends FormRequest
 {
     protected $errorBag = 'updateRole';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +16,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('update', Role::class);
     }
 
     /**
@@ -25,9 +27,17 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'role_name' => [ 'required' , 'string' , 'unique:roles,name' ]
+            'name' => ['required', 'string', 'unique:roles,id,' . $this->role_id ],
+            'abilities' => ['required' , 'array']
         ];
 
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'name' => $this->role_name
+        ]);
     }
 
 }

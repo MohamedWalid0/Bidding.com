@@ -12,73 +12,75 @@
 @endsection
 
 @section('content')
-    <div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title"> Send Notification to users </h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{ route('notification.store') }}" method="post">
-            @csrf
-            @method('POST')
-            <div class="card-body">
-
-
+    @can('send-notifications')
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> Send Notification to users </h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="{{ route('notification.store') }}" method="post">
                 @csrf
-                <div class="form-group">
-                    <label for="message">Enter message</label>
-                    <input type="text" class="form-control" name="message" id="message" placeholder="Enter message">
-                </div>
+                @method('POST')
+                <div class="card-body">
 
-                <div class="form-group" data-select2-id="30">
-                    <label> Select Users </label>
-                    <div class="select2-purple" data-select2-id="29">
-                        <select class="select2 select2-hidden-accessible" name="ids[]" multiple
-                                data-placeholder="Select a State" data-dropdown-css-class="select2-purple"
-                                style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true">
-                            @foreach ($users as $user)
-                                <option data-select2-id="{{ $user->id }}"
-                                        value="{{ $user->id }}">{{ $user->account->full_name }}</option>
-                            @endforeach
 
+                    @csrf
+                    <div class="form-group">
+                        <label for="message">Enter message</label>
+                        <input type="text" class="form-control" name="message" id="message" placeholder="Enter message">
+                    </div>
+
+                    <div class="form-group" data-select2-id="30">
+                        <label> Select Users </label>
+                        <div class="select2-purple" data-select2-id="29">
+                            <select class="select2 select2-hidden-accessible" name="ids[]" multiple
+                                    data-placeholder="Select a State" data-dropdown-css-class="select2-purple"
+                                    style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true">
+                                @foreach ($users as $user)
+                                    <option data-select2-id="{{ $user->id }}"
+                                            value="{{ $user->id }}">{{ $user->account->full_name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Notification Type </label>
+                        <select class="form-control" name="type">
+                            <option selected hidden class="text-muted"> --- Choose Type  --- </option>
+                            <option value="mail"> Email </option>
+                            <option value="broadcast"> Real Time </option>
+                            <option value="database"> Normal </option>
                         </select>
                     </div>
-                    <!-- /.form-group -->
-                </div>
 
-                <div class="form-group">
-                    <label>Select Notification Type </label>
-                    <select class="form-control" name="type">
-                        <option selected hidden class="text-muted"> --- Choose Type  --- </option>
-                        <option value="mail"> Email </option>
-                        <option value="broadcast"> Real Time </option>
-                        <option value="database"> Normal </option>
-                    </select>
-                </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="all" value="0">
+                        <label class="form-check-label" for="exampleCheck1">Send to All Users</label>
+                    </div>
 
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="all" value="0">
-                    <label class="form-check-label" for="exampleCheck1">Send to All Users</label>
+
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="text-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
+
                 </div>
 
 
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="text-danger">{{ $error }}</div>
-                    @endforeach
-                @endif
+                <!-- /.card-body -->
 
-            </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+            </form>
 
-
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
-            </div>
-        </form>
-
-    </div>
+        </div>
+    @endcan
 
 
 

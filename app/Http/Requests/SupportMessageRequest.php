@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Support;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SupportMessageRequest extends FormRequest
@@ -15,6 +16,6 @@ class SupportMessageRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('create', Support::class);
     }
 }
