@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use App\Models\PropertiesSubCategory;
 use Illuminate\Database\Eloquent\Builder;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class ProductController extends Controller
 {
@@ -161,4 +163,24 @@ class ProductController extends Controller
 
 
     }
+
+
+
+    public function generate ( Product $product )
+    {
+
+        try {
+            $qrcode = QrCode::size(200)->generate("http://127.0.0.1:8000/products/".$product->id);
+            return view('front.product.viewQrCode',compact('qrcode' , 'product'));
+
+        } catch (\Throwable $th) {
+
+            toastr()->error($exception->getMessage(), 'Error');
+            return back();
+
+        }
+
+    }
+
+
 }

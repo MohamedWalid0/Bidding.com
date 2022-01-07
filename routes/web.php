@@ -81,6 +81,8 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
         Route::post('/store', [ProductController::class, 'store'])->name('products.store');
         Route::get('/{id}', [ProductController::class, 'index'])->name('products.index');
 
+        Route::get('qrcode/{product}', [ProductController::class, 'generate'])->name('products.generate');
+
 
     });
     // end products
