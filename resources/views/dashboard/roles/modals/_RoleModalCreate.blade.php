@@ -10,21 +10,30 @@
 
             <form action="{{ route('roles.store' )}}" method="post">
                 <div class="modal-body">
-                @csrf
+                    @csrf
                     @method('POST')
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name"  >
+                        <input type="text" class="form-control" name="name">
                     </div>
-
-                    @foreach ( config('abilities') as $ability => $desc)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="abilities[]"   value="{{ $ability }}" >
-                            <label  class="form-check-label">
-                                {{ $desc }}
-                            </label>
-                        </div>
-                    @endforeach
-
+                    <div class="row">
+                        @foreach ( config('abilities') as $able => $value)
+                            <div class="col-4 ">
+                                <p class="badge bg-primary">{{ $able }}</p>
+                                <div class="w-100">
+                                    @foreach ($value as $key => $val)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="abilities[]"
+                                                   value="{{ $key }}">
+                                            <label class="form-check-label">
+                                                {{ $val }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <br>
+                            </div>
+                        @endforeach
+                    </div>
                     @if ($errors->storeRole->any())
                         @foreach ($errors->storeRole->all() as $error)
                             <div class="text-danger">{{$error}}</div>

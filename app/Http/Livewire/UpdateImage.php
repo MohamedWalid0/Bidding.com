@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Services\ImageResizeService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 
 class UpdateImage extends Component
 {
@@ -18,13 +20,8 @@ class UpdateImage extends Component
     public function mount()
     {
         $this->imageExists = $this->user->images()->exists();
-
-        if ($this->imageExists) {
-            $this->imageSrc = asset('img/front/users/' . $this->user->images->first()->image_path);
-        } else $this->imageSrc = 'https://i.pravatar.cc/150?img=3';
-
+        $this->imageSrc = $this->user->avatarUrl();
         $this->isAuth = auth()->id() === $this->user->id;
-
     }
 
     public function updatedImage()
@@ -34,7 +31,7 @@ class UpdateImage extends Component
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
         $path = $this->image->store('/', 'users');
-
+        (new ImageResizeService)->ImageResize('users', $path, 70, 70);
         auth()->user()->images()->updateOrCreate(
             [
                 'imageable_id' => auth()->id(),

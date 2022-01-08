@@ -7,19 +7,19 @@ use App\Models\Property;
 use App\Models\ReportProduct;
 use App\Models\ReportUser;
 use App\Models\Role;
+use App\Models\StoppedProduct;
 use App\Models\Support;
 use App\Models\User;
 use App\Policies\BlockPolicy;
-use App\Policies\NotificationPolicy;
 use App\Policies\PropertyPolicy;
 use App\Policies\ReportProductPolicy;
 use App\Policies\ReportUserPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\StoppedProductPolicy;
 use App\Policies\SupportPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Notification;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         Property::class => PropertyPolicy::class,
         ReportProduct::class => ReportProductPolicy::class,
         ReportUser::class => ReportUserPolicy::class,
-        Notification::class => NotificationPolicy::class,
+        StoppedProduct::class => StoppedProductPolicy::class,
     ];
 
     /**

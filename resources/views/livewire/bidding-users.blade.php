@@ -26,7 +26,7 @@
                                     {{$loop->iteration}}
                                 </p>
                             </th>
-                            <td><img class="w-35 rounded-circle " src="{{ $user->avatarUrl() }}" alt="avatarUrl"></td>
+                            <td><img class=" rounded-circle " src="{{ $user->avatarUrl() }}" alt="avatarUrl"></td>
                             <td>
                                 <div class="mt-4">
                                     {{$user->account->full_name}}

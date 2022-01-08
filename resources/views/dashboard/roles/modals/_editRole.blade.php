@@ -21,18 +21,24 @@
 
 
                     <div class="row">
-                        @foreach ( config('abilities') as $ability => $desc)
-                            <div class="col-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="abilities[]"
-                                           value="{{ $ability }}"
-                                           @if (in_array($ability , ( $role->abilities ?? []) , true ))
-                                           checked=""
-                                        @endif id="checkbocroles">
-                                    <label class="form-check-label" for="#checkbocroles">
-                                        {{ $desc }}
-                                    </label>
+                        @foreach ( config('abilities') as $able => $value)
+                            <div class="col-4 ">
+                                <p class="badge bg-primary">{{ $able }}</p>
+                                <div class="w-100">
+                                    @foreach ($value as $key => $val)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="abilities[]"
+                                                   value="{{ $key }}"
+                                                   @if (in_array($key , ( $role->abilities ?? []) , true ))
+                                                   checked=""
+                                                   @endif id="checkbocroles">
+                                            <label class="form-check-label" for="#checkbocroles">
+                                                {{ $val }}
+                                            </label>
+                                        </div>
+                                    @endforeach
                                 </div>
+                                <br>
                             </div>
                         @endforeach
                     </div>

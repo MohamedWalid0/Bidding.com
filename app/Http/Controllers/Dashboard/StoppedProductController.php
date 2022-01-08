@@ -26,7 +26,7 @@ class StoppedProductController extends Controller
         if ($request->status === Product::ACTIVE) {
             $stopped_product->stopped_product()->delete();
         }
-        toastr()->success('Product status updated successfuly');
+        toastr()->success('Product status updated successfully');
         return back();
     }
 
