@@ -3,13 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Http\Services\VerificationServices;
-use App\Models\Account;
-use App\Models\User;
-use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use phpDocumentor\Reflection\Types\Null_;
 
 class UpdateProfile extends Component
 {
@@ -20,7 +15,6 @@ class UpdateProfile extends Component
     public $user;
     public $account;
     public $verification = [];
-
 
 
     public function mount()
@@ -61,8 +55,8 @@ class UpdateProfile extends Component
 
         $data = $this->validate();
 
-        $oldPhoneNumber = $this->account->phone ;
-        $oldEmail = $this->user->email ;
+        $oldPhoneNumber = $this->account->phone;
+        $oldEmail = $this->user->email;
 
         try {
             DB::beginTransaction();
@@ -81,18 +75,17 @@ class UpdateProfile extends Component
             );
 
 
-            if ( $data['email'] != $oldEmail ){
+            if ($data['email'] != $oldEmail) {
                 $this->verifyNewEmail();
             }
 
-            if ( $data['phone'] != $oldPhoneNumber ){
+            if ($data['phone'] != $oldPhoneNumber) {
                 $this->verifyNewPhoneNumber();
             }
 
 
-
             DB::commit();
-            return redirect()->route('home') ;
+            return redirect()->route('home');
 
         } catch (\Exception $ex) {
             DB::rollback();
@@ -102,11 +95,17 @@ class UpdateProfile extends Component
         $this->emit('ProfileUpdated');
     }
 
+    public function verifyNewEmail()
+    {
 
+        $this->user->update(['email_verified_at' => null]);
+        $this->user->sendEmailVerificationNotification();
+    }
 
-    public function verifyNewPhoneNumber(){
+    public function verifyNewPhoneNumber()
+    {
 
-        $this->user->update( ['phone_verified_at' => null] );
+        $this->user->update(['phone_verified_at' => null]);
 
         $verificationService = new VerificationServices();
         $this->verification['user_id'] = $this->user->id;
@@ -114,17 +113,6 @@ class UpdateProfile extends Component
         $verificationService->getSMSVerifyMessageByAppName($verification_data->code);
 
     }
-
-
-    public function verifyNewEmail(){
-
-        $this->user->update( ['email_verified_at' => null] );
-
-        $this->user->sendEmailVerificationNotification();
-
-
-    }
-
 
 
 }

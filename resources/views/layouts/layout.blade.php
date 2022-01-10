@@ -21,6 +21,8 @@
 
 
 
+    <link rel="stylesheet" href="{{ asset('css/home/headerStyle.css') }}" type="text/css" />
+    <script src="{{ asset('js/home/modernizr.js') }}"></script> <!-- Modernizr -->
 
 
 
@@ -33,7 +35,9 @@
 <body class="px-0">
 
 
+
     @yield('content')
+    @include('layouts.footer')
 
 
 
@@ -65,12 +69,17 @@
 
     <script src="{{ asset('js/home/owl.carousel.min.js') }}"></script>
 
-    <script src="{{ asset('js/home/main.js') }}"></script>
 
     <script  src="{{asset('js/product/countdown.js')}}"></script>
 
+    <script src="{{ asset('js/home/main.js') }}"></script>
     <script src="{{ asset('js/home/navSearch.js') }}"></script>
 
+
+
+    <script src="{{ asset('js/home/jquery.menuAim.js') }}"></script>    <!-- menu aim -->
+
+    <script src="{{ asset('js/home/header.js') }}" ></script>
 
 
   @yield('scripts')

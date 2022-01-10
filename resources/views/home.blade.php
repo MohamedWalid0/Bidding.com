@@ -1056,7 +1056,6 @@
 
                         <div class="productsWrapper my-3">
 
-
                             <div class="productContainer pb-2">
                                 <div class="productImageContainer">
                                     <img src="{{ asset('img/home/mobile.jpg ')}}"
@@ -1075,7 +1074,7 @@
 
                                     <div
                                         class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistActive @else wishlistNotActive @endif  "
-                                        id="wishlistIconContainer" data-product-icon-id="{{$hot_product -> id}}">
+                                        id="wishlistIconContainer" data-product-icon-id="{{ $hot_product -> id }}">
 
                                         <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($hot_product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
                                            href="#" data-product-id="{{$hot_product -> id}}">
@@ -1113,6 +1112,8 @@
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
+
+
 
 
                                 </div>
@@ -1278,7 +1279,8 @@
 
                                 </div>
 
-                                {{-- <div class="productBidTimer">
+
+                                 <div class="productBidTimer">
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
@@ -1302,7 +1304,7 @@
                                     </div>
 
 
-                                </div> --}}
+                                </div>
 
 
                             </div>
@@ -1341,6 +1343,35 @@
 
 
 @section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel();
+            });
+
+            $('.owl-carousel').owlCarousel({
+            // rtl: true,
+            loop:true,
+            margin:0,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:2,
+                    nav:true
+                },
+                600:{
+                    items:3,
+                    nav:true
+                },
+                1000:{
+                    items:5,
+                    nav:true,
+                    loop:true
+                }
+            }
+        })
+
+
+    </script>
 
     <script>
         let countDownDate = new Date("{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}").getTime();

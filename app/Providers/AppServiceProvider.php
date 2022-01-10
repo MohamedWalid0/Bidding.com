@@ -33,9 +33,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Bid::observe(BidObserver::class);
-        Comment::observe(CommentObserver::class);
-        Reply::observe(ReplyObserver::class);
+//        Bid::observe(BidObserver::class);
+//        Comment::observe(CommentObserver::class);
+//        Reply::observe(ReplyObserver::class);
 
         Password::defaults(function () {
             return Password::min(8)

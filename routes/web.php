@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
+use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\FilterController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\RateController;
 use App\Http\Controllers\Front\ReportController;
+use App\Http\Controllers\Front\SubCategoryController;
 use App\Http\Controllers\Front\SupportController;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
@@ -86,6 +88,21 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
 
     });
     // end products
+
+
+    // categories
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/{category}', [CategoryController::class, 'viewCategory'])->name('categories.viewCategory');
+    });
+    // end categories
+
+
+    // sub categories
+    Route::group(['prefix' => 'subCategories'], function () {
+        Route::get('/{subCategory}', [SubCategoryController::class, 'viewSubCategory'])->name('subCategories.viewSubCategory');
+    });
+    // end sub categories
+
 
 });
 

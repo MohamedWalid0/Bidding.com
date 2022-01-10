@@ -6,9 +6,15 @@
 body {
     overflow: hidden;
     overflow-x: hidden !important;
+    /* font-size: 0.7rem !important;
+    font-family: sans-serif; */
 
 }
 
+a {
+    color: black;
+    text-decoration: none !important;
+  }
 .goToTop{
     position: fixed;
     bottom: 5% ;
@@ -421,6 +427,7 @@ body {
 .slideContiner{
     width: 100%;
     height: 100%;
+    z-index: 9 !important;
 }
 .slideImageContiner{
     position: relative;
@@ -820,3 +827,29 @@ body {
 
 }
 /* end categories slider section */
+
+
+
+
+/* start footer */
+
+
+.footer-copytight{
+    width: 100%;
+    height: 50px;
+    background-color: #EAEDED;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-copytight div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #000;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+/* end footer */
