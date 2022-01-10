@@ -9,9 +9,6 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        if (Gate::denies('access-dashboard')) {
-            abort(404);
-        }
         return view('dashboard');
     }
 }

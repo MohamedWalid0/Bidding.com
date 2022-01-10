@@ -3,11 +3,12 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminToUsersNotification extends Notification
+class AdminToUsersNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,25 +42,18 @@ class AdminToUsersNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Message From Admin')
-            ->greeting('hello ' . $notifiable->name) // رسالة ترحيب
-            ->from('hoda.adel@yahoo.com', auth()->user()->account->full_name) // override the data from env
-            ->line(sprintf(
-                $this->message,
-                auth()->user()->account->full_name
-            ))
+            ->greeting('hello :' . $notifiable->account->full_name) // رسالة ترحيب
+            ->from('hoda.adel@yahoo.com') // override the data from env
+            ->line($this->message)
             ->action('visit profile Now', url('profile'))
             ->line('Thank You Have a Nice Day');
     }
 
     public function toDatabase($notifiable): array
     {
-        $body = sprintf(
-            $this->message,
-            auth()->user()->account->full_name
-        );
         return [
             'title' => "Admin Message",
-            'body' => $body,
+            'body' => $this->message,
             'icon' => 'icon is',
             'url' => url('profile'),
         ];
@@ -67,14 +61,9 @@ class AdminToUsersNotification extends Notification
 
     public function toBroadcast($notifiable): BroadcastMessage
     {
-        $message = $this->message;
-        $body = sprintf(
-            $message,
-            auth()->user()->account->full_name
-        );
         return new BroadcastMessage([
             'title' => "Admin Message",
-            'body' => $body,
+            'body' =>  $this->message,
             'icon' => 'icon is',
             'url' => url('profile'),
         ]);
