@@ -60,7 +60,7 @@
 
                     <livewire:bid-deadline :product="$product"/>
                     <livewire:bid :product="$product"/>
-                    @livewire('likable', ['modelType' => 'App\Models\Product' , 'modelId' => $product->id])
+                    @livewire('likable', ['modelType' => 'App\Models\Product' , 'model' => $product])
                     <p class="product-header--subtitle py-3">
                         Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
                     </p>

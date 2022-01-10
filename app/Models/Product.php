@@ -101,6 +101,15 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function dislikes()
+    {
+        return $this->morphToMany(User::class, 'likeable', 'reactions')
+            ->using(Reaction::class)
+            ->withPivot('value')
+            ->as('like')
+            ->withTimestamps();
+    }
+
     public function reports():HasMany
     {
         return $this->HasMany(ReportProduct::class) ;

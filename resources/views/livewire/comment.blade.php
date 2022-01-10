@@ -18,7 +18,7 @@
                 <p class="text-muted text-sm"> {{$comment->created_at->diffForHumans()}}</p>
               </div>
               <p> {{$comment->body}} </p>
-            @livewire('likable', ['modelType' => 'App\Models\Comment' , 'modelId' => $comment->id] ,  key(time().$comment->id))
+            @livewire('likable', ['modelType' => 'App\Models\Comment' , 'model' => $comment] ,  key(time().$comment->id))
 
 
                 <livewire:reply :comment="$comment" :key="$comment->id">

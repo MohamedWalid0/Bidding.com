@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
@@ -14,6 +15,9 @@ class Comment extends Model
     protected $fillable = [
         'body', 'user_id'
     ];
+
+    protected $appends = ['reactions_count'];
+
 
     public function product(): BelongsTo
     {
@@ -38,4 +42,13 @@ class Comment extends Model
         ->as('like')
         ->withTimestamps();
     }
+
+
+    public function getReactionsCountAttribute () {
+            $this->withCount([
+                'likes'
+            ]);
+    }
+
+
 }

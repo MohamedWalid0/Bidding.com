@@ -20,13 +20,6 @@
                       <p class="text-muted text-sm"> {{$reply->created_at->diffForHumans()}}</p>
                     </div>
                     <p> {{$reply->body }} </p>
-                    <div class="pad-ver">
-                    <div class="btn-group">
-                        <a class="btn btn-sm btn-light active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
-                        <a class="btn btn-sm btn-light" href="#"><i class="fa fa-thumbs-down"></i></a>
-                    </div>
-
-                    </div>
                     <hr>
                 </div>
                 </div>
