@@ -13,7 +13,7 @@ $(document).on('click', '.toggleProductinWishlist', function (e) {
 
     $.ajax({
         type: 'GET',
-        url: "wishlist/" + $(this).attr('data-product-id'),
+        url: "/wishlist/" + $(this).attr('data-product-id'),
         data: {
             'productId': $(this).attr('data-product-id'),
         },

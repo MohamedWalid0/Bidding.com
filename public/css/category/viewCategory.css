@@ -1,0 +1,16 @@
+.subCategoryTitle{
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 800;
+    position: relative;
+}
+.subCategoryTitle::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background-color: black;
+    top: 50%;
+    right: 100%;
+    transform: translate(-50% , -50%);
+}

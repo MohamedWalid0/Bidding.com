@@ -25,11 +25,11 @@ new WOW().init();
 $(document).ready(function () {
 
   $("#loading").fadeOut( 1000 , function(){
-      
+
     $("body").css("overflow" , "auto") ;
     $("#loading").css("position" , "unset") ;
     $(".sk-folding-cube").css("display" , "none");
-      
+
   })
 
 });
@@ -62,28 +62,7 @@ $(".goToTop").click(function () {
 // end go to top button
 
 
-$(document).ready(function(){
-  $('.owl-carousel').owlCarousel();
-});
 
-$('.owl-carousel').owlCarousel({
-  // rtl: true,
-  loop:true,
-  margin:0,
-  responsiveClass:true,
-  responsive:{
-      0:{
-          items:2,
-          nav:true
-      },
-      600:{
-          items:3,
-          nav:true
-      },
-      1000:{
-          items:5,
-          nav:true,
-          loop:true
-      }
-  }
-})
+
+
+

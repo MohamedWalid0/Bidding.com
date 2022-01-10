@@ -1278,7 +1278,7 @@
 
                                 </div>
 
-                                {{-- <div class="productBidTimer">
+                                <div class="productBidTimer">
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
@@ -1302,7 +1302,7 @@
                                     </div>
 
 
-                                </div> --}}
+                                </div>
 
 
                             </div>
@@ -1341,6 +1341,35 @@
 
 
 @section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel();
+            });
+
+            $('.owl-carousel').owlCarousel({
+            // rtl: true,
+            loop:true,
+            margin:0,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:2,
+                    nav:true
+                },
+                600:{
+                    items:3,
+                    nav:true
+                },
+                1000:{
+                    items:5,
+                    nav:true,
+                    loop:true
+                }
+            }
+        })
+
+
+    </script>
 
     <script>
         let countDownDate = new Date("{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}").getTime();
