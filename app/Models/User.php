@@ -164,7 +164,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function avatarUrl(): string
     {
-        return $this->images->first()
+        return $this->load('images')->images->first()
             ? asset('img/front/users/thump-' . $this->images->first()->image_path)
             : 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?d=mp&f=y';
     }
