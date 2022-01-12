@@ -43,6 +43,8 @@ Route::group( ['prefix' => 'filter'] , function () {
 
 // search routes
 Route::get('/search', [FilterController::class, 'search'])->name('products.search');
+Route::get('/subCategoriesSearch', [SubCategoryController::class, 'searchInSubCategory'])->name('products.searchInSubCategory');
+
 Route::post('/support', [SupportController::class, 'store'])->name('support.store');
 //end search routes
 

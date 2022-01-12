@@ -23,7 +23,6 @@ class ProfileController extends Controller
 
     public function show(User $user)
     {
-
         $rateCount = $user->rates()->count();
         $ratingSum = $user->rates()->sum('rate');
 

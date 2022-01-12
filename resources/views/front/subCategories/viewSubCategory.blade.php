@@ -137,6 +137,7 @@
             <div class="col-md-9 col-sm-12 rightDiv">
                 <div class="row">
                     <div class="col-md-12 mt-4">
+                        <input type="hidden" value="{{ $subCategory->id }}" id="subCategoryId">
                         <input class="form-control w-100" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
                     </div>
                 </div>
@@ -264,6 +265,6 @@
 @section('scripts')
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
-    <script src="{{ asset('js/product/filter.js') }}"></script>
+    <script src="{{ asset('js/subCategory/SubCategory.js') }}"></script>
     <script src="{{ asset('js/product/wishlist.js') }}"></script>
 @endsection
