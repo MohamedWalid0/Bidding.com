@@ -43,6 +43,9 @@ class Product extends Model
 
     protected $appends = ['last_bid'];
 
+
+    // protected $with = ['user_bids'];
+
     // Relations
     public function user(): BelongsTo
     {
@@ -156,7 +159,7 @@ class Product extends Model
 
     public function getHotUsersAttribute()
     {
-        return $this->load('user_bids.account')->user_bids->sortByDesc('bid.updated_at')->take(5);
+        return $this->load('user_bids.account')->user_bids->load('images')->sortByDesc('bid.updated_at')->take(5);
     }
 
 }
