@@ -68,8 +68,8 @@ class RegisterController extends Controller
             'city' => ['required', 'exists:cities,id'],
             'role_id' => ['required', 'exists:roles,id'],
             'gender_id' => ['required', 'exists:genders,id'],
-//            'password' => ['required', 'confirmed', Password::default()],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'confirmed', Password::default()],
+//            'password' => ['required', 'confirmed'],
         ]);
     }
 
@@ -92,7 +92,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'role_id' => $data['role_id'],
                 'rate' => 0,
-                'oAuthToken' => $data['oAuthToken'],
+                'oAuthToken' =>  request('oauth_token'),
                 'password' => Hash::make($data['password']),
             ]);
 
