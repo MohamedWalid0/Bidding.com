@@ -35,7 +35,7 @@
                         <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="role_id" value="{{ \App\Models\Role::getAdminRoleId() }}">
-                            <input type="hidden" name="oAuthToken" value="{{ $callback->token ?? NULL}}">
+                            <input type="hidden" name="oAuthToken" value="{{ $callback->token ?? old('oAuthToken')}}">
 
 
                             @error('name')
