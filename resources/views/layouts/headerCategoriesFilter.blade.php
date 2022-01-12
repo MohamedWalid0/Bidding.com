@@ -10,7 +10,7 @@
 
 
 
-                @foreach ($categories as $category )
+                @foreach ($categories as $category)
                     <li class="has-children">
 
                         <a >{{ $category->name }}</a>

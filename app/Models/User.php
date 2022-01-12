@@ -55,6 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_verified_at' => 'datetime'
     ];
 
+    // protected $with = ['images'];
     public static function productInWishlist($productId)
     {
         if (Auth::check()) {
@@ -90,7 +91,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Product::class, 'bids')
             ->using(Bid::class)
             ->withPivot('cost')
-            ->as('user_bids')
+            ->as('bid')
             ->withTimestamps();
     }
 
@@ -131,7 +132,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->with('rate.userRated.account');
     }
 
     public function role(): BelongsTo

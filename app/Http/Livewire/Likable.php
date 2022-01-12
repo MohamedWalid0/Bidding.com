@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
 class Likable extends Component
@@ -15,17 +16,27 @@ class Likable extends Component
     public $likeButtonBackground;
     public $disLikeButtonBackground;
 
-    public function mount($modelType, $modelId)
+
+    public function mount( $modelType, $model)
     {
         $this->modelType = $modelType;
-        $this->modelId = $modelId;
-        $this->model = $this->modelType::findOrFail($this->modelId);
+        // $this->modelId = $modelId;
+        $this->model = $model->loadCount(
+            [
+            'likes as likes_count' => function(Builder $query) {
+                $query->where('value' , '1');
+            }
+            ,
+            'likes as dislikes_count' => function(Builder $query) {
+                $query->where('value' , '-1');
+            }
+            ]
+        );
         $this->likeExist = $this->model->likes()->select('user_id', 'value')
-            ->where('user_id', auth()->id())->exists();
+            ->where('user_id', auth()->id())->first();
 
         if ($this->likeExist) {
-            $this->likeValue = $this->model->likes()
-                ->where('user_id', auth()->id())->first()->like->value;
+            $this->likeValue = $this->likeExist->like->value;
 
             if ($this->likeValue === '1') {
                 $this->hasLike = true;
@@ -34,6 +45,19 @@ class Likable extends Component
 
         $this->updateDesign();
 
+    }
+    public function updateCounts () {
+        $this->model->loadCount(
+            [
+            'likes as likes_count' => function(Builder $query) {
+                $query->where('value' , '1');
+            }
+            ,
+            'likes as dislikes_count' => function(Builder $query) {
+                $query->where('value' , '-1');
+            }
+            ]
+        );
     }
 
     public function updateDesign()
@@ -44,6 +68,8 @@ class Likable extends Component
         $this->disLikeButtonCount = $this->getDisLikeButtonCount();
     }
 
+
+
     public function getLikeButtonBackground()
     {
         if ($this->likeExist && $this->hasLike) {
@@ -53,7 +79,7 @@ class Likable extends Component
 
     public function getLikeButtonCount()
     {
-        $count = $this->model->likes()->where('value', '1')->count();
+        $count = $this->model->likes_count;
         return $count == 0 ? '' : $count;
     }
 
@@ -66,7 +92,7 @@ class Likable extends Component
 
     public function getDisLikeButtonCount()
     {
-        $count = $this->model->likes()->where('value', '-1')->count();
+        $count = $this->model->dislikes_count;
         return $count == 0 ? '' : $count;
     }
 
@@ -93,8 +119,8 @@ class Likable extends Component
             $this->toggleHas($value);
         }
 
+        $this->updateCounts();
         $this->updateDesign();
-
     }
 
     public function toggleHas($value)

@@ -158,7 +158,7 @@
                             <div class=" pb-2">
                                 <div class="mx-0  owl-carousel owl-theme">
 
-                                    @forelse ($subCategory->products as $product )
+                                    @forelse ( $subCategory->products as $product )
 
                                         <div class="p-2">
                                             <div class="productsWrapper my-3">

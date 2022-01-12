@@ -276,21 +276,21 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 mins"></h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -346,21 +346,21 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 mins"></h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -415,21 +415,21 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 mins"></h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -485,21 +485,21 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 mins"></h6>
                                         <p class="text-muted">Minutes</p>
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1">70</h6>
+                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -979,23 +979,23 @@
                                 <div class="productBidTimer">
 
 
-                                    <div class="d-flex  text-center w-100 p-2">
+                                    <div data-date="{{ \Carbon\Carbon::parse($latest_product->deadline)->format('M d, y h:i:s') }}" class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('d') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1"> {{ $latest_product->deadline->format('h') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('m') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1">{{ $latest_product->deadline->format('s') }}</h6>
+                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1092,7 +1092,7 @@
 
                                 <div class="productBidTimer">
 
-                                    <div class="d-flex  text-center w-100 p-2">
+                                    <div data-date="{{ \Carbon\Carbon::parse($hot_product->deadline)->format('M d, y h:i:s') }}" class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
                                             <h6 class="text-primary my-0 pt-1 days" ></h6>
                                             <p class="text-muted">Days</p>
@@ -1168,21 +1168,21 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1">70</h6>
+                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1282,23 +1282,23 @@
 
                                  <div class="productBidTimer">
 
-                                    <div class="d-flex  text-center w-100 p-2">
+                                    <div data-date="{{ \Carbon\Carbon::parse($mostOfViewProduct->deadline)->format('M d, y h:i:s') }}" class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1"></h6>
+                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1"></h6>
+                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1374,30 +1374,37 @@
     </script>
 
     <script>
-        let countDownDate = new Date("{{ \Carbon\Carbon::parse($hot_products[0]->deadline)->format('M d, y h:i:s') }}").getTime();
+
+        let cards = document.querySelectorAll('div.d-flex.text-center.w-100.p-2');
+        cards.forEach(card=> {
+            let countDownDate = new Date(card.dataset.date).getTime();
+
+            const intrvl = setInterval(function () {
+                let now = new Date().getTime();
+                let timeleft = countDownDate - now;
+
+                let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0){
+                    clearInterval(intrvl);
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
+                }
+                card.querySelector(".days").innerHTML = days
+                card.querySelector(".hours").innerHTML = hours
+                card.querySelector(".mins").innerHTML = minutes
+                card.querySelector(".secs").innerHTML = seconds
 
 
-        let myfunc = setInterval(function () {
+            }, 1000)
 
-            let now = new Date().getTime();
-            let timeleft = countDownDate - now;
+        })
 
-            let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-            let d = document.getElementsByClassName("days")
-
-            for(let i = 0; i < d.length; i++){
-                document.getElementsByClassName("days")[i].innerHTML = days
-                document.getElementsByClassName("hours")[i].innerHTML = hours
-                document.getElementsByClassName("mins")[i].innerHTML = minutes
-                document.getElementsByClassName("secs")[i].innerHTML = seconds
-            }
-
-
-        }, 1000)
 
 
         $(document).on('click', '.toggleProductinWishlist', function (e) {

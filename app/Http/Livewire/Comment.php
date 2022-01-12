@@ -15,8 +15,9 @@ class Comment extends Component
 
     public function mount () {
         $this->perPage = 5;
-        $this->comments = $this->product->comments->sortByDesc('created_at');
-
+        $this->product = $this->product->load('comments');
+        $this->comments = $this->product->comments
+        ->load('user.account' , 'replies' , 'product.user')->sortByDesc('created_at');
     }
     public function render()
     {

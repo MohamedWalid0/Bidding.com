@@ -30,9 +30,15 @@ class UpdateImage extends Component
         $this->validate([
             'image' => 'image|mimes:jpg,jpeg,png',
         ]);
+        $images = auth()->user()->images();
+        $img = $images->first();
+
+        $old_path = $img ? $img->image_path : "";
         $path = $this->image->store('/', 'users');
+        
         (new ImageResizeService)->ImageResize('users', $path, 70, 70);
-        auth()->user()->images()->updateOrCreate(
+
+        $images->updateOrCreate(
             [
                 'imageable_id' => auth()->id(),
                 'imageable_type' => 'App\Models\User'
@@ -42,10 +48,12 @@ class UpdateImage extends Component
             ]
         );
 
-        // unlink file
-        // add toster
+        // unlink both resized and normal image
+        @unlink('img//front/users/' . $old_path);
+        @unlink('img//front/users/thump-' . $old_path);
 
-        // $this->dispatchBrowserEvent('updated' , ['message' => 'Image Changed']);
+        // add toster
+        toastr()->success('Image has been updated successfully!');
     }
 
     public function render()
