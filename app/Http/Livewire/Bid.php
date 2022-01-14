@@ -13,6 +13,8 @@ class Bid extends Component
     public $startBid;
     public $currentBid;
     public $isActive;
+    public $isStopped;
+    public $deadline;
 
     public function mount()
     {
@@ -21,6 +23,11 @@ class Bid extends Component
         else $this->currentBid = $this->product->start_price;
         $this->startBid = ((int)str_replace(',', '', $this->currentBid)) + 1;
         $this->isActive = $this->product->status === \App\Models\Product::ACTIVE;
+        if ($this->product->stopped_product) {
+            $this->isStopped = true;
+        }
+
+        $this->deadline = $this->product->deadline;
     }
 
     public function rules()
@@ -88,6 +95,7 @@ class Bid extends Component
     {
         $this->currentBid = $this->product->last_bid->bid->cost;
         $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
+        $this->deadline = $this->product->deadline;
     }
 
     public function getListeners()

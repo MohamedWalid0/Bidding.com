@@ -9,7 +9,8 @@
         {{$product->stopped_product->created_at->toDayDateTimeString()}}</h3>
     @else
     <p class="product-header--subtitle py-1">Time left:</p>
-    <div class="countdown">
+    <div class="countdown"
+    data-date="{{ \Carbon\Carbon::parse($product->deadline)->format('M d, y h:i:s') }}">
         <div class="timer-wrapper">
             <table class="bid-timer">
             <thead>
@@ -20,7 +21,7 @@
                     <th>Secs</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="height: 36px;">
                 <tr>
                     <td class="bid-days"></td>
                     <td class="bid-hours"></td>
@@ -35,28 +36,25 @@
     <p class="product-header--subtitle py-3">
         Auction ends: {{$product->deadline->toDayDateTimeString()}}
     </p>
-
-
-
 <script >
 
-    document.addEventListener('livewire:load', function () {
-        var year =  {!! $product->deadline->year !!};
-        var month =   {!! $product->deadline->month !!};
-        var day =   {!! $product->deadline->day !!};
-        var hour =   {!! $product->deadline->hour !!};
-        var min =   {!! $product->deadline->minute  !!};
-        if (hour == 0)
-        hour = '00';
+    // document.addEventListener('livewire:load', function () {
+    //     var year =  {!! $product->deadline->year !!};
+    //     var month =   {!! $product->deadline->month !!};
+    //     var day =   {!! $product->deadline->day !!};
+    //     var hour =   {!! $product->deadline->hour !!};
+    //     var min =   {!! $product->deadline->minute  !!};
+    //     if (hour == 0)
+    //     hour = '00';
 
-    var countdown = new SV.Countdown('.countdown', {
-            year: year,
-            month: month,
-            day: day,
-            hour: hour,
-            min: min
-        });
-    })
+    // var countdown = new SV.Countdown('.countdown', {
+    //         year: year,
+    //         month: month,
+    //         day: day,
+    //         hour: hour,
+    //         min: min
+    //     });
+    // })
 
 
 

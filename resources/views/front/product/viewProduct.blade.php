@@ -210,24 +210,35 @@
 @section('scripts')
     @livewireScripts
     <script>
+     let card = document.querySelector('.countdown');
 
-        // Livewire.on('BidUpdated', () => {
+            const intrvl = setInterval(function () {
+            let countDownDate = new Date(card.dataset.date).getTime();
 
-        //        var year =  {!! $product->deadline->year !!};
-        //        var month =   {!! $product->deadline->month !!};
-        //        var day =   {!! $product->deadline->day !!};
-        //        var hour =   {!! $product->deadline->hour !!};
-        //        var min =   {!! $product->deadline->minute  !!};
+                let now = new Date().getTime();
+                let timeleft = countDownDate - now;
 
-        //         var countdown = new SV.Countdown('.countdown', {
-        //                year: year,
-        //                month: month,
-        //                day: day,
-        //                hour: hour,
-        //                min: min
-        //            });
+                let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-        // })
+                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0){
+                    clearInterval(intrvl);
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
+                }
+                card.querySelector(".bid-days").innerHTML = days
+                card.querySelector(".bid-hours").innerHTML = hours
+                card.querySelector(".bid-mins").innerHTML = minutes
+                card.querySelector(".bid-secs").innerHTML = seconds
+
+
+            }, 1000)
+
+
 
         $(document).on('click', '.toggleProductinWishlist', function (e) {
 
@@ -295,6 +306,20 @@
                         animations.shift()()
                     }
                 })
+
+                // var year =  {!! $product->deadline->year !!};
+                // var month =   {!! $product->deadline->month !!};
+                // var day =   {!! $product->deadline->day !!};
+                // var hour =   {!! $product->deadline->hour !!};
+                // var min =   {!! $product->deadline->minute  !!};
+
+                //     var countdown = new SV.Countdown('.countdown', {
+                //         year: year,
+                //         month: month,
+                //         day: day,
+                //         hour: hour,
+                //         min: min
+                //     });
             }
         )
 

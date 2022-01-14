@@ -10,7 +10,8 @@ class BidDeadline extends Component
     public Product $product;
     public $currentBid;
     public $isStopped = false;
-    protected $listeners = ['BidUpdated' => 'render'];
+
+    // protected $listeners = ['BidUpdated' => 'render'];
 
     public function mount()
     {
@@ -20,6 +21,7 @@ class BidDeadline extends Component
         if ($this->product->stopped_product) {
             $this->isStopped = true;
         }
+        $this->deadline = $this->product->deadline;
     }
 
     public function render()
@@ -28,5 +30,20 @@ class BidDeadline extends Component
         $this->currentBid = $this->product->last_bid->bid->cost;
         else $this->currentBid = $this->product->start_price;
         return view('livewire.bid-deadline');
+    }
+
+    public function wtf()
+    {
+        $this->currentBid = $this->product->last_bid->bid->cost;
+        $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
+        $this->deadline = $this->product->deadline;
+    }
+
+    public function getListeners()
+    {
+        return [
+            'BidUpdated' => 'render',
+            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
+        ];
     }
 }

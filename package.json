@@ -14,12 +14,12 @@
         "bootstrap": "^4.6.0",
         "jquery": "^3.6.0",
         "laravel-echo": "^1.11.3",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.18",
         "lodash": "^4.17.19",
         "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
         "pusher-js": "^7.0.3",
-        "resolve-url-loader": "^4.0.0",
+        "resolve-url-loader": "^2.3.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
     }
