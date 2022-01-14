@@ -95,7 +95,6 @@ class Bid extends Component
     {
         $this->currentBid = $this->product->last_bid->bid->cost;
         $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
-        $this->deadline = $this->product->deadline;
     }
 
     public function getListeners()

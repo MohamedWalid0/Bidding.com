@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -10,7 +11,7 @@ class BidDeadline extends Component
     public Product $product;
     public $currentBid;
     public $isStopped = false;
-
+    public $isClosed = false;
     // protected $listeners = ['BidUpdated' => 'render'];
 
     public function mount()
@@ -22,6 +23,8 @@ class BidDeadline extends Component
             $this->isStopped = true;
         }
         $this->deadline = $this->product->deadline;
+        $this->isClosed = Carbon::now()->greaterThanOrEqualTo($this->product->deadline);
+        $this->bidStatus = $this->isClosed ?  "Winner bid"  : "Current bid" ;
     }
 
     public function render()
@@ -36,7 +39,8 @@ class BidDeadline extends Component
     {
         $this->currentBid = $this->product->last_bid->bid->cost;
         $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
-        $this->deadline = $this->product->deadline;
+        $this->isClosed = Carbon::now()->greaterThanOrEqualTo($this->product->deadline);
+        $this->bidStatus = $this->isClosed ?  "Winner bid"  : "Current bid" ;
     }
 
     public function getListeners()

@@ -134,8 +134,8 @@
 
 
 
-
-            <nav class="py-5">
+            {{-- <div class="card mt-5">
+            <div class="card-header">
                 <div class="nav nav-tabs nav-pills nav-justified" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                     aria-controls="nav-home" aria-selected="true">
@@ -146,11 +146,12 @@
                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
                     aria-controls="nav-contact" aria-selected="false">
                         Comments</a>
-                </div>
-            </nav>
+
+            </div>
+            </div>
+            <div class="card-body">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
 
                     <div class="page" id="dashboard">
                         <div class="bg-white rounded-lg shadow">
@@ -190,13 +191,57 @@
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 
                     <!-- Comments -->
-                    <!--===================================================-->
-
 
                     <livewire:comment :product="$product">
 
                 </div>
+                </div>
             </div>
+
+
+            </div> --}}
+
+            <div class="card mt-5">
+                <div class="card-header">
+                  <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+                        <i class="fas fa-info-circle"></i> Information
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#comments" role="tab">
+                        <i class="far fa-comments"></i> Comments
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <!-- Tab panes -->
+                  <div class="tab-content ">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                      <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel">
+                      <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                    </div>
+                    <div class="tab-pane" id="comments" role="tabpanel">
+                         <livewire:comment :product="$product">
+                    </div>
+                    <div class="tab-pane" id="settings" role="tabpanel">
+                      <p>
+                        "I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+        </div>
+
+
         </div>
 
 
@@ -218,6 +263,7 @@
                 let now = new Date().getTime();
                 let timeleft = countDownDate - now;
 
+
                 let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
                 let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
@@ -229,6 +275,7 @@
                     hours = 0;
                     minutes = 0;
                     seconds = 0;
+                    card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';
                 }
                 card.querySelector(".bid-days").innerHTML = days
                 card.querySelector(".bid-hours").innerHTML = hours
