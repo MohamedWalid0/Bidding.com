@@ -221,10 +221,33 @@
                   <!-- Tab panes -->
                   <div class="tab-content ">
                     <div class="tab-pane active" id="home" role="tabpanel">
-                      <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                    </div>
-                    <div class="tab-pane" id="profile" role="tabpanel">
-                      <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+
+                        <div class="page" id="dashboard">
+                            <div class="bg-white rounded-lg shadow">
+                               
+                                <div class="card-body">
+                                    <table class="table" id="table">
+                                        <thead class="thead-dark bg-custom">
+                                        <tr>
+                                            <th scope="col">Property</th>
+                                            <th scope="col">Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($product->propertiesValues as $value )
+                                            <tr class="text-center">
+                                                <th scope="row"> {{$value->property->name}} </th>
+                                                <td> {{$value->value}}</td>
+                                            </tr>
+                                        @endforeach
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="comments" role="tabpanel">
                          <livewire:comment :product="$product">

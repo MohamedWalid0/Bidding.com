@@ -87,7 +87,6 @@ Route::group(['middleware' => ['auth', 'verified', 'verifiedUserPhone']], functi
 
         Route::get('qrcode/{product}', [ProductController::class, 'generate'])->name('products.generate');
 
-
     });
     // end products
 
