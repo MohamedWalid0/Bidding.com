@@ -92,7 +92,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'role_id' => $data['role_id'],
                 'rate' => 0,
-                'oAuthToken' => $data['oAuthToken'],
+                'oAuthToken' => $data['oAuthToken'] ,
                 'password' => Hash::make($data['password']),
             ]);
 
