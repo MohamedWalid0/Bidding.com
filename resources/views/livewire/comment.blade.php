@@ -1,4 +1,4 @@
-<div>
+<div class="">
     <div class="form-group">
         <label class="add-product--label"  for="exampleInputPassword1">Comment</label>
         @error('comment') <span class="error">{{ $message }}</span> @enderror

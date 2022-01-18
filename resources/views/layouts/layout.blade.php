@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/home/headerStyle.css') }}" type="text/css" />
     <script src="{{ asset('js/home/modernizr.js') }}"></script> <!-- Modernizr -->
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
 
   @yield('styles')
 

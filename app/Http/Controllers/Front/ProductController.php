@@ -19,6 +19,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use App\Models\PropertiesSubCategory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -112,9 +113,8 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-
-
-
+            //make sure that product in 00 min
+            $deadline = Carbon::parse($request->deadline)->minute(0);
         try {
 
             DB::beginTransaction();
@@ -126,7 +126,7 @@ class ProductController extends Controller
                 'location' => $request->cityId,
                 'description' => $request->description,
                 'start_price' => $request->startPrice,
-                'deadline' => $request->deadline,
+                'deadline' => $deadline,
                 'status' => "active",
             ]);
 

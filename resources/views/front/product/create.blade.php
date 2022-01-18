@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{{asset('css/product/add-product.css')}}">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link type="text/css" rel="stylesheet" href="{{asset('css/product/image-uploader.min.css')}}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
 
 
@@ -109,10 +110,11 @@
                         <label class="add-product--label" for="productName">Starter Price</label>
                         <input type="number" class="form-control" id="productName" aria-describedby="emailHelp" name="startPrice">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="datetimepicker1">
                         <label class="add-product--label" for="productName">Deadline</label>
-                        <input type="date" class="form-control" id="productName" aria-describedby="emailHelp" name="deadline">
-                    </div>
+                        <input type="datetime" class="form-control datetimepicker-input"
+                         data-target="#datetimepicker1" id="deadline" aria-describedby="emailHelp" name="deadline">
+                        </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary add-product-btn--customize">Add Product</button>
                     </div>
@@ -135,6 +137,17 @@
 
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script >
+
+flatpickr("#deadline", {
+    enableTime: true,
+    minDate: "today",
+    minuteIncrement: 60,
+});
+
+</script>
 
 <script type=text/javascript >
 

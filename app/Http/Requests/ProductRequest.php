@@ -15,7 +15,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('create', Product::class);
+        return true;
     }
 
     /**
