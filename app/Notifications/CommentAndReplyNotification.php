@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentAndReplyNontification extends Notification
+class CommentAndReplyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

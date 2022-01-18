@@ -186,6 +186,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\VerifyEmailQueued);
+    }
 
 
 }

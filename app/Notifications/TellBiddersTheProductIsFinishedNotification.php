@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TellBiddersTheProductIsFinishedNotification extends Notification
+class TellBiddersTheProductIsFinishedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

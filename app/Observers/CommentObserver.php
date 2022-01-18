@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Comment;
-use App\Notifications\CommentAndReplyNontification;
+use App\Notifications\CommentAndReplyNotification;
 
 class CommentObserver
 {
@@ -16,7 +16,7 @@ class CommentObserver
     public function created(Comment $comment)
     {
         $message = '%s Add new comment on your product %s';
-        $comment->product->user->notify(new CommentAndReplyNontification($comment->product , $message));
+        $comment->product->user->notify(new CommentAndReplyNotification($comment->product , $message));
     }
 
 }
