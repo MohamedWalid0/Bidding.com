@@ -40,19 +40,20 @@
 
             <div class="row pt-5">
                 <div class="col-md-5">
-                    <div class="product-img">
-                        <img class="w-100" src="{{asset('img/front/products/img/electronic-cat3.jpg')}}" alt="">
+                    <div class="product-img zoom" id='ex1'>
+
+                        <img class="w-100 mainImage" id="zoom_01"  src="{{asset('img/front/products/img/electronic-cat3.jpg')}}"  alt="">
+
                     </div>
                     <div class="row pt-3">
                         <div class="col-3">
-                            <img class="w-100 pointer" src="{{asset('img/front/products/img/electronic-cat3.jpg')}}"
-                                 alt="">
+                            <img class="w-100 pointer imageItem" src="{{asset('img/front/products/img/G8o9F4tsLpSxPscOCmDWxz2QCkA7mtLUuKb9qP3C.jpg')}}" alt="">
                         </div>
-                        <div class="col-3 pointer">
-                            <img class="w-100" src="{{asset('img/front/products/img/electronic-cat3.jpg')}}" alt="">
+                        <div class="col-3 pointer ">
+                            <img class="w-100 imageItem" src="{{asset('img/front/products/img/electronic-cat3.jpg')}}" alt="">
                         </div>
-                        <div class="col-3 pointer">
-                            <img class="w-100" src="{{asset('img/front/products/img/electronic-cat3.jpg')}}" alt="">
+                        <div class="col-3 pointer ">
+                            <img class="w-100 imageItem" src="{{asset('img/front/products/img/G8o9F4tsLpSxPscOCmDWxz2QCkA7mtLUuKb9qP3C.jpg')}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -224,7 +225,7 @@
 
                         <div class="page" id="dashboard">
                             <div class="bg-white rounded-lg shadow">
-                               
+
                                 <div class="card-body">
                                     <table class="table" id="table">
                                         <thead class="thead-dark bg-custom">
@@ -276,6 +277,8 @@
 
 
 @section('scripts')
+
+
     @livewireScripts
     <script>
      let card = document.querySelector('.countdown');
@@ -394,4 +397,15 @@
         )
 
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{{ asset('js/product/zoom.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#ex1').zoom();
+        });
+    </script>
+
 @endsection
