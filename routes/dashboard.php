@@ -50,7 +50,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth' , 'can:access-das
 
             Route::get('/', [RoleController::class, 'index'])->name('roles.index');
 
-            Route::post('/updateRole', [RoleController::class, 'updateRole'])->name('roles.update');
+            Route::post('/updateRole/{role}', [RoleController::class, 'updateRole'])->name('roles.update');
             Route::post('/deleteRole/{role}', [RoleController::class, 'deleteRole'])->name('roles.delete');
 
 

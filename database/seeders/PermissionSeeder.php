@@ -1,20 +1,18 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Seeders;
 
-use App\Models\Role;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
+use App\Models\Permission;
+use Illuminate\Database\Seeder;
 
-class RoleFactory extends Factory
+class PermissionSeeder extends Seeder
 {
-    protected $model = Role::class;
-
-
     /**
-     * @throws \Exception
+     * Run the database seeds.
+     *
+     * @return void
      */
-    public function definition(): array
+    public function run()
     {
         $abilities = [
             'categories.view' => 'can view category',
@@ -69,11 +67,11 @@ class RoleFactory extends Factory
             'products.stopped.update' => 'can update product stopped',
 
         ];
-        return [
-            'name' => $this->faker->name(),
-//            'abilities' => collect($abilities)->keys()->toArray(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ];
+        collect($abilities)->each(function ($description , $name){
+            Permission::factory()->create([
+                'name' => $name ,
+                'description' => $description
+            ]);
+        });
     }
 }

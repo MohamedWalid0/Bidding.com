@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'rate',
         'oAuthToken',
-        'status' ,
+        'status',
         'phone_verified_at',
         'email_verified_at'
     ];
@@ -137,9 +137,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class );
+        return $this->belongsTo(Role::class)->with('permissions');
     }
-
 
 
     public function block(): HasOne
@@ -147,19 +146,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(BlockUser::class, 'user_id');
     }
 
-    public function block_admins():HasMany
+    public function block_admins(): HasMany
     {
-        return $this->HasMany(BlockUser::class , 'admin_id' , 'id') ;
+        return $this->HasMany(BlockUser::class, 'admin_id', 'id');
     }
 
-    public function reports_product():HasMany
+    public function reports_product(): HasMany
     {
-        return $this->HasMany(ReportProduct::class) ;
+        return $this->HasMany(ReportProduct::class);
     }
 
-    public function reports_user():HasMany
+    public function reports_user(): HasMany
     {
-        return $this->HasMany(ReportUser::class) ;
+        return $this->HasMany(ReportUser::class);
     }
 
 
@@ -180,7 +179,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function hasAbility($ability): bool
     {
-        if (in_array($ability , $this->role->abilities , true)){
+        if (in_array($ability, $this->role->permissions->pluck('name')->toArray(), true)) {
             return true;
         }
         return false;

@@ -16,21 +16,21 @@
                         <input type="text" class="form-control" name="name">
                     </div>
                     <div class="row">
-                        @foreach ( config('abilities') as $able => $value)
-                            <div class="col-4 ">
-                                <p class="badge bg-primary">{{ $able }}</p>
+                        @foreach ( \App\Models\Permission::all() as $permission)
+{{--                            <div class="col-4 ">--}}
+{{--                                <p class="badge bg-primary">{{ $able }}</p>--}}
                                 <div class="w-100">
-                                    @foreach ($value as $key => $val)
+
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="abilities[]"
-                                                   value="{{ $key }}">
+                                                   value="{{ $permission->id }}">
                                             <label class="form-check-label">
-                                                {{ $val }}
+                                                {{ $permission->description }}
                                             </label>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <br>
+
+{{--                                </div>--}}
+{{--                                <br>--}}
                             </div>
                         @endforeach
                     </div>

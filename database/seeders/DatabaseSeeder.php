@@ -35,9 +35,10 @@ class DatabaseSeeder extends Seeder
             ReplySeeder::class,
             ReactionSeeder::class,
             SupportSeeder::class ,
-            // BlockSeeder::class,
             ReportProductSeeder::class,
             ReportUserSeeder::class,
+            PermissionSeeder::class,
+            RolePermissionSeeder::class
 
 
 

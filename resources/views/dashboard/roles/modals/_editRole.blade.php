@@ -8,7 +8,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('roles.update') }}" method="POST">
+            <form action="{{ route('roles.update' , $role) }}" method="POST">
 
                 <div class="modal-body">
                     @csrf
@@ -21,25 +21,25 @@
 
 
                     <div class="row">
-                        @foreach ( config('abilities') as $able => $value)
-                            <div class="col-4 ">
-                                <p class="badge bg-primary">{{ $able }}</p>
-                                <div class="w-100">
-                                    @foreach ($value as $key => $val)
+                        @foreach ( \App\Models\Permission::all() as $permission)
+{{--                            <div class="col-4 ">--}}
+{{--                                <p class="badge bg-primary">{{ $able }}</p>--}}
+{{--                                <div class="w-100">--}}
+{{--                                    @foreach ($value as $key => $val)--}}
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="abilities[]"
-                                                   value="{{ $key }}"
-                                                   @if (in_array($key , ( $role->abilities ?? []) , true ))
+                                                   value="{{ $permission->id }}"
+                                                   @if (in_array($permission->id , ( $role->permissions->pluck('id')->toArray() ?? []) , true ))
                                                    checked=""
                                                    @endif id="checkbocroles">
                                             <label class="form-check-label" for="#checkbocroles">
-                                                {{ $val }}
+                                                {{ $permission->description }}
                                             </label>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <br>
-                            </div>
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                                <br>--}}
+{{--                            </div>--}}
                         @endforeach
                     </div>
 

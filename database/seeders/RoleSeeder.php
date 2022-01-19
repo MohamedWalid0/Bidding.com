@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,11 +20,13 @@ class RoleSeeder extends Seeder
 
 
         $roles = [
-            'admin' ,
-            'moderator' ,
-            'support_team' ,
+            'admin',
+            'moderator',
+            'support_team',
             'user'
         ];
+
+
 
         foreach ($roles as $role) {
             Role::factory()->create(['name' => $role]);
