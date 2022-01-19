@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\ProductScope;
 use App\Scopes\WishlistUserScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\ProductScope;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -124,6 +125,11 @@ class Product extends Model
     }
 
     // Scopes
+    protected static function booted()
+    {
+        static::addGlobalScope(new ProductScope);
+    }
+
     public function scopeLatestProducts(Builder $query, int $take): Builder
     {
         return $query->latest()->take($take);
