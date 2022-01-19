@@ -104,8 +104,8 @@ class Bid extends Component
     public function getListeners()
     {
         return [
-//            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
-            "echo:end-bid.{$this->product->id},EndBidEvent" => 'wtf',
+            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
+            "echo:end-bid.{$this->product->id},EndBidEvent" => 'wtf2',
         ];
     }
 
