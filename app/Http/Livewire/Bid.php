@@ -93,13 +93,18 @@ class Bid extends Component
 
     public function wtf()
     {
+        $this->currentBid = $this->product->last_bid->bid->cost;
+        $this->startBid = ((int)str_replace(',', '', $this->product->last_bid->bid->cost)) + 1;
+    }
+    public function wtf2()
+    {
         $this->isActive = false;
     }
 
     public function getListeners()
     {
         return [
-            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
+//            "echo:bid.{$this->product->id},BidEvent" => 'wtf',
             "echo:end-bid.{$this->product->id},EndBidEvent" => 'wtf',
         ];
     }
