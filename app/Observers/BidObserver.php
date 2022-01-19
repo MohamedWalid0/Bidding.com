@@ -30,8 +30,6 @@ class BidObserver
     {
         broadcast(new BidEvent($bid))->toOthers();
         $product = $bid->load('product')->product;
-
-
         $this->notify($product, $bid);
         if (Carbon::now()->diffInRealMinutes($product->deadline) < 60) {
             $product->updateQuietly([

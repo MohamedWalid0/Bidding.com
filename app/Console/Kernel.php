@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('watch:product')->hourly()->withoutOverlapping();
-        $schedule->command('bid:notify')->everyFifteenMinutes()->withoutOverlapping();
+        $schedule->command('bid:notify')->hourly()->withoutOverlapping();
     }
 //    protected function shortSchedule(ShortSchedule $schedule)
 //    {

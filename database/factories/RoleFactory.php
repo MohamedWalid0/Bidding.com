@@ -71,7 +71,7 @@ class RoleFactory extends Factory
         ];
         return [
             'name' => $this->faker->name(),
-            'abilities' => collect($abilities)->keys()->random(random_int( 0, 11))->toArray(),
+            'abilities' => collect($abilities)->keys()->toArray(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

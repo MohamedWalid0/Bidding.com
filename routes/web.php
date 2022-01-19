@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\EndBidEvent;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\Front\CategoryController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Front\SubCategoryController;
 use App\Http\Controllers\Front\SupportController;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\HomeController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
