@@ -2,32 +2,27 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
+use App\Models\Product;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class BidEvent implements ShouldBroadcast
+class EndBidEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $bid;
+    public $product;
 
-    public function __construct($bid)
+    public function __construct(Product $product)
     {
-        $this->bid = $bid;
+        $this->product = $product;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return Channel
-     */
     public function broadcastOn(): Channel
     {
-        return new Channel('bid.' . $this->bid->product->id);
+        return new Channel('end-bid.' . $this->product->id);
     }
-
-
 }

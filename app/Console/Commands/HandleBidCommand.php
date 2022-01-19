@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Events\BidEvent;
+use App\Events\EndBidEvent;
 use App\Models\Product;
 use App\Notifications\ProductOwnerNotification;
 use App\Notifications\TellBiddersTheProductIsFinishedNotification;
@@ -48,22 +50,10 @@ class HandleBidCommand extends Command
                         $product->update([
                             'status' => 'inactive'
                         ]);
-                        $this->notifyOnewerAndBidders($product);
+                        broadcast(new EndBidEvent($product))->toOthers();
                     }
                 );
             });
     }
 
-    /**
-     * @param $product
-     * @return void
-     */
-    public function notifyOnewerAndBidders($product): void
-    {
-        Notification::send(
-            $product->user_bids,
-            new TellBiddersTheProductIsFinishedNotification($product)
-        );
-        $product->user->notify(new ProductOwnerNotification($product));
-    }
 }

@@ -37,6 +37,7 @@ class BiddingUsers extends Component
         return [
             'BidUpdated' => 'render',
             "echo:bid.{$this->product->id},BidEvent" => 'render',
+            "echo:end-bid.{$this->product->id},EndBidEvent" => 'render',
         ];
     }
 }

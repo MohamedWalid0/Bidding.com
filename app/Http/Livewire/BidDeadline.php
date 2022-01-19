@@ -48,6 +48,7 @@ class BidDeadline extends Component
         return [
             'BidUpdated' => 'render',
             "echo:bid.{$this->product->id},BidEvent" => 'wtf',
+            "echo:end-bid.{$this->product->id},EndBidEvent" => 'wtf',
         ];
     }
 }
