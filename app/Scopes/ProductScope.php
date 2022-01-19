@@ -17,6 +17,6 @@ class ProductScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('status', $model::ACTIVE);
+        $builder->where('status', '=' , 'active');
     }
 }

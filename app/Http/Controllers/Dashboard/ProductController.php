@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index(): view
     {
-        $products = Product::where('status' , 'active')->get();
+        $products = Product::get();
         $avilableStatus = collect([Product::ACTIVE , Product::INACTIVE]);
         return view('dashboard.product.index' , compact('products' , 'avilableStatus'));
     }
