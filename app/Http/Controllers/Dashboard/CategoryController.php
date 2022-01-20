@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 
@@ -38,17 +39,9 @@ class CategoryController extends Controller
         return view('dashboard.subCategory.index' , compact('category') );
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \App\Http\Requests\UpdateCategoryRequest $request
-     * @param \App\Models\Category $category
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->update($request->validated());
+        $category->update($request->safe(['name']));
         Cache::forget('categories');
         toastr()->success('Data has been saved successfully!');
         return back();

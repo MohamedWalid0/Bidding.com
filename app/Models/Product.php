@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Scopes\ProductScope;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -88,7 +89,11 @@ class Product extends Model
 
     public function propertiesValues(): BelongsToMany
     {
-        return $this->belongsToMany(PropertyValue::class, 'product_properties', 'product_id', 'property_value_id');
+        return $this->belongsToMany(PropertyValue::class,
+            'product_properties',
+            'product_id',
+            'property_value_id')
+            ->withTimestamps();
     }
 
     public function comments(): HasMany
@@ -96,16 +101,7 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes()
-    {
-        return $this->morphToMany(User::class, 'likeable', 'reactions')
-            ->using(Reaction::class)
-            ->withPivot('value')
-            ->as('like')
-            ->withTimestamps();
-    }
-
-    public function dislikes()
+    public function likes(): MorphToMany
     {
         return $this->morphToMany(User::class, 'likeable', 'reactions')
             ->using(Reaction::class)
