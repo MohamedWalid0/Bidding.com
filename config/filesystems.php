@@ -48,6 +48,18 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'categories' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/categories'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'sub_categories' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/sub_categories'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
 
         'users' => [
             'driver' => 'local',
@@ -82,6 +94,8 @@ return [
 
     'links' => [
         public_path('img/front/products') => storage_path('app/public/products'),
+        public_path('img/front/categories') => storage_path('app/public/categories'),
+        public_path('img/front/sub_categories') => storage_path('app/public/sub_categories'),
         public_path('img/front/users') => storage_path('app/public/users'),
     ],
 

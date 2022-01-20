@@ -22,5 +22,8 @@
         "resolve-url-loader": "^2.3.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
+    },
+    "dependencies": {
+        "filepond-plugin-image-preview": "^4.6.10"
     }
 }

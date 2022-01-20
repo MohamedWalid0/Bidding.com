@@ -10,10 +10,14 @@
 
             <form action="{{ route('category.sub_category.update' , [  $category , $subCategory ] )}}" method="post">
                 <div class="modal-body">
-                @csrf
+                    @csrf
                     @method('PATCH')
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name"  value="{{ $subCategory->name }}">
+                        <input type="text" class="form-control" name="name" value="{{ $subCategory->name }}">
+                    </div>
+
+                    <div class="mt-4">
+                        <input type="file" name="photo" class="photo">
                     </div>
 
                     @if ($errors->UpdateSubcategory->any())

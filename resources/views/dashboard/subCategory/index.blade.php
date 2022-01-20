@@ -7,6 +7,14 @@
     <li class="breadcrumb-item active"></li>
 @endsection
 
+@section('css')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    />
+@endsection
+
 @section('content')
     @can('create' , \App\Models\SubCategory::class)
         <div class="card card-primary">
@@ -70,8 +78,8 @@
                         <td>{{ $subCategory->name }}</td>
                         <td>
                             @can('update' , \App\Models\SubCategory::class)
-                                <button data-target="#modal-{{ $subCategory->id }}" data-toggle="modal"
-                                        class="btn btn-warning btn-sm">
+                                <button data-target="#modal-{{ $subCategory->id }}" data-toggle="modal" data-subCategory-id="{{ $subCategory-> id}}"
+                                        class="btn btn-warning btn-sm photoFilepond">
                                     <i class="fas fa-edit"></i>
                                 </button>
                             @endcan
@@ -121,5 +129,30 @@
 @endsection
 
 @section('scripts')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        // Get a reference to the file input element
+        const inputElement = document.querySelectorAll('input[type="file"]');
+        inputElement.forEach( input => {
+            FilePond.create(input)
+        })
 
+        $(document).on('click', '.photoFilepond', function (e) {
+            // e.preventDefault();
+            var subCategoryId = $(this).attr('data-subCategory-id');
+            var    response =    FilePond.setOptions({
+                server: {
+                    url: 'http://ebid.test/dashboard/upload/SubCategory/' + subCategoryId ,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                }
+            });
+            console.log(response.server.url)
+        });
+
+
+    </script>
 @endsection

@@ -8,12 +8,16 @@
                 </button>
             </div>
 
-            <form action="{{ route('category.update' , $category)}}" method="post">
+            <form action="{{ route('category.update' , $category)}}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                 @csrf
                     @method('PATCH')
                     <div class="form-group">
                         <input type="text" class="form-control" name="name"  value="{{ $category->name }}">
+                    </div>
+
+                    <div class="mt-4">
+                        <input type="file" name="photo" class="photo" >
                     </div>
 
                     @if ($errors->updateCategory->any())

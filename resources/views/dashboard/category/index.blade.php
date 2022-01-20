@@ -4,6 +4,13 @@
     <a href="{{ route('dashboard') }}">Home</a>
     <li class="breadcrumb-item active"></li>
 @endsection
+@section('css')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    />
+@endsection
 
 @section('content')
     <div class="card">
@@ -33,7 +40,7 @@
                         <td >
 
                             @can('viewAny' , \App\Models\Category::class)
-                                <button data-target="#modal-{{ $category->id }}" data-toggle="modal"  class="btn btn-warning btn-sm" >
+                                <button data-target="#modal-{{ $category->id }}" data-toggle="modal"  class="btn btn-warning btn-sm photoFilepond"  data-category-id="{{ $category-> id}}" >
                                     <i class="fas fa-edit"></i>
                                 </button>
                             @endcan
@@ -80,5 +87,31 @@
 @endsection
 
 @section('scripts')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>
 
+
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        // Get a reference to the file input element
+        const inputElement = document.querySelectorAll('input[type="file"]');
+        inputElement.forEach( input => {
+            FilePond.create(input)
+        })
+
+        $(document).on('click', '.photoFilepond', function (e) {
+            // e.preventDefault();
+            var categoryId = $(this).attr('data-category-id');
+            FilePond.setOptions({
+                server: {
+                    url: 'http://ebid.test/dashboard/upload/Category/' + categoryId ,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                }
+            });
+        });
+
+
+    </script>
 @endsection

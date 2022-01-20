@@ -89,7 +89,11 @@ class Product extends Model
 
     public function propertiesValues(): BelongsToMany
     {
-        return $this->belongsToMany(PropertyValue::class, 'product_properties', 'product_id', 'property_value_id');
+        return $this->belongsToMany(PropertyValue::class,
+            'product_properties',
+            'product_id',
+            'property_value_id')
+            ->withTimestamps();
     }
 
     public function comments(): HasMany

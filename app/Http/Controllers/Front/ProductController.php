@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers\Front;
 
-use Storage;
-use App\Models\City;
-use App\Models\Like;
-use App\Models\User;
-use App\Models\Image;
-use App\Models\Product;
-use App\Models\Category;
-use App\Models\Property;
-use App\Models\SubCategory;
-use App\Models\PropertyValue;
-use App\Models\ProductProperty;
-use Illuminate\Support\Facades\DB;
 use App\Exceptions\ProductException;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
+use App\Http\Services\ImageResizeService;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Image;
+use App\Models\Like;
+use App\Models\Product;
 use App\Models\PropertiesSubCategory;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Property;
+use App\Models\PropertyValue;
+use App\Models\SubCategory;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Storage;
 
 
 class ProductController extends Controller
@@ -40,15 +36,16 @@ class ProductController extends Controller
         $this->cities = City::orderBy('name')->get();
     }
 
-    public function index ($id) {
-        $product = Product::with('propertiesValues.property', 'user_bids' , 'comments')->findOrFail($id);
-            // $product = Product::with(
-            //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
+    public function index($id)
+    {
+        $product = Product::with('propertiesValues.property', 'user_bids', 'comments')->findOrFail($id);
+        // $product = Product::with(
+        //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
         // $product->likes()->attach(auth()->id() , ['value' => '-1'] );
         if ($product->last_bid)
-        $currentBid = $product->last_bid->bid->cost;
+            $currentBid = $product->last_bid->bid->cost;
         else $currentBid = $product->start_price;
-        $data['startBid'] = ((int) str_replace(',', '', $currentBid) )+1;
+        $data['startBid'] = ((int)str_replace(',', '', $currentBid)) + 1;
 
         $data['currentBid'] = $currentBid;
         $data['product'] = $product;
@@ -113,46 +110,34 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-            //make sure that product in 00 min
-            $deadline = Carbon::parse($request->deadline)->minute(0);
         try {
-
             DB::beginTransaction();
+            $product = Product::create(
+                $request->safe([
+                    'name', 'sub_category_id',
+                    'location', 'description',
+                    'start_price', 'user_id',
+                    'status', 'deadline'
+                ]) + ['user_id' => auth()->id()]);
 
-            $product = Product::create([
-                'user_id' => Auth::user()->id,
-                'name' => $request->productName,
-                'sub_category_id' => $request->subCategoryId,
-                'location' => $request->cityId,
-                'description' => $request->description,
-                'start_price' => $request->startPrice,
-                'deadline' => $deadline,
-                'status' => "active",
-            ]);
+            $product->propertiesValues()->attach($request->property_value_id);
 
-            foreach ($request->propertyValueId as $propertyValueId) {
-                ProductProperty::create([
-                    'product_id' => $product->id,
-                    'property_value_id' => $propertyValueId,
-                ]);
-            }
-
-
-            foreach ($request->images as $image) {
-                $type = $image->getClientOriginalExtension();
-                $newFileName = uniqid('', true) . '.' . $type;
-                Image::create([
+            $productImages = collect($request->images)->map(function ($image) use ($product) {
+                $newImageName = $image->hashName();
+                Storage::disk('products')->put('/' . $product->id, $image);
+                (new ImageResizeService)->ImageResize('products', $newImageName, 566, 566, $product->id);
+                return [
                     'imageable_id' => $product->id,
                     'imageable_type' => 'App\Models\Product',
-                    'image_path' => $newFileName
-                ]);
-                Storage::disk('products')->put("/img/" , $image);
-            }
-
-            // $product->user_bids()->attach(auth()->user()->id, ['cost' => $product->start_price]);
+                    'image_path' => $image->hashName(),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ];
+            })->toArray();
+            Image::insert($productImages);
             DB::commit();
 
-            return redirect(route('products.index' , $product->id));
+            return redirect(route('products.index', $product->id));
 
         } catch (ProductException $exception) {
             DB::rollBack();
@@ -164,17 +149,16 @@ class ProductController extends Controller
     }
 
 
-
-    public function generate ( Product $product )
+    public function generate(Product $product)
     {
 
         try {
-            $qrcode = QrCode::size(200)->generate("http://127.0.0.1:8000/products/".$product->id);
-            return view('front.product.viewQrCode',compact('qrcode' , 'product'));
+            $qrcode = QrCode::size(200)->generate("http://127.0.0.1:8000/products/" . $product->id);
+            return view('front.product.viewQrCode', compact('qrcode', 'product'));
 
         } catch (\Throwable $th) {
 
-            toastr()->error($exception->getMessage(), 'Error');
+            toastr()->error($th->getMessage(), 'Error');
             return back();
 
         }

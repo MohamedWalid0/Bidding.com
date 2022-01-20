@@ -2,8 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Product;
-use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
@@ -26,13 +25,13 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'productName' => 'required|string|min:3|max:255',
+            'name' => 'required|string|min:3|max:255',
             'categoryId' => 'required|numeric|exists:categories,id',
-            'cityId' => 'required|numeric|exists:cities,id',
-            'subCategoryId' => 'required|numeric|exists:sub_categories,id',
+            'location' => 'required|numeric|exists:cities,id',
+            'sub_category_id' => 'required|numeric|exists:sub_categories,id',
             'description' => 'required|min:30|max:1200',
-            'propertyValueId' => 'required|array',
-            'startPrice' => 'required|numeric|digits_between:1,10',
+            'property_value_id' => 'required|array',
+            'start_price' => 'required|numeric|digits_between:1,10',
             'deadline' => 'required|date|after:now',
             'images' => 'required|array',
             'images.*' => 'mimes:jpg,jpeg,png,bmp|max:20000'
@@ -44,9 +43,23 @@ class ProductRequest extends FormRequest
         return [
             'images.required' => 'Please upload an image',
             'images.*.mimes' => 'the image must jpg,jpeg,png,bmp',
-            'cityId.required' => 'the city field is required',
-            'propertyValueId.required' => 'the properties fields is required',
-            'subCategoryId.required' => 'the sub category fields is required',
+            'location.required' => 'the city field is required',
+            'property_value_id.required' => 'the properties fields is required',
+            'sub_category_id.required' => 'the sub category fields is required',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'name' => $this->productName,
+            'sub_category_id' => $this->subCategoryId,
+            'location' => $this->cityId,
+            'description' => $this->description,
+            'start_price' => $this->startPrice,
+            'status' => "active",
+            'deadline' => Carbon::parse($this->deadline)->minute(0),
+            'property_value_id' => $this->propertyValueId
+        ]);
     }
 }

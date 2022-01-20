@@ -37,24 +37,23 @@
                 </p>
             </div>
             <div class="product--underline"></div>
-
             <div class="row pt-5">
                 <div class="col-md-5">
                     <div class="product-img zoom" id='ex1'>
 
-                        <img class="w-100 mainImage" id="zoom_01"  src="{{asset('img/front/products/img/electronic-cat3.jpg')}}"  alt="">
+                        <img class="w-100 mainImage" id="zoom_01"
+                             src="{{ asset('img/front/products/'. $product->id . '/thump-' . $product->images->first()->image_path) }}"
+                             alt="">
 
                     </div>
                     <div class="row pt-3">
-                        <div class="col-3">
-                            <img class="w-100 pointer imageItem" src="{{asset('img/front/products/img/G8o9F4tsLpSxPscOCmDWxz2QCkA7mtLUuKb9qP3C.jpg')}}" alt="">
-                        </div>
-                        <div class="col-3 pointer ">
-                            <img class="w-100 imageItem" src="{{asset('img/front/products/img/electronic-cat3.jpg')}}" alt="">
-                        </div>
-                        <div class="col-3 pointer ">
-                            <img class="w-100 imageItem" src="{{asset('img/front/products/img/G8o9F4tsLpSxPscOCmDWxz2QCkA7mtLUuKb9qP3C.jpg')}}" alt="">
-                        </div>
+                        @foreach($product->images as $image)
+                            <div class="col-3">
+                                <img class="w-100 pointer imageItem"
+                                     src="{{ asset('img/front/products/'. $product->id . '/thump-' . $image->image_path) }}"
+                                     alt="">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -112,12 +111,9 @@
             </div>
 
 
-
-
-
             <button class="btn btn-primary p-0 pt-2">
                 <!-- Button trigger modal -->
-                <a type="button"  href="{{ route('products.generate',$product) }}" >
+                <a type="button" href="{{ route('products.generate',$product) }}">
                     <div class="profile-tabs container-fluid">
                         <p class="text-light">
                             <i class="fas fa-flag text-danger"></i>
@@ -126,13 +122,6 @@
                     </div>
                 </a>
             </button>
-
-
-
-
-
-
-
 
 
             {{-- <div class="card mt-5">
@@ -204,63 +193,66 @@
 
             <div class="card mt-5">
                 <div class="card-header">
-                  <ul class="nav nav-tabs justify-content-center" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
-                        <i class="fas fa-info-circle"></i> Information
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#comments" role="tab">
-                        <i class="far fa-comments"></i> Comments
-                      </a>
-                    </li>
+                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+                                <i class="fas fa-info-circle"></i> Information
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#comments" role="tab">
+                                <i class="far fa-comments"></i> Comments
+                            </a>
+                        </li>
 
-                  </ul>
+                    </ul>
                 </div>
                 <div class="card-body">
-                  <!-- Tab panes -->
-                  <div class="tab-content ">
-                    <div class="tab-pane active" id="home" role="tabpanel">
+                    <!-- Tab panes -->
+                    <div class="tab-content ">
+                        <div class="tab-pane active" id="home" role="tabpanel">
 
-                        <div class="page" id="dashboard">
-                            <div class="bg-white rounded-lg shadow">
+                            <div class="page" id="dashboard">
+                                <div class="bg-white rounded-lg shadow">
 
-                                <div class="card-body">
-                                    <table class="table" id="table">
-                                        <thead class="thead-dark bg-custom">
-                                        <tr>
-                                            <th scope="col">Property</th>
-                                            <th scope="col">Value</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($product->propertiesValues as $value )
-                                            <tr class="text-center">
-                                                <th scope="row"> {{$value->property->name}} </th>
-                                                <td> {{$value->value}}</td>
+                                    <div class="card-body">
+                                        <table class="table" id="table">
+                                            <thead class="thead-dark bg-custom">
+                                            <tr>
+                                                <th scope="col">Property</th>
+                                                <th scope="col">Value</th>
                                             </tr>
-                                        @endforeach
+                                            </thead>
+                                            <tbody>
+                                            @foreach ($product->propertiesValues as $value )
+                                                <tr class="text-center">
+                                                    <th scope="row"> {{$value->property->name}} </th>
+                                                    <td> {{$value->value}}</td>
+                                                </tr>
+                                            @endforeach
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
 
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="comments" role="tabpanel">
+                            <livewire:comment :product="$product">
+                        </div>
+                        <div class="tab-pane" id="settings" role="tabpanel">
+                            <p>
+                                "I will be the leader of a company that ends up being worth billions of dollars, because
+                                I got the answers. I understand culture. I am the nucleus. I think that’s a
+                                responsibility that I have, to push possibilities, to show people, this is the level
+                                that things could be at."
+                            </p>
+                        </div>
                     </div>
-                    <div class="tab-pane" id="comments" role="tabpanel">
-                         <livewire:comment :product="$product">
-                    </div>
-                    <div class="tab-pane" id="settings" role="tabpanel">
-                      <p>
-                        "I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."
-                      </p>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
 
 
         </div>
@@ -281,36 +273,35 @@
 
     @livewireScripts
     <script>
-     let card = document.querySelector('.countdown');
+        let card = document.querySelector('.countdown');
 
-            const intrvl = setInterval(function () {
+        const intrvl = setInterval(function () {
             let countDownDate = new Date(card.dataset.date).getTime();
 
-                let now = new Date().getTime();
-                let timeleft = countDownDate - now;
+            let now = new Date().getTime();
+            let timeleft = countDownDate - now;
 
 
-                let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-                let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+            let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0){
-                    clearInterval(intrvl);
-                    days = 0;
-                    hours = 0;
-                    minutes = 0;
-                    seconds = 0;
-                    card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';
-                }
-                card.querySelector(".bid-days").innerHTML = days
-                card.querySelector(".bid-hours").innerHTML = hours
-                card.querySelector(".bid-mins").innerHTML = minutes
-                card.querySelector(".bid-secs").innerHTML = seconds
+            if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {
+                clearInterval(intrvl);
+                days = 0;
+                hours = 0;
+                minutes = 0;
+                seconds = 0;
+                card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';
+            }
+            card.querySelector(".bid-days").innerHTML = days
+            card.querySelector(".bid-hours").innerHTML = hours
+            card.querySelector(".bid-mins").innerHTML = minutes
+            card.querySelector(".bid-secs").innerHTML = seconds
 
 
-            }, 1000)
-
+        }, 1000)
 
 
         $(document).on('click', '.toggleProductinWishlist', function (e) {
@@ -403,7 +394,7 @@
     <script src="{{ asset('js/product/zoom.js') }}"></script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#ex1').zoom();
         });
     </script>
