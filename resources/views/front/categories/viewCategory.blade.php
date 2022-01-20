@@ -23,30 +23,9 @@
 
     <div class="searchContainer">
         <div class="row">
-            <div class="col-md-3 col-sm-12 ">
+            <div class="col-md-3 col-sm-12 my-4">
 
 
-                <div class="price-range leftNav py-2"><!--price-range-->
-                    <div class="card my-3">
-
-                        <p >
-                            <label for="amount" class="card-header">Price range:</label>
-                            <div class="d-flex">
-
-                                <input type="text" id="amount_start" name="start_price" value="0" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold;">
-                                <input type="text" id="amount_end" name="end_price" value="10000" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold;">
-                            </div>
-
-                        </p>
-                        <div id="slider-range" class="slider-range"></div>
-
-                    </div>
-                </div><!-- end price-range-->
-
-                <div class="card leftNav category-sec mb-30">
-                    <h3>Refine By:<span class="_t-item">(0 items)</span></h3>
-                    <div class="col-12 p-0" id="catFilters"></div>
-                </div>
 
 
 
@@ -59,20 +38,19 @@
                                 Categories</button>
                         </div>
 
-                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordionExample2">
                             <div class="panel-body">
 
 
                                 @if(!empty($categories))
-                                    @foreach ($categories as $category)
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" {{($loop->iteration == 0 ? 'checked' : '')}}
-                                                attr-name="{{$category->name}}"
-                                                class="custom-control-input category_checkbox" id="{{$category->id}}">
-                                            <label class="custom-control-label"
-                                                for="{{$category->id}}">{{ucfirst($category->name)}}</label>
-                                        </div>
+                                    @foreach ($categories as $cat)
+                                        <a href="{{ route('categories.viewCategory' , $cat) }}" class="@if ($category->id == $cat->id) text-primary  @endif">
+
+                                            <li  class="my-1">
+                                                {{ ucfirst($cat->name) }}
+                                            </li>
+                                        </a>
                                     @endforeach
                                 @endif
                             </div>
@@ -87,46 +65,6 @@
                 </div>
 
 
-
-
-
-                <div class="card leftNav category-sec">
-
-                    <div class="accordion" id="accordionExample">
-                        <div class="card-header" id="headingTwo">
-                            <button class="btn btn-link" type="button" data-toggle="collapse"
-                                data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                Sub-Categories</button>
-                        </div>
-
-                        <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo"
-                            data-parent="#accordionExample">
-                            <div class="panel-body">
-
-
-                                @if(!empty($subCategories))
-                                    @foreach ($subCategories as $subCategory)
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox"
-                                                attr-name="{{$subCategory->name}}"
-                                                class="custom-control-input subCategory_checkbox" id="sub-{{$subCategory->id}}">
-                                            <label class="custom-control-label"
-                                                for="sub-{{$subCategory->id}}">{{ucfirst($subCategory->name)}}</label>
-                                        </div>
-                                    @endforeach
-                                @endif
-
-
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-
-                </div>
 
 
             </div>

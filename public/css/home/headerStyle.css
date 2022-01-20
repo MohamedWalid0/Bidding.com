@@ -1029,3 +1029,25 @@ Main Components
 }
 
 
+
+
+
+
+/* buttons */
+/* .bellNotificationContainer{
+    position: relative;
+} */
+
+.navbar-badge {
+    font-size: .6rem;
+    font-weight: 300;
+    padding: 2px 4px;
+    position: absolute;
+    left: 0;
+    top: 5%;
+}
+
+.bellNotificationIcon{
+    font-size: 1.7rem !important;
+}
+/* end buttons */
