@@ -35,9 +35,17 @@
 <body class="px-0">
 
 
+    <div class="page-container " >
+        <div class="content-wrap ">
+          <!-- all other page content -->
+          @yield('content')
 
-    @yield('content')
-    @include('layouts.footer')
+        </div>
+
+        @include('layouts.footer')
+
+    </div>
+
 
 
 

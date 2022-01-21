@@ -12,7 +12,7 @@
     @include('layouts.header')
 
     <!-- hot products -->
-    <section class="my-5">
+    <section class="my-5 pt-3">
 
         <div class="titleSubtileHolder">
             <div class="sectionTitleContainer pt-3">

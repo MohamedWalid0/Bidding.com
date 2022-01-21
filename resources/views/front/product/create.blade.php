@@ -5,10 +5,18 @@
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="{{asset('css/product/add-product.css')}}">
-<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link type="text/css" rel="stylesheet" href="{{asset('css/product/image-uploader.min.css')}}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+
+    <link rel="stylesheet" href="{{asset('css/product/add-product.css')}}">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link type="text/css" rel="stylesheet" href="{{asset('css/product/image-uploader.min.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <style>
+        .form-control{
+            width: 100% !important
+        }
+    </style>
 @endsection
 
 
@@ -17,6 +25,9 @@
 
 
 @section('content')
+
+    @include('layouts.header')
+
     <div class="container">
 
         <h3>

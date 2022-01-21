@@ -1,4 +1,4 @@
-<nav class=" navbar navbar-expand-lg mainNav navbar-light bg-light ">
+<nav class=" navbar navbar-expand-lg mainNav  ">
 
 
     <div class="logoNav">

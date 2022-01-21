@@ -14,17 +14,19 @@
 @section('content')
     @include('layouts.header')
 
+    <div class="mt-5 pt-5">
 
-        <div class="card text-center m-auto" style="width: 25rem;">
+        <div class="card text-center m-auto " style="width: 25rem;">
             <div class="card-body">
-            <h5 class="card-title">
-                {{ $qrcode }}
-            </h5>
-            <p class="card-text">You can scan this product QR Code by your phone now </p>
+                <h5 class="card-title">
+                    {{ $qrcode }}
+                </h5>
+                <p class="card-text">You can scan this product QR Code by your phone now </p>
                 <a href="{{ route('products.index' , $product->id) }}" class="btn btn-primary">Back to product</a>
             </div>
         </div>
 
+    </div>
 
 @endsection
 

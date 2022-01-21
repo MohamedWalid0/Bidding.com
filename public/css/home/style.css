@@ -142,14 +142,15 @@ a {
 
 
 
-
-
 /* navbar */
 .mainNav{
+    position: fixed;
+    top: 0;
+    z-index: 99999999999999 !important;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* background-color: aqua; */
+    transition: 0.5s all;
 }
 
 .dropdown-toggle::after{
@@ -1035,10 +1036,21 @@ body {
 
 /* start footer */
 
+.page-container {
+    position: relative !important;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+}
+
 
 .footer-copytight{
+    position: absolute !important;
+    bottom: 0 !important;
     width: 100%;
-    height: 50px;
+    height: 2.7rem;
     background-color: #EAEDED;
     display: flex;
     justify-content: center;

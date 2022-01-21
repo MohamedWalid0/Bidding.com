@@ -16,7 +16,9 @@
 
 @section('content')
     @include('layouts.header')
+
     <section class="py-5">
+
         <div class="container">
 
             <div class="product-header mb-3">
@@ -263,9 +265,6 @@
                     </div>
                 </div>
             </div>
-
-
-        </div>
 
 
         </div>

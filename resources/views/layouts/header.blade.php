@@ -26,7 +26,7 @@
 
 
 
-    <header id="header" class="header-3 sticky-menu  bg-primary ">
+    <header id="header" class="header-3 sticky-menu  bg-primary  ">
 
 
         @include('layouts.header-top')
