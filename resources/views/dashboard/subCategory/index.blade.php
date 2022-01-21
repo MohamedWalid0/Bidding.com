@@ -144,7 +144,7 @@
             var subCategoryId = $(this).attr('data-subCategory-id');
             var    response =    FilePond.setOptions({
                 server: {
-                    url: 'http://ebid.test/dashboard/upload/SubCategory/' + subCategoryId ,
+                    url: 'http://127.0.0.1:8000/dashboard/upload/SubCategory/' + subCategoryId ,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }

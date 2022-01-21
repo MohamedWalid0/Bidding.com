@@ -104,7 +104,7 @@
             var categoryId = $(this).attr('data-category-id');
             FilePond.setOptions({
                 server: {
-                    url: 'http://ebid.test/dashboard/upload/Category/' + categoryId ,
+                    url: 'http://127.0.0.1:8000/dashboard/upload/Category/' + categoryId ,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
