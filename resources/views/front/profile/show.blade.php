@@ -79,7 +79,7 @@
                         <div class="card">
                             <div class="p-4 text-center bg-white rounded-lg shadow">
                                 <i class="fas fa-trophy text-muted icon-style"></i>
-                                <h1 class="mt-2">86</h1>
+                                <h1 class="mt-2">{{ $itemWonCount }}</h1>
                                 <h3 class="text-muted">Items Won</h3>
 
 
@@ -91,7 +91,7 @@
                         <div class="card">
                             <div class="p-4 text-center bg-white rounded-lg shadow">
                                 <i class="fas fa-gavel text-warning icon-style"></i>
-                                <h1 class="mt-2">86</h1>
+                                <h1 class="mt-2">{{ $activeBidsCount }}</h1>
                                 <h3 class="text-warning">Active Bids</h3>
 
 
@@ -104,7 +104,7 @@
                         <div class="card">
                             <div class="p-4 text-center bg-white rounded-lg shadow">
                                 <i class="fas fa-star text-danger icon-style"></i>
-                                <h1 class="mt-2">86</h1>
+                                <h1 class="mt-2">{{ $favoritesItemsCount }}</h1>
                                 <h3 class="text-danger">Favorites</h3>
 
 

@@ -40,7 +40,7 @@
             <div class="row pt-5">
                 <div class="col-md-5">
                     <div class="product-img zoom" id='ex1'>
-                        @if (  is_null( $product->images) )
+                        @if (  $product->images()->exists() )
                             <img class="w-100 mainImage" id="zoom_01"
                                  src="{{ asset('img/front/products/'. $product->id . '/thump-' . $product->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}"
                                  alt="">

@@ -17,7 +17,7 @@ class CategoryAndSubCategoryComposer
     public function compose(View $view)
     {
         $view->with('categories', Cache::remember('categories', 60 * 60 * 60, function () {
-            return Category::with('subCategories')->get();
+            return Category::with('subCategories' , 'images')->get();
         })
         );
     }

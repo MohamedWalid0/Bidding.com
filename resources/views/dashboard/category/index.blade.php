@@ -37,6 +37,17 @@
                     <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
+                        <td>
+                            @if( $category->images()->exists() )
+                                <img
+                                    src="{{ asset('img/front/categories/'.$category->id . '/thump-' . $category->images->first()->image_path ) }}"
+                                    class="rounded-circle " alt="">
+                            @else
+                                <img
+                                    src="https://source.unsplash.com/random"
+                                    class="rounded-circle " alt="">
+                            @endif
+                        </td>
                         <td >
 
                             @can('viewAny' , \App\Models\Category::class)
