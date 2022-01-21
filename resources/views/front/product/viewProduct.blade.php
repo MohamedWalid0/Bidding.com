@@ -40,20 +40,30 @@
             <div class="row pt-5">
                 <div class="col-md-5">
                     <div class="product-img zoom" id='ex1'>
-
-                        <img class="w-100 mainImage" id="zoom_01"
-                             src="{{ asset('img/front/products/'. $product->id . '/thump-' . $product->images->first()->image_path) }}"
-                             alt="">
-
+                        @if (  $product->images()->exists() )
+                            <img class="w-100 mainImage" id="zoom_01"
+                                 src="{{ asset('img/front/products/'. $product->id . '/thump-' . $product->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}"
+                                 alt="">
+                        @else
+                            <img class="w-100 mainImage" id="zoom_01"
+                                 src="https://source.unsplash.com/random"
+                                 alt="">
+                        @endif
                     </div>
                     <div class="row pt-3">
-                        @foreach($product->images as $image)
+                        @forelse($product->images as $image)
                             <div class="col-3">
                                 <img class="w-100 pointer imageItem"
-                                     src="{{ asset('img/front/products/'. $product->id . '/thump-' . $image->image_path) }}"
+                                     src="{{ asset('img/front/products/'. $product->id . '/thump-' . $image->image_path)?? 'https://source.unsplash.com/random' }}"
                                      alt="">
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="col-3">
+                                <img class="w-100 pointer imageItem"
+                                     src="https://source.unsplash.com/random"
+                                     alt="">
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="col-md-7">

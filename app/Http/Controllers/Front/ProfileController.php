@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Account;
+use App\Models\Product;
 use App\Models\Rate;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,21 @@ class ProfileController extends Controller
         $userRate = auth()->user()->rates
             ? auth()->user()->rates()->sum('rate') / ($rateCount || 1)
             : 0;
-        return view('front.profile.show' , compact('userRate' , 'rateCount' ))->with($data);
+
+        $userProductsWins = Product::withoutGlobalScopes()
+            ->where('status', 'inactive')
+            ->has('winner_bid')
+            ->get();
+        $itemWonCount = $userProductsWins->count();
+
+        $activeBids = auth()->user()->products;
+        $activeBidsCount = $activeBids->count();
+        $favoritesItemsCount = auth()->user()->wishlist->loadCount(['products' => fn($q) => $q->withoutGlobalScopes()])->products_count;
+        return view('front.profile.show',
+            compact('userRate', 'rateCount',
+                'userProductsWins', 'itemWonCount',
+                'activeBids', 'activeBidsCount' , 'favoritesItemsCount'))
+            ->with($data);
     }
 
     public function show(User $user)
@@ -37,6 +51,23 @@ class ProfileController extends Controller
         }
 
         $account = $user->account;
-        return view('front.profile.show', compact('user', 'account', 'userRate', 'rateCount', 'existsRate'));
+
+        $userProductsWins = Product::withoutGlobalScopes()
+            ->where('status', 'inactive')
+            ->has('winner_bid')
+            ->get();
+        $itemWonCount = $userProductsWins->count();
+
+        $activeBids = $user->products;
+        $activeBidsCount = $activeBids->count();
+        $favoritesItemsCount = $user->wishlist()
+            ->withoutGlobalScopes()->first()
+            ->loadCount(['products' => fn($q) => $q->withoutGlobalScopes()])
+            ->products_count;
+        return view('front.profile.show',
+            compact('user', 'account',
+                'userRate', 'rateCount',
+                'existsRate', 'userProductsWins', 'itemWonCount',
+                'activeBids', 'activeBidsCount', 'favoritesItemsCount'));
     }
 }

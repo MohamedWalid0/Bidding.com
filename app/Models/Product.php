@@ -3,30 +3,27 @@
 namespace App\Models;
 
 use App\Scopes\ProductScope;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
     use HasFactory;
     use Searchable;
-    use SoftDeletes ;
-    protected $dates = ['deleted_at'];
-
+    use SoftDeletes;
 
     public const ACTIVE = 'active';
     public const INACTIVE = 'inactive';
-
-
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'id',
         'name',
@@ -49,6 +46,12 @@ class Product extends Model
     // protected $with = ['user_bids'];
 
     // Relations
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new ProductScope);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -60,7 +63,6 @@ class Product extends Model
             ->withTimestamps();
     }
 
-
     public function user_bids(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'bids')
@@ -70,6 +72,15 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function winner_bid(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'bids')
+            ->as('bid')
+            ->where(function ($q) {
+                $q->latest('bids.updated_at');
+                $q->where('user_id', request('user')->id ?? auth()->id());
+            });
+    }
 
     public function events(): BelongsToMany
     {
@@ -110,20 +121,16 @@ class Product extends Model
             ->withTimestamps();
     }
 
-    public function reports():HasMany
+    public function reports(): HasMany
     {
-        return $this->HasMany(ReportProduct::class) ;
+        return $this->HasMany(ReportProduct::class);
     }
+
+    // Scopes
 
     public function stopped_product(): HasOne
     {
         return $this->hasOne(StoppedProduct::class, 'product_id');
-    }
-
-    // Scopes
-    protected static function booted()
-    {
-        static::addGlobalScope(new ProductScope);
     }
 
     public function scopeLatestProducts(Builder $query, int $take): Builder

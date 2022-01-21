@@ -6,7 +6,7 @@
 
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 
 
 @endsection
@@ -276,11 +276,11 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 days"></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 hours"></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
@@ -290,7 +290,7 @@
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 secs"></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -346,11 +346,11 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 days"></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 hours"></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
@@ -360,7 +360,7 @@
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 secs"></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -415,11 +415,11 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 days"></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 hours"></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
@@ -429,7 +429,7 @@
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 secs"></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -485,11 +485,11 @@
 
                                 <div class="d-flex  text-center w-100 p-2">
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 days"></h6>
                                         <p class="text-muted">Days</p>
                                     </div>
                                     <div class="col-3 px-0 counterItem rightBorder">
-                                        <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 hours"></h6>
                                         <p class="text-muted">Hours</p>
                                     </div>
 
@@ -499,7 +499,7 @@
                                     </div>
 
                                     <div class="col-3 px-0 counterItem">
-                                        <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                        <h6 class="text-primary my-0 pt-1 secs"></h6>
                                         <p class="text-muted">Seconds</p>
                                     </div>
                                 </div>
@@ -867,40 +867,23 @@
         <div class=" owl-carousel owl-theme my-5">
 
 
-            <div class="text-center">
-                <div class=" p-3 ">
-                    <img src="{{ asset('img/home/client-6.png') }}" class="rounded-circle " alt="">
-                    <h4 class="my-3 text-dark ">Tablets</h4>
+            @foreach ($categories  as $category)
+                <div class="text-center">
+                    <div class=" p-3 ">
+                        @if( $category->images()->exists() )
+                            <img
+                                src="{{ asset('img/front/categories/'.$category->id . '/thump-' . $category->images->first()->image_path ) }}"
+                                class="rounded-circle " alt="">
+                        @else
+                            <img
+                                src="https://www.gravatar.com/avatar/"
+                                class="rounded-circle " alt="" style="width: 81px !important; height: 67px !important; ">
+                        @endif
+                        <h4 class="my-3 text-dark ">{{ $category->name }}</h4>
+                    </div>
                 </div>
-            </div>
+            @endforeach
 
-            <div class="text-center">
-                <div class=" p-3 ">
-                    <img src="{{ asset('img/home/client-4.png') }}" class="rounded-circle " alt="">
-                    <h4 class="my-3 text-dark ">Phones</h4>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <div class=" p-3 ">
-                    <img src="{{ asset('img/home/client-1.png') }}" class=" rounded-circle " alt="">
-                    <h4 class="my-3 text-dark ">Laptops</h4>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <div class=" p-3 ">
-                    <img src="{{ asset('img/home/client-9.png') }}" class=" rounded-circle " alt="">
-                    <h4 class="my-3 text-dark ">Clothes</h4>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <div class=" p-3 ">
-                    <img src="{{ asset('img/home/client-1.png') }}" class=" rounded-circle " alt="">
-                    <h4 class="my-3 text-dark ">shoes</h4>
-                </div>
-            </div>
 
         </div>
 
@@ -979,13 +962,15 @@
                                 <div class="productBidTimer">
 
 
-                                    <div data-date="{{ \Carbon\Carbon::parse($latest_product->deadline)->format('M d, y h:i:s') }}" class="d-flex  text-center w-100 p-2">
+                                    <div
+                                        data-date="{{ \Carbon\Carbon::parse($latest_product->deadline)->format('M d, y h:i:s') }}"
+                                        class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
@@ -995,7 +980,7 @@
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1092,13 +1077,15 @@
 
                                 <div class="productBidTimer">
 
-                                    <div data-date="{{ \Carbon\Carbon::parse($hot_product->deadline)->format('M d, y h:i:s') }}" class="d-flex  text-center w-100 p-2">
+                                    <div
+                                        data-date="{{ \Carbon\Carbon::parse($hot_product->deadline)->format('M d, y h:i:s') }}"
+                                        class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
@@ -1108,12 +1095,10 @@
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
-
-
 
 
                                 </div>
@@ -1168,11 +1153,11 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
@@ -1182,7 +1167,7 @@
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1280,15 +1265,17 @@
                                 </div>
 
 
-                                 <div class="productBidTimer">
+                                <div class="productBidTimer">
 
-                                    <div data-date="{{ \Carbon\Carbon::parse($mostOfViewProduct->deadline)->format('M d, y h:i:s') }}" class="d-flex  text-center w-100 p-2">
+                                    <div
+                                        data-date="{{ \Carbon\Carbon::parse($mostOfViewProduct->deadline)->format('M d, y h:i:s') }}"
+                                        class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
@@ -1298,7 +1285,7 @@
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -1344,28 +1331,28 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('.owl-carousel').owlCarousel();
-            });
+        });
 
-            $('.owl-carousel').owlCarousel({
+        $('.owl-carousel').owlCarousel({
             // rtl: true,
-            loop:true,
-            margin:0,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:2,
-                    nav:true
+            loop: true,
+            margin: 0,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true
                 },
-                600:{
-                    items:3,
-                    nav:true
+                600: {
+                    items: 3,
+                    nav: true
                 },
-                1000:{
-                    items:5,
-                    nav:true,
-                    loop:true
+                1000: {
+                    items: 5,
+                    nav: true,
+                    loop: true
                 }
             }
         })
@@ -1376,7 +1363,7 @@
     <script>
 
         let cards = document.querySelectorAll('div.d-flex.text-center.w-100.p-2');
-        cards.forEach(card=> {
+        cards.forEach(card => {
             let countDownDate = new Date(card.dataset.date).getTime();
 
             const intrvl = setInterval(function () {
@@ -1388,7 +1375,7 @@
                 let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0){
+                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {
                     clearInterval(intrvl);
                     days = 0;
                     hours = 0;
@@ -1404,7 +1391,6 @@
             }, 1000)
 
         })
-
 
 
         $(document).on('click', '.toggleProductinWishlist', function (e) {

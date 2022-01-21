@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\ImageResizeService;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +29,7 @@ class ImageController extends Controller
                 }
                 $this->handleUploadImage($modelId, $newFileName, $image, $modelName, 'sub_categories');
             }
-
+            Cache::forget('categories');
             return $newFileName;
         }
         return '';
