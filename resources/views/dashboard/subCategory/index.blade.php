@@ -63,6 +63,7 @@
                 <tr class="text-center">
                     <th style="width: 10px">#</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>
                         Actions
                     </th>
@@ -76,6 +77,11 @@
 
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $subCategory->name }}</td>
+                        <td>
+                            <img
+                                src="{{ $subCategory->ImageUrl() }}"
+                                class="rounded-circle " alt="">
+                        </td>
                         <td>
                             @can('update' , \App\Models\SubCategory::class)
                                 <button data-target="#modal-{{ $subCategory->id }}" data-toggle="modal" data-subCategory-id="{{ $subCategory-> id}}"
@@ -144,7 +150,7 @@
             var subCategoryId = $(this).attr('data-subCategory-id');
             var    response =    FilePond.setOptions({
                 server: {
-                    url: 'http://127.0.0.1:8000/dashboard/upload/SubCategory/' + subCategoryId ,
+                    url: '/dashboard/upload/SubCategory/' + subCategoryId ,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
