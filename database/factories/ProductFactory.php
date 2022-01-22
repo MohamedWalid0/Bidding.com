@@ -33,6 +33,14 @@ class ProductFactory extends Factory
                 ->subHours(random_int(1, 24))
                 ->subMonths(random_int(1, 12))
                 ->subMinutes(random_int(1, 55)),
+            'created_at' => Carbon::today()
+                ->subDays(random_int(1, 30))
+                ->addRealYears(random_int(1, 6))
+                ->subYears(random_int(1, 6))
+                ->addRealDays(random_int(1, 6))
+                ->subHours(random_int(1, 24))
+                ->subMonths(random_int(1, 12))
+                ->subMinutes(random_int(1, 55)),
         ];
     }
 }
