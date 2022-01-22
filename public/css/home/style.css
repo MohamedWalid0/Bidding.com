@@ -151,6 +151,7 @@ a {
     display: flex;
     justify-content: space-between;
     transition: 0.5s all;
+    box-shadow: 1px 1px 2px #888888;
 }
 
 .dropdown-toggle::after{
@@ -159,9 +160,6 @@ a {
 
 }
 
-.form-control{
-    width: 35vw;
-}
 .navbar-collapse{
     flex-grow: 0 !important;
 }
