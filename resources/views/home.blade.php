@@ -1356,7 +1356,18 @@
 
     </script>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
+
+        @if (\Session::has('emailOrPhoneUpdated'))
+            Swal.fire({
+                title: 'warning!',
+                text: "{{ \Session::get('emailOrPhoneUpdated') }}",
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            })
+        @endif
 
         let cards = document.querySelectorAll('div.d-flex.text-center.w-100.p-2');
         cards.forEach(card => {
