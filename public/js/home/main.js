@@ -21,19 +21,38 @@ new WOW().init();
 
 
 
-// loading spinner
 $(document).ready(function () {
 
-  $("#loading").fadeOut( 1000 , function(){
+    // loading spinner
+    $("#loading").fadeOut( 1000 , function(){
 
-    $("body").css("overflow" , "auto") ;
-    $("#loading").css("position" , "unset") ;
-    $(".sk-folding-cube").css("display" , "none");
+        $("body").css("overflow" , "auto") ;
+        $("#loading").css("position" , "unset") ;
+        $(".sk-folding-cube").css("display" , "none");
 
-  })
+    })
+    // end loading spinner
+
+    // fixed navbar
+
+    let scroll_start = 0;
+    let startchange = $('.mainNav');
+    let offset = startchange.offset();
+    if (startchange.length){
+        $(document).scroll(function() {
+            scroll_start = $(document).scrollTop();
+            if(scroll_start > offset.top) {
+                $(".mainNav").css('background-color', 'white');
+                $(".mainNav").css('box-shadow', '1px 1px 15px #888888');
+            } else {
+                $('.mainNav').css('background-color', 'transparent');
+
+            }
+        });
+    }
+    // end fixed navbar
 
 });
-// end loading spinner
 
 
 
@@ -65,26 +84,3 @@ $(".goToTop").click(function () {
 
 
 
-
-
-// fixed navbar
-$(document).ready(function(){
-    var scroll_start = 0;
-    var startchange = $('.mainNav');
-    var offset = startchange.offset();
-    if (startchange.length){
-        $(document).scroll(function() {
-            scroll_start = $(document).scrollTop();
-            if(scroll_start > offset.top) {
-                $(".mainNav").css('background-color', 'white');
-                $(".mainNav").css('box-shadow', '1px 1px 15px #888888');
-            } else {
-                $('.mainNav').css('background-color', 'transparent');
-                $('.mainNav').css('box-shadow', '0px 0px 0px #888888');
-
-
-            }
-        });
-    }
- });
-// end fixed navbar

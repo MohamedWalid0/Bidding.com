@@ -12,11 +12,7 @@
     <link type="text/css" rel="stylesheet" href="{{asset('css/product/image-uploader.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    <style>
-        .form-control{
-            width: 100% !important
-        }
-    </style>
+
 @endsection
 
 
@@ -28,7 +24,7 @@
 
     @include('layouts.header')
 
-    <div class="container">
+    <div class="container mt-5">
 
         <h3>
             <i class="add-product--head">
