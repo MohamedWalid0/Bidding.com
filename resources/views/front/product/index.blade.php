@@ -18,7 +18,7 @@
 
 
 
-    <div class="searchContainer">
+    <div class="searchContainer pt-5 mt-5">
         <div class="row">
             <div class="col-md-3 col-sm-12 ">
 
@@ -137,7 +137,19 @@
             <div class="col-md-9 col-sm-12 rightDiv">
                 <div class="row">
                     <div class="col-md-12 mt-4">
-                        <input class="form-control w-100" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                        {{-- <input class="form-control w-100" type="search" placeholder="Search..." aria-label="Search" id="searchInput"> --}}
+
+                        <fieldset class="field-container w-100">
+                            <input type="text" placeholder="Search..." class="field" id="searchInput" />
+                            <div class="icons-container">
+                              <div class="icon-search"></div>
+                              <div class="icon-close">
+                                <div class="x-up"></div>
+                                <div class="x-down"></div>
+                              </div>
+                            </div>
+                        </fieldset>
+
                     </div>
                 </div>
 
@@ -259,8 +271,8 @@
 
 
 @section('scripts')
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
-<script src="{{ asset('js/product/filter.js') }}"></script>
-<script src="{{ asset('js/product/wishlist.js') }}"></script>
+    <script src="{{ asset('js/product/filter.js') }}"></script>
+    <script src="{{ asset('js/product/wishlist.js') }}"></script>
 @endsection

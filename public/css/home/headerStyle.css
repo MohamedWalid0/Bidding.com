@@ -1047,7 +1047,37 @@ Main Components
     top: 5%;
 }
 
-.bellNotificationIcon{
+.bellNotificationIcon , .wishlistIcon , .logoutIcon ,.loginBtnContainer , .registerBtnContainer {
     font-size: 1.7rem !important;
 }
+.nav-item > a:hover {
+    color: black !important;
+}
+
+
+.wishlistIconContainer{
+    position: relative;
+}
+
+
+
+.wishlistIconCount{
+    font-size: .6rem;
+
+    font-weight: 300;
+    padding: 2px 4px;
+    position: absolute;
+    left: 0;
+    top: 5%;
+}
+
+
 /* end buttons */
+
+
+
+
+.navbar-toggler-icon{
+    color: black !important;
+    height: auto;
+}

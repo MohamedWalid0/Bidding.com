@@ -1,5 +1,5 @@
 <div class="bg-white rounded-lg shadow">
-    <div class="card-header">
+    <div class="card-header ">
         <div class="d-flex justify-content-between">
             <h4>Personal Data</h4>
 
@@ -7,16 +7,26 @@
                 @if(auth()->id() === request('user')->id)
                     <p>
                         <a href="#" data-toggle="modal" data-target="#exampleModal">
+
+
                             <i class="far fa-edit" style="cursor: pointer;"></i>
                             <span class="text-muted">Edit</span>
+
                         </a>
                     </p>
                 @endif
             @else
                 <p>
                     <a href="#" data-toggle="modal" data-target="#exampleModal">
-                        <i class="far fa-edit" style="cursor: pointer;"></i>
-                        <span class="text-muted">Edit</span>
+                        <button class="custom-btn btn-7 ">
+                            <span class="btn-7-span">
+
+                                <i class="far fa-edit" style="cursor: pointer;"></i>
+                                <span class="text-muted">Edit</span>
+
+                            </span>
+
+                        </button>
                     </a>
                 </p>
             @endif
