@@ -185,25 +185,25 @@
 
                                     </div>
 
-                                    <div class="productBidTimer">
+                                    <div class="productBidTimer" data-date="{{ \Carbon\Carbon::parse($product->deadline)->format('M d, y h:i:s') }}">
 
                                         <div class="d-flex  text-center w-100 p-2">
                                             <div class="col-3 px-0 counterItem rightBorder">
-                                                <h6 class="text-prim    ary my-0 pt-1" ></h6>
+                                                <h6 class="text-primary my-0 pt-1 days"></h6>
                                                 <p class="text-muted">Days</p>
                                             </div>
                                             <div class="col-3 px-0 counterItem rightBorder">
-                                                <h6 class="text-primary my-0 pt-1"></h6>
+                                                <h6 class="text-primary my-0 pt-1 hours"></h6>
                                                 <p class="text-muted">Hours</p>
                                             </div>
 
                                             <div class="col-3 px-0 counterItem rightBorder">
-                                                <h6 class="text-primary my-0 pt-1"></h6>
+                                                <h6 class="text-primary my-0 pt-1 mins"></h6>
                                                 <p class="text-muted">Minutes</p>
                                             </div>
 
                                             <div class="col-3 px-0 counterItem">
-                                                <h6 class="text-primary my-0 pt-1" ></h6>
+                                                <h6 class="text-primary my-0 pt-1 secs"></h6>
                                                 <p class="text-muted">Seconds</p>
                                             </div>
                                         </div>
@@ -241,7 +241,7 @@
 
                 </div>
                 <div class="py-4 ">
-                    {{ $products->links("pagination::bootstrap-4") }}
+                    {{ $products->withQueryString()->links() }}
                 </div>
 
 
@@ -263,4 +263,35 @@
 
 <script src="{{ asset('js/product/filter.js') }}"></script>
 <script src="{{ asset('js/product/wishlist.js') }}"></script>
+<script>
+    let cards = document.querySelectorAll('.productBidTimer');
+    cards.forEach(card => {
+        let countDownDate = new Date(card.dataset.date).getTime();
+
+        const intrvl = setInterval(function () {
+            let now = new Date().getTime();
+            let timeleft = countDownDate - now;
+
+            let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+            if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {
+                clearInterval(intrvl);
+                days = 0;
+                hours = 0;
+                minutes = 0;
+                seconds = 0;
+            }
+            card.querySelector(".days").innerHTML = days
+            card.querySelector(".hours").innerHTML = hours
+            card.querySelector(".mins").innerHTML = minutes
+            card.querySelector(".secs").innerHTML = seconds
+
+
+        }, 1000)
+
+    })
+</script>
 @endsection
