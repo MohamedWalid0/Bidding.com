@@ -35,21 +35,26 @@ $(document).ready(function () {
 
     // fixed navbar
 
-    let scroll_start = 0;
-    let startchange = $('.mainNav');
-    let offset = startchange.offset();
-    if (startchange.length){
-        $(document).scroll(function() {
-            scroll_start = $(document).scrollTop();
-            if(scroll_start > offset.top) {
-                $(".mainNav").css('background-color', 'white');
-                $(".mainNav").css('box-shadow', '1px 1px 15px #888888');
-            } else {
-                $('.mainNav').css('background-color', 'transparent');
+    $(window).on('scroll', function() {
 
-            }
-        });
-    }
+        "use strict";
+
+        if ($(window).scrollTop() > 0) {
+            $(".mainNav").css('background-color', 'white');
+            $(".mainNav").css('box-shadow', '1px 1px 15px #888888');
+
+        } else {
+            $('.mainNav').css('background-color', 'transparent');
+            $(".mainNav").css('box-shadow', '1px 1px 2px #888888');
+
+        }
+
+
+    });
+
+
+
+
     // end fixed navbar
 
 });
