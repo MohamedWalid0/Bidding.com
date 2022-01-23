@@ -25,6 +25,7 @@
                 <tr class="text-center">
                     <th style="width: 10px">#</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>
                         Actions
                     </th>
@@ -38,15 +39,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            @if( $category->images()->exists() )
                                 <img
-                                    src="{{ asset('img/front/categories/'.$category->id . '/thump-' . $category->images->first()->image_path ) }}"
+                                    src="{{ $category->ImageUrl() }}"
                                     class="rounded-circle " alt="">
-                            @else
-                                <img
-                                    src="https://source.unsplash.com/random"
-                                    class="rounded-circle " alt="">
-                            @endif
                         </td>
                         <td >
 
@@ -115,7 +110,7 @@
             var categoryId = $(this).attr('data-category-id');
             FilePond.setOptions({
                 server: {
-                    url: 'http://127.0.0.1:8000/dashboard/upload/Category/' + categoryId ,
+                    url: '/dashboard/upload/Category/' + categoryId ,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }

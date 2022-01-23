@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth' , 'can:access-dashboard']], function () {
         Route::post('upload/{modelName}/{modelId}', [ImageController::class , 'upload']);
         Route::get('/', HomeController::class)->name('dashboard');
+        Route::get('/products_chart', [HomeController::class , 'productsChart'])->name('dashboard.products_chart');
         Route::resource('category', CategoryController::class)->except(['create', 'edit']);
         Route::post('category/{category}/sub_category/{sub_category}/assign', [SubCategoryController::class, 'assign'])->name('subcategory.assign');
         Route::delete('category/{category}/sub_category/{sub_category}/unassign/{property}', [SubCategoryController::class, 'unassign'])->name('subcategory.unassign');

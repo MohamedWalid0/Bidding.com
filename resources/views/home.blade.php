@@ -870,15 +870,11 @@
             @foreach ($categories  as $category)
                 <div class="text-center">
                     <div class=" p-3 ">
-                        @if( $category->images()->exists() )
-                            <img
-                                src="{{ asset('img/front/categories/'.$category->id . '/thump-' . $category->images->first()->image_path ) }}"
-                                class="rounded-circle " alt="">
-                        @else
-                            <img
-                                src="https://www.gravatar.com/avatar/"
-                                class="rounded-circle " alt="" style="width: 81px !important; height: 67px !important; ">
-                        @endif
+
+                        <img
+                            src="{{ $category->ImageUrl() }}"
+                            class="rounded-circle " alt="">
+
                         <h4 class="my-3 text-dark ">{{ $category->name }}</h4>
                     </div>
                 </div>
@@ -1360,7 +1356,18 @@
 
     </script>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
+
+        @if (\Session::has('emailOrPhoneUpdated'))
+            Swal.fire({
+                title: 'warning!',
+                text: "{{ \Session::get('emailOrPhoneUpdated') }}",
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            })
+        @endif
 
         let cards = document.querySelectorAll('div.d-flex.text-center.w-100.p-2');
         cards.forEach(card => {

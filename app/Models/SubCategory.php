@@ -39,4 +39,11 @@ class SubCategory extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function ImageUrl(): string
+    {
+        return $this->images->first()
+            ? asset("img/front/sub_categories/{$this->id}/thump-" . $this->images->first()->image_path)
+            : 'https://www.gravatar.com/avatar/';
+    }
+
 }
