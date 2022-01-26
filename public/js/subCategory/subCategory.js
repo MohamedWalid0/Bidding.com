@@ -55,11 +55,13 @@ function fetchProductsBySearch(subCategoryId , keyword) {
 
                             <div class="productContainer pb-2">
                                 <div class="productImageContainer">
+
                                     <img src=" /img/home/mobile.jpg"
                                         onmouseover="this.src=' /img/home/electronic.jpg' "
                                         onmouseout="this.src=' /img/home/mobile.jpg ' "
 
                                         class="w-100" alt="">
+
                                 </div>
 
                                 <div class="productOptions ">
