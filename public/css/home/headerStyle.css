@@ -247,7 +247,8 @@ Main Components
   overflow: hidden;
   text-indent: 100%;
   white-space: nowrap;
-  background-color: aqua;
+  background-color: transparent;
+  z-index: 6 !important;
 }
 .cd-dropdown .cd-close::after, .cd-dropdown .cd-close::before {
   /* this is the 'X' icon */
@@ -357,7 +358,7 @@ Main Components
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;
     padding-top: 50px;
-    z-index: 9999999999999999 !important;
+    z-index: 5 !important;
 }
 .cd-dropdown-content a, .cd-dropdown-content ul a {
   display: block;
