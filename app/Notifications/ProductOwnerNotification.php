@@ -49,7 +49,9 @@ class ProductOwnerNotification extends Notification
         return [
             'title' => "Product Bidding is finished",
             'body' => $body,
-            'image' => asset('img/front/products/'. $this->product->id . '/thump-' .$this->product->images[0]->image_path)?? 'https://source.unsplash.com/random',
+            'image' => $this->product->images()->exists()
+                ? asset('img/front/products/' . $this->product->id . '/thump-' . $this->product->images[0]->image_path)
+                : 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ];
     }
@@ -64,7 +66,9 @@ class ProductOwnerNotification extends Notification
         return new BroadcastMessage([
             'title' => "Product Bidding is finished",
             'body' => $body,
-            'image' => asset('img/front/products/'. $this->product->id . '/thump-' .$this->product->images[0]->image_path)?? 'https://source.unsplash.com/random',
+            'image' => $this->product->images()->exists()
+                ? asset('img/front/products/' . $this->product->id . '/thump-' . $this->product->images[0]->image_path)
+                : 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ]);
     }

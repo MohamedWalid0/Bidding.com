@@ -27,11 +27,11 @@ class ProfileController extends Controller
 
         $activeBids = auth()->user()->products;
         $activeBidsCount = $activeBids->count();
-        $favoritesItemsCount = auth()->user()->wishlist->loadCount(['products' => fn($q) => $q->withoutGlobalScopes()])->products_count;
+        $reviewsCount = auth()->user()->loadCount('reviews')->reviews_count;
         return view('front.profile.show',
             compact('userRate', 'rateCount',
                 'userProductsWins', 'itemWonCount',
-                'activeBids', 'activeBidsCount' , 'favoritesItemsCount'))
+                'activeBids', 'activeBidsCount' , 'reviewsCount'))
             ->with($data);
     }
 
@@ -60,14 +60,11 @@ class ProfileController extends Controller
 
         $activeBids = $user->products;
         $activeBidsCount = $activeBids->count();
-        $favoritesItemsCount = $user->wishlist()
-            ->withoutGlobalScopes()->first()
-            ->loadCount(['products' => fn($q) => $q->withoutGlobalScopes()])
-            ->products_count;
+        $reviewsCount = $user->loadCount('reviews')->reviews_count;
         return view('front.profile.show',
             compact('user', 'account',
                 'userRate', 'rateCount',
                 'existsRate', 'userProductsWins', 'itemWonCount',
-                'activeBids', 'activeBidsCount', 'favoritesItemsCount'));
+                'activeBids', 'activeBidsCount', 'reviewsCount'));
     }
 }

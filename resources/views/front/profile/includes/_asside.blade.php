@@ -1,54 +1,41 @@
 <aside class="mb-5">
 
-    <div class="bg-white  shadow " >
+    <div class="bg-white  shadow ">
         <ul class="list-group list-group-flush">
             <li class="text-center list-group-item mb-5">
                 <div class="user">
                     <livewire:update-image :user='$user'>
-                    <div class="">
-                        <h5> {{$account->full_name}} </h5>
+                        <div class="">
+                            <h5> {{$account->full_name}} </h5>
 
-                        <?php $userRate = number_format($userRate) ?>
-                        <div class="rating">
-                            @for ($i = 1 ; $i<=$userRate ; $i++ )
-                                <i class="fa fa-star checked"></i>
-                            @endfor
-                            @for ($j = $userRate+1  ; $j<=5 ; $j++ )
-                                <i class="fa fa-star "></i>
-                            @endfor
+                            <?php $userRate = number_format($userRate) ?>
+                            <div class="rating">
+                                @for ($i = 1 ; $i<=$userRate ; $i++ )
+                                    <i class="fa fa-star checked"></i>
+                                @endfor
+                                @for ($j = $userRate+1  ; $j<=5 ; $j++ )
+                                    <i class="fa fa-star "></i>
+                                @endfor
+                            </div>
+
+                            @if ( $rateCount > 0)
+                                <p class="my-0">  {{ $rateCount }} Ratings </p>
+                            @else
+                                <p class="my-0"> No Ratings yet </p>
+                            @endif
+
+                            <p class="mt-0 text-muted"> {{$user->email}} </p>
                         </div>
-
-                        @if ( $rateCount > 0)
-                            <p class="my-0">  {{ $rateCount }}  Ratings </p>
-                        @else
-                            <p class="my-0">  No Ratings yet </p>
-                        @endif
-
-                        <p class="mt-0 text-muted"> {{$user->email}} </p>
-                    </div>
                 </div>
             </li>
-
-
             <li>
-                {{-- <button class="sidebar-custom-btn sidebar-btn-7 ">
-                    <span class="sidebar-btn-7-span"> --}}
-
-                        <a href="{{ route('products.create') }}">
-                            <div class="profile-tabs container-fluid">
-                                <p>
-                                    <i class="fas fa-gavel text-primary"></i>
-                                    <span class="ml-2">Add New Product</span>
-                                </p>
-                            </div>
-                        </a>
-                    {{-- </span>
-                </button> --}}
-            </li>
-
-            <li>
-                <a href="#dashboard">
-                    <div class="profile-tabs container-fluid">
+                <a>
+                    <div class="profile-tabs container-fluid"
+                         style="background-color: #f7f6fc;
+                                height: 50px;
+                                border-radius: 50px;
+                                cursor: pointer;
+                                transition: 0.5s;">
                         <p>
                             <i class="fas fa-tachometer-alt text-info"></i>
                             <span class="ml-2">Dashboard</span>
@@ -58,68 +45,72 @@
             </li>
 
             <li>
+                <a href="{{ route('products.create') }}">
+                    <div class="profile-tabs container-fluid bg-yellow">
+                        <p>
+                            <i class="fas fa-gavel text-primary"></i>
+                            <span class="ml-2">Add New Product</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
 
+
+            <li>
                 <a href="#PersonalData">
                     <div class="profile-tabs container-fluid">
                         <p>
 
-                            <i class="fas fa-user-cog text-danger" ></i>
+                            <i class="fas fa-user-cog text-danger"></i>
                             <span class="ml-2">Personal Data</span>
                         </p>
                     </div>
                 </a>
             </li>
 
-            <li>
-                <a href="#MyBids">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-gavel text-warning"></i>
-                            <span class="ml-2">My Bids</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
 
-            <li>
-                <a href="#Notification">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-bell text-success"></i>
-                            <span class="ml-2">Notifications</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="#Reviews">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-user-cog text-danger"></i>
-                            <span class="ml-2">Reviews</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="#MyBids">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-gavel text-warning"></i>
-                            <span class="ml-2">My Bids</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-
-
-
-            <!-- Button trigger modal -->
-            @if (request('user'))
+            @can('action' , \App\Models\User::class)
                 <li>
-                    <a  type="button"  data-toggle="modal" data-target="#exampleModalCenter">
+                    <a href="#Notification">
+                        <div class="profile-tabs container-fluid">
+                            <p>
+                                <i class="fas fa-bell text-success"></i>
+                                <span class="ml-2">Notifications</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+            @can('make' , \App\Models\User::class)
+                <li>
+                    <a href="#Reviews">
+                        <div class="profile-tabs container-fluid">
+                            <p>
+                                <i class="fas fa-user-cog text-danger"></i>
+                                <span class="ml-2">Reviews</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+            @can('action' , \App\Models\User::class)
+                <li>
+                    <a href="#MyBids">
+                        <div class="profile-tabs container-fluid">
+                            <p>
+                                <i class="fas fa-gavel text-warning"></i>
+                                <span class="ml-2">My Bids</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            @endcan
+
+
+
+            @can('make' , \App\Models\User::class)
+                <li>
+                    <a type="button" data-toggle="modal" data-target="#exampleModalCenter">
                         <div class="profile-tabs container-fluid">
                             <p>
                                 <i class="fas fa-star text-dark"></i>
@@ -128,9 +119,10 @@
                         </div>
                     </a>
                 </li>
-            @endif
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            @endcan
+
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <form action="{{ route('users.rate') }}" method="POST">
@@ -150,12 +142,14 @@
                                             @if ($existsRate)
                                                 @for ($i = 1 ; $i <= $existsRate->rate ; $i++)
 
-                                                    <input type="radio" value="{{ $i }}" name="user_rating" checked id="rating{{ $i }}">
+                                                    <input type="radio" value="{{ $i }}" name="user_rating" checked
+                                                           id="rating{{ $i }}">
                                                     <label for="rating{{ $i }}" class="fa fa-star"></label>
 
                                                 @endfor
                                                 @for ($j = $existsRate->rate + 1 ; $j <= 5 ;$j++ )
-                                                    <input type="radio" value="{{ $j }}" name="user_rating"  id="rating{{ $j }}">
+                                                    <input type="radio" value="{{ $j }}" name="user_rating"
+                                                           id="rating{{ $j }}">
                                                     <label for="rating{{ $j }}" class="fa fa-star"></label>
 
                                                 @endfor
@@ -185,9 +179,9 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Add Review</label>
                                         <textarea class="form-control"
-                                        name="review"
-                                        id="exampleFormControlTextarea1"
-                                        rows="3">{{$existsRate->review->review ?? old('review')}}</textarea>
+                                                  name="review"
+                                                  id="exampleFormControlTextarea1"
+                                                  rows="3">{{$existsRate->review->review ?? old('review')}}</textarea>
                                     </div>
                                 @endif
 
@@ -202,23 +196,22 @@
             </div>
 
 
-
-
-
-
             <!-- Button trigger modal -->
-            <li>
-                <a  type="button"  data-toggle="modal" data-target="#reportModel">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-flag text-danger"></i>
-                            <span class="ml-2">Report User ?</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <!-- Modal -->
-            <div class="modal fade" id="reportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            @can('make' , \App\Models\User::class)
+                <li>
+                    <a type="button" data-toggle="modal" data-target="#reportModel">
+                        <div class="profile-tabs container-fluid">
+                            <p>
+                                <i class="fas fa-flag text-danger"></i>
+                                <span class="ml-2">Report User ?</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+        @endcan
+        <!-- Modal -->
+            <div class="modal fade" id="reportModel" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <form action="{{ route('users.report') }}" method="POST">
@@ -231,7 +224,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p> Are you sure to report {{ $user->account->full_name }}  ? </p>
+                                <p> Are you sure to report {{ $user->account->full_name }} ? </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -241,23 +234,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         </ul>

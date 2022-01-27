@@ -3,33 +3,18 @@
         <div class="d-flex justify-content-between">
             <h4>Personal Data</h4>
 
-            @if( request('user') )
-                @if(auth()->id() === request('user')->id)
-                    <p>
-                        <a href="#" data-toggle="modal" data-target="#exampleModal">
-
-
-                            <i class="far fa-edit" style="cursor: pointer;"></i>
-                            <span class="text-muted">Edit</span>
-
-                        </a>
-                    </p>
-                @endif
-            @else
+            @can('action' , \App\Models\User::class)
                 <p>
                     <a href="#" data-toggle="modal" data-target="#exampleModal">
                         <button class="custom-btn btn-7 ">
                             <span class="btn-7-span">
-
                                 <i class="far fa-edit" style="cursor: pointer;"></i>
                                 <span class="text-muted">Edit</span>
-
                             </span>
-
                         </button>
                     </a>
                 </p>
-            @endif
+            @endcan
         </div>
     </div>
     <div class="card-body">
