@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Cache;
 class CategoryController extends Controller
 {
 
+    /**
+     * @throws AuthorizationException
+     */
     public function index(): view
     {
         $this->authorize('view-any' , Category::class);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\BlockUser;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +14,9 @@ class BlockUserController extends Controller
 {
 
 
+    /**
+     * @throws AuthorizationException
+     */
     public function index()
     {
         $this->authorize('viewAny' , BlockUser::class);
@@ -24,12 +29,15 @@ class BlockUserController extends Controller
     }
 
 
-    public function storeBlock(User $user)
+    /**
+     * @throws AuthorizationException
+     */
+    public function storeBlock(User $user): RedirectResponse
     {
         $this->authorize('create' , BlockUser::class);
         try {
 
-            if ($user->id == Auth::user()->id) {
+            if ($user->id === Auth::user()->id) {
                 toastr()->error('you can not block yourself !');
                 return back();
             }
@@ -67,13 +75,16 @@ class BlockUserController extends Controller
     }
 
 
-    public function storeUnBlock(User $user)
+    /**
+     * @throws AuthorizationException
+     */
+    public function storeUnBlock(User $user): RedirectResponse
     {
         $this->authorize('update' , BlockUser::class);
         try {
 
 
-            if ($user->id == Auth::user()->id) {
+            if ($user->id === Auth::user()->id) {
                 toastr()->error('you can not block yourself !');
                 return back();
             }
