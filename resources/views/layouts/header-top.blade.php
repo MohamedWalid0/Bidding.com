@@ -34,29 +34,30 @@
                     <a class="nav-link bellNotificationContainer" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="far fa-bell bellNotificationIcon"></i>
 
-                        <span class="badge badge-warning navbar-badge">{{ auth()->user()->unreadNotifications()->count() }}</span>
+                        <span class="badge badge-warning navbar-badge"id="notificationCount">{{ auth()->user()->unreadNotifications()->count() }}</span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px; width:350px">
-                        <span class="dropdown-item dropdown-header">{{ auth()->user()->unreadNotifications()->count() }} Notifications</span>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px; width:350px" >
+                        <span class="dropdown-item dropdown-header" >{{ auth()->user()->unreadNotifications()->count() }} Notifications</span>
                         <div class="dropdown-divider"></div>
 
-                        @forelse (auth()->user()->unreadNotifications as $notification)
-                            <a class="dropdown-item" href="{{ $notification->data['url'] }}?notify_id={{ $notification->id }}">
+                        <div id="notificationList">
+                            @forelse (auth()->user()->unreadNotifications as $notification)
+                                <a class="dropdown-item" href="{{ $notification->data['url'] }}?notify_id={{ $notification->id }}">
 
-                                <div class="row">
-                                    <div class="col-2 px-1">
-                                        <img src="{{ asset('img/avatar3.png') }}" class="rounded-circle w-100" alt="">
+                                    <div class="row">
+                                        <div class="col-2 px-1">
+                                            <img src="{{ $notification->data['image'] }}" class="rounded-circle w-100" alt="">
+                                        </div>
+                                        <div class="col-10">
+                                            <h6 class="text-bold text-danger">{{ $notification->data['title'] }}</h6>
+                                            <p class="text-muted" style="font-size:0.8rem;white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important ;"> {{ $notification->data['body'] }} </p>
+                                        </div>
                                     </div>
-                                    <div class="col-10">
-                                        <h6 class="text-bold text-danger">{{ $notification->data['title'] }}</h6>
-                                        <p class="text-muted" style="font-size:0.8rem;white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important ;"> {{ $notification->data['body'] }} </p>
-
-                                    </div>
-                                </div>
-                            </a>
-                        @empty
-                        @endforelse
+                                </a>
+                            @empty
+                            @endforelse
+                        </div>
 
 
                         <div class="dropdown-divider"></div>

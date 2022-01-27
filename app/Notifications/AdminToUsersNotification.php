@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
@@ -15,16 +16,18 @@ class AdminToUsersNotification extends Notification implements ShouldQueue
 
     protected string $message;
     protected $type;
+    protected $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(string $message, string $type)
+    public function __construct(string $message, string $type , User $user)
     {
         $this->message = $message;
         $this->type = $type === 'database' ? NULL : $type;
+        $this->user = $user;
     }
 
     /**
@@ -42,8 +45,8 @@ class AdminToUsersNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Message From Admin')
-            ->greeting('hello :' . $notifiable->account->full_name) // رسالة ترحيب
-            ->from('hoda.adel@yahoo.com') // override the data from env
+            ->greeting('hello :' . $notifiable->account->full_name)
+            ->from('hoda.adel@yahoo.com')
             ->line($this->message)
             ->action('visit profile Now', url('profile'))
             ->line('Thank You Have a Nice Day');
@@ -54,7 +57,7 @@ class AdminToUsersNotification extends Notification implements ShouldQueue
         return [
             'title' => "Admin Message",
             'body' => $this->message,
-            'icon' => 'icon is',
+            'image' => $this->user->avatarUrl(),
             'url' => url('profile'),
         ];
     }
@@ -64,7 +67,7 @@ class AdminToUsersNotification extends Notification implements ShouldQueue
         return new BroadcastMessage([
             'title' => "Admin Message",
             'body' =>  $this->message,
-            'icon' => 'icon is',
+            'image' => $this->user->avatarUrl(),
             'url' => url('profile'),
         ]);
     }

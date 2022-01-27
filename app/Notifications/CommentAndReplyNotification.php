@@ -9,9 +9,9 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentAndReplyNotification extends Notification implements ShouldQueue
+class CommentAndReplyNotification extends Notification
 {
-    use Queueable;
+
 
     protected $product;
     protected $message;
@@ -51,6 +51,7 @@ class CommentAndReplyNotification extends Notification implements ShouldQueue
             'title' => "New Comment Added",
             'body' => $body,
             'icon' => 'icon is',
+            'image' => auth()->user()->avatarUrl(),
             'url' => route('products.index', $this->product->id),
         ];
     }
@@ -68,6 +69,7 @@ class CommentAndReplyNotification extends Notification implements ShouldQueue
             'title' => "New Comment Added",
             'body' => $body,
             'icon' => 'icon is',
+            'image' => auth()->user()->avatarUrl(),
             'url' => route('products.index', $this->product->id),
         ]);
     }

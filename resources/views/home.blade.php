@@ -1429,7 +1429,13 @@
                     }
                 },
                 error: function (jqXHR) {
-                    toastr.warning(jqXHR.responseJSON.message);
+                    Swal.fire({
+                        title: 'ERORR!',
+                        text: jqXHR.responseJSON.message,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
 
             });

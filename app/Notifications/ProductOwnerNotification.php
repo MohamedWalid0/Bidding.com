@@ -9,9 +9,9 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ProductOwnerNotification extends Notification implements ShouldQueue
+class ProductOwnerNotification extends Notification
 {
-    use Queueable;
+
 
     protected $product;
 
@@ -49,7 +49,7 @@ class ProductOwnerNotification extends Notification implements ShouldQueue
         return [
             'title' => "Product Bidding is finished",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => asset('img/front/products/'. $this->product->id . '/thump-' .$this->product->images[0]->image_path)?? 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ];
     }
@@ -64,7 +64,7 @@ class ProductOwnerNotification extends Notification implements ShouldQueue
         return new BroadcastMessage([
             'title' => "Product Bidding is finished",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => asset('img/front/products/'. $this->product->id . '/thump-' .$this->product->images[0]->image_path)?? 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ]);
     }

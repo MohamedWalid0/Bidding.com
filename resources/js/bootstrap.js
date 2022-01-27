@@ -41,18 +41,24 @@ window.Echo = new Echo({
 
 window.Echo.private(`App.Models.User.${userId}`)
     .notification((data) => {
-        console.log(data)
-        // $('#notificationList').prepend(
-        //     `
-        //     <a class="dropdown-item" href="${data.url}?notify_id=${data.id}">
-        //     <h6 class="text-bold text-danger"> ${data.title} </h6>
-        //     <p class="text-muted"> ${data.body} </p>
-        //     </a>
-        //    `
-        // )
-        // let count = Number($('#notificationCount').text())
-        // count++;
-        // $('#notificationCount').text(count)
+        let count = Number($('#notificationCount').text())
+        $('#notificationList').prepend(
+            `
+            <a class="dropdown-item" href="${data.url}?notify_id=${data.id}">
+                <div class="row">
+                    <div class="col-2 px-1">
+                       <img src=" ${data.image} " class="rounded-circle w-100" alt="">
+                    </div>
+                     <div class="col-10">
+                        <h6 class="text-bold text-danger"> ${data.title} </h6>
+                        <p class="text-muted" style="font-size:0.8rem;white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important ;"> ${data.body} </p>
+                    </div>
+                </div>
+            </a>
+           `
+        )
+        count++;
+        $('#notificationCount').text(count)
         toastr.success(data.title);
     })
 

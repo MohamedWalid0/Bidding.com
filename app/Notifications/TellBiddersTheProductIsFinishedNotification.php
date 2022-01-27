@@ -9,9 +9,9 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TellBiddersTheProductIsFinishedNotification extends Notification implements ShouldQueue
+class TellBiddersTheProductIsFinishedNotification extends Notification
 {
-    use Queueable;
+
 
     protected $product;
 
@@ -64,7 +64,7 @@ class TellBiddersTheProductIsFinishedNotification extends Notification implement
         return new BroadcastMessage([
             'title' => "Product Bidding is finished",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => asset('img/front/products/'. $this->product->id . '/thump-' .$this->product->images[0]->image_path)?? 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ]);
     }

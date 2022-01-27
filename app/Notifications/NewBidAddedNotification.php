@@ -8,9 +8,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
-class NewBidAddedNotification extends Notification implements ShouldQueue
+class NewBidAddedNotification extends Notification
 {
-    use Queueable;
+//    use Queueable;
 
     protected $product;
     protected $user;
@@ -53,7 +53,7 @@ class NewBidAddedNotification extends Notification implements ShouldQueue
         return [
             'title' => "Bid Notification",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => auth()->user()->avatarUrl(),
             'url' => route('products.index', $this->product->id),
         ];
     }
@@ -70,7 +70,7 @@ class NewBidAddedNotification extends Notification implements ShouldQueue
         return new BroadcastMessage([
             'title' => "Bid Notification",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => auth()->user()->avatarUrl(),
             'url' => route('products.index', $this->product->id),
         ]);
     }

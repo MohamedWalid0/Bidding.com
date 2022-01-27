@@ -16,75 +16,69 @@ class FilterController extends Controller
     protected $subCategories;
 
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->categories = Category::orderBy('name')->get();
         $this->subCategories = SubCategory::orderBy('name')->get();
 
     }
 
-    public function index(){
+    public function index()
+    {
 
-        $products = Product::paginate(20) ;
-        $categories = $this->categories ;
-        $subCategories = $this->subCategories ;
+        $products = Product::paginate(5);
+        $categories = $this->categories;
+        $subCategories = $this->subCategories;
 
-        return view('front.product.index' , compact( 'categories', 'subCategories' , 'products')) ;
-
-    }
-
-
-    public function filterBySubCategory($subCategoryIds = ''){
-
-        $products = Product::whereIn('sub_category_id' , explode( "," , $subCategoryIds ) )->get() ;
-        return response()->json($products);
+        return view('front.product.index', compact('categories', 'subCategories', 'products'));
 
     }
 
 
-    public function filterByCategory($categoryIds = ''){
+    public function filterBySubCategory($subCategoryIds = '')
+    {
+        $products = Product::whereIn('sub_category_id', explode(",", request()->subCategoryids))
+            ->paginate(5)->appends('subCategoryids' , request()->subCategoryids);
+        return response()->json([$products , $products->render()->toHtml()]);
+
+    }
+
+
+    public function filterByCategory($categoryIds = '')
+    {
 
         $products = DB::table('products')
-                    ->join('sub_categories' , 'products.sub_category_id'  , 'sub_categories.id')
-                    ->join('categories' , 'categories.id' , 'sub_categories.category_id')
-                    ->whereIn('sub_categories.category_id' , explode( "," , $categoryIds ))
-                    ->where('deleted_at' , null)
-                    ->get('products.*')
-                    ;
+            ->join('sub_categories', 'products.sub_category_id', 'sub_categories.id')
+            ->join('categories', 'categories.id', 'sub_categories.category_id')
+            ->whereIn('sub_categories.category_id', explode(",", $categoryIds))
+            ->where('deleted_at', null)
+            ->get('products.*');
 
         return response()->json($products);
 
     }
 
 
-    public function filterByPriceRange($minPrice=0 , $maxPrice=0){
+    public function filterByPriceRange($minPrice = 0, $maxPrice = 0)
+    {
 
-        $products = Product::whereBetween( 'start_price' , [$minPrice , $maxPrice] )->paginate(20);
+        $products = Product::whereBetween('start_price', [$minPrice, $maxPrice])->paginate(20);
         return response()->json($products);
 
     }
 
 
-
-
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
 
         if ($request->has('q')) {
-            return Product::search( $request->q )->get() ;
-        }
-        else{
-            return response()->json('not found') ;
+            return Product::search($request->q)->get();
+        } else {
+            return response()->json('not found');
         }
 
     }
-
-
-
-
-
-
-
-
 
 
 }

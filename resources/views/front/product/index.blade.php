@@ -252,7 +252,7 @@
 
 
                 </div>
-                <div class="py-4 ">
+                <div class="py-4 pagination-container">
                     {{ $products->withQueryString()->links() }}
                 </div>
 
@@ -272,8 +272,9 @@
 
 @section('scripts')
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    @include('layouts._filterJs')
+{{--<script src="{{ asset('js/product/filter.js') }}"></script>--}}
 
-<script src="{{ asset('js/product/filter.js') }}"></script>
 <script src="{{ asset('js/product/wishlist.js') }}"></script>
 
 <script>

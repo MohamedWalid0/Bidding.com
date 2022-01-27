@@ -24,7 +24,7 @@ class NotificationController extends Controller
     {
         $users = User::getUsersFromRequest($request);
         $message =  $request->validated()['message'];
-        Notification::send($users, new AdminToUsersNotification($message, $request->validated()['type']));
+        Notification::send($users, new AdminToUsersNotification($message, $request->validated()['type'] ,  auth()->user()) );
         toastr()->success('message send successfully');
         return back();
     }

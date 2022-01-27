@@ -10,9 +10,8 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DeadlineBidSoonNotification extends Notification implements ShouldQueue
+class DeadlineBidSoonNotification extends Notification
 {
-    use Queueable;
 
     protected $product;
 
@@ -65,7 +64,7 @@ class DeadlineBidSoonNotification extends Notification implements ShouldQueue
         return new BroadcastMessage([
             'title' => "Deadline Bid Notification",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => asset('img/front/products/'. $this->product->id . '/thump-' .$this->product->images[0]->image_path)?? 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ]);
     }
