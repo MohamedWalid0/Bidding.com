@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function upload(Request $request,$modelName ,$modelId)
+    public function upload(Request $request,$modelName ,$modelId): string
     {
         if ($request->has('photo')) {
             $image = $request->file('photo');
@@ -39,6 +39,8 @@ class ImageController extends Controller
      * @param $modelId
      * @param string $newFileName
      * @param $image
+     * @param $modelName
+     * @param $disk
      * @return void
      */
     public function handleUploadImage($modelId, string $newFileName, $image, $modelName , $disk): void

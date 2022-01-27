@@ -72,8 +72,12 @@
                 <div class="col-md-7">
 
                     <livewire:bid-deadline :product="$product"/>
+                    @can('Adding-bid' , $product)
                     <livewire:bid :product="$product"/>
-                    @livewire('likable', ['modelType' => 'App\Models\Product' , 'model' => $product])
+                    @endcan
+                    @can('can-react' , $product)
+                        @livewire('likable', ['modelType' => 'App\Models\Product' , 'model' => $product])
+                    @endcan
                     <p class="product-header--subtitle py-3">
                         Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
                     </p>

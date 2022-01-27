@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\BlockUser;
+use App\Models\Product;
 use App\Models\Property;
 use App\Models\ReportProduct;
 use App\Models\ReportUser;
@@ -53,6 +54,14 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('send-notifications', function ($user) {
             return $user->hasAbility('notifications.send');
+        });
+
+        Gate::define('Adding-bid', function ($user , Product $product) {
+            return $user->id !==  $product->user_id;
+        });
+
+        Gate::define('can-react', function ($user , Product $product) {
+            return $user->id !==  $product->user_id;
         });
     }
 }

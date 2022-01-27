@@ -7,6 +7,7 @@ use App\Http\Requests\StoreNotificationRequest;
 use App\Models\User;
 use App\Notifications\AdminToUsersNotification;
 use Illuminate\Bus\Batch;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Notification;
 
@@ -20,7 +21,7 @@ class NotificationController extends Controller
         ]);
     }
 
-    public function store(StoreNotificationRequest $request)
+    public function store(StoreNotificationRequest $request): RedirectResponse
     {
         $users = User::getUsersFromRequest($request);
         $message =  $request->validated()['message'];
