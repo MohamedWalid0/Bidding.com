@@ -2,8 +2,8 @@
     <div class="cd-dropdown-wrapper ">
         <a class="cd-dropdown-trigger btn mx-2" href="#0">Search</a>
         <nav class="cd-dropdown ">
-            <h2>Title</h2>
-            <a href="#0" class="cd-close" onclick=alert()>Close</a>
+            <h2 class="wdqdqdqd">Title</h2>
+            <a class="cd-close" href="#0" >Close</a>
             <ul class="cd-dropdown-content">
 
                 <li class="cd-divider ">Categories</li>
