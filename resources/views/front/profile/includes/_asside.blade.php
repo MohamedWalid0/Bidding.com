@@ -139,6 +139,7 @@
                                 @if ( request('user') )
                                     <div class="rating-css">
                                         <div class="star-icon">
+
                                             @if ($existsRate)
                                                 @for ($i = 1 ; $i <= $existsRate->rate ; $i++)
 
@@ -157,7 +158,7 @@
                                             @else
 
                                                 <input type="radio" value="1" name="user_rating" checked id="rating1">
-                                                <label for="rating1" class="fa fa-star"></label>
+                                                <label for="rating1" class="fa fa-star" ></label>
                                                 <input type="radio" value="2" name="user_rating" id="rating2">
                                                 <label for="rating2" class="fa fa-star"></label>
                                                 <input type="radio" value="3" name="user_rating" id="rating3">
