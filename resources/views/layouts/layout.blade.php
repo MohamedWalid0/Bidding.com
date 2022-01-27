@@ -12,8 +12,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
-    <link rel="stylesheet" href="{{ asset('css/home/all.min.css') }}">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/home/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home/owl.theme.default.min.css') }}">
 
@@ -69,7 +68,6 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script src="{{ asset('js/home/all.min.js') }}"></script>
 
     <script src="{{ asset('js/home/wow.min.js') }}"></script>
 

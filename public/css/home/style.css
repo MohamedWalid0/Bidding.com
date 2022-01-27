@@ -40,7 +40,7 @@ a {
     height: 100vh;
     width: 100vw;
     background-color: rgb(70, 52, 19);
-    z-index: 9999999;
+    z-index: 999999999999999999999999999 !important;
     /* overflow: hidden !important ; */
     display: flex;
     justify-content: center;
@@ -146,7 +146,7 @@ a {
 .mainNav{
     position: fixed;
     top: 0;
-    z-index: 99999999999999 !important;
+    z-index: 99999999999;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -181,11 +181,6 @@ a {
 
 
 /* search in navbar */
-input {
-    font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: #555860;
-}
 
 .search {
     position: relative;
@@ -194,6 +189,10 @@ input {
 }
 
 .search input {
+    font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #555860;
+
     height: 30px;
     width: 100%;
     padding: 0 12px 0 25px;

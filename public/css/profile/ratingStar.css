@@ -24,9 +24,7 @@
     transition: 0.3s ease;
 }
 
-.checked {
-    color: #ffe400;
+.checked, input:checked + svg {
+    color: #ffe400 !important;
 }
 /* End of Star Rating */
-
-
