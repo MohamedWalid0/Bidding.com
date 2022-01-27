@@ -171,4 +171,17 @@ class Product extends Model
         return $this->load('user_bids.account')->user_bids->load('images')->sortByDesc('bid.updated_at')->take(5);
     }
 
+
+
+
+    /**
+     * Get the index name for the model.
+    */
+    public function searchableAs()
+    {
+        return 'products_index';
+    }
+
+
+
 }
