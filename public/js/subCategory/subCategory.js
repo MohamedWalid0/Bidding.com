@@ -47,7 +47,7 @@ function fetchProductsBySearch(subCategoryId , keyword) {
                 response.forEach(element => {
                     $('.causes_div').append(`
 
-
+<a href="/products/${element.id}">
                         <div class="col-md-3 col-sm-12 p-2">
 
                         <div class="productsWrapper mt-3">
@@ -117,9 +117,12 @@ function fetchProductsBySearch(subCategoryId , keyword) {
 
 
                             </div>
-
+                            <a href="/products/${element.id}">
                             <footer class="productDetails text-center pb-2 pt-4">
-                                <h5> ${element.name}</h5>
+
+                                    <h5> ${element.name}</h5>
+
+
                                 <p class="text-muted">
                                     Start Price :
                                     <span class="text-primary">
@@ -134,12 +137,12 @@ function fetchProductsBySearch(subCategoryId , keyword) {
                                 </p>
 
                             </footer>
-
+                         </a>
                         </div>
 
                     </div>
 
-
+<a/>
 
 
 

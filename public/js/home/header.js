@@ -1,12 +1,11 @@
-//close meganavigation
-
-$('.cd-close').on('click', function(event){
+//open/close mega-navigation
+$('.cd-dropdown-trigger').on('click', function(event){
     event.preventDefault();
     toggleNav();
 });
 
-//open/close mega-navigation
-$('.cd-dropdown-trigger').on('click', function(event){
+//close meganavigation
+$('.cd-close').on('click', function(event){
     event.preventDefault();
     toggleNav();
 });

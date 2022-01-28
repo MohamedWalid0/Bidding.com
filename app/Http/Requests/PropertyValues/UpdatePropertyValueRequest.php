@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\PropertyValues;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePropertyValueRequest extends FormRequest
 {
@@ -27,11 +27,11 @@ class UpdatePropertyValueRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => [ 'required' , 'string' , Rule::unique('property_values')
-            ->where(function ($query) {
-                return $query->where('property_id', $this->property->id)
-                ->where('value', $this->value);
-            }) ]
+            'value' => ['required', 'string', Rule::unique('property_values')
+                ->where(function ($query) {
+                    return $query->where('property_id', $this->property->id)
+                        ->where('value', $this->value);
+                })]
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\BlockUser;
+use App\Models\Product;
 use App\Models\Property;
 use App\Models\ReportProduct;
 use App\Models\ReportUser;
@@ -11,6 +12,7 @@ use App\Models\StoppedProduct;
 use App\Models\Support;
 use App\Models\User;
 use App\Policies\BlockPolicy;
+use App\Policies\ProfilePolicy;
 use App\Policies\PropertyPolicy;
 use App\Policies\ReportProductPolicy;
 use App\Policies\ReportUserPolicy;
@@ -29,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        User::class => UserPolicy::class,
+        User::class => ProfilePolicy::class,
         Role::class => RolePolicy::class,
         BlockUser::class => BlockPolicy::class,
         Support::class => SupportPolicy::class,
@@ -53,6 +55,14 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('send-notifications', function ($user) {
             return $user->hasAbility('notifications.send');
+        });
+
+        Gate::define('Adding-bid', function ($user , Product $product) {
+            return $user->id !==  $product->user_id;
+        });
+
+        Gate::define('can-react', function ($user , Product $product) {
+            return $user->id !==  $product->user_id;
         });
     }
 }

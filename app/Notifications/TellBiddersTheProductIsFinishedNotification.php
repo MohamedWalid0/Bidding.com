@@ -3,10 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\Product;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class TellBiddersTheProductIsFinishedNotification extends Notification
@@ -30,12 +27,12 @@ class TellBiddersTheProductIsFinishedNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
     {
-        return ['database' ,  'broadcast'];
+        return ['database', 'broadcast'];
     }
 
     public function toDatabase($notifiable)
@@ -49,7 +46,9 @@ class TellBiddersTheProductIsFinishedNotification extends Notification
         return [
             'title' => "Product Bidding is finished",
             'body' => $body,
-            'icon' => 'icon is',
+            'image' => $this->product->images()->exists()
+                ? asset('img/front/products/' . $this->product->id . '/thump-' . $this->product->images[0]->image_path)
+                : 'https://source.unsplash.com/random',
             'url' => route('products.index', $this->product->id),
         ];
     }

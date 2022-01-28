@@ -2,7 +2,7 @@
 
 
     <div class="logoNav">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="{{ route('home') }}">eBid</a>
     </div>
 
     <div class="searchNav d-flex">

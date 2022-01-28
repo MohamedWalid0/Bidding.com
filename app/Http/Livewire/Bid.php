@@ -4,11 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use App\Notifications\NewBidAddedNotification;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Bid extends Component
 {
+    use AuthorizesRequests;
     public Product $product;
     public $startBid;
     public $currentBid;
@@ -61,9 +63,12 @@ class Bid extends Component
         return ((int)str_replace(',', '', $this->currentBid)) + 1;
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function bid()
     {
-
+        $this->authorize('Adding-bid', $this->product);
         $this->validate();
 
         if ($this->product->user_bids()->where('users.id', auth()->id())->exists()) {

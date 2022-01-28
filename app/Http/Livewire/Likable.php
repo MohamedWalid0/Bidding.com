@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class Likable extends Component
 {
+    use AuthorizesRequests;
     public $modelType;
     public $modelId;
     public $model;
@@ -96,8 +99,12 @@ class Likable extends Component
         return $count == 0 ? '' : $count;
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function click($value)
     {
+        $this->authorize('can-react', $this->product);
         if ($this->likeExist) {
             // if like exist
             if ($this->likeValue == $value) {

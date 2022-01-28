@@ -7,8 +7,9 @@
 @section('styles')
 
     <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/profile/profile.css') }}"/>
+
+    {{-- <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}"> --}}
 
     <link rel="stylesheet" href="{{ asset('css/profile/ratingStar.css') }}">
 
@@ -31,7 +32,7 @@
                 <div class="col-md-3">
                     @include('front.profile.includes._asside')
                 </div>
-            <!-- start right side -->
+                <!-- start right side -->
                 <div class="col-md-9 ">
 
                     <div class=" row">
@@ -65,8 +66,8 @@
                             <div class="card">
                                 <div class="p-4 text-center bg-white  shadow">
                                     <i class="fas fa-star text-danger icon-style"></i>
-                                    <h1 class="mt-2">{{ $favoritesItemsCount }}</h1>
-                                    <h3 class="text-danger">Favorites</h3>
+                                    <h1 class="mt-2">{{ $reviewsCount }}</h1>
+                                    <h3 class="text-danger">Reviews Count</h3>
 
 
                                 </div>
@@ -130,36 +131,45 @@
                     <div class="page" id="Reviews">
                         <h4 class="py-2">Reviews</h4>
                         <div class="media-block">
-                            @foreach ($user->reviews as $review)
+                            @forelse ($user->reviews as $review)
 
-                            <div class="review">
-                                <a class="media-left" href="#"><img class="img-circle img-sm"
-                                alt="Profile Picture"
-                                src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
-                                <div class="media-body">
-                                <div class="mar-btm ml-3">
-                                    <a href="#" class="btn-link text-semibold media-heading box-inline">
-                                        {{$review->rate->userRated->account->full_name}}
-                                    </a>
 
-                                    <?php $rate = number_format($review->rate->rate) ?>
-                                    <div class="rating">
-                                        @for ($i = 1 ; $i<=$rate ; $i++ )
-                                            <i class="fa fa-star checked"></i>
-                                        @endfor
-                                        @for ($j = $rate+1  ; $j<=5 ; $j++ )
-                                            <i class="fa fa-star "></i>
-                                        @endfor
+                                <div class="review">
+                                    <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                                        alt="Profile Picture"
+                                                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                    <div class="media-body">
+                                        <div class="mar-btm ml-3">
+                                            <a href="#" class="btn-link text-semibold media-heading box-inline">
+                                                {{$review->rate->userRated->account->full_name}}
+                                            </a>
+
+                                            <?php $rate = number_format($review->rate->rate) ?>
+                                            <div class="rating">
+                                                @for ($i = 1 ; $i<=$rate ; $i++ )
+                                                    <i class="fa fa-star checked"></i>
+                                                @endfor
+                                                @for ($j = $rate+1  ; $j<=5 ; $j++ )
+                                                    <i class="fa fa-star "></i>
+                                                @endfor
+                                            </div>
+                                            <p class="text-muted text-sm">
+                                                {{$review->created_at->diffForHumans()}}</p>
+                                        </div>
+                                        <p> {{$review->review}} </p>
                                     </div>
-                                    <p class="text-muted text-sm">
-                                    {{$review->created_at->diffForHumans()}}</p>
-                                </div>
-                                <p> {{$review->review}} </p>
-                                </div>
 
-                            </div>
-                            <hr>
-                            @endforeach
+                                </div>
+                                <hr>
+
+                            @empty
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h1 class="card-title text-center"> There Are No Reviews</h1>
+                                    </div>
+                                </div>
+                            @endforelse
+
                         </div>
                     </div>
 
@@ -169,8 +179,6 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between">
                                     <h4>My Bids</h4>
-
-
 
 
                                 </div>
@@ -186,20 +194,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                @foreach ($user->product_bids->load('user_bids') as $product )
-                                    <tr>
-                                        <th scope="row">{{$loop->iteration}}</th>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->bid->updated_at->toDayDateTimeString()}}</td>
-                                        <td>
-                                            @if ($product->last_bid === $user)
+                                    @foreach ($user->product_bids->load('user_bids') as $product )
+                                        <tr>
+                                            <th scope="row">{{$loop->iteration}}</th>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{$product->bid->updated_at->toDayDateTimeString()}}</td>
+                                            <td>
+                                                @if ($product->last_bid === $user)
                                                     Winner Until now
-                                            @else
+                                                @else
                                                     Someone else bid
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -210,28 +218,27 @@
                     <!-- start Notification Link -->
                     <div class="page" id="Notification">
 
-                        @if ( ! request('user'))
-                            @forelse (auth()->user()->notifications as $notification)
-                                <div class="mb-2 bg-white   shadow">
-                                    <div class="card-body">
-                                        <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
-                                            <span class="ml-2"> {{ $notification->data['title'] }}  <span class="text-muted"> {{ $notification->created_at->diffForHumans() }}</span> </span>
-                                            <br>
-                                            <span class="ml-4"> --> {{ $notification->data['body'] }}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            @empty
-                                <div class="mb-2 bg-white   shadow">
-                                    <div class="card-body">
-                                        <p class=" card-text"><i class="fas fa-bell text-warning fa-lg"></i>
-                                            <span class="ml-2"> There no notification </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            @endforelse
-                        @endif
 
+                        @forelse (auth()->user()->notifications as $notification)
+                            <div class="mb-2 bg-white   shadow">
+                                <div class="card-body">
+                                    <p class=" card-text"><i class="fas fa-bell text-success fa-lg"></i>
+                                        <span class="ml-2"> {{ $notification->data['title'] }}  <span
+                                                class="text-muted"> {{ $notification->created_at->diffForHumans() }}</span> </span>
+                                        <br>
+                                        <span class="ml-4"> --> {{ $notification->data['body'] }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="mb-2 bg-white   shadow">
+                                <div class="card-body">
+                                    <p class=" card-text"><i class="fas fa-bell text-warning fa-lg"></i>
+                                        <span class="ml-2"> There no notification </span>
+                                    </p>
+                                </div>
+                            </div>
+                        @endforelse
 
 
                     </div>
@@ -257,12 +264,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <livewire:update-profile />
+                        <livewire:update-profile/>
 
-                    </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
         <!-- Modal For Edit profile Photo -->
@@ -302,13 +309,14 @@
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <x-livewire-alert::scripts />
-    <script >
+    <x-livewire-alert::scripts/>
+    <script>
 
-        $(document).ready(function(){
-            window.livewire.on('ProfileUpdated',()=>{
+        $(document).ready(function () {
+            window.livewire.on('ProfileUpdated', () => {
 
-                setTimeout(function(){ $(".alert-success").fadeOut('fast');
+                setTimeout(function () {
+                    $(".alert-success").fadeOut('fast');
                 }, 3000); // 3 secs
             });
         });
