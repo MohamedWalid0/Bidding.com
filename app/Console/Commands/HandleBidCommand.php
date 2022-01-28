@@ -41,7 +41,6 @@ class HandleBidCommand extends Command
     public function handle(): void
     {
         Product::query()
-            ->whereStatus('active')
             ->get()
             ->each(function ($product) {
                 $product->when(
