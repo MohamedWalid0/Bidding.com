@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('styles')
+<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/home/error.css') }}">
 @endsection
 
