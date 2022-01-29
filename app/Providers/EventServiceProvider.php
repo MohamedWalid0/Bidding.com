@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\EndBidEvent;
+use App\Listeners\BidFinishedListener;
 use App\Listeners\EndBidListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         EndBidEvent::class => [
             EndBidListener::class,
+            BidFinishedListener::class,
         ],
     ];
 

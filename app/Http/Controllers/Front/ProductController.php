@@ -153,7 +153,7 @@ class ProductController extends Controller
     {
 
         try {
-            $qrcode = QrCode::size(200)->generate("http://127.0.0.1:8000/products/" . $product->id);
+            $qrcode = QrCode::size(200)->generate(config('app.url') . "/products/" . $product->id);
             return view('front.product.viewQrCode', compact('qrcode', 'product'));
 
         } catch (\Throwable $th) {
