@@ -217,7 +217,7 @@ font-size: 26px ;
     transition: all .15s;
 }
 .text-muted, a.text-muted:hover, a.text-muted:focus {
-    color: #acacac;
+    /* color: #acacac; */
 }
 .text-sm {
     font-size: 0.9em;
@@ -238,7 +238,7 @@ font-size: 26px ;
 }
 
 .btn-sm, .btn-group-sm>.btn, .btn-icon.btn-sm {
-    padding: 5px 10px !important;
+    padding: 10px 10px !important;
 }
 
 .mar-top {
@@ -664,3 +664,19 @@ textarea.md-textarea-scroll{
 
 
 /* end zoom when hover */
+
+
+.mainImage {
+    width: 565.883px !important;
+    height: 565.883px;
+}
+
+
+.rating {
+    display: inline;
+}
+
+
+.nav-item:hover .active {
+    color: white !important;
+}
