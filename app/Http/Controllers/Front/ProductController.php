@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function index($id)
     {
-        $product = Product::with('propertiesValues.property', 'user_bids', 'comments')->findOrFail($id);
+        $product = Product::with('propertiesValues.property', 'user_bids', 'comments')->withoutGlobalScopes()->findOrFail($id);
         // $product = Product::with(
         //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
         // $product->likes()->attach(auth()->id() , ['value' => '-1'] );
