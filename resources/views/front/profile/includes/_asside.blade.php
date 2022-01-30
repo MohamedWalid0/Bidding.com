@@ -55,19 +55,19 @@
                 </a>
             </li>
 
+            @can('action' , \App\Models\User::class)
+                <li>
+                    <a href="#PersonalData">
+                        <div class="profile-tabs container-fluid">
+                            <p>
 
-            <li>
-                <a href="#PersonalData">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-
-                            <i class="fas fa-user-cog text-danger"></i>
-                            <span class="ml-2">Personal Data</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-
+                                <i class="fas fa-user-cog text-danger"></i>
+                                <span class="ml-2">Personal Data</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            @endcan
 
             @can('action' , \App\Models\User::class)
                 <li>
@@ -158,7 +158,7 @@
                                             @else
 
                                                 <input type="radio" value="1" name="user_rating" checked id="rating1">
-                                                <label for="rating1" class="fa fa-star" ></label>
+                                                <label for="rating1" class="fa fa-star"></label>
                                                 <input type="radio" value="2" name="user_rating" id="rating2">
                                                 <label for="rating2" class="fa fa-star"></label>
                                                 <input type="radio" value="3" name="user_rating" id="rating3">

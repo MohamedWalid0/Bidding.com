@@ -124,9 +124,11 @@
 
 
                     <!-- start Personal Data Link -->
-                    <div class="page" id="PersonalData">
-                        @livewire('personal-data-profile' , ['account' => $account , 'user' => $user ] )
-                    </div>
+                    @can('action' , \App\Models\User::class)
+                        <div class="page" id="PersonalData">
+                            @livewire('personal-data-profile' , ['account' => $account , 'user' => $user ] )
+                        </div>
+                    @endcan
                     <!-- end Personal Data Link -->
                     <div class="page" id="Reviews">
                         <h4 class="py-2">Reviews</h4>
