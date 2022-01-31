@@ -1,8 +1,11 @@
 <nav class=" navbar navbar-expand-lg mainNav  ">
 
+<div class="container">
 
     <div class="logoNav">
-        <a class="navbar-brand" href="{{ route('home') }}">eBid</a>
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{asset('img/bidd.png')}}"  alt="">
+        </a>
     </div>
 
     <div class="searchNav d-flex">
@@ -32,7 +35,7 @@
 
                 <li class="nav-item dropdown w-100">
                     <a class="nav-link bellNotificationContainer" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="far fa-bell bellNotificationIcon"></i>
+                        <i class="far fa-bell bellNotificationIcon navbar--icons"></i>
 
                         <span class="badge badge-warning navbar-badge"id="notificationCount">{{ auth()->user()->unreadNotifications()->count() }}</span>
                     </a>
@@ -71,8 +74,8 @@
 
 
                     <a class="nav-link wishlistIconContainer" href="{{ route('wishlist.index') }}" >
-                        <i class="far fa-star wishlistIcon"></i>
-                        <span class="badge badge-warning  wishlistIconCount">{{ Auth::user()->wishlist->products()->count() }}</span>
+                        <i class="far fa-star wishlistIcon navbar--icons"></i>
+                        <span class="badge badge-warning  navbar-badge">{{ Auth::user()->wishlist->products()->count() }}</span>
                     </a>
 
                 </li>
@@ -87,7 +90,7 @@
                             <button type="submit" style="background: none;
                                                         color: inherit;
                                                         border: none;">
-                                <i class="fas fa-sign-out-alt logoutIcon"></i>
+                                <i class="fas fa-sign-out-alt logoutIcon navbar--icons"></i>
                             </button>
 
                         </form>
@@ -128,5 +131,5 @@
 
     </div>
 
-
+</div>
 </nav>

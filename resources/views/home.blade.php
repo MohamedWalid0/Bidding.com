@@ -110,9 +110,9 @@
                                     <p>Explore popular devices</p>
                                 </div>
                                 <div>
-                                    <button class="btn btn-outline-light rounded-0">
+                                    <a href="{{route('categories.viewCategory' , $category->id)}}" class="btn btn-outline-light rounded-0">
                                         Shop Now
-                                    </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -225,18 +225,18 @@
 
                     <div class="col-md-3 col-sm-12  ">
 
-                        <div class="sideCategory   text-center d-flex justify-content-center align-items-center">
+                        <div class="sideCategory text-center d-flex justify-content-center align-items-center">
                             <div class="py-4">
                                 <h3>{{$subCategory->name}}</h3>
                                 <p> {{$subCategory->products->count()}} products</p>
-                                <button class="viewMore   my-4"> View More</button>
+                                <a href="{{route('subCategories.viewSubCategory' , $subCategory->id)}}"><button class="viewMore   my-4"> View More</button></a>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="col-md-9 col-sm-12 row m-0 ">
-                    @foreach ($subCategory->products as $product )
+                    @foreach ($subCategory->products->take(4) as $product )
                     <div class="col-md-6 col-sm-6 d-flex  ">
 
                         <div class="productItemDetails p-4 m-1  row ">
@@ -246,7 +246,7 @@
                             </div>
                             <div class="col-lg-8 col-md-12 mt-3">
                                 <h5>{{$product->name}}</h5>
-                                <p class="my-2">Current bid : {{$product->last_bid->bid->cost ?? 0}}LE </p>
+                                <p class="my-2">Current bid : {{$product->last_bid->bid->cost ?? 0}} LE </p>
                                 <div class="d-flex">
                                     <div class="iconContainer mr-3 px-2 rounded-circle ">
                                         <i class="fas fa-gavel"></i>
@@ -409,21 +409,21 @@
                                         data-date="{{ \Carbon\Carbon::parse($latest_product->deadline)->format('M d, y h:i:s') }}"
                                         class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days"></h6>
+                                            <h6 class="my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
+                                            <h6 class="my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
+                                            <h6 class="my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
+                                            <h6 class="my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -436,8 +436,8 @@
                                 <h5>{{ $latest_product->name }}</h5>
                                 <p class="text-muted">
                                     Current Bid :
-                                    <span class="text-primary">
-                                 {{ $latest_product->last_bid->bid->cost ?? 0 }}$
+                                    <span>
+                                 {{ $latest_product->last_bid->bid->cost ?? 0 }} LE
                                     </span>
                                 </p>
 
@@ -524,21 +524,21 @@
                                         data-date="{{ \Carbon\Carbon::parse($hot_product->deadline)->format('M d, y h:i:s') }}"
                                         class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days"></h6>
+                                            <h6 class="my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
+                                            <h6 class="my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
+                                            <h6 class="my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
+                                            <h6 class="my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -554,7 +554,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->bid->cost ?? 0  }}$
+                                        {{ $hot_product->last_bid->bid->cost ?? 0  }} LE
                                     </span>
                                 </p>
 
@@ -596,21 +596,21 @@
 
                                     <div class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days"></h6>
+                                            <h6 class="my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
+                                            <h6 class="my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
+                                            <h6 class="my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
+                                            <h6 class="my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -714,21 +714,21 @@
                                         data-date="{{ \Carbon\Carbon::parse($mostOfViewProduct->deadline)->format('M d, y h:i:s') }}"
                                         class="d-flex  text-center w-100 p-2">
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 days"></h6>
+                                            <h6 class="my-0 pt-1 days"></h6>
                                             <p class="text-muted">Days</p>
                                         </div>
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 hours"></h6>
+                                            <h6 class="my-0 pt-1 hours"></h6>
                                             <p class="text-muted">Hours</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1 mins"></h6>
+                                            <h6 class="my-0 pt-1 mins"></h6>
                                             <p class="text-muted">Minutes</p>
                                         </div>
 
                                         <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1 secs"></h6>
+                                            <h6 class="my-0 pt-1 secs"></h6>
                                             <p class="text-muted">Seconds</p>
                                         </div>
                                     </div>
@@ -744,7 +744,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                         {{ $mostOfViewProduct->last_bid->bid->cost ?? 0 }}$
+                                         {{ $mostOfViewProduct->last_bid->bid->cost ?? 0 }} LE
                                     </span>
                                 </p>
 

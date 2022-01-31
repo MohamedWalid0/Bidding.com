@@ -17,6 +17,13 @@ body {
   background-color: #ffffff;
 } */
 
+:root {
+    --main: #EEEEEE ;
+    --secodry: #393E46 ;
+    --strange: #00ADB5 ;
+    --secandory--2: #222831 ;
+    --bg : #fafafa;
+}
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -100,13 +107,15 @@ Main Components
   position: relative;
   padding: 0 36px 0 20px;
   /* line-height: 40px; */
-  background-color: #111433;
+  background-color: #222831;
   color: #ffffff;
   border-radius: 3px;
 }
-.no-touch .cd-dropdown-trigger:hover {
-  background-color: #171b46;
+
+.cd-dropdown-trigger:hover {
+    color: white !important;
 }
+
 .cd-dropdown-trigger::before, .cd-dropdown-trigger::after {
   /* this is the arrow inside the dropdown trigger*/
   content: '';
@@ -143,10 +152,10 @@ Main Components
     font-size: 1rem;
   }
   .cd-dropdown-trigger.dropdown-is-active {
-    background-color: #3f8654;
+    /* background-color: var(--strange); */
   }
   .no-touch .cd-dropdown-trigger.dropdown-is-active:hover {
-    background-color: #47975f;
+    /* background-color: #47975f; */
   }
   .cd-dropdown-trigger.dropdown-is-active::before, .cd-dropdown-trigger.dropdown-is-active::after {
     /* transform the arrow into a 'X' */
@@ -462,7 +471,7 @@ Main Components
 
 .cd-dropdown-content .see-all a {
   /* different style for the See all links */
-  color: #3f8654;
+  color: var(--strange);
 }
 .cd-dropdown-content .cd-dropdown-gallery .cd-dropdown-item, .cd-dropdown-content .cd-dropdown-icons .cd-dropdown-item {
   /* items with picture (or icon) and title */
@@ -558,7 +567,7 @@ Main Components
     border-bottom: none;
   }
   .no-touch .cd-dropdown-content > li:not(.has-children) a:hover {
-    color: #3f8654;
+    color: var(--strange);
   }
   .cd-dropdown-content.move-out > li > a, .cd-dropdown-content.move-out > li > .cd-search, .cd-dropdown-content.move-out > .cd-divider {
     /* reset mobile style */
@@ -662,7 +671,7 @@ Main Components
     background-color: #ebebeb; */
   }
   .cd-dropdown-content .cd-secondary-dropdown > li > a {
-    color: #3f8654;
+    color: var(--strange);
     font-size: 1rem;
     margin-bottom: 10px;
     line-height: 30px;
@@ -712,7 +721,7 @@ Main Components
     padding-left: 0;
   }
   .no-touch .cd-dropdown-content .cd-secondary-dropdown a:hover {
-    color: #3f8654;
+    color: var(--strange);
   }
   .cd-dropdown-content .cd-secondary-dropdown ul {
     padding-bottom: 25px;
@@ -751,7 +760,7 @@ Main Components
     padding: 0;
     height: auto;
     line-height: normal;
-    color: #3f8654;
+    color: var(--strange);
     margin-bottom: 2em;
   }
   .cd-dropdown-content .cd-dropdown-gallery > li:nth-last-of-type(2) a,
@@ -776,7 +785,7 @@ Main Components
     background: #ebebeb;
   }
   .cd-dropdown-content .cd-dropdown-icons .cd-dropdown-item h3 {
-    color: #3f8654;
+    color: var(--strange);
     font-weight: bold;
   }
   .cd-dropdown-content .cd-dropdown-icons .cd-dropdown-item p {
@@ -799,14 +808,14 @@ Main Components
   }
   .cd-dropdown-content > .has-children > a.is-active {
     /* hover effect for .cd-dropdown-content items with subnavigation */
-    box-shadow: inset 2px 0 0 #3f8654;
-    color: #3f8654;
+    box-shadow: inset 2px 0 0 var(--strange);
+    color: var(--strange);
   }
   .cd-dropdown-content > .has-children > a.is-active::before, .cd-dropdown-content > .has-children > a.is-active::after {
-    background: #3f8654;
+    background: var(--strange);
   }
   .open-to-left .cd-dropdown-content > .has-children > a.is-active {
-    box-shadow: inset -2px 0 0 #3f8654;
+    box-shadow: inset -2px 0 0 var(--strange);
   }
 }
 
@@ -1051,9 +1060,9 @@ Main Components
 .bellNotificationIcon , .wishlistIcon , .logoutIcon ,.loginBtnContainer , .registerBtnContainer {
     font-size: 1.7rem !important;
 }
-.nav-item > a:hover {
+/* .nav-item > a:hover {
     color: black !important;
-}
+} */
 
 
 .wishlistIconContainer{
@@ -1081,4 +1090,9 @@ Main Components
 .navbar-toggler-icon{
     color: black !important;
     height: auto;
+}
+
+
+.navbar--icons {
+    color: var(--secodry);
 }
