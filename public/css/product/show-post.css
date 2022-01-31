@@ -5,9 +5,15 @@
     margin: 0;
     padding: 0;
 }
-
+:root {
+    --main: #EEEEEE ;
+    --secodry: #393E46 ;
+    --strange: #00ADB5 ;
+    --secandory--2: #222831 ;
+    --bg : #fafafa;
+}
 .product-header--subtitle {
-    color: #868686;
+    color: var(--secodry);
     margin-bottom: 0;
     font-size: 15px;
     font-weight: 400;
@@ -15,11 +21,12 @@
 .product--underline {
     width: 100%;
     height: 1px;
-    background-color: rgb(236, 236, 216);
+    background-color: var(--main);
     border-radius: 10px;
 }
 .product-header--title {
     font-weight: 700;
+    color: var(--secodry);
 
 }
 @media only screen and (min-width : 1200px) {
@@ -40,7 +47,7 @@ font-size: 26px ;
 }
 
 .product-price {
-    color: #389EFF;
+    color: var(--strange);
 }
 
 
@@ -49,6 +56,8 @@ font-size: 26px ;
     margin-bottom: 8px;
     margin: 0 auto ;
     box-shadow: 0 0 10px rgba(0, 0, 0, 10%);
+    background-color: white;
+    border-radius: 10px;
   }
 
   .bid-timer th {
@@ -67,6 +76,7 @@ font-size: 26px ;
     font-size: 24px;
     font-weight: bold;
     width: 25%;
+    color: var(--secodry);
     /* padding: 5px; */
     /* color: #0a0; */
   }
@@ -103,13 +113,14 @@ font-size: 26px ;
   .bid-btn {
     border-radius: 30px!important;
     padding: 8px 20px;
-      background-color: #389EFF;
+      background-color: var(--strange);
       /* padding: 5px; */
   }
   .wishlist-btn {
     border-radius: 50%;
     /* padding: 8px; */
     border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
 
       /* padding: 5px; */
   }
@@ -131,10 +142,12 @@ font-size: 26px ;
 }
 
 .wishlistActive{
-    background-color: #09c !important;
+    background-color: var(--strange) !important;
+    color: white;
 }
 .wishlistNotActive{
     background-color: white !important;
+    color: black;
 }
 
 .wishlistIconActive{
@@ -249,10 +262,13 @@ font-size: 26px ;
 .form-control:focus {
     color: gray !important;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(105, 139, 152 , 0.6);
-    border-color: #389EFF !important;
+    border-color: var(--strange) !important;
 }
 .add-product--label {
     font-weight: 500;
+}
+.checked {
+    color: var(--strange) !important;
 }
 
 .reply-input {
@@ -300,8 +316,9 @@ textarea.md-textarea-scroll{
 }
 
 .custom-table {
-    background-color: #3c373e;
+    background-color: var(--secandory--2);
     max-width: 700px;
+    border-radius: 10px;
   }
     .custom-table thead tr, .custom-table thead th {
       padding-bottom: 30px;
@@ -365,7 +382,7 @@ textarea.md-textarea-scroll{
       }
 
       .table-head {
-          color:gray;
+          color: var(--secandory--2);
           font-weight: 700;
       }
 
@@ -679,4 +696,17 @@ textarea.md-textarea-scroll{
 
 .nav-item:hover .active {
     color: white !important;
+}
+
+.input-group-append {
+    background-color: white;
+}
+
+.input-group-prepend {
+    background-color: white;
+}
+
+
+.badge-custom {
+    background-color: var(--strange) !important;
 }

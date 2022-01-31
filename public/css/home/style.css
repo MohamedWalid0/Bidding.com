@@ -467,7 +467,7 @@ body {
     font-weight: 900;
 }
 .slideContentContainer p{
-    color: rgb(255, 215, 140);
+    color: var(--main);
 }
 
 /*------- slider overlay categories */
@@ -1213,4 +1213,37 @@ height: 0%;
 .navbar-badge {
     background-color: var(--strange) !important;
     color: white !important;
+}
+
+
+.swiper-button-prev {
+    color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    padding: 15px;
+    width: 55px;
+    height: 55px;
+    left: 30px;
+    transition: 0.3s all;
+
+}
+.swiper-button-next {
+    color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    padding: 15px;
+    width: 55px;
+    height: 55px;
+    right: 30px;
+    transition: 0.3s all;
+
+}
+
+.swiper-button-next::after , .swiper-button-prev::after {
+    font-size: 25px !important;
+}
+
+.swiper-button-next:hover , .swiper-button-prev:hover {
+    background-color: white;
+    color: var(--strange);
 }
