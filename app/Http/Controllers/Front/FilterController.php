@@ -9,6 +9,8 @@ use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPSTORM_META\type;
+
 class FilterController extends Controller
 {
 
@@ -35,28 +37,32 @@ class FilterController extends Controller
     }
 
 
-    public function filterBySubCategory($subCategoryIds = '')
+    public function filterBySubCategory()
     {
-        $products = Product::whereIn('sub_category_id', explode(",", request()->subCategoryids))
-            ->paginate(5)->appends('subCategoryids' , request()->subCategoryids);
+        // dd(request()->subCategoriesIds);
+        $products = Product::whereIn('sub_category_id', explode(",", request()->subCategoriesIds))
+            ->paginate(5)->appends('subCategoriesIds' , request()->subCategoriesIds);
         return response()->json([$products , $products->render()->toHtml()]);
 
     }
 
 
-    public function filterByCategory($categoryIds = '')
-    {
 
-        $products = DB::table('products')
-            ->join('sub_categories', 'products.sub_category_id', 'sub_categories.id')
-            ->join('categories', 'categories.id', 'sub_categories.category_id')
-            ->whereIn('sub_categories.category_id', explode(",", $categoryIds))
-            ->where('deleted_at', null)
-            ->get('products.*');
 
-        return response()->json($products);
 
-    }
+    // public function filterByCategory($categoryIds = '')
+    // {
+
+    //     $products = DB::table('products')
+    //         ->join('sub_categories', 'products.sub_category_id', 'sub_categories.id')
+    //         ->join('categories', 'categories.id', 'sub_categories.category_id')
+    //         ->whereIn('sub_categories.category_id', explode(",", $categoryIds))
+    //         ->where('deleted_at', null)
+    //         ->get('products.*') ;
+
+    //     return response()->json($products);
+
+    // }
 
 
     public function filterByPriceRange($minPrice = 0, $maxPrice = 0)
@@ -71,12 +77,58 @@ class FilterController extends Controller
     public function search(Request $request)
     {
 
+        // dd($request->minPrice) ;
 
-        if ($request->has('q')) {
-            return Product::search($request->q)->get();
-        } else {
-            return response()->json('not found');
+        if ($request->has('keyword')){
+
+            if ($request->subCategoriesIds != "null"){ // if subCategories selected
+
+                if ($request->minPrice != "0" || $request->maxPrice != "0"){ // if price range
+                    // dd( $request->minPrice, $request->maxPrice ) ;
+                    // dd(gettype(intval($request->minPrice))) ;
+                    $min = intval($request->minPrice) ;
+                    $max = intval($request->maxPrice) ;
+
+                    return
+                        Product::search($request->keyword)
+                            // ->whereBetween('start_price', [$min, $max])
+                            // ->where('start_price', '>=', $min )
+                            // ->where('start_price', '<', $max)
+                            ->whereIn('sub_category_id', explode(",", $request->subCategoriesIds))
+
+
+                            ->paginate(20);
+
+                }
+
+                return
+                    Product::search($request->keyword)
+                    ->whereIn('sub_category_id', explode(",", $request->subCategoriesIds))
+                    ->get();
+
+            }
+
+            return Product::search($request->keyword)->get();
+
         }
+
+        return response()->json('not found');
+
+
+
+
+        //      Product::when($request->filled('subCategoriesIds') , function ($query) use ($request){
+        //          $query->whereIn('sub_category_id' , $request->filled('subCategoriesIds'));
+        //      })
+        //     ->when($request->filled('keyword') , function ($query) use ($request){
+        //         $query->search($request->filled('keyword'));
+        //     })
+        //     ->when($request->filled('minPrice') , function ($query) use ($request){
+        //         $query->where('start_price' , '=' , $request->filled('minPrice'));
+        //     })
+        //     ->when($request->filled('maxPrice') , function ($query) use ($request){
+        //         $query->where('start_price' , '=' , $request->filled('maxPrice'));
+        //     })->get();
 
     }
 
