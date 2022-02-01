@@ -1,9 +1,10 @@
-<section class="footer-container ">
+@can('create' , \App\Models\Support::class)
+    <section class="footer-container ">
 
 
-    <div class="footer-support ">
-        if you have any problem ? you can contact with our support team
-        <button class="custom-btn btn-7  mx-2  ">
+        <div class="footer-support ">
+            if you have any problem ? you can contact with our support team
+            <button class="custom-btn btn-7  mx-2  ">
 
             <span class="btn-7-span">
 
@@ -16,18 +17,19 @@
 
             </span>
 
-        </button>
-    </div>
+            </button>
+        </div>
 
-    <div class="footer-copytight">
+        <div class="footer-copytight">
 
-        © 2021, eBid.com, contact-us : eBid@ebid.ebid
+            © 2021, eBid.com, contact-us : eBid@ebid.ebid
 
-    </div>
+        </div>
 
 
 
-</section>
+    </section>
+@endcan
 
 
 

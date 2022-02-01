@@ -104,7 +104,7 @@ class Likable extends Component
      */
     public function click($value)
     {
-        $this->authorize('can-react', $this->product);
+        $this->authorize('can-react', $this->model);
         if ($this->likeExist) {
             // if like exist
             if ($this->likeValue == $value) {

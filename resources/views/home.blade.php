@@ -927,11 +927,17 @@
 
                             <div class="productContainer pb-2">
                                 <div class="productImageContainer">
-                                    <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                         onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                         onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
-
-                                         class="w-100" alt="">
+                                    @if($latest_product->images()->exists())
+                                            <img src="{{ asset('img/front/products/'. $latest_product->id . '/thump-' . $latest_product->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}"
+                                                 onmouseover="this.src='{{ asset('img/front/products/'. $latest_product->id . '/thump-' . $latest_product->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}'"
+                                                 onmouseout="this.src='{{ asset('img/front/products/'. $latest_product->id . '/thump-' . $latest_product->images[1]->image_path) ?? 'https://source.unsplash.com/random'}}'"
+                                                 class="w-100" alt="">
+                                    @else
+                                        <img src="{{ asset('img/home/electronic.jpg') }}"
+                                                 onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                                 onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                             class="w-100" alt="">
+                                      @endif
                                 </div>
 
                                 <div class="productOptions ">
@@ -1039,11 +1045,17 @@
 
                             <div class="productContainer pb-2">
                                 <div class="productImageContainer">
-                                    <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                         onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                         onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
-
-                                         class="w-100" alt="">
+                                    @if($hot_product->images()->exists())
+                                        <img src="{{ asset('img/front/products/'. $hot_product->id . '/thump-' . $hot_product->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}"
+                                             onmouseover="this.src='{{ asset('img/front/products/'. $hot_product->id . '/thump-' . $hot_product->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}'"
+                                             onmouseout="this.src='{{ asset('img/front/products/'. $hot_product->id . '/thump-' . $hot_product->images[1]->image_path) ?? 'https://source.unsplash.com/random'}}'"
+                                             class="w-100" alt="">
+                                    @else
+                                        <img src="{{ asset('img/home/electronic.jpg') }}"
+                                             onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                             onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                             class="w-100" alt="">
+                                    @endif
                                 </div>
 
                                 <div class="productOptions ">
@@ -1228,11 +1240,17 @@
 
                             <div class="productContainer pb-2">
                                 <div class="productImageContainer">
-                                    <img src="{{ asset('img/home/mobile.jpg ')}}"
-                                         onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
-                                         onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
-
-                                         class="w-100" alt="">
+                                    @if($mostOfViewProduct->images()->exists())
+                                        <img src="{{ asset('img/front/products/'. $mostOfViewProduct->id . '/thump-' . $mostOfViewProduct->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}"
+                                             onmouseover="this.src='{{ asset('img/front/products/'. $mostOfViewProduct->id . '/thump-' . $mostOfViewProduct->images->first()->image_path) ?? 'https://source.unsplash.com/random' }}'"
+                                             onmouseout="this.src='{{ asset('img/front/products/'. $mostOfViewProduct->id . '/thump-' . $mostOfViewProduct->images[1]->image_path) ?? 'https://source.unsplash.com/random'}}'"
+                                             class="w-100" alt="">
+                                    @else
+                                        <img src="{{ asset('img/home/electronic.jpg') }}"
+                                             onmouseover="this.src='{{ asset('img/home/electronic.jpg') }}'"
+                                             onmouseout="this.src='{{ asset('img/home/mobile.jpg ')}}'"
+                                             class="w-100" alt="">
+                                    @endif
                                 </div>
 
                                 <div class="productOptions ">
@@ -1361,12 +1379,12 @@
 
 
         @if (\Session::has('emailOrPhoneUpdated'))
-            Swal.fire({
-                title: 'warning!',
-                text: "{{ \Session::get('emailOrPhoneUpdated') }}",
-                icon: 'warning',
-                confirmButtonText: 'Ok'
-            })
+        Swal.fire({
+            title: 'warning!',
+            text: "{{ \Session::get('emailOrPhoneUpdated') }}",
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+        })
         @endif
 
         let cards = document.querySelectorAll('div.d-flex.text-center.w-100.p-2');

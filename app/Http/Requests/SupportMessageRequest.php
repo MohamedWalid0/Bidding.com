@@ -16,6 +16,6 @@ class SupportMessageRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->user()->can('create', Support::class);
+        return $this->user()->can('reply', Support::class);
     }
 }

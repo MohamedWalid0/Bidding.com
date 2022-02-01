@@ -45,7 +45,7 @@
                         <td>
 
                             <div class="mt-4">
-                                @can( 'create', \App\Models\Support::class)
+                                @can( 'reply', \App\Models\Support::class)
                                     <button data-target="#modal-{{ $support->id }}" data-toggle="modal"
                                             class="btn btn-warning btn-sm">
                                         <i class="fas fa-reply"></i>
