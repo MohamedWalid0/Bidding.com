@@ -120,7 +120,7 @@
 
 
 
-                            @can('viewAny' , \App\Models\Product::class)
+{{--                            @can('viewAny' , \App\Models\Product::class)--}}
 
                             <li class="nav-item">
                                 <a href="{{ route('product.index') }}" class="nav-link">
@@ -130,7 +130,7 @@
                                     </p>
                                 </a>
                             </li>
-                            @endcan
+{{--                            @endcan--}}
                             @can('viewAny' , \App\Models\StoppedProduct::class)
                             <li class="nav-item">
                                 <a href="{{ route('stopped_product.index') }}" class="nav-link">

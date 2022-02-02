@@ -16,7 +16,7 @@ class CommentObserver
     public function created(Comment $comment)
     {
         $message = '%s Add new comment on your product %s';
-        $comment->product->user->notify(new CommentAndReplyNotification($comment->product , $message));
+        $comment->product()->withoutGlobalScopes()->first()->user->notify(new CommentAndReplyNotification($comment->product()->withoutGlobalScopes()->first() , $message));
     }
 
 }

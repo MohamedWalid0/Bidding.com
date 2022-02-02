@@ -17,7 +17,7 @@ class BidDeadline extends Component
     public function mount()
     {
         if ($this->product->last_bid)
-            $this->currentBid = $this->product->last_bid->bid->cost ?? 0;
+            $this->currentBid = $this->product->last_bid->bid->cost ;
         else $this->currentBid = $this->product->start_price;
         if ($this->product->stopped_product) {
             $this->isStopped = true;
