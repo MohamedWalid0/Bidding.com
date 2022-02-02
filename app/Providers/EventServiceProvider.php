@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\EndBidEvent;
 use App\Listeners\BidFinishedListener;
 use App\Listeners\EndBidListener;
+use App\Listeners\SendPhoneVerificationCodeListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            SendPhoneVerificationCodeListener::class,
         ],
         EndBidEvent::class => [
             EndBidListener::class,

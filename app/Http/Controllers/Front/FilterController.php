@@ -7,9 +7,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-use function PHPSTORM_META\type;
 
 class FilterController extends Controller
 {
@@ -41,8 +38,8 @@ class FilterController extends Controller
     {
         // dd(request()->subCategoriesIds);
         $products = Product::whereIn('sub_category_id', explode(",", request()->subCategoriesIds))
-            ->paginate(5)->appends('subCategoriesIds' , request()->subCategoriesIds);
-        return response()->json([$products , $products->render()->toHtml()]);
+            ->paginate(5)->appends('subCategoriesIds', request()->subCategoriesIds);
+        return response()->json([$products, $products->render()->toHtml()]);
 
     }
 
@@ -79,32 +76,31 @@ class FilterController extends Controller
 
         // dd($request->minPrice) ;
 
-        if ($request->has('keyword')){
+        if ($request->has('keyword')) {
 
-            if ($request->subCategoriesIds != "null"){ // if subCategories selected
+            if ($request->subCategoriesIds != "null") { // if subCategories selected
 
-                if ($request->minPrice != "0" || $request->maxPrice != "0"){ // if price range
+                if ($request->minPrice != "0" || $request->maxPrice != "0") { // if price range
                     // dd( $request->minPrice, $request->maxPrice ) ;
                     // dd(gettype(intval($request->minPrice))) ;
-                    $min = intval($request->minPrice) ;
-                    $max = intval($request->maxPrice) ;
+                    $min = intval($request->minPrice);
+                    $max = intval($request->maxPrice);
 
                     return
-                        Product::search($request->keyword)
-                            // ->whereBetween('start_price', [$min, $max])
-                            // ->where('start_price', '>=', $min )
-                            // ->where('start_price', '<', $max)
+                        Product::search($request->keyword)->min($min)->max
+
+//                             ->whereBetween('start_price', [$min, $max])
+
                             ->whereIn('sub_category_id', explode(",", $request->subCategoriesIds))
-
-
+                            ->search()
                             ->paginate(20);
 
                 }
 
                 return
                     Product::search($request->keyword)
-                    ->whereIn('sub_category_id', explode(",", $request->subCategoriesIds))
-                    ->get();
+                        ->whereIn('sub_category_id', explode(",", $request->subCategoriesIds))
+                        ->get();
 
             }
 
@@ -113,8 +109,6 @@ class FilterController extends Controller
         }
 
         return response()->json('not found');
-
-
 
 
         //      Product::when($request->filled('subCategoriesIds') , function ($query) use ($request){
