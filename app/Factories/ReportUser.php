@@ -8,19 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ReportUser implements Report {
 
-
-
     public function sendReport($id){
 
         return ModelsReportUser::create([
             'user_id' => $id ,
             'reporter_id' => Auth::user()->id
         ]) ;
-    
 
     }
-
-
-
 
 }

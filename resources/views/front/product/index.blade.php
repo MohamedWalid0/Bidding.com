@@ -254,7 +254,7 @@
 
                 </div>
                 <div class="py-4 pagination-container">
-                    {{ $products->withQueryString()->links() }}
+                    {{-- {{ $products->withQueryString()->links() }} --}}
                 </div>
 
 
