@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 
+use App\Events\StartBidEvent;
+use App\Events\StopBidEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProductStatusRequest;
 use App\Models\Product;
@@ -25,6 +27,7 @@ class StoppedProductController extends Controller
         $stopped_product->update($request->validated());
         if ($request->status === Product::ACTIVE) {
             $stopped_product->stopped_product()->delete();
+            broadcast(new StartBidEvent($stopped_product));
         }
         toastr()->success('Product status updated successfully');
         return back();

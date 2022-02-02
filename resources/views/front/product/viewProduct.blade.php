@@ -385,22 +385,49 @@
                     }
                 })
 
-                // var year =  {!! $product->deadline->year !!};
-                // var month =   {!! $product->deadline->month !!};
-                // var day =   {!! $product->deadline->day !!};
-                // var hour =   {!! $product->deadline->hour !!};
-                // var min =   {!! $product->deadline->minute  !!};
-
-                //     var countdown = new SV.Countdown('.countdown', {
-                //         year: year,
-                //         month: month,
-                //         day: day,
-                //         hour: hour,
-                //         min: min
-                //     });
             }
         )
 
+    </script>
+
+    <script>
+        Livewire.on('echo:start-bid.{{ $product->id }},StartBidEvent', () => {
+            Livewire.hook('message.received', () => {
+                setTimeDeadline()
+            })
+        })
+
+        function setTimeDeadline(){
+            let card = document.querySelector('.countdown');
+
+            const intrvl = setInterval(function () {
+                let countDownDate = new Date(card.dataset.date).getTime();
+
+                let now = new Date().getTime();
+                let timeleft = countDownDate - now;
+
+
+                let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {
+                    clearInterval(intrvl);
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
+                    card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';
+                }
+                card.querySelector(".bid-days").innerHTML = days
+                card.querySelector(".bid-hours").innerHTML = hours
+                card.querySelector(".bid-mins").innerHTML = minutes
+                card.querySelector(".bid-secs").innerHTML = seconds
+
+
+            }, 1000)
+        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -12,7 +12,7 @@ class BidDeadline extends Component
     public $currentBid;
     public $isStopped = false;
     public $isClosed = false;
-    // protected $listeners = ['BidUpdated' => 'render'];
+//     protected $listeners = ['start-bid-again' => '$refresh'];
 
     public function mount()
     {
@@ -43,12 +43,22 @@ class BidDeadline extends Component
         $this->bidStatus = $this->isClosed ?  "Winner bid"  : "Current bid" ;
     }
 
+    public function wtf1()
+    {
+        $this->isStopped = false;
+    }
+    public function wtf2()
+    {
+        $this->isStopped = true;
+    }
     public function getListeners()
     {
         return [
             'BidUpdated' => 'render',
             "echo:bid.{$this->product->id},BidEvent" => 'wtf',
             "echo:end-bid.{$this->product->id},EndBidEvent" => 'wtf',
+            "echo:start-bid.{$this->product->id},StartBidEvent" => 'wtf1',
+            "echo:stop-bid.{$this->product->id},StopBidEvent" => 'wtf2',
         ];
     }
 }

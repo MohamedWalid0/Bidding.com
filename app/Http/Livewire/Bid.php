@@ -105,12 +105,18 @@ class Bid extends Component
     {
         $this->isActive = false;
     }
+    public function wtf3()
+    {
+        $this->isActive = true;
+    }
 
     public function getListeners()
     {
         return [
             "echo:bid.{$this->product->id},BidEvent" => 'wtf',
             "echo:end-bid.{$this->product->id},EndBidEvent" => 'wtf2',
+            "echo:stop-bid.{$this->product->id},StopBidEvent" => 'wtf2',
+            "echo:start-bid.{$this->product->id},StartBidEvent" => 'wtf3',
         ];
     }
 

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\BidEvent;
 use App\Events\EndBidEvent;
 use App\Listeners\BidFinishedListener;
+use App\Listeners\BidListener;
 use App\Listeners\EndBidListener;
 use App\Listeners\SendPhoneVerificationCodeListener;
 use Illuminate\Auth\Events\Registered;
@@ -26,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         EndBidEvent::class => [
             EndBidListener::class,
             BidFinishedListener::class,
+        ],
+        BidEvent::class => [
+            BidListener::class,
         ],
     ];
 
