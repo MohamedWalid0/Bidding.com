@@ -16,6 +16,8 @@ body {
     /* font-size: 0.7rem !important;
     font-family: sans-serif; */
     background-color: var(--bg);
+    font-family: 'Poppins', sans-serif;
+
 
 }
 
@@ -987,8 +989,8 @@ body {
 }
 
 .sectionTitle{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 800 !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600 !important;
     font-size: 2.9rem;
     color: var(--secodry);
 }
