@@ -25,9 +25,9 @@ class SupportPolicy
         return $user->hasAbility('supports.create');
     }
 
-    public function update(User $user): bool
+    public function reply(User $user): bool
     {
-        return $user->hasAbility('supports.update');
+        return $user->hasAbility('supports.reply');
     }
 
     public function delete(User $user): bool

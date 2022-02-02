@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Auth;
 class ReportController extends Controller
 {
 
-
-
     public function reportUser( Request $request ){
 
         try {
@@ -49,8 +47,6 @@ class ReportController extends Controller
 
 
     }
-
-
 
 
     public function reportProduct( Request $request ){

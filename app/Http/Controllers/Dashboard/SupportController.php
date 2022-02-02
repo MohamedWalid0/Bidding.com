@@ -20,7 +20,7 @@ class SupportController extends Controller
 
     public function reply(SupportMessageRequest $request,Support $support)
     {
-        $support->user->notify(new AdminToUsersNotification($request->message , 'broadcast'));
+        $support->user->notify(new AdminToUsersNotification($request->message , 'broadcast' , auth()->user()));
         toastr()->success('reply message sent successfully');
         return back();
     }

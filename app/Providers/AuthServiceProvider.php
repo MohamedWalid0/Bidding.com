@@ -57,12 +57,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAbility('notifications.send');
         });
 
-        Gate::define('Adding-bid', function ($user , Product $product) {
-            return $user->id !==  $product->user_id;
+        Gate::define('Adding-bid', function ($user, Product $product) {
+            return $user->id !== $product->user_id;
         });
 
-        Gate::define('can-react', function ($user , $model) {
-            return $user->id !==  $model->user_id;
+        Gate::define('can-react', function ($user, $model) {
+            return $user->id !== $model->user_id;
         });
     }
 }

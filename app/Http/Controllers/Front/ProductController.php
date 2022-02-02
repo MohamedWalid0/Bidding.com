@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function index($id)
     {
-        $product = Product::with('propertiesValues.property', 'user_bids', 'comments')->findOrFail($id);
+        $product = Product::with('propertiesValues.property', 'user_bids', 'comments')->withoutGlobalScopes()->findOrFail($id);
         // $product = Product::with(
         //     ['user_bids' => fn($query) => $query->latest('bids.cost')->limit(5)])->findOrFail($id);
         // $product->likes()->attach(auth()->id() , ['value' => '-1'] );
@@ -153,7 +153,7 @@ class ProductController extends Controller
     {
 
         try {
-            $qrcode = QrCode::size(200)->generate("http://127.0.0.1:8000/products/" . $product->id);
+            $qrcode = QrCode::size(200)->generate(config('app.url') . "/products/" . $product->id);
             return view('front.product.viewQrCode', compact('qrcode', 'product'));
 
         } catch (\Throwable $th) {

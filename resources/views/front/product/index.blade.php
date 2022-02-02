@@ -30,8 +30,8 @@
                             <label for="amount" class="card-header">Price range:</label>
                             <div class="d-flex">
 
-                                <input type="text" id="amount_start" name="start_price" value="0" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold;">
-                                <input type="text" id="amount_end" name="end_price" value="10000" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold;">
+                                <input type="text" id="amount_start" name="start_price" value="0" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold; font-size:1rem;">
+                                <input type="text" id="amount_end" name="end_price" value="10000" class="pt-3 text-center w-50 " readonly style="border:0; color:#500d6b; font-weight:bold; font-size:1rem;">
                             </div>
 
                         </p>
@@ -39,11 +39,6 @@
 
                     </div>
                 </div><!-- end price-range-->
-
-                <div class="card leftNav category-sec mb-30">
-                    <h3>Refine By:<span class="_t-item">(0 items)</span></h3>
-                    <div class="col-12 p-0" id="catFilters"></div>
-                </div>
 
 
 
@@ -56,20 +51,33 @@
                                 Categories</button>
                         </div>
 
-                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordionExample2">
                             <div class="panel-body">
 
 
                                 @if(!empty($categories))
                                     @foreach ($categories as $category)
-                                        <div class="custom-control custom-checkbox">
+                                        <div class="custom-control custom-checkbox mb-3">
                                             <input type="checkbox" {{($loop->iteration == 0 ? 'checked' : '')}}
                                                 attr-name="{{$category->name}}"
                                                 class="custom-control-input category_checkbox" id="{{$category->id}}">
-                                            <label class="custom-control-label"
+                                            <label class="custom-control-label "
                                                 for="{{$category->id}}">{{ucfirst($category->name)}}</label>
+
+                                            @foreach ($category->subCategories as $subCategory)
+                                                <div class="custom-control custom-checkbox ml-2">
+                                                    <input type="checkbox"
+                                                        attr-name="{{$subCategory->name}}"
+                                                        category-id = "{{ $category->id }}"
+                                                        class="custom-control-input subCategory_checkbox" id="sub-{{$subCategory->id}}">
+                                                    <label class="custom-control-label"
+                                                        for="sub-{{$subCategory->id}}">{{ucfirst($subCategory->name)}}</label>
+                                                </div>
+                                            @endforeach
+
                                         </div>
+
                                     @endforeach
                                 @endif
                             </div>
@@ -84,14 +92,7 @@
                 </div>
 
 
-
-
-
-
-
-
-
-                <div class="card leftNav category-sec">
+                {{-- <div class="card leftNav category-sec">
 
                     <div class="accordion" id="accordionExample">
                         <div class="card-header" id="headingTwo">
@@ -127,7 +128,7 @@
 
 
 
-                </div>
+                </div> --}}
 
 
             </div>
@@ -253,7 +254,7 @@
 
                 </div>
                 <div class="py-4 pagination-container">
-                    {{ $products->withQueryString()->links() }}
+                    {{-- {{ $products->withQueryString()->links() }} --}}
                 </div>
 
 

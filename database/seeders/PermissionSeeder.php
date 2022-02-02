@@ -44,7 +44,7 @@ class PermissionSeeder extends Seeder
 
             'supports.view' => 'can view support',
             'supports.create' => 'can create support',
-            'supports.update' => 'can update support',
+            'supports.reply' => 'can make reply',
             'supports.delete' => 'can delete support',
 
             'properties.view' => 'can view property',

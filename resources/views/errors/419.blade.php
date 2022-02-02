@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/home/error.css') }}">
 @endsection
 
@@ -17,8 +16,8 @@
     <div class="cloud x5"></div>
 </div>
 <div class='c'>
-    <div class='_404'>404</div>
-    <div class='_2'>The page was not found!</div>
+    <div class='_404'>419</div>
+    <div class='_2'>Page Expired</div>
     <a class='btn' href="{{route('home')}}">Back to Home</a>
 </div>
 @endsection

@@ -18,7 +18,7 @@ function fetchProductsByNavbarSearch(keyword) {
 
     $.ajax({
         type: 'GET',
-        url: '/search?q=' + keyword ,
+        url: '/searchByKeyword?q=' + keyword ,
 
 
 

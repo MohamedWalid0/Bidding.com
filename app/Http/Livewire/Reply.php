@@ -14,7 +14,7 @@ class Reply extends Component
 
     public function mount () {
         $this->replies = $this->comment->replies->load('user.account')->sortByDesc('created_at');
-        $this->isOwner = (auth()->id() == $this->comment->product->user->id);
+        $this->isOwner = (auth()->id() === $this->comment->product()->with('user')->withoutGlobalScopes()->first()->user->id);
     }
     public function render()
     {

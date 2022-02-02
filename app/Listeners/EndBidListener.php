@@ -18,4 +18,6 @@ class EndBidListener
         );
         $event->product->user->notify(new ProductOwnerNotification($event->product));
     }
+
+
 }
