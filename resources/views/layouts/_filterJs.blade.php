@@ -169,6 +169,8 @@
 
 
     });
+    
+    // end search by keyword
 
     function fetchProductsBySearch(keyword , subCategoriesIds = [] , minPrice = 0 , maxPrice = 10000) {
 
@@ -179,7 +181,6 @@
 
         if( Object.keys(subCategoriesIds).length == 0 ){
             subCategoriesIds = null ;
-            // console.log(subCategoriesIds)
         }
 
         $.ajax({
@@ -199,108 +200,102 @@
                 }
                 else {
                     $('.causes_div').empty();
-
                     response.forEach(element => {
                         $('.causes_div').append(`
 
 
-                        <div class="col-md-4 col-sm-12 p-2">
+                            <div class="col-md-4 col-sm-12 p-2">
 
-                        <div class="productsWrapper mt-3">
+                                <div class="productsWrapper mt-3">
 
 
-                            <div class="productContainer pb-2">
-                                <div class="productImageContainer">
-                                    <img src=" img/home/mobile.jpg"
-                                        onmouseover="this.src=' img/home/electronic.jpg' "
-                                        onmouseout="this.src=' img/home/mobile.jpg ' "
+                                    <div class="productContainer pb-2">
+                                        <div class="productImageContainer">
+                                            <img src=" img/home/mobile.jpg"
+                                                onmouseover="this.src=' img/home/electronic.jpg' "
+                                                onmouseout="this.src=' img/home/mobile.jpg ' "
 
-                                        class="w-100" alt="">
+                                                class="w-100" alt="">
+                                        </div>
+
+                                        <div class="productOptions ">
+
+                                            <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
+                                                <i class="fas fa-gavel"></i>
+                                            </div>
+
+
+                                            <div
+                                                class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($product->id)) wishlistActive @else wishlistNotActive @endif  "
+                                                id="wishlistIconContainer" data-product-icon-id="${element.id}">
+
+                                                <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
+                                                href="#" data-product-id="${element.id}">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+
+                                            </div>
+
+
+                                            <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
+                                                <i class="fas fa-search"></i>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="productBidTimer">
+
+                                            <div class="d-flex  text-center w-100 p-2">
+                                                <div class="col-3 px-0 counterItem rightBorder">
+                                                    <h6 class="text-primary my-0 pt-1" ></h6>
+                                                    <p class="text-muted">Days</p>
+                                                </div>
+                                                <div class="col-3 px-0 counterItem rightBorder">
+                                                    <h6 class="text-primary my-0 pt-1"></h6>
+                                                    <p class="text-muted">Hours</p>
+                                                </div>
+
+                                                <div class="col-3 px-0 counterItem rightBorder">
+                                                    <h6 class="text-primary my-0 pt-1"></h6>
+                                                    <p class="text-muted">Minutes</p>
+                                                </div>
+
+                                                <div class="col-3 px-0 counterItem">
+                                                    <h6 class="text-primary my-0 pt-1" ></h6>
+                                                    <p class="text-muted">Seconds</p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <footer class="productDetails text-center pb-2 pt-4">
+                                        <h5> ${element.name}</h5>
+                                        <p class="text-muted">
+                                            Start Price :
+                                            <span class="text-primary">
+                                                ${element.start_price} $
+                                            </span>
+                                        </p>
+                                        <p class="text-muted">
+                                            Current Bid :
+                                            <span class="text-primary">
+                                                ${element.sub_category_id}
+                                            </span>
+                                        </p>
+
+                                    </footer>
+
                                 </div>
-
-                                <div class="productOptions ">
-
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-gavel"></i>
-                                    </div>
-
-
-                                    <div
-                                        class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($product->id)) wishlistActive @else wishlistNotActive @endif  "
-                                        id="wishlistIconContainer" data-product-icon-id="${element.id}">
-
-                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
-                                        href="#" data-product-id="${element.id}">
-                                            <i class="far fa-heart"></i>
-                                        </a>
-
-                                    </div>
-
-
-                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-search"></i>
-                                    </div>
-
-                                </div>
-
-                                <div class="productBidTimer">
-
-                                    <div class="d-flex  text-center w-100 p-2">
-                                        <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1" ></h6>
-                                            <p class="text-muted">Days</p>
-                                        </div>
-                                        <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1"></h6>
-                                            <p class="text-muted">Hours</p>
-                                        </div>
-
-                                        <div class="col-3 px-0 counterItem rightBorder">
-                                            <h6 class="text-primary my-0 pt-1"></h6>
-                                            <p class="text-muted">Minutes</p>
-                                        </div>
-
-                                        <div class="col-3 px-0 counterItem">
-                                            <h6 class="text-primary my-0 pt-1" ></h6>
-                                            <p class="text-muted">Seconds</p>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
 
                             </div>
 
-                            <footer class="productDetails text-center pb-2 pt-4">
-                                <h5> ${element.name}</h5>
-                                <p class="text-muted">
-                                    Start Price :
-                                    <span class="text-primary">
-                                        ${element.start_price} $
-                                    </span>
-                                </p>
-                                <p class="text-muted">
-                                    Current Bid :
-                                    <span class="text-primary">
-                                        ${element.sub_category_id}
-                                    </span>
-                                </p>
-
-                            </footer>
-
-                        </div>
-
-                    </div>
 
 
-
-
-
-
-
-
-                    `)
+                        `)
 
 
 
@@ -328,9 +323,6 @@
 
 
     }
-
-    // end search by keyword
-
 
 
 
