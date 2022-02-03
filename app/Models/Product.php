@@ -161,9 +161,9 @@ class Product extends Model
     }
 
 
-    public function getLastBidAttribute(): ?User
+    public function getLastBidAttribute()
     {
-        return $this->user_bids->sortByDesc('bid.updated_at')->first() ?? $this->user;
+        return $this->user_bids->sortByDesc('bid.updated_at')->first();
     }
 
     public function getHotUsersAttribute()
@@ -172,16 +172,13 @@ class Product extends Model
     }
 
 
-
-
     /**
      * Get the index name for the model.
-    */
+     */
     public function searchableAs()
     {
         return 'products_index';
     }
-
 
 
 }

@@ -8,9 +8,6 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-use function PHPSTORM_META\type;
 
 class FilterController extends Controller
 {
@@ -87,6 +84,7 @@ class FilterController extends Controller
     public function fetchProductsBySearch($keyword = null  , $subCategoriesIds = '' , $minPrice = 0 , $maxPrice = 10000){
 
 
+//                             ->whereBetween('start_price', [$min, $max])
 
         if ( request('subCategoriesIds') == "null") {
 
