@@ -25,6 +25,6 @@
 }
 
 .checked, input:checked + svg {
-    color: #ffe400 !important;
+    color: #ffe400 ;
 }
 /* End of Star Rating */

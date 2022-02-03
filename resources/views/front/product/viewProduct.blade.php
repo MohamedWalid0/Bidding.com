@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{asset('css/product/show-post.css')}}">
 
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{{ asset('css/profile/ratingStar.css') }}">
+
     @livewireStyles
 @endsection
 
@@ -78,9 +80,39 @@
                     @can('can-react' , $product)
                         @livewire('likable', ['modelType' => 'App\Models\Product' , 'model' => $product])
                     @endcan
-                    <p class="product-header--subtitle py-3">
+                    <p class="product-header--subtitle py-2">
                         Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
                     </p>
+                    <div class="py-1">
+                        <script>
+                              $(document).ready(function() {
+                                    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+                                });
+                        </script>
+                        <button class="btn btn--operation " data-toggle="tooltip" data-placement="top" title="Report Product">
+                            <!-- Button trigger modal -->
+                            <a type="button" data-toggle="modal" data-target="#reportModel">
+                                <div class="profile-tabs">
+
+                                        <i class="fas fa-flag text-danger"></i>
+                                        {{-- <span class="ml-2">Report Product ?</span> --}}
+
+                                </div>
+                            </a>
+                        </button>
+                        <button class="btn btn--operation" data-toggle="tooltip" data-placement="top" title="Share QR code">
+                            <!-- Button trigger modal -->
+                            <a type="button" href="{{ route('products.generate',$product) }}">
+                                <div class="profile-tabs">
+
+                                        <i class="fas fa-qrcode text-light"></i>
+                                        {{-- <span class="ml-2">QR Code ?</span> --}}
+
+                                </div>
+                            </a>
+                        </button>
+
+                    </div>
 
                     <livewire:bidding-users :product="$product">
                     {{-- <livewire:likable :modelType ="App\Models\Product" :modelId="$product->id"> --}}
@@ -89,17 +121,6 @@
             </div>
 
 
-            <button class="btn btn-primary p-0 pt-2">
-                <!-- Button trigger modal -->
-                <a type="button" data-toggle="modal" data-target="#reportModel">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-flag text-danger"></i>
-                            <span class="ml-2">Report Product ?</span>
-                        </p>
-                    </div>
-                </a>
-            </button>
 
             <!-- Modal -->
             <div class="modal fade" id="reportModel" tabindex="-1" role="dialog"
@@ -126,19 +147,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <button class="btn btn-primary p-0 pt-2">
-                <!-- Button trigger modal -->
-                <a type="button" href="{{ route('products.generate',$product) }}">
-                    <div class="profile-tabs container-fluid">
-                        <p class="text-light">
-                            <i class="fas fa-flag text-danger"></i>
-                            <span class="ml-2">QR Code ?</span>
-                        </p>
-                    </div>
-                </a>
-            </button>
 
 
             {{-- <div class="card mt-5">

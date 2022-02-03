@@ -64,14 +64,14 @@ class UpdateProfile extends Component
         try {
             DB::beginTransaction();
 
-
             $this->user->account->update(
                 [
                     'full_name' => $data['name'],
                     'address' => $data['address'],
-                    'phone' => $data['phone'],
                 ]
             );
+
+            $this->checkVerification($data , $oldPhoneNumber , $oldEmail);
 
             $this->alert('success', 'Data Updated successfully', [
                 'position' => 'center'
@@ -99,7 +99,7 @@ class UpdateProfile extends Component
 
     }
 
-    public function updatedEmail()
+    public function updateEmail()
     {
         $this->user->update(
             [
@@ -113,7 +113,7 @@ class UpdateProfile extends Component
         ]);
         return redirect()->route('home')->with('emailOrPhoneUpdated' , 'Email must be verify again');
     }
-    public function updatedPhone()
+    public function updatePhone()
     {
         $this->user->account->update([
                 'phone' => $this->validate()['phone'],
@@ -124,6 +124,35 @@ class UpdateProfile extends Component
             'position' => 'center'
         ]);
         return redirect()->route('home')->with('emailOrPhoneUpdated' , 'Phone must be verify again');
+    }
+
+    public function checkVerification ($data , $oldPhoneNumber, $oldEmail) {
+
+        if ($oldEmail !== $data['email'] && $oldPhoneNumber !== $data['phone']) {
+            $this->user->update(
+                [
+                    'email' => $this->validate()['email'],
+                    'email_verified_at' => null
+                ]
+            );
+            $this->user->sendEmailVerificationNotification();
+
+            $this->user->account->update([
+                'phone' => $this->validate()['phone'],
+            ]);
+            $this->verifyNewPhoneNumber();
+
+            $this->alert('success', 'Data Updated successfully', [
+                'position' => 'center'
+            ]);
+
+            return redirect()->route('home')->with('emailOrPhoneUpdated' , 'Email and Phone must be verify again');
+        } else if ($oldEmail !== $data['email'] ) {
+            $this->updateEmail();
+        } else if ($oldPhoneNumber !== $data['phone']) {
+            $this->updatePhone();
+        }
+
     }
 
 
