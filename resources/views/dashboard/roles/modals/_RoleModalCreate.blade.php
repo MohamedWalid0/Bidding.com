@@ -15,22 +15,14 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="name">
                     </div>
-                    <div class="row">
+                    <div class="row ml-4">
                         @foreach ( \App\Models\Permission::all() as $permission)
-{{--                            <div class="col-4 ">--}}
-{{--                                <p class="badge bg-primary">{{ $able }}</p>--}}
-                                <div class="w-100">
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="abilities[]"
-                                                   value="{{ $permission->id }}">
-                                            <label class="form-check-label">
-                                                {{ $permission->description }}
-                                            </label>
-                                        </div>
-
-{{--                                </div>--}}
-{{--                                <br>--}}
+                            <div class="form-check col-3">
+                                <input class="form-check-input" type="checkbox" name="abilities[]" id="checkbocroles_{{ $permission->id }}"
+                                       value="{{ $permission->id }}">
+                                <label class="form-check-label" for="checkbocroles_{{ $permission->id }}">
+                                    {{ $permission->description }}
+                                </label>
                             </div>
                         @endforeach
                     </div>
