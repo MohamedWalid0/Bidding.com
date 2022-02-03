@@ -883,6 +883,7 @@ body {
     opacity: 1;
     transition: all 0.5s;
     color: var(--strange) !important;
+    border-radius: 15px;
     /* background-color: ; */
 }
 

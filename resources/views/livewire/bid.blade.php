@@ -40,7 +40,7 @@
                 </span>
                 </div>
             @else
-            <span>This product is Inctive</span>
+            <span class="label--inactive">This product is Inctive</span>
             @endif
 
         </div>

@@ -3,7 +3,7 @@
         <label class="add-product--label"  for="exampleInputPassword1">Comment</label>
         @error('comment') <span class="error">{{ $message }}</span> @enderror
         <textarea  cols="20" rows="2" wire:model.lazy='comment' class="form-control w-50" placeholder="Add you Comment"  ></textarea>
-        <button type="button" class="btn btn-primary mt-2" wire:click='comment'>Add</button>
+        <button type="button" class="btn btn-primary mt-2 btn-strange" wire:click='comment'>Add</button>
     </div>
     <div class="media-block">
         @forelse ($comments as $comment)
