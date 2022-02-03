@@ -294,7 +294,7 @@
 
 
     @livewireScripts
-{{--    <script>--}}
+    <script>
 {{--        let card = document.querySelector('.countdown');--}}
 
 {{--        const intrvl = setInterval(function () {--}}
@@ -326,43 +326,43 @@
 {{--        }, 1000)--}}
 
 
-{{--        $(document).on('click', '.toggleProductinWishlist', function (e) {--}}
+        $(document).on('click', '.toggleProductinWishlist', function (e) {
 
-{{--            e.preventDefault();--}}
+            e.preventDefault();
 
 
-{{--            $.ajaxSetup({--}}
-{{--                headers: {--}}
-{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--                }--}}
-{{--            });--}}
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-{{--            let productId = $(this).attr('data-product-id');--}}
+            let productId = $(this).attr('data-product-id');
 
-{{--            $.ajax({--}}
-{{--                type: 'GET',--}}
-{{--                url: "/wishlist/" + $(this).attr('data-product-id'),--}}
-{{--                data: {--}}
-{{--                    'productId': $(this).attr('data-product-id'),--}}
-{{--                },--}}
-{{--                success: function (data) {--}}
-{{--                    $("a[data-product-id=" + productId + "]").toggleClass("wishlistActive");--}}
-{{--                    $("svg[data-product-icon-id=" + productId + "]").toggleClass("wishlistIconActive");--}}
+            $.ajax({
+                type: 'GET',
+                url: "/wishlist/" + $(this).attr('data-product-id'),
+                data: {
+                    'productId': $(this).attr('data-product-id'),
+                },
+                success: function (data) {
+                    $("a[data-product-id=" + productId + "]").toggleClass("wishlistActive");
+                    $("svg[data-product-icon-id=" + productId + "]").toggleClass("wishlistIconActive");
 
-{{--                    if ((data.wished) && (data.status)) {--}}
-{{--                        toastr.success(data.message);--}}
-{{--                    } else {--}}
-{{--                        toastr.error(data.message);--}}
-{{--                    }--}}
-{{--                },--}}
-{{--                error: function (jqXHR) {--}}
-{{--                    toastr.warning(jqXHR.responseJSON.message);--}}
-{{--                }--}}
+                    if ((data.wished) && (data.status)) {
+                        toastr.success(data.message);
+                    } else {
+                        toastr.error(data.message);
+                    }
+                },
+                error: function (jqXHR) {
+                    toastr.warning(jqXHR.responseJSON.message);
+                }
 
-{{--            });--}}
-{{--        });--}}
+            });
+        });
 
-{{--    </script>--}}
+    </script>
 
     <script>
         let animations = []

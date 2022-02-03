@@ -42,15 +42,15 @@ class AdminToUsersNotification extends Notification implements ShouldQueue
     }
 
     public function toMail($notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->subject('Message From Admin')
-            ->greeting('hello :' . $notifiable->account->full_name)
-            ->from('hoda.adel@yahoo.com')
-            ->line($this->message)
-            ->action('visit profile Now', url('profile'))
-            ->line('Thank You Have a Nice Day');
-    }
+{
+    return (new MailMessage)
+        ->subject('Message From Admin')
+        ->greeting('hello :' . $notifiable->account->full_name)
+        ->from('hoda.adel@yahoo.com')
+        ->line($this->message)
+        ->action('visit profile Now', url('profile'))
+        ->line('Thank You Have a Nice Day');
+}
 
     public function toDatabase($notifiable): array
     {

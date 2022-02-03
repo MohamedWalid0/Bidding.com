@@ -24,7 +24,7 @@
                                 <p class="my-0"> No Ratings yet </p>
                             @endif
 
-                            <p class="mt-0 text-muted"> {{$user->email}} </p>
+                            <p class="mt-0 text-muted"> {{ $user->email }} </p>
                         </div>
                 </div>
             </li>
@@ -43,7 +43,7 @@
                     </div>
                 </a>
             </li>
-
+            @can('action' , \App\Models\User::class)
             <li>
                 <a href="{{ route('products.create') }}">
                     <div class="profile-tabs container-fluid bg-yellow">
@@ -54,7 +54,7 @@
                     </div>
                 </a>
             </li>
-
+            @endcan
             @can('action' , \App\Models\User::class)
                 <li>
                     <a href="#PersonalData">
@@ -129,7 +129,7 @@
                             @csrf
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Rate Or Review : {{ $user->account->full_name }}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -178,7 +178,7 @@
                                         @endforeach
                                     @endif
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Add Review</label>
+                                        <label for="exampleFormControlTextarea1">Add Review (optional)</label>
                                         <textarea class="form-control"
                                                   name="review"
                                                   id="exampleFormControlTextarea1"
