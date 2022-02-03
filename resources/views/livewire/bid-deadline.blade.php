@@ -3,7 +3,21 @@
         {{$bidStatus}}: <span class="product-price"> {{$currentBid}}LE </span>
     </h3>
     <div class="product--underline"></div>
-    <p class="product-header--subtitle py-3">by {{$product->user->account->full_name}}</p>
+    <?php $rate = number_format($product->user->rate) ?>
+    <div class="product-header--subtitle py-3">
+        by
+        <a href="#">
+            {{$product->user->account->full_name}}
+        </a>
+        <div class="rating">
+            @for ($i = 1 ; $i<=$rate ; $i++ )
+                <i class="fa fa-star checked"></i>
+            @endfor
+            @for ($j = $rate+1  ; $j<=5 ; $j++ )
+                <i class="fa fa-star "></i>
+            @endfor
+        </div>
+    </div>
     @if ($isStopped)
         <h3 class="text-center" style="font-weight: 600; font-size:22px">This Product Stopped by Admin at
         {{$product->stopped_product->created_at->toDayDateTimeString()}}</h3>
@@ -38,23 +52,9 @@
     </p>
 <script >
 
-    // document.addEventListener('livewire:load', function () {
-    //     var year =  {!! $product->deadline->year !!};
-    //     var month =   {!! $product->deadline->month !!};
-    //     var day =   {!! $product->deadline->day !!};
-    //     var hour =   {!! $product->deadline->hour !!};
-    //     var min =   {!! $product->deadline->minute  !!};
-    //     if (hour == 0)
-    //     hour = '00';
 
-    // var countdown = new SV.Countdown('.countdown', {
-    //         year: year,
-    //         month: month,
-    //         day: day,
-    //         hour: hour,
-    //         min: min
-    //     });
-    // })
+
+
 
 
 

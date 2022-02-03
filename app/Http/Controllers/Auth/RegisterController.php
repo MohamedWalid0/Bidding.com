@@ -30,7 +30,6 @@ class RegisterController extends Controller
 
     use RegistersUsers, withSocialMedia;
 
-    public $sms_services;
     /**
      * Where to redirect users after registration.
      *
@@ -43,11 +42,9 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(VerificationServices $sms_services)
+    public function __construct()
     {
         $this->middleware('guest');
-        $this->sms_services = $sms_services;
-
     }
 
 
@@ -85,9 +82,6 @@ class RegisterController extends Controller
         try {
 
             DB::beginTransaction();
-
-            $verification = [];
-
             $user = User::create([
                 'email' => $data['email'],
                 'role_id' => $data['role_id'],
@@ -107,17 +101,8 @@ class RegisterController extends Controller
 
             $user->wishlist()->create();
 
-
-            // send OTP SMS code to user
-
-            $verification['user_id'] = $user->id;
-            $verification_data = $this->sms_services->setVerificationCode($verification);
-            $message = $this->sms_services->getSMSVerifyMessageByAppName($verification_data->code);
-
             DB::commit();
             return $user;
-
-
         } catch (\Exception $ex) {
             DB::rollback();
         }

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{asset('css/product/show-post.css')}}">
 
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{{ asset('css/profile/ratingStar.css') }}">
+
     @livewireStyles
 @endsection
 
@@ -78,9 +80,39 @@
                     @can('can-react' , $product)
                         @livewire('likable', ['modelType' => 'App\Models\Product' , 'model' => $product])
                     @endcan
-                    <p class="product-header--subtitle py-3">
+                    <p class="product-header--subtitle py-2">
                         Categories: <span class="span-bold"> {{$product->subCategory->category->name}} </span>
                     </p>
+                    <div class="py-1">
+                        <script>
+                              $(document).ready(function() {
+                                    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+                                });
+                        </script>
+                        <button class="btn btn--operation " data-toggle="tooltip" data-placement="top" title="Report Product">
+                            <!-- Button trigger modal -->
+                            <a type="button" data-toggle="modal" data-target="#reportModel">
+                                <div class="profile-tabs">
+
+                                        <i class="fas fa-flag text-danger"></i>
+                                        {{-- <span class="ml-2">Report Product ?</span> --}}
+
+                                </div>
+                            </a>
+                        </button>
+                        <button class="btn btn--operation" data-toggle="tooltip" data-placement="top" title="Share QR code">
+                            <!-- Button trigger modal -->
+                            <a type="button" href="{{ route('products.generate',$product) }}">
+                                <div class="profile-tabs">
+
+                                        <i class="fas fa-qrcode text-light"></i>
+                                        {{-- <span class="ml-2">QR Code ?</span> --}}
+
+                                </div>
+                            </a>
+                        </button>
+
+                    </div>
 
                     <livewire:bidding-users :product="$product">
                     {{-- <livewire:likable :modelType ="App\Models\Product" :modelId="$product->id"> --}}
@@ -89,17 +121,6 @@
             </div>
 
 
-            <button class="btn btn-primary p-0 pt-2">
-                <!-- Button trigger modal -->
-                <a type="button" data-toggle="modal" data-target="#reportModel">
-                    <div class="profile-tabs container-fluid">
-                        <p>
-                            <i class="fas fa-flag text-danger"></i>
-                            <span class="ml-2">Report Product ?</span>
-                        </p>
-                    </div>
-                </a>
-            </button>
 
             <!-- Modal -->
             <div class="modal fade" id="reportModel" tabindex="-1" role="dialog"
@@ -126,19 +147,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <button class="btn btn-primary p-0 pt-2">
-                <!-- Button trigger modal -->
-                <a type="button" href="{{ route('products.generate',$product) }}">
-                    <div class="profile-tabs container-fluid">
-                        <p class="text-light">
-                            <i class="fas fa-flag text-danger"></i>
-                            <span class="ml-2">QR Code ?</span>
-                        </p>
-                    </div>
-                </a>
-            </button>
 
 
             {{-- <div class="card mt-5">
@@ -385,22 +393,49 @@
                     }
                 })
 
-                // var year =  {!! $product->deadline->year !!};
-                // var month =   {!! $product->deadline->month !!};
-                // var day =   {!! $product->deadline->day !!};
-                // var hour =   {!! $product->deadline->hour !!};
-                // var min =   {!! $product->deadline->minute  !!};
-
-                //     var countdown = new SV.Countdown('.countdown', {
-                //         year: year,
-                //         month: month,
-                //         day: day,
-                //         hour: hour,
-                //         min: min
-                //     });
             }
         )
 
+    </script>
+
+    <script>
+        Livewire.on('echo:start-bid.{{ $product->id }},StartBidEvent', () => {
+            Livewire.hook('message.received', () => {
+                setTimeDeadline()
+            })
+        })
+
+        function setTimeDeadline(){
+            let card = document.querySelector('.countdown');
+
+            const intrvl = setInterval(function () {
+                let countDownDate = new Date(card.dataset.date).getTime();
+
+                let now = new Date().getTime();
+                let timeleft = countDownDate - now;
+
+
+                let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+                if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {
+                    clearInterval(intrvl);
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
+                    card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';
+                }
+                card.querySelector(".bid-days").innerHTML = days
+                card.querySelector(".bid-hours").innerHTML = hours
+                card.querySelector(".bid-mins").innerHTML = minutes
+                card.querySelector(".bid-secs").innerHTML = seconds
+
+
+            }, 1000)
+        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

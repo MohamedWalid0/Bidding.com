@@ -44,6 +44,7 @@ class FilterController extends Controller
     public function fetchProductsBySearch($keyword = null  , $subCategoriesIds = '' , $minPrice = 0 , $maxPrice = 10000){
 
 
+
         if ( request('subCategoriesIds') == 'null' && request('keyword') != 'null' ) {
 
             return Product::search($keyword )

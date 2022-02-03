@@ -79,7 +79,7 @@
                         class="text-center @if($loop->iteration !== 1 && $isClosed) opacity-50 @endif">
                         <td class="padd-top">
                             <small style="font-size:13px"
-                            class="badge bg-primary">{{$this->str_ordinal($loop->iteration)}}</small>
+                            class="badge bg-primary badge-custom">{{$this->str_ordinal($loop->iteration)}}</small>
                         </td>
                         <td>
                         <img class="rounded-circle mx-2" src="{{ $user->avatarUrl() }}" alt="avatarUrl">
