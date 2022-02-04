@@ -360,7 +360,7 @@ textarea.md-textarea-scroll{
       .custom-table tbody tr:hover td, .custom-table tbody tr:focus td {
         color: #fff; }
         .custom-table tbody tr:hover td a, .custom-table tbody tr:focus td a {
-          color: #fdd114; }
+          color: var(--strange); }
 
     .custom-table .td-box-wrap {
       padding: 0; }
