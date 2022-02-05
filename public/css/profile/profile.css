@@ -185,3 +185,87 @@ input[type="file"] {
 .mar-top {
     margin-top: 15px;
 }
+
+.custom-table {
+    background-color: var(--secandory--2);
+    max-width: 700px;
+    border-radius: 10px;
+  }
+    .custom-table thead tr, .custom-table thead th {
+      padding-bottom: 30px;
+      border-top: none;
+      border-bottom: none !important;
+      color: #fff;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .2rem; }
+    .custom-table tbody th, .custom-table tbody td {
+      color: #777;
+      font-weight: 400;
+      /* padding-bottom: 20px; */
+      /* padding-top: 20px; */
+      font-weight: 400;
+      border: none;
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease;
+      color: #fff; }
+      .custom-table tbody th small, .custom-table tbody td small {
+        font-weight: 300;
+      }
+
+    .custom-table tbody tr {
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease; }
+      .custom-table tbody tr:hover td, .custom-table tbody tr:focus td {
+        color: #fff; }
+        .custom-table tbody tr:hover td a, .custom-table tbody tr:focus td a {
+          color: var(--strange); }
+
+    .custom-table .td-box-wrap {
+      padding: 0; }
+    .custom-table .box {
+      background: #fff;
+      border-radius: 4px;
+      margin-top: 15px;
+      margin-bottom: 15px; }
+      .custom-table .box td, .custom-table .box th {
+        border: none !important; }
+
+        .padd-top {
+          padding-top: 1.9rem !important;
+        }
+  .opacity-50 {
+    opacity: .2;
+  }
+  .custom-table a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+  color: white;}
+    .custom-table a, .custom-table a:hover {
+      text-decoration: none !important; }
+
+      .custom-table tr img {
+          width: 70px;
+          height: 70px;
+      }
+
+      .table-head {
+          color: var(--secandory--2);
+          font-weight: 700;
+      }
+
+
+      .card p {
+        line-height: 1.61em;
+        font-weight: 300;
+        font-size: 1.2em;
+    }
+
+    .category {
+        text-transform: capitalize;
+        font-weight: 700;
+        color: #9A9A9A;
+    }

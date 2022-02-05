@@ -80,9 +80,7 @@ class Bid extends Component
         }
 
         $this->updateBids($this->startBid);
-//        session()->flash('message', 'Bid successfully added.');
         $this->emit('BidUpdated');
-
     }
 
     public function updateBids($start)

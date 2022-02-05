@@ -176,7 +176,7 @@
                     </div>
 
                     <!-- start My Bids Link -->
-                    <div class="page" id="MyBids">
+                    {{-- <div class="page" id="MyBids">
                         <div class="bg-white   shadow">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between">
@@ -214,8 +214,56 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- end My Bids Link -->
+
+
+            <h4 class="mb-1 table-head">Top Bids</h4>
+
+
+            <div class="table-responsive">
+
+              <table class="table table-striped custom-table">
+                <thead>
+                  <tr class="text-center" style="font-size: 20px;">
+
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @forelse ($user->product_bids->load('user_bids') as $product )
+                    <tr scope="row"
+                        class="text-center">
+                        <td class="padd-top">
+                            <small style="font-size:13px"
+                            class="badge bg-primary badge-custom">{{$loop->iteration}}</small>
+                        </td>
+                        <td class="padd-top">
+                          <a href="#">{{$product->name}}</a>
+                        </td>
+                        <td class="padd-top">
+                            {{$product->bid->updated_at->toDayDateTimeString()}}
+                        </td>
+                        <td class="padd-top">
+                            @if ($product->last_bid === $user)
+                                Winner Until now
+                            @else
+                                Someone else bid
+                            @endif
+                        </td>
+                    </tr>
+                  @empty
+
+                  @endforelse
+                </tbody>
+              </table>
+            </div>
+
+
+
 
                     <!-- start Notification Link -->
                     <div class="page" id="Notification">
