@@ -115,14 +115,17 @@
 
                                     <div class="productOptions ">
 
+
                                         <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                            <i class="fas fa-gavel"></i>
+                                            <a href="{{ route('products.index' , $product) }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                         </div>
 
 
                                         <div
                                             class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($product->id)) wishlistActive @else wishlistNotActive @endif  "
-                                            id="wishlistIconContainer" data-product-icon-id="{{$product -> id}}">
+                                            id="wishlistIconContainer" data-product-icon-id="{{ $product -> id }}">
 
                                             <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
                                             href="#" data-product-id="{{$product -> id}}">
@@ -132,10 +135,12 @@
                                         </div>
 
 
-
                                         <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                            <i class="fas fa-search"></i>
+                                            <a href="{{ route('products.generate' , $product) }}" class="text-dark">
+                                                <i class="fas fa-qrcode "></i>
+                                            </a>
                                         </div>
+
 
                                     </div>
 
