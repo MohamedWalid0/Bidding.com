@@ -246,7 +246,7 @@
                             </div>
                             <div class="col-lg-8 col-md-12 mt-3">
                                 <h5>{{$product->name}}</h5>
-                                <p class="my-2">Current bid : {{$product->last_bid->bid->cost ?? 0}} LE </p>
+                                <p class="my-2">Current bid : {{$product->last_bid->bid->cost ?? $product->start_price }} LE </p>
                                 <div class="d-flex">
                                     <div class="iconContainer mr-3 px-2 rounded-circle ">
                                         <i class="fas fa-gavel"></i>
@@ -390,7 +390,9 @@
                                 <div class="productOptions ">
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-gavel"></i>
+                                        <a href="{{ route('products.index' , $latest_product) }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </div>
                                     <div
                                         class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($latest_product->id)) wishlistActive @else wishlistNotActive @endif  "
@@ -403,7 +405,9 @@
 
                                     </div>
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-search"></i>
+                                        <a href="{{ route('products.generate' , $latest_product) }}" class="text-dark">
+                                            <i class="fas fa-qrcode "></i>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -443,7 +447,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span>
-                                 {{ $latest_product->last_bid->bid->cost ?? 0 }} LE
+                                 {{ $latest_product->last_bid->bid->cost ?? $latest_product->start_price }} LE
                                     </span>
                                 </p>
 
@@ -508,7 +512,9 @@
                                 <div class="productOptions ">
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-gavel"></i>
+                                        <a href="{{ route('products.index' , $hot_product) }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </div>
 
 
@@ -525,7 +531,9 @@
 
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-search"></i>
+                                        <a href="{{ route('products.generate' , $hot_product) }}" class="text-dark">
+                                            <i class="fas fa-qrcode "></i>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -566,7 +574,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                        {{ $hot_product->last_bid->bid->cost ?? 0  }} LE
+                                        {{ $hot_product->last_bid->bid->cost ?? $hot_product->start_price  }} LE
                                     </span>
                                 </p>
 
@@ -703,7 +711,9 @@
                                 <div class="productOptions ">
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-gavel"></i>
+                                        <a href="{{ route('products.index' , $mostOfViewProduct) }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </div>
 
 
@@ -720,7 +730,9 @@
 
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-search"></i>
+                                        <a href="{{ route('products.generate' , $mostOfViewProduct) }}" class="text-dark">
+                                            <i class="fas fa-qrcode "></i>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -762,7 +774,7 @@
                                 <p class="text-muted">
                                     Current Bid :
                                     <span class="text-primary">
-                                         {{ $mostOfViewProduct->last_bid->bid->cost ?? 0 }} LE
+                                         {{ $mostOfViewProduct->last_bid->bid->cost ?? $mostOfViewProduct->start_price }} LE
                                     </span>
                                 </p>
 
@@ -887,10 +899,15 @@
                 success: function (data) {
                     $("div[data-product-icon-id=" + productId + "]").toggleClass("wishlistNotActive wishlistActive");
                     $("a[data-product-id=" + productId + "]").toggleClass("wishlistIconNotActive wishlistIconActive");
+                    let count = Number($('#WishlistCount').text())
                     if ((data.wished) && (data.status)) {
                         toastr.success(data.message);
+                        count++;
+                        $('#WishlistCount').text(count)
                     } else {
                         toastr.error(data.message);
+                        count--;
+                        $('#WishlistCount').text(count)
                     }
                 },
                 error: function (jqXHR) {

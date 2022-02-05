@@ -48,7 +48,9 @@
                                 <div class="productOptions ">
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-gavel"></i>
+                                        <a href="{{ route('products.index' , $product) }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </div>
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle bg-primary ">
@@ -62,7 +64,9 @@
 
 
                                     <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
-                                        <i class="fas fa-search"></i>
+                                        <a href="{{ route('products.generate' , $product) }}" class="text-dark">
+                                            <i class="fas fa-qrcode "></i>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -148,6 +152,7 @@
                 }
             });
             let productId = $(this).attr('data-product-id');
+            let count = Number($('#WishlistCount').text())
             $.ajax({
                 type: 'GET',
                 url: "wishlist/" + productId,
@@ -158,9 +163,21 @@
                     if(data.wished){
                         $("div[data-product-id="+productId+"]").remove();
                         toastr.error(data.message);
+                        count--;
+                        $('#WishlistCount').text(count)
+                        if (count === 0){
+                            $('.productsSectionContainer').append(`
+                            <div>
+                                <h1>
+                                    No Products
+                                </h1>
+                            </div>
+                            `)
+                        }
                     }
                     else{
                         toastr.error(data.message);
+
                     }
                 }
 
