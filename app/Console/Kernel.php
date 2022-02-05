@@ -27,16 +27,16 @@ class Kernel extends ConsoleKernel
      * @return void
      * to run this commands run => php artisan schedule:work
      */
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->command('watch:product')->hourly()->withoutOverlapping();
-        $schedule->command('bid:notify')->hourly()->withoutOverlapping();
-    }
-//    protected function shortSchedule(ShortSchedule $schedule)
+//    protected function schedule(Schedule $schedule)
 //    {
-//        // this artisan command will run every second
-////        $schedule->command('watch:product')->everySecond()->withoutOverlapping();
+//        $schedule->command('watch:product')->hourly()->withoutOverlapping();
+//        $schedule->command('bid:notify')->hourly()->withoutOverlapping();
 //    }
+    protected function shortSchedule(ShortSchedule $schedule)
+    {
+//         this artisan command will run every second
+        $schedule->command('watch:product')->everySecond();
+    }
 
     /**
      * Register the commands for the application.

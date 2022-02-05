@@ -405,6 +405,12 @@
             })
         })
 
+        Livewire.on('echo:end-bid.{{ $product->id }},EndBidEvent', () => {
+            Livewire.hook('message.received', () => {
+                setTimeDeadline()
+            })
+        })
+
         function setTimeDeadline(){
             let card = document.querySelector('.countdown');
 
