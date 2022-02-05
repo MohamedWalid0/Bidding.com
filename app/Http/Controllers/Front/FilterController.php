@@ -73,7 +73,8 @@ class FilterController extends Controller
                 ->whereBetween('start_price', [$minPrice, $maxPrice])
                 ->whereIn('sub_category_id', explode(",", $subCategoriesIds )  )
                 ->values()
-                ->chunk(25)->get('*');
+                // ->chunk(25)->get('*')    ;
+                ->all();
 
         }
 
