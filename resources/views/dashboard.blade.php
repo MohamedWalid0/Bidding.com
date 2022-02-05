@@ -64,7 +64,7 @@
 
 
         <!-- Bar chart -->
-        <div class="bg-gradient-danger card card-primary card-outline">
+        <div class="bg-light card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title">
                     <i class="far fa-chart-bar"></i>

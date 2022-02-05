@@ -17,36 +17,34 @@ class CitySeeder extends Seeder
     {
         DB::table('cities')->delete();
         $cities = [
-            'Cairo' ,
-            'Giza' ,
-            'Alexandria',
-            'Port Said',
-            'Suez',
-            'Ţanta',
-            'Asyut',
-            'Al Fayyum',
-            'Ismailia',
-            'Aswan',
-            'Kafr al Dawwar',
-            'Damanhur',
-            'Al Minya',
-            'Damietta',
-            'Luxor',
-            'Siwa' ,
-            'Qina',
-            'Suhaj',
-            'Bani Suwayf',
-            'Al Ghardaqah' ,
-            'Banhq' ,
-            'Kafr al Shaykh'
+            ['name' =>'Cairo'] ,
+            ['name' =>'Giza'] ,
+            ['name' =>'Alexandria'],
+            ['name' =>'Port Said'],
+            ['name' =>'Suez'],
+            ['name' =>'Ţanta'],
+            ['name' =>'Asyut'],
+            ['name' =>'Al Fayyum'],
+            ['name' =>'Ismailia'],
+            ['name' =>'Aswan'],
+            ['name' =>'Kafr al Dawwar'],
+            ['name' =>'Damanhur'],
+            ['name' =>'Al Minya'],
+            ['name' => 'Damietta'],
+            ['name' =>'Luxor'],
+            ['name' =>'Siwa' ],
+            ['name' => 'Qina'],
+            ['name' =>'Suhaj'],
+            ['name' =>'Bani Suwayf'],
+            ['name' =>'Al Ghardaqah'] ,
+            ['name' =>'Banhq' ],
+            ['name' =>'Kafr al Shaykh']
 
         ];
 
 
-        foreach ($cities as $city) {
 
-            City::create(['name' => $city]);
+        City::insert($cities);
 
-        }
     }
 }

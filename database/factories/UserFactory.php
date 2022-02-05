@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'role_id' => Role::inRandomOrder()->first()->id,
             'remember_token' => Str::random(10),
             'phone_verified_at' => now(),
-            'rate' => random_int(1,10),
+            'rate' => random_int(1,5),
 
         ];
     }
