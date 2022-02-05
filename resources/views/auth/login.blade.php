@@ -8,7 +8,7 @@
             <!-- /.login-logo -->
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a class="h1"><b>Bido</b></a>
+                    <a class="h1"><b>Bidding.com</b></a>
                 </div>
                 <div class="card-body">
                     <p class="login-box-msg">Sign in to start your session</p>
