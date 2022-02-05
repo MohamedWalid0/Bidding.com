@@ -217,7 +217,7 @@
                     </div> --}}
                     <!-- end My Bids Link -->
 
-
+            <div class="page" id="MyBids">
             <h4 class="mb-1 table-head">Top Bids</h4>
 
 
@@ -261,7 +261,7 @@
                 </tbody>
               </table>
             </div>
-
+            </div>
 
 
 
