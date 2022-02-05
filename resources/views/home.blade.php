@@ -24,7 +24,7 @@
                 <div class="swiper-slide">
                     <div class="slideContiner">
                         <div class="slideImageContiner">
-                            <img src="{{ asset('img/home/slideshow-2.jpg') }}" alt="">
+                            <img src="{{ asset('img/home/pexels-nataliya-vaitkevich-6214372.jpg') }}" alt="">
                         </div>
                         <div class="slideContentContiner">
                             <div class="slideContentOverlay">
@@ -45,7 +45,7 @@
                 <div class="swiper-slide">
                     <div class="slideContiner">
                         <div class="slideImageContiner">
-                            <img src="{{ asset('img/home/slideshow-3.jpg') }}" alt="">
+                            <img src="{{ asset('img/home/pexels-try405.jpg') }}" alt="">
                         </div>
                         <div class="slideContentContiner">
                             <div class="slideContentOverlay">

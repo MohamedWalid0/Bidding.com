@@ -975,6 +975,7 @@ body {
     padding: 5px;
     font-size: 15px !important;
     cursor: pointer;
+    background-color: white;
 }
 
 .wishlistActive{
