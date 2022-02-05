@@ -20,16 +20,17 @@ class PropertySeeder extends Seeder
 
 
         $properties = [
-            'color' ,
-            'size' ,
-            'brand' ,
-            'material' ,
+            ['name'=>'color'] ,
+            ['name'=>'size' ],
+            ['name'=>'brand' ],
+            ['name'=>'material'] ,
+            ['name'=>'capacity'] ,
+            ['name'=>'width'] ,
+            ['name'=>'height'] ,
         ];
 
-        foreach ($properties as $property) {
-            Property::create(['name' => $property]);
-        }
 
+        Property::insert($properties);
 
         Property::factory(50)->create();
 

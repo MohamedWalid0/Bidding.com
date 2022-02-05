@@ -247,6 +247,13 @@ img {
     border-right: 18px solid #48bb78;
     border-top: 8px solid #48bb78;
 }
+.button-green-grad{
+    background-color: #00ADB5;
+    border-bottom: 8px solid #00ADB5;
+    border-left: 18px solid #00ADB5;
+    border-right: 18px solid #00ADB5;
+    border-top: 8px solid #00ADB5;
+}
 
 .button-red,
 .button-error {

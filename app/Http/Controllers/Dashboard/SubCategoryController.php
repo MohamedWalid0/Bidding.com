@@ -23,8 +23,8 @@ class SubCategoryController extends Controller
         return view('dashboard.subCategory.show' , compact('subCategory' , 'properties' , 'category') );
     }
     // assign property to subcategory
-    public function assign (AssignPropertyRequest $request , Category $category ,  SubCategory $subCategory){
-
+    public function assign (AssignPropertyRequest $request , Category $category ,  SubCategory $subCategory): RedirectResponse
+    {
         // sync to db
         $subCategory->properties()->syncWithoutDetaching([
             $request->validated()
@@ -42,7 +42,7 @@ class SubCategoryController extends Controller
     }
 
 
-    public function update(UpdateSubCategoryRequest $request,Category $category,SubCategory $subCategory)
+    public function update(UpdateSubCategoryRequest $request,Category $category,SubCategory $subCategory): RedirectResponse
     {
         $subCategory->update($request->validated());
         toastr()->success('sub category updated successfully');

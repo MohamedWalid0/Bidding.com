@@ -15,5 +15,4 @@ class SupportController extends Controller
         toastr()->success('report sending successfully');
         return back();
     }
-
 }

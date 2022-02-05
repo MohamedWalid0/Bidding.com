@@ -39,25 +39,20 @@ class ProfileController extends Controller
     {
         $rateCount = $user->rates()->count();
         $ratingSum = $user->rates()->sum('rate');
-
         $existsRate = Rate::where('user_id', $user->id)
             ->where('rater_id', Auth::user()->id)
             ->first();
-        // dd($user->reviews->first());
         if ($rateCount > 0) {
             $userRate = $ratingSum / $rateCount;
         } else {
             $userRate = 0;
         }
-
         $account = $user->account;
-
         $userProductsWins = Product::withoutGlobalScopes()
             ->where('status', 'inactive')
             ->has('winner_bid')
             ->get();
         $itemWonCount = $userProductsWins->count();
-
         $activeBids = $user->products;
         $activeBidsCount = $activeBids->count();
         $reviewsCount = $user->loadCount('reviews')->reviews_count;

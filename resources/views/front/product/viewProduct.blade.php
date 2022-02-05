@@ -295,35 +295,35 @@
 
     @livewireScripts
     <script>
-        let card = document.querySelector('.countdown');
+{{--        let card = document.querySelector('.countdown');--}}
 
-        const intrvl = setInterval(function () {
-            let countDownDate = new Date(card.dataset.date).getTime();
+{{--        const intrvl = setInterval(function () {--}}
+{{--            let countDownDate = new Date(card.dataset.date).getTime();--}}
 
-            let now = new Date().getTime();
-            let timeleft = countDownDate - now;
-
-
-            let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-            if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {
-                clearInterval(intrvl);
-                days = 0;
-                hours = 0;
-                minutes = 0;
-                seconds = 0;
-                card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';
-            }
-            card.querySelector(".bid-days").innerHTML = days
-            card.querySelector(".bid-hours").innerHTML = hours
-            card.querySelector(".bid-mins").innerHTML = minutes
-            card.querySelector(".bid-secs").innerHTML = seconds
+{{--            let now = new Date().getTime();--}}
+{{--            let timeleft = countDownDate - now;--}}
 
 
-        }, 1000)
+{{--            let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));--}}
+{{--            let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));--}}
+{{--            let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));--}}
+{{--            let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);--}}
+
+{{--            if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) {--}}
+{{--                clearInterval(intrvl);--}}
+{{--                days = 0;--}}
+{{--                hours = 0;--}}
+{{--                minutes = 0;--}}
+{{--                seconds = 0;--}}
+{{--                card.innerHTML = '<p class="bid-blastoff text-center">' + "Closed, You can't bid right now" + '</p>';--}}
+{{--            }--}}
+{{--            card.querySelector(".bid-days").innerHTML = days--}}
+{{--            card.querySelector(".bid-hours").innerHTML = hours--}}
+{{--            card.querySelector(".bid-mins").innerHTML = minutes--}}
+{{--            card.querySelector(".bid-secs").innerHTML = seconds--}}
+
+
+{{--        }, 1000)--}}
 
 
         $(document).on('click', '.toggleProductinWishlist', function (e) {
@@ -405,6 +405,12 @@
             })
         })
 
+        Livewire.on('echo:end-bid.{{ $product->id }},EndBidEvent', () => {
+            Livewire.hook('message.received', () => {
+                setTimeDeadline()
+            })
+        })
+
         function setTimeDeadline(){
             let card = document.querySelector('.countdown');
 
@@ -444,6 +450,7 @@
 
     <script>
         $(document).ready(function () {
+            setTimeDeadline();
             $('#ex1').zoom();
         });
     </script>

@@ -278,7 +278,7 @@
 
 <script src="{{ asset('js/product/wishlist.js') }}"></script>
 
-<script>
+{{-- <script>
     let cards = document.querySelectorAll('.productBidTimer');
     cards.forEach(card => {
         let countDownDate = new Date(card.dataset.date).getTime();
@@ -308,6 +308,6 @@
         }, 1000)
 
     })
-</script>
+</script> --}}
 
 @endsection

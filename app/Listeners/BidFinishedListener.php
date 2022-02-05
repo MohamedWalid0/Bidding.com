@@ -3,20 +3,22 @@
 namespace App\Listeners;
 
 use App\Events\EndBidEvent;
-use App\Models\User;
 use App\Notifications\EndBidNotification;
 
 class BidFinishedListener
 {
     public function handle(EndBidEvent $event)
     {
-        $event->product->last_bid->notify(
-            new EndBidNotification(
-                $event->product,
-                $event->product->user,
-                "You Are The Winner in The Bid On Product {$event->product->name} This Product Belongs To {$event->product->user->account->full_name}"
-            )
-        );
+        if ($event->product->last_bid->exists()) {
+            $event->product->last_bid->notify(
+                new EndBidNotification(
+                    $event->product,
+                    $event->product->user,
+                    "You Are The Winner in The Bid On Product {$event->product->name} This Product Belongs To {$event->product->user->account->full_name}"
+                )
+            );
+        }
+
         $event->product->user->notify(
             new EndBidNotification(
                 $event->product,
