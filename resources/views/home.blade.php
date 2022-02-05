@@ -24,48 +24,48 @@
                 <div class="swiper-slide">
                     <div class="slideContiner">
                         <div class="slideImageContiner">
-                            <img src="{{ asset('img/home/pexels-nataliya-vaitkevich-6214372.jpg') }}" alt="">
-                        </div>
-                        <div class="slideContentContiner">
-                            <div class="slideContentOverlay">
-                                <div class="slideContentContainer p-4">
-
-                                    <h2>Bidding.com</h2>
-                                    <p class="py-3">We give you the best product with the best price ever!</p>
-                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Buy</button>
-                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Details</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="swiper-slide">
-                    <div class="slideContiner">
-                        <div class="slideImageContiner">
-                            <img src="{{ asset('img/home/pexels-try405.jpg') }}" alt="">
-                        </div>
-                        <div class="slideContentContiner">
-                            <div class="slideContentOverlay">
-                                <div class="slideContentContainer p-4">
-
-                                    <h2>Bidding.com</h2>
-                                    <p class="py-3">We give you the best product with the best price ever!</p>
-                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Buy</button>
-                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Details</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="swiper-slide">
-                    <div class="slideContiner">
-                        <div class="slideImageContiner">
                             <img src="{{ asset('img/home/slideshow-1.jpg') }}" alt="">
+                        </div>
+                        <div class="slideContentContiner">
+                            <div class="slideContentOverlay">
+                                <div class="slideContentContainer p-4">
+
+                                    <h2>Bidding.com</h2>
+                                    <p class="py-3">We give you the best product with the best price ever!</p>
+                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Buy</button>
+                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Details</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="swiper-slide">
+                    <div class="slideContiner">
+                        <div class="slideImageContiner">
+                            <img src="{{ asset('img/home/slideshow-0.jpg') }}" alt="">
+                        </div>
+                        <div class="slideContentContiner">
+                            <div class="slideContentOverlay">
+                                <div class="slideContentContainer p-4">
+
+                                    <h2>Bidding.com</h2>
+                                    <p class="py-3">We give you the best product with the best price ever!</p>
+                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Buy</button>
+                                    <button type="button" class="btn btn-outline-light mx-1 rounded-0">Details</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+                    <div class="slideContiner">
+                        <div class="slideImageContiner">
+                            <img src="{{ asset('img/home/slideshow-2.jpg') }}" alt="">
                         </div>
                         <div class="slideContentContiner">
                             <div class="slideContentOverlay">

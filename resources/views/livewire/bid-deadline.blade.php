@@ -6,7 +6,7 @@
     <?php $rate = number_format($product->user->rate) ?>
     <div class="product-header--subtitle py-3">
         by
-        <a href="#">
+        <a href="{{route('profile.show' , $product->user->id)}}">
             {{$product->user->account->full_name}}
         </a>
         <div class="rating">
