@@ -82,38 +82,25 @@ class BlockUserController extends Controller
     {
         $this->authorize('update' , BlockUser::class);
         try {
-
-
             if ($user->id === Auth::user()->id) {
                 toastr()->error('you can not block yourself !');
                 return back();
             }
-
             if (!$user->block()->exists()) {
                 toastr()->error('This user already not blocked !');
                 return back();
             }
-
             DB::beginTransaction();
-
             $user->block()->delete();
-
             $user->account()->update(['status' => 'active']);
-
             $user->products()->restore();
-
             DB::commit();
-
-
             toastr()->success('Data has been saved successfully!');
             return back();
-
         } catch (\Throwable $th) {
-
             DB::rollback();
             toastr()->error('something error');
             return back();
-
         }
 
     }

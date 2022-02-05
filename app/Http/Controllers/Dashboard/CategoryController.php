@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
@@ -27,7 +28,7 @@ class CategoryController extends Controller
 
 
 
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
         Category::create($request->validated());
         Cache::forget('categories');
@@ -36,6 +37,9 @@ class CategoryController extends Controller
     }
 
 
+    /**
+     * @throws AuthorizationException
+     */
     public function show(Category $category)
     {
         $this->authorize('viewAny' , Category::class);
@@ -43,7 +47,7 @@ class CategoryController extends Controller
         return view('dashboard.subCategory.index' , compact('category') );
     }
 
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
         $category->update($request->safe(['name']));
         Cache::forget('categories');
@@ -54,10 +58,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Category $category
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Category $category
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
         $this->authorize('delete' , $category);
         try {

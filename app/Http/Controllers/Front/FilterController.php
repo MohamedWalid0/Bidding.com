@@ -34,71 +34,47 @@ class FilterController extends Controller
     }
 
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
-        return $this->fetchProductsBySearch( $request->keyword , $request->subCategoriesIds , $request->minPrice , $request->maxPrice );
+        return $this->fetchProductsBySearch($request->keyword, $request->subCategoriesIds, $request->minPrice, $request->maxPrice);
 
     }
 
 
-    public function fetchProductsBySearch($keyword = null  , $subCategoriesIds = '' , $minPrice = 0 , $maxPrice = 10000){
-
-
-
-        if ( request('subCategoriesIds') == 'null' && request('keyword') != 'null' ) {
-
-            return Product::search($keyword )
+    public function fetchProductsBySearch($keyword = null, $subCategoriesIds = '', $minPrice = 0, $maxPrice = 10000)
+    {
+        if (request('subCategoriesIds') == 'null' && request('keyword') != 'null') {
+            return Product::search($keyword)
                 ->cursor()
                 ->whereBetween('start_price', [$minPrice, $maxPrice])
                 ->all();
-
-        }
-        else if ( request('subCategoriesIds') != 'null' && request('keyword') == 'null' ) {
-
+        } else if (request('subCategoriesIds') != 'null' && request('keyword') == 'null') {
             return Product::whereBetween('start_price', [$minPrice, $maxPrice])
-                ->whereIn('sub_category_id', explode(",", $subCategoriesIds  )  )
+                ->whereIn('sub_category_id', explode(",", $subCategoriesIds))
                 ->get();
-
-        }
-        else if (request('subCategoriesIds') == 'null' && request('keyword') == 'null'){
-
+        } else if (request('subCategoriesIds') == 'null' && request('keyword') == 'null') {
             return Product::whereBetween('start_price', [$minPrice, $maxPrice])
                 ->get();
-
-        }
-        else {
-
-            return Product::search($keyword )
+        } else {
+            return Product::search($keyword)
                 ->cursor()
                 ->whereBetween('start_price', [$minPrice, $maxPrice])
-                ->whereIn('sub_category_id', explode(",", $subCategoriesIds )  )
+                ->whereIn('sub_category_id', explode(",", $subCategoriesIds))
                 ->values()
-                ->chunk(25)->get('*');
-
+                ->all();
         }
-
-
     }
 
 
-
-
-
-    public function searchByKeyword(Request $request){
-
+    public function searchByKeyword(Request $request)
+    {
         if ($request->has('q')) {
-            return Product::search( $request->q )->get() ;
+            return Product::search($request->q)->get();
+        } else {
+            return response()->json('not found');
         }
-        else{
-            return response()->json('not found') ;
-        }
-
     }
-
-
-
-
-
 
 
 }

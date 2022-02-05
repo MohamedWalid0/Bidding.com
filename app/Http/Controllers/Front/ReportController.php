@@ -6,17 +6,16 @@ use App\Factories\ReportFactory;
 use App\Http\Controllers\Controller;
 use App\Models\ReportProduct;
 use App\Models\ReportUser;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
 
-    public function reportUser(Request $request)
+    public function reportUser(Request $request): RedirectResponse
     {
-
         try {
-
             $existsReport = ReportUser::where('user_id', $request->user_id)
                 ->where('reporter_id', Auth::user()->id)->exists();
             if ($existsReport) {
@@ -36,44 +35,26 @@ class ReportController extends Controller
             toastr()->error('try again later');
             return back();
         }
-
-
     }
 
 
-    public function reportProduct(Request $request)
+    public function reportProduct(Request $request): RedirectResponse
     {
-
-
         try {
-
             $existsReport = ReportProduct::where('product_id', $request->product_id)
                 ->where('user_id', Auth::user()->id)->first();
-
-
             if ($existsReport) {
                 toastr()->error('you reported this product before');
                 return back();
             }
-
             $reportFactory = new ReportFactory();
-
             $reportProduct = $reportFactory->getType("product");
             $reportProduct->sendReport($request->product_id);
-
             toastr()->success('report sending successfully');
             return back();
-
         } catch (\Throwable $th) {
-
             toastr()->error('try again later');
             return back();
-
-
         }
-
-
     }
-
-
 }

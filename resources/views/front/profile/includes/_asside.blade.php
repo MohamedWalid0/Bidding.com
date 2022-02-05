@@ -81,7 +81,7 @@
                     </a>
                 </li>
             @endcan
-            @can('make' , \App\Models\User::class)
+
                 <li>
                     <a href="#Reviews">
                         <div class="profile-tabs container-fluid">
@@ -92,7 +92,7 @@
                         </div>
                     </a>
                 </li>
-            @endcan
+
             @can('action' , \App\Models\User::class)
                 <li>
                     <a href="#MyBids">

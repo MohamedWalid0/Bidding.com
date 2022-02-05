@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Wishlist;
+use Illuminate\Http\JsonResponse;
 use function PHPUnit\Framework\isEmpty;
 
 class WishlistController extends Controller
@@ -15,10 +16,9 @@ class WishlistController extends Controller
         return view('front.wishlist.index', compact('wishlist'));
     }
 
-    public function toggleProductInWishlist(Product $product)
+    public function toggleProductInWishlist(Product $product): JsonResponse
     {
         if (!empty(auth()->user()->wishlist->products()->toggle(request('productId'))['attached'])) {
-
             return response()->json(['wished' => true, 'status' => true , 'message' => "Added To Wishlist Successfully"]);
         }
         return response()->json(['wished' => true,  'status' => false ,'message' => "Removed From Wishlist Successfully"]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 
 use App\Models\Property;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\PropertyValue;
 use App\Http\Controllers\Controller;
@@ -22,14 +23,14 @@ class PropertyValueController extends Controller
     }
 
 
-    public function update(UpdatePropertyValueRequest $request, Property $property , PropertyValue $property_value )
+    public function update(UpdatePropertyValueRequest $request, Property $property , PropertyValue $property_value ): RedirectResponse
     {
         $property_value->update($request->validated());
         toastr()->success('Property value updated successfully');
         return back();
     }
 
-    public function destroy(Property $property , PropertyValue $property_value)
+    public function destroy(Property $property , PropertyValue $property_value): RedirectResponse
     {
         try {
 

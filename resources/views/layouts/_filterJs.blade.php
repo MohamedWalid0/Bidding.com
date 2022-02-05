@@ -169,7 +169,7 @@
 
 
     });
-    
+
     // end search by keyword
 
     function fetchProductsBySearch(keyword , subCategoriesIds = [] , minPrice = 0 , maxPrice = 10000) {
@@ -182,7 +182,6 @@
         if( Object.keys(subCategoriesIds).length == 0 ){
             subCategoriesIds = null ;
         }
-
         $.ajax({
             type: 'GET',
             url: 'search?keyword=' + keyword + '&subCategoriesIds=' + subCategoriesIds  + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice,
@@ -201,6 +200,7 @@
                 else {
                     $('.causes_div').empty();
                     response.forEach(element => {
+
                         $('.causes_div').append(`
 
 
@@ -243,26 +243,24 @@
 
                                         </div>
 
-                                        <div class="productBidTimer">
-
+                                        <div class="productBidTimer" data-date="${element.deadline}">
                                             <div class="d-flex  text-center w-100 p-2">
                                                 <div class="col-3 px-0 counterItem rightBorder">
-                                                    <h6 class="text-primary my-0 pt-1" ></h6>
-                                                    <p class="text-muted">Days</p>
+                                                    <h6 class="text-primary my-0 pt-1 days" ></h6>
+                                                    <p class="text-muted ">Days</p>
                                                 </div>
                                                 <div class="col-3 px-0 counterItem rightBorder">
-                                                    <h6 class="text-primary my-0 pt-1"></h6>
-                                                    <p class="text-muted">Hours</p>
+                                                    <h6 class="text-primary my-0 pt-1 hours"></h6>
+                                                    <p class="text-muted ">Hours</p>
                                                 </div>
-
                                                 <div class="col-3 px-0 counterItem rightBorder">
-                                                    <h6 class="text-primary my-0 pt-1"></h6>
-                                                    <p class="text-muted">Minutes</p>
+                                                    <h6 class="text-primary my-0 pt-1 mins"></h6>
+                                                    <p class="text-muted ">Minutes</p>
                                                 </div>
 
                                                 <div class="col-3 px-0 counterItem">
-                                                    <h6 class="text-primary my-0 pt-1" ></h6>
-                                                    <p class="text-muted">Seconds</p>
+                                                    <h6 class="text-primary my-0 pt-1 secs" ></h6>
+                                                    <p class="text-muted ">Seconds</p>
                                                 </div>
                                             </div>
 
@@ -301,6 +299,7 @@
 
                     })
 
+                    productBidTimer()
 
                 }
 
@@ -320,8 +319,6 @@
             }
 
         })
-
-
     }
 
 
@@ -330,16 +327,25 @@
 
 
 
-
+let timersIntervals = [];
 
 function productBidTimer(){
-    let cards = document.querySelectorAll('.productBidTimer');
+    let cards = document.querySelectorAll('div.productBidTimer');
+
+    while(timersIntervals.length > 0)
+        clearInterval(timersIntervals.pop())
+
+    // console.log(cards);
     cards.forEach(card => {
+        console.log(card.dataset.date);
         let countDownDate = new Date(card.dataset.date).getTime();
+        console.log('countDownDate: ', countDownDate);
         const intrvl = setInterval(function () {
             let now = new Date().getTime();
             let timeleft = countDownDate - now;
-
+            // console.log(countDownDate);
+            // console.log(now);
+            // console.log(timeleft);
             let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
             let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
@@ -360,8 +366,14 @@ function productBidTimer(){
 
         }, 1000)
 
+        timersIntervals.push(intrvl)
+        console.log(timersIntervals)
     })
 }
+
+document.addEventListener("DOMContentLoaded", e => {
+    productBidTimer()
+})
 
 function stopPaginateRouting(){
     $('.pagination a').on('click', function(e){

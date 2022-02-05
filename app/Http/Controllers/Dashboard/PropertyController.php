@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Property;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
@@ -12,6 +13,9 @@ use App\Http\Requests\Properties\UpdatePropertyRequest;
 
 class PropertyController extends Controller
 {
+    /**
+     * @throws AuthorizationException
+     */
     public function index(): view
     {
         $this->authorize('viewAny' , Property::class);
