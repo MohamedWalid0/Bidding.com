@@ -138,7 +138,7 @@
             <div class="sectionTitleContainer pt-3">
 
                 <h2 class="sectionTitle">
-                    Shop By Brand
+                    Random Categories
                 </h2>
                 <div class="bidIconContainer">
                     <i class="fas fa-gavel bidIcon"></i>
@@ -157,16 +157,22 @@
                     <div class="category latestActionsCategoryOne my-2 mx-2 p-4">
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Bullets Wireless </h3>
-                            <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More</button>
+                            <button class="viewMore my-4">
+                                <a href="{{route('categories.viewCategory' , 1)}}" class="text-light my-4 rounded-0">
+                                    Shop Now
+                                </a>
+                            </button>
                         </div>
                     </div>
                     <div class="category latestActionsCategoryTwo my-2 mx-2 p-4">
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Drones </h3>
-                            <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More</button>
-                        </div>
+                                <button class="viewMore my-4">
+                                    <a href="{{route('categories.viewCategory' , 2)}}" class="text-light my-4 rounded-0">
+                                        Shop Now
+                                    </a>
+                                </button>
+                            </div>
                     </div>
                 </div>
 
@@ -174,15 +180,21 @@
                     <div class="category latestActionsCategoryThree my-2 p-4">
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Headphones </h3>
-                            <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More</button>
-                        </div>
+                                <button class="viewMore my-4">
+                                    <a href="{{route('categories.viewCategory' , 3)}}" class="text-light my-4 rounded-0">
+                                        Shop Now
+                                    </a>
+                                </button>
+                            </div>
                     </div>
                     <div class="category latestActionsCategoryFour my-2 p-4">
                         <div class="categoryContent p-3">
                             <h3 class="categoryName"> Charger Wireless </h3>
-                            <p class="categoryCount">20 product</p>
-                            <button class="viewMore my-4"> View More</button>
+                            <button class="viewMore my-4">
+                                <a href="{{route('categories.viewCategory' , 4)}}" class="text-light my-4 rounded-0">
+                                    Shop Now
+                                </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -248,15 +260,32 @@
                                 <h5>{{$product->name}}</h5>
                                 <p class="my-2">Current bid : {{$product->last_bid->bid->cost ?? $product->start_price }} LE </p>
                                 <div class="d-flex">
-                                    <div class="iconContainer mr-3 px-2 rounded-circle ">
-                                        <i class="fas fa-gavel"></i>
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
+                                        <a href="{{ route('products.index' , $product) }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </div>
-                                    <div class="iconContainer mr-3 px-2 rounded-circle ">
-                                        <i class="far fa-heart"></i>
+
+
+                                    <div
+                                        class="iconProductContainer mr-3 my-1 px-2 rounded-circle @if ( App\Models\User::productInWishlist($product->id)) wishlistActive @else wishlistNotActive @endif  "
+                                        id="wishlistIconContainer" data-product-icon-id="{{ $product -> id }}">
+
+                                        <a class="toggleProductinWishlist @if ( App\Models\User::productInWishlist($product->id)) wishlistIconActive @else wishlistIconNotActive @endif "
+                                           href="#" data-product-id="{{$product -> id}}">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+
                                     </div>
-                                    <div class="iconContainer mr-3 px-2 rounded-circle ">
-                                        <i class="fas fa-search"></i>
+
+
+                                    <div class="iconProductContainer mr-3 my-1 px-2 rounded-circle ">
+                                        <a href="{{ route('products.generate' , $product) }}" class="text-dark">
+                                            <i class="fas fa-qrcode "></i>
+                                        </a>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
