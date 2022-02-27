@@ -29,10 +29,9 @@ by using Laravel 8, Livewire, Websockets.
 - **[Search and Filtering](#Search-and-Filtering)**
 - **[Notifications](#Notifications)**
 - **[Dashboard](#Dashboard)**
-  - [Likes](#Likes)
-  - [Likes](#Likes)
-  - [Likes](#Likes)
-  - [Likes](#Likes)
+  - [Block User](#Block-User)
+  - [Stop Product](#Stop-Product)
+  - [Return Product](#Return-Product)
 
 ## Contributors
 > Thanks goes to these wonderful people in the team.
@@ -131,20 +130,20 @@ You can also like product, comment, reply comment if you are the product owner.
 ### Bid Process 
 The real-time change when the user add a bid.
 
-![Add Product](screenshots/Bid.mp4)
+https://user-images.githubusercontent.com/64032541/155890495-e184f1ad-f222-4b15-841d-829457b01588.mp4
+
 
 ### Time Delay
 
 In our Requirements, we assume that when the user add a bid in the last hour, the deadline must delay one hour
 to make sure that all other users get the notifications
 
-![Add Product](screenshots/Time-delay.mp4)
+https://user-images.githubusercontent.com/64032541/155890518-8e4397ba-53d9-423e-8284-d69ac0e06a7c.mp4
 
 ### End Bidding
 The real-time change when the deadline come.
 
-![Add Product](screenshots/End-Bidding.mp4)
-
+https://user-images.githubusercontent.com/64032541/155890542-171897af-dbe9-493a-85c6-adc6746d1d21.mp4
 ### Likes
 
 User can like/dislike Product or Comment.
@@ -182,9 +181,13 @@ Admin can block any user and this user can't Login again.
 
 ### Stop Product
 when admin see that product has many reports, The admin can stop it and the product change in real-time.
-![Add Product](screenshots/Stop-product.mp4)
+
+https://user-images.githubusercontent.com/64032541/155890586-59ae8456-814e-4de5-b4fa-d4e927ab1433.mp4
 
 ### Return Product
 The admin can return the product and make it open again.
-![Add Product](screenshots/Untitled%20design.mp4)
+
+https://user-images.githubusercontent.com/64032541/155890622-6ce8a58b-0a39-4f53-8f6e-f788f9100edc.mp4
+
+
 
