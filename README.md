@@ -1,66 +1,190 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# <p align="center"><a href="https://laravel.com" target="_blank"><img src="public/img/bidd.png" width="400"></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+**_Bidding.com_** is a web-based auction system made for handling the full process of an online auction
+to provide a user-friendly website for the buyers and sellers to auction their products easily,
+handled multi-dynamic roles and contained a dashboard to control the whole system.
+it's designed to be an online trading and auction website with real-time communications tools between bidders and owners
+by using Laravel 8, Livewire, Websockets.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Main Features 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **[Authentication](#Authentication)**
+- **[Authorization](#Authorization)**
+- **[Profile](#Profile)**
+  - [Update Profile](#Update-Profile)
+  - [Rate User](#Rate-User)
+  - [Reviews](#Reviews)
+  - [Reports](#Reports)
+- **[Add Product](#Add-Product)**
+- **[Bidding](#Bidding)**
+  - [Bid Process](#Bid-Process)
+  - [Timer Delay](#Timer-Delay)
+  - [End Bidding](#End-Bidding)
+  - [Likes](#Likes)
+  - [Comments and Replies](#Comments-and-Replies)
+- **[Search and Filtering](#Search-and-Filtering)**
+- **[Notifications](#Notifications)**
+- **[Dashboard](#Dashboard)**
+  - [Likes](#Likes)
+  - [Likes](#Likes)
+  - [Likes](#Likes)
+  - [Likes](#Likes)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Contributors
+> Thanks goes to these wonderful people in the team.
+<table>
+  <tr>
+    <td align="center">
+    <a href="https://github.com/aminyasser" target="_black">
+    <img src="https://avatars.githubusercontent.com/u/64032541?s=400&u=869e6019e0fc86d92759f6c7a69fbea67521100e&v=4" width="150px;" style=" border-radius:10px;" alt="Amin Yasser"/>
+    <br />
+    <sub><b>Amin</b></sub></a>
+    <br/>
+    </td>
+    <td align="center">
+    <a href="https://github.com/mahmoud-adel44" target="_black">
+    <img src="https://avatars.githubusercontent.com/u/64043496?v=4" width="150px;" style=" border-radius:10px;" alt="Mahmoud Adel"/>
+    <br />
+    <sub><b>Mahmoud Adel</b></sub></a>
+    <br/>
+    </td>
+    <td align="center">
+    <a href="https://github.com/MohamedWalid0" target="_black">
+    <img src="https://avatars.githubusercontent.com/u/63995557?v=4" width="150px;" style=" border-radius:10px;" alt="Mohammed Walid"/>
+    <br />
+    <sub><b>Mohamed Walid</b></sub></a>
+    <br/>
+    </td>
+  </tr>
+ </table>
 
-## Learning Laravel
+## Authentication
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+User can Register with Facebook,Twitter or GitHub , or normal Register with the data needed for 
+Register like Email, Phone, Location etc, There is a Verification Layer, The email and phone must be vrefy before access 
+to profile or add bid on a product. 
+And User can Login with email/password or with Facebook,Twitter,GitHub.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Authorization
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+We have many roles ``Admin`` ``Moderator`` ``Support Team`` ``User`` , and admin can add a new role 
+with different permission and assign this role to any user then user will have some of different permission. 
+also you can edit current Role.
 
-### Premium Partners
+![Roles](screenshots/roles.jpg)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+## Profile
+In Profile Module you can access your data and update it, see your Reviews, see the products you bid on. 
+you can rate and review other user, and report user, see other user reviews section.
 
-## Contributing
+### Update Profile
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+User can edit his profile or profile image.
 
-## Code of Conduct
+<p float="left">
+  <img src="screenshots/update-profile.png" width="100" />
+  <img src="screenshots/profile-data.png" width="100" />
+</p> 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+### Rate User
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+User can edit his profile or profile image or add additional Review on his Rate.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Rate](screenshots/Rate.png)
+
+
+### Reviews
+
+Display User Reviews
+
+![Review](screenshots/Review.png)
+
+### Reports
+
+User can Report Product or User and the admin can see all reports in dashboard and stop product or ban user.
+
+![Report](screenshots/Report-User.png)
+![Report](screenshots/Report-Product.png)
+
+
+## Add Product
+
+System ask about Product details like ``name`` ``images`` ``descreption`` ``location`` 
+``start price`` ``category`` ``sub-category`` ``deadline``
+
+![Add Product](screenshots/add-product.png)
+
+
+## Bidding
+
+The bidding, User can add bid on the product and see the other bidders in real-time with livewire and websockets,
+and get notification when any bid get added. 
+You can also like product, comment, reply comment if you are the product owner.
+
+### Bid Process 
+The real-time change when the user add a bid.
+
+![Add Product](screenshots/Bid.mp4)
+
+### Time Delay
+
+In our Requirements, we assume that when the user add a bid in the last hour, the deadline must delay one hour
+to make sure that all other users get the notifications
+
+![Add Product](screenshots/Time-delay.mp4)
+
+### End Bidding
+The real-time change when the deadline come.
+
+![Add Product](screenshots/End-Bidding.mp4)
+
+### Likes
+
+User can like/dislike Product or Comment.
+
+### Comments and Replies
+Any User can add comment on product, but only the product owner can reply on comment.
+
+![Comment](screenshots/Comment.png)
+
+
+## Search and Filtering
+
+System provide real-time Search for products via navbar search input or search and filtering page.
+
+![Search](screenshots/search.png)
+
+## Notifications
+There is many types of notifications 
+- Email NotificationsAdmin can send notification to all users or specific user by email.
+- Normal Real-time navbar notification when user add bid on product all the bidders and product owner get notified.
+
+
+## Dashboard
+
+The project dashboard can control the whole system, block users, stop product, modify roles, and control all project.
+
+![Dashboard](screenshots/Dashboard.png)
+
+
+### Block User
+
+Admin can block any user and this user can't Login again.
+
+![Dashboard](screenshots/Block.png)
+
+### Stop Product
+when admin see that product has many reports, The admin can stop it and the product change in real-time.
+![Add Product](screenshots/Stop-product.mp4)
+
+### Return Product
+The admin can return the product and make it open again.
+![Add Product](screenshots/Untitled%20design.mp4)
+
