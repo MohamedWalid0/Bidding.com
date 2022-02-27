@@ -87,8 +87,8 @@ you can rate and review other user, and report user, see other user reviews sect
 User can edit his profile or profile image.
 
 <p float="left">
-  <img src="screenshots/update-profile.png" width="100" />
-  <img src="screenshots/profile-data.png" width="100" />
+  <img src="screenshots/update-profile.png" width="400" />
+  <img src="screenshots/profile-data.png" width="400" />
 </p> 
 
 
